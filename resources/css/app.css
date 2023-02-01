@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .my-table {
+        @apply w-full text-sm text-left text-gray-500  table-fixed
+    }
+
+    .my-header {
+        @apply text-xs text-gray-700 uppercase bg-gray-50  border-b-2 border-gray-300
+    }
+
+    .my-th {
+        @apply px-6 py-3 whitespace-nowrap
+    }
+
+    .body-tr {
+        @apply  border-b
+        odd:bg-white
+        even:bg-gray-50
+    }
+
+}

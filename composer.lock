@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f6b903ad52be461da893f5fc2dfcadc",
+    "content-hash": "257b83890c21aba41dd458ad3e844651",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -3466,6 +3466,84 @@
             "time": "2023-01-12T18:13:24+00:00"
         },
         {
+            "name": "spatie/laravel-collection-macros",
+            "version": "7.12.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-collection-macros.git",
+                "reference": "1297ad4511d2c060efdf6708de7169250f293361"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-collection-macros/zipball/1297ad4511d2c060efdf6708de7169250f293361",
+                "reference": "1297ad4511d2c060efdf6708de7169250f293361",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.71|^9.0|^10.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "amphp/parallel": "^1.4.1",
+                "amphp/parallel-functions": "^1.1.0",
+                "mockery/mockery": "^1.4.2",
+                "orchestra/testbench": "^6.23|^7.0|^8.0",
+                "phpunit/phpunit": "^9.4.4",
+                "spatie/laravel-ray": "^1.29",
+                "symfony/stopwatch": "^5.2|^6.0"
+            },
+            "suggest": {
+                "amphp/parallel-functions": "Required when using the parallel*-macros."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\CollectionMacros\\CollectionMacroServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\CollectionMacros\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://github.com/freekmurze",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://github.com/sebastiandedeyne",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A set of useful Laravel collection macros",
+            "homepage": "https://github.com/spatie/laravel-collection-macros",
+            "keywords": [
+                "laravel-collection-macros",
+                "spatie"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/laravel-collection-macros/tree/7.12.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-01-24T09:08:12+00:00"
+        },
+        {
             "name": "symfony/console",
             "version": "v6.2.5",
             "source": {
@@ -6192,6 +6270,84 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
+            "name": "josezenem/laravel-make-migration-pivot",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/josezenem/laravel-make-migration-pivot.git",
+                "reference": "b27dc753652fe107773e8198067603f8b9e83ef9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/josezenem/laravel-make-migration-pivot/zipball/b27dc753652fe107773e8198067603f8b9e83ef9",
+                "reference": "b27dc753652fe107773e8198067603f8b9e83ef9",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.9.2"
+            },
+            "require-dev": {
+                "nunomaduro/collision": "^6.0",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^7.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Josezenem\\LaravelMakeMigrationPivot\\LaravelMakeMigrationPivotServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelMakeMigrationPivot": "Josezenem\\LaravelMakeMigrationPivot\\Facades\\LaravelMakeMigrationPivot"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Josezenem\\LaravelMakeMigrationPivot\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jose Jimenez",
+                    "email": "jose@jimenez.dev",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Make Laravel pivot tables using the new Laravel 9 closure migrations.",
+            "homepage": "https://github.com/josezenem/laravel-make-migration-pivot",
+            "keywords": [
+                "josezenem",
+                "laravel",
+                "laravel migrations",
+                "laravel-make-pivot",
+                "migration pivot"
+            ],
+            "support": {
+                "issues": "https://github.com/josezenem/laravel-make-migration-pivot/issues",
+                "source": "https://github.com/josezenem/laravel-make-migration-pivot/tree/1.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/josezenem",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-10-12T23:21:26+00:00"
+        },
+        {
             "name": "laravel/pint",
             "version": "v1.4.0",
             "source": {
@@ -8325,6 +8481,66 @@
                 }
             ],
             "time": "2023-01-03T19:28:04+00:00"
+        },
+        {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.14.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df",
+                "reference": "b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.28|^10.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5",
+                "orchestra/testbench": "^7.7|^8.0",
+                "pestphp/pest": "^1.22",
+                "phpunit/phpunit": "^9.5.24",
+                "spatie/pest-plugin-test-time": "^1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.14.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-01-27T15:33:45+00:00"
         },
         {
             "name": "theseer/tokenizer",
