@@ -152,7 +152,7 @@ class Students extends Component
     public static function cacheComuni()
     {
         return Cache::remember('comuni', 60 * 24, function () {
-            $response = Http::withToken('63cff56cabd5b551b243e868')
+            $response = Http::withToken(config('openapi.towns_token'))
                 ->retry(3, 100)
                 ->throw()
                 ->get('https://cap.openapi.it/cerca_comuni?provincia=piacenza');
