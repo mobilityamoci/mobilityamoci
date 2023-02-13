@@ -79,31 +79,36 @@ class Students extends Component
 
     public function reloadStudents()
     {
-        $students = School::find($this->selectedSchoolId)->students()->with('trips', 'trips.transport1', 'trips.transport2')->get();
+        $school = School::where('id',$this->$this->selectedSchoolId)->first();
 
-        $students->transform(function ($item) {
-            $string = 'Da '.$this->comuni[$item->town_istat]['comune'] .' in ';
-            $i = 0;
+        if ($school) {
+            $students = School::find($this->selectedSchoolId)->students()->with('trips', 'trips.transport1', 'trips.transport2')->get();
 
-            foreach ($item->trips as $trip) {
-                if ($i != 0) {
-                    $string .= ' -> ';
+            $students->transform(function ($item) {
+                $string = 'Da ' . $this->comuni[$item->town_istat]['comune'] . ' in ';
+                $i = 0;
+
+                foreach ($item->trips as $trip) {
+                    if ($i != 0) {
+                        $string .= ' -> ';
+                    }
+                    $string .= $trip->transport1->name;
+                    $trip->transport2 ? $string .= '/' . $trip->transport2->name : $string .= '';
+                    $string .= ' fino a ' . $this->comuni[$trip->town_istat]['comune'];
+                    $i++;
                 }
-                $string .= $trip->transport1->name;
-                $trip->transport2 ? $string .= '/' . $trip->transport2->name : $string .= '';
-                $string .= ' fino a ' . $this->comuni[$trip->town_istat]['comune'];
-                $i++;
-            }
-            dd($string);
-        });
+            });
 
-        $this->students = $students->toArray();
+
+            $this->students = $students->toArray();
 //        dd($this->students);
 //        dd(collect($this->students[0]['trips'])->recursive()->where('order',1)->first()['transports']);
 //        foreach (collect($this->students[0]['trips'])->recursive()->where('order',1)->first()['transports'] as $item) {
 //            dd($item['name']);
 //        }
-
+        } else {
+            $this->students = null;
+        }
     }
 
     public function setEditStudentField($index, $fieldName)
