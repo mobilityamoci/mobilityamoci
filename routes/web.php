@@ -23,9 +23,9 @@ Route::middleware([
 Route::get('/', function () {
     return redirect()->route('students');
 });
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+//    Route::get('/dashboard', function () {
+//        return view('dashboard');
+//    })->name('dashboard');
 
     Route::get('/studenti', Students::class)->name('students');
 });

@@ -18,13 +18,13 @@
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-9">
                 {{$errors->first()}}
-                <table class="my-table">
+                <table class="my-table table-auto">
                     <thead class="my-header">
                     <tr>
                         <th class="my-th">Sezione</th>
                         <th class="my-th">Comune Domicilio</th>
                         <th class="my-th">Indirizzo</th>
-                        <th class="my-th">Percorso</th>
+                        <th class="my-th md:hidden lg:block">Percorso</th>
                         <th class="my-th">Azioni</th>
 
                     </tr>
@@ -94,15 +94,20 @@
                                             class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.address')}}</div>
                                     @endif
                                 </td>
-                                <td class="my-th">
+                                <td class="my-th md:hidden lg:block">
                                     <div wire:click.prevent="openTransportsModal({{$index}})">
                                         {!!  $student['trip_string']!!}
                                     </div>
                                 </td>
-                                <td class="my-th">
-                                    <x-jet-button wire:click.prevent="openTransportsModal({{$index}})">Modifica Percorso
-                                    </x-jet-button>
-                                    <x-jet-danger-button wire:click.prevent="deleteStudent({{$index}})">Elimina Studente</x-jet-danger-button>
+                                <td class="my-th ">
+                                    <div class="flex flex-wrap">
+                                        <x-jet-button class="m-1" wire:click.prevent="openTransportsModal({{$index}})">Modifica
+                                            Percorso
+                                        </x-jet-button>
+                                        <x-jet-danger-button class="m-1" wire:click.prevent="deleteStudent({{$index}})">Elimina
+                                            Studente
+                                        </x-jet-danger-button>
+                                    </div>
                                 </td>
 
 
@@ -300,7 +305,7 @@
                                         </td>
                                         <td class="my-th">
                                             <x-jet-secondary-button wire:click="createTrip">Salva
-                                            </x-jet-secondary-button >
+                                            </x-jet-secondary-button>
                                         </td>
                                     @endif
                                 </table>
