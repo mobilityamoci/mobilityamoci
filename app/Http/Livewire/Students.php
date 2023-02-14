@@ -79,25 +79,27 @@ class Students extends Component
 
     public function reloadStudents()
     {
-        $school = School::where('id',$this->$this->selectedSchoolId)->first();
+        $school = School::where('id',$this->selectedSchoolId)->first();
 
         if ($school) {
             $students = School::find($this->selectedSchoolId)->students()->with('trips', 'trips.transport1', 'trips.transport2')->get();
 
-            $students->transform(function ($item) {
-                $string = 'Da ' . $this->comuni[$item->town_istat]['comune'] . ' in ';
-                $i = 0;
 
-                foreach ($item->trips as $trip) {
-                    if ($i != 0) {
-                        $string .= ' -> ';
-                    }
-                    $string .= $trip->transport1->name;
-                    $trip->transport2 ? $string .= '/' . $trip->transport2->name : $string .= '';
-                    $string .= ' fino a ' . $this->comuni[$trip->town_istat]['comune'];
-                    $i++;
-                }
-            });
+
+//            $students->transform(function ($item) {
+//                $string = 'Da ' . $this->comuni[$item->town_istat]['comune'] . ' in ';
+//                $i = 0;
+//
+//                foreach ($item->trips as $trip) {
+//                    if ($i != 0) {
+//                        $string .= ' -> ';
+//                    }
+//                    $string .= $trip->transport1->name;
+//                    $trip->transport2 ? $string .= '/' . $trip->transport2->name : $string .= '';
+//                    $string .= ' fino a ' . $this->comuni[$trip->town_istat]['comune'];
+//                    $i++;
+//                }
+//            });
 
 
             $this->students = $students->toArray();
