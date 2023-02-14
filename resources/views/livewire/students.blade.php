@@ -32,7 +32,7 @@
                     <tbody>
                     @if($students)
                         @foreach($students as $index => $student)
-                            <tr class="body-tr">
+                            <tr class="body-tr" wire:key="{{$index}}">
                                 <td class="my-th">
                                     @if($editStudentIndex === $index || $editStudentField === $index.'.section_id')
                                         <x-select
@@ -94,199 +94,17 @@
                                             class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.address')}}</div>
                                     @endif
                                 </td>
-
-
-                                {{--                        <td class="my-th"--}}
-                                {{--                            @if(!is_null($student['trip1']))--}}
-                                {{--                            @click.away="$wire.editStudentField === '{{$index}}.trip1.transport' ? $wire.saveTrips({{$index}}) : null"--}}
-                                {{--                            @else--}}
-                                {{--                                @click.away="$wire.editStudentField === '{{$index}}.trip1.transport' ? $wire.createTrip({{$index}},1) : null"--}}
-                                {{--                            @endif--}}
-                                {{--                            wire:click="setEditStudentField({{$index}},'trip1.transport')">--}}
-
-                                {{--                            @if($editStudentIndex === $index || $editStudentField === $index.'.trip1.transport')--}}
-                                {{--                                <x-select--}}
-                                {{--                                    --}}{{--                                                                            @click.away="$wire.editStudentField === '{{$index}}.trip1' ? $wire.saveTrips({{$index}}) : null"--}}
-                                {{--                                    wire:model="editingTripTransport"--}}
-                                {{--                                    for="students.{{$index}}.trip1.transports">--}}
-                                {{--                                    @foreach($this->transports as $transport)--}}
-                                {{--                                        <option value="{{$transport['id']}}">{{$transport['name']}}</option>--}}
-                                {{--                                    @endforeach--}}
-                                {{--                                </x-select>--}}
-                                {{--                            @else--}}
-                                {{--                                <div--}}
-                                {{--                                    class="my-th">--}}
-                                {{--                                    @if(!is_null($student['trip1']))--}}
-                                {{--                                        @foreach($student['trip1']['transports'] as $transport)--}}
-                                {{--                                            {{$transport['name']}}--}}
-                                {{--                                            @if(!$loop->last)--}}
-                                {{--                                                /--}}
-                                {{--                                            @endif--}}
-                                {{--                                        @endforeach--}}
-                                {{--                                    @else--}}
-                                {{--                                        -----}}
-                                {{--                                    @endif--}}
-                                {{--                                </div>--}}
-
-                                {{--                            @endif--}}
-
-                                {{--                            @if($errors->has('students.'.$index.'.town_istat'))--}}
-                                {{--                                <div--}}
-                                {{--                                    class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.town_istat')}}</div>--}}
-                                {{--                            @endif--}}
-
-                                {{--                        </td>--}}
-                                {{--                        <td class="my-th"--}}
-                                {{--                            @click.away="$wire.editStudentField === '{{$index}}.trip1.town_istat' ? $wire.saveTrips({{$index}}) : null"--}}
-                                {{--                            wire:click="setEditStudentField({{$index}},'trip1.town_istat')">--}}
-                                {{--                            @if(!is_null($student['trip1']))--}}
-                                {{--                                @if($editStudentIndex === $index || $editStudentField === $index.'.trip1.town_istat')--}}
-                                {{--                                    <x-select--}}
-                                {{--                                        --}}{{--                                                                            @click.away="$wire.editStudentField === '{{$index}}.trip1' ? $wire.saveTrips({{$index}}) : null"--}}
-                                {{--                                        wire:model="students.{{$index}}.trip1.town_istat"--}}
-                                {{--                                        for="students.{{$index}}.trip1.town_istat">--}}
-                                {{--                                        @foreach($this->comuni as $comune)--}}
-                                {{--                                            <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>--}}
-                                {{--                                        @endforeach--}}
-                                {{--                                    </x-select>--}}
-
-                                {{--                                @else--}}
-                                {{--                                    <div--}}
-                                {{--                                        class="my-th">--}}
-
-                                {{--                                        fino a {{$this->comuni[$student['trip1']['town_istat']]['comune']}}--}}
-                                {{--                                    </div>--}}
-                                {{--                                @endif--}}
-
-                                {{--                                @if($errors->has('students.'.$index.'.town_istat'))--}}
-                                {{--                                    <div--}}
-                                {{--                                        class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.town_istat')}}</div>--}}
-                                {{--                                @endif--}}
-                                {{--                            @endif--}}
-                                {{--                        </td>--}}
-                                {{--                        <td class="my-th"--}}
-                                {{--                            @click.away="$wire.editStudentField === '{{$index}}.trip2.transport' ? $wire.saveTrips({{$index}}) : null"--}}
-                                {{--                            wire:click="setEditStudentField({{$index}},'trip2.transport')">--}}
-                                {{--                            @if(!is_null($student['trip2']))--}}
-                                {{--                                @if($editStudentIndex === $index || $editStudentField === $index.'.trip2.transport')--}}
-                                {{--                                    <x-select--}}
-                                {{--                                        --}}{{--                                                                            @click.away="$wire.editStudentField === '{{$index}}.trip2' ? $wire.saveTrips({{$index}}) : null"--}}
-                                {{--                                        wire:model="editingTripTransport"--}}
-                                {{--                                        for="students.{{$index}}.trip2.transports">--}}
-                                {{--                                        @foreach($this->transports as $transport)--}}
-                                {{--                                            <option value="{{$transport['id']}}">{{$transport['name']}}</option>--}}
-                                {{--                                        @endforeach--}}
-                                {{--                                    </x-select>--}}
-                                {{--                                @else--}}
-                                {{--                                    <div--}}
-                                {{--                                        class="my-th">--}}
-                                {{--                                        @foreach($student['trip2']['transports'] as $transport)--}}
-                                {{--                                            {{$transport['name']}}--}}
-                                {{--                                            @if(!$loop->last)--}}
-                                {{--                                                /--}}
-                                {{--                                            @endif--}}
-                                {{--                                        @endforeach--}}
-                                {{--                                    </div>--}}
-                                {{--                                @endif--}}
-
-                                {{--                                @if($errors->has('students.'.$index.'.town_istat'))--}}
-                                {{--                                    <div--}}
-                                {{--                                        class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.town_istat')}}</div>--}}
-                                {{--                                @endif--}}
-                                {{--                            @endif--}}
-                                {{--                        </td>--}}
-                                {{--                        <td class="my-th"--}}
-                                {{--                            @click.away="$wire.editStudentField === '{{$index}}.trip2.town_istat' ? $wire.saveTrips({{$index}}) : null"--}}
-                                {{--                            wire:click="setEditStudentField({{$index}},'trip2.town_istat')">--}}
-                                {{--                            @if(!is_null($student['trip2']))--}}
-                                {{--                                @if($editStudentIndex === $index || $editStudentField === $index.'.trip2.town_istat')--}}
-                                {{--                                    <x-select--}}
-                                {{--                                        --}}{{--                                                                            @click.away="$wire.editStudentField === '{{$index}}.trip2' ? $wire.saveTrips({{$index}}) : null"--}}
-                                {{--                                        wire:model="students.{{$index}}.trip2.town_istat"--}}
-                                {{--                                        for="students.{{$index}}.trip2.town_istat">--}}
-                                {{--                                        @foreach($this->comuni as $comune)--}}
-                                {{--                                            <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>--}}
-                                {{--                                        @endforeach--}}
-                                {{--                                    </x-select>--}}
-
-                                {{--                                @else--}}
-                                {{--                                    <div--}}
-                                {{--                                        class="my-th">--}}
-
-                                {{--                                        fino a {{$this->comuni[$student['trip2']['town_istat']]['comune']}}--}}
-                                {{--                                    </div>--}}
-                                {{--                                @endif--}}
-
-                                {{--                                @if($errors->has('students.'.$index.'.town_istat'))--}}
-                                {{--                                    <div--}}
-                                {{--                                        class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.town_istat')}}</div>--}}
-                                {{--                                @endif--}}
-                                {{--                            @endif--}}
-                                {{--                        </td>--}}
-                                {{--                        <td class="my-th"--}}
-                                {{--                            @click.away="$wire.editStudentField === '{{$index}}.trip3.transport' ? $wire.saveTrips({{$index}}) : null"--}}
-                                {{--                            wire:click="setEditStudentField({{$index}},'trip3.transport')">--}}
-                                {{--                            @if(!is_null($student['trip3']))--}}
-                                {{--                                @if($editStudentIndex === $index || $editStudentField === $index.'.trip3.transport')--}}
-                                {{--                                    <x-select--}}
-                                {{--                                        --}}{{--                                                                            @click.away="$wire.editStudentField === '{{$index}}.trip3' ? $wire.saveTrips({{$index}}) : null"--}}
-                                {{--                                        wire:model="editingTripTransport"--}}
-                                {{--                                        for="students.{{$index}}.trip3.transports">--}}
-                                {{--                                        @foreach($this->transports as $transport)--}}
-                                {{--                                            <option value="{{$transport['id']}}">{{$transport['name']}}</option>--}}
-                                {{--                                        @endforeach--}}
-                                {{--                                    </x-select>--}}
-                                {{--                                @else--}}
-                                {{--                                    <div--}}
-                                {{--                                        class="my-th">--}}
-                                {{--                                        @foreach($student['trip3']['transports'] as $transport)--}}
-                                {{--                                            {{$transport['name']}}--}}
-                                {{--                                            @if(!$loop->last)--}}
-                                {{--                                                /--}}
-                                {{--                                            @endif--}}
-                                {{--                                        @endforeach--}}
-                                {{--                                    </div>--}}
-                                {{--                                @endif--}}
-
-                                {{--                                @if($errors->has('students.'.$index.'.town_istat'))--}}
-                                {{--                                    <div--}}
-                                {{--                                        class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.town_istat')}}</div>--}}
-                                {{--                                @endif--}}
-                                {{--                            @endif--}}
-                                {{--                        </td>--}}
-                                {{--                        <td class="my-th"--}}
-                                {{--                            @click.away="$wire.editStudentField === '{{$index}}.trip3.town_istat' ? $wire.saveTrips({{$index}}) : null"--}}
-                                {{--                            wire:click="setEditStudentField({{$index}},'trip3.town_istat')">--}}
-                                {{--                            @if(!is_null($student['trip3']))--}}
-                                {{--                                @if($editStudentIndex === $index || $editStudentField === $index.'.trip3.town_istat')--}}
-                                {{--                                    <x-select--}}
-                                {{--                                        --}}{{--                                                                            @click.away="$wire.editStudentField === '{{$index}}.trip3' ? $wire.saveTrips({{$index}}) : null"--}}
-                                {{--                                        wire:model="students.{{$index}}.trip3.town_istat"--}}
-                                {{--                                        for="students.{{$index}}.trip3.town_istat">--}}
-                                {{--                                        @foreach($this->comuni as $comune)--}}
-                                {{--                                            <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>--}}
-                                {{--                                        @endforeach--}}
-                                {{--                                    </x-select>--}}
-
-                                {{--                                @else--}}
-                                {{--                                    <div--}}
-                                {{--                                        class="my-th">--}}
-
-                                {{--                                        fino a {{$this->comuni[$student['trip3']['town_istat']]['comune']}}--}}
-                                {{--                                    </div>--}}
-                                {{--                                @endif--}}
-
-                                {{--                                @if($errors->has('students.'.$index.'.town_istat'))--}}
-                                {{--                                    <div--}}
-                                {{--                                        class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.town_istat')}}</div>--}}
-                                {{--                                @endif--}}
-                                {{--                            @endif--}}
-                                {{--                        </td>--}}
-
+                                <td class="my-th">
+                                    <div wire:click.prevent="openTransportsModal({{$index}})">
+                                        {!!  $student['trip_string']!!}
+                                    </div>
+                                </td>
                                 <td class="my-th">
                                     <x-jet-button wire:click.prevent="openTransportsModal({{$index}})">Modifica Percorso
                                     </x-jet-button>
+                                    <x-jet-danger-button wire:click.prevent="deleteStudent({{$index}})">Elimina Studente</x-jet-danger-button>
                                 </td>
+
 
                                 {{--                    <td class="my-th">--}}
                                 {{--                        <x-jet-button label="Salva" wire:click.prevent="saveStudent({{$index}})"--}}
@@ -366,9 +184,9 @@
                                 <table class="mt-8 my-table">
                                     <thead class="my-header">
                                     <tr>
-                                        <th class="my-th">Comune di arrivo</th>
                                         <th class="my-th">1° Mezzo</th>
                                         <th class="my-th">2° Mezzo</th>
+                                        <th class="my-th">Comune di arrivo</th>
 
                                         <th class="my-th"></th>
                                         <th class="my-th"></th>
@@ -379,17 +197,6 @@
                                     @foreach($students[$editStudentIndex]['trips'] as $index=>$trip)
                                         <tr class="body-tr">
                                             @if($editTripIndex === $trip['id'])
-                                                <td class="my-th">
-                                                    <x-select
-                                                        wire:model="students.{{$editStudentIndex}}.trips.{{$index}}.town_istat"
-                                                        for="students.{{$editStudentIndex}}.trip3.{{$index}}.town_istat">
-                                                        <option selected value="">--------------------</option>
-                                                        @foreach($this->comuni as $comune)
-                                                            <option
-                                                                value="{{$comune['istat']}}">{{$comune['comune']}}</option>
-                                                        @endforeach
-                                                    </x-select>
-                                                </td>
                                                 <td class="my-th">
                                                     <x-select
                                                         wire:model="students.{{$editStudentIndex}}.trips.{{$index}}.transport_1"
@@ -413,6 +220,17 @@
                                                     </x-select>
                                                 </td>
                                                 <td class="my-th">
+                                                    <x-select
+                                                        wire:model="students.{{$editStudentIndex}}.trips.{{$index}}.town_istat"
+                                                        for="students.{{$editStudentIndex}}.trip3.{{$index}}.town_istat">
+                                                        <option selected value="{{null}}">--------------------</option>
+                                                        @foreach($this->comuni as $comune)
+                                                            <option
+                                                                value="{{$comune['istat']}}">{{$comune['comune']}}</option>
+                                                        @endforeach
+                                                    </x-select>
+                                                </td>
+                                                <td class="my-th">
                                                     <x-jet-button type="button"
                                                                   wire:click.prevent="saveTrip({{$index}})">Salva
                                                     </x-jet-button>
@@ -421,13 +239,13 @@
                                             @else
 
                                                 <td class="my-th">
-                                                    {{$trip['town_istat'] ? $this->comuni[$trip['town_istat']]['comune'] : ''}}
-                                                </td>
-                                                <td class="my-th">
                                                     {{$trip['transport_1'] ? $transports[$trip['transport_1']]['name'] : ''}}
                                                 </td>
                                                 <td class="my-th">
                                                     {{$trip['transport_2'] ? $transports[$trip['transport_2']]['name'] : ''}}
+                                                </td>
+                                                <td class="my-th">
+                                                    {{$trip['town_istat'] ? $this->comuni[$trip['town_istat']]['comune'] : ''}}
                                                 </td>
                                                 <td class="my-th">
                                                     <x-jet-button type="button"
@@ -482,7 +300,7 @@
                                         </td>
                                         <td class="my-th">
                                             <x-jet-secondary-button wire:click="createTrip">Salva
-                                            </x-jet-secondary-button>
+                                            </x-jet-secondary-button >
                                         </td>
                                     @endif
                                 </table>

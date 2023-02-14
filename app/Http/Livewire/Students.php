@@ -79,27 +79,34 @@ class Students extends Component
 
     public function reloadStudents()
     {
-        $school = School::where('id',$this->selectedSchoolId)->first();
+        $school = School::where('id', $this->selectedSchoolId)->first();
 
         if ($school) {
             $students = School::find($this->selectedSchoolId)->students()->with('trips', 'trips.transport1', 'trips.transport2')->get();
 
 
+            $students = $students->map(function ($item) {
+                if ($item->trips->isNotEmpty()) {
+                    $string = '1) Da <b>' . $this->comuni[$item->town_istat]['comune'] . '</b> in ';
+                    $i = 0;
 
-//            $students->transform(function ($item) {
-//                $string = 'Da ' . $this->comuni[$item->town_istat]['comune'] . ' in ';
-//                $i = 0;
-//
-//                foreach ($item->trips as $trip) {
-//                    if ($i != 0) {
-//                        $string .= ' -> ';
-//                    }
-//                    $string .= $trip->transport1->name;
-//                    $trip->transport2 ? $string .= '/' . $trip->transport2->name : $string .= '';
-//                    $string .= ' fino a ' . $this->comuni[$trip->town_istat]['comune'];
-//                    $i++;
-//                }
-//            });
+                    foreach ($item->trips as $trip) {
+                        if ($i != 0) {
+                            $string .= '<br>' . $i + 1 . ') ';
+                        }
+                        $string .= '<b>' . $trip->transport1->name . '</b>';
+                        $trip->transport2 ? $string .= '<b>/' . $trip->transport2->name . '</b>' : $string .= '';
+                        $string .= ' fino a <b>' . $this->comuni[$trip->town_istat]['comune'] . '</b>';
+                        $i++;
+                    }
+
+                    $string .= '<br>' . $i + 1 . ') <b>Scuola</b>';
+                    $item['trip_string'] = $string;
+                } else {
+                    $item['trip_string'] = '<b>Percorso ancora da creare!</b>';
+                }
+                return $item;
+            });
 
 
             $this->students = $students->toArray();
@@ -243,11 +250,16 @@ class Students extends Component
     {
         $trip = $this->students[$this->editStudentIndex]['trips'][$index] ?? NULL;
 
-        if (!is_null($trip))
-            optional(Trip::find($trip['id']))->update($trip);
 
+        if (!is_null($trip)) {
+            if ($trip['transport_2'] == "") {
+                $trip['transport_2'] = null;
+            }
+            optional(Trip::find($trip['id']))->update($trip);
+        }
         $this->editTripIndex = null;
         $this->editingTripTransport = null;
+        $this->reloadStudents();
     }
 
     public function deleteTrip($index)
@@ -289,6 +301,15 @@ class Students extends Component
             $this->addingNewTrip = false;
         }
 
+    }
+
+    public function deleteStudent($index) {
+        $student = $this->students[$index] ?? NULL;
+
+        if (!is_null($student))
+            optional(Student::find($student['id']))->delete();
+
+        $this->reloadStudents();
     }
 
 
