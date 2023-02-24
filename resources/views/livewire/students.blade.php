@@ -7,13 +7,20 @@
             @endforeach
         </x-select>
 
+        <x-select wire:change="sectionChanged" class="col-auto" wire:model="selectedSectionId" label="Seleziona Sezione"
+                  for="section">
+            @foreach($this->sections as $section)
+                <option @selected($selectedSectionId == $section->id) value="{{$section->id}}">{{$section->name}}</option>
+            @endforeach
+        </x-select>
+
 
         @if(!$editSections)
 
-            <x-jet-button type="button" class="mt-9" wire:click.prevent="startCreatingStudent()">Aggiungi Studente
+            <x-jet-button type="button" class="mt-9" wire:click.prevent="fetchResults()">Aggiungi Studente
             </x-jet-button>
 
-            <x-jet-button type="button" class="mt-9" wire:click.prevent="$toggle('editSections')">Aggiungi Sezione
+            <x-jet-button type="button" class="mt-9" wire:click.prevent="$toggle('editSections')">Gestisci Sezioni
             </x-jet-button>
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-9">
@@ -40,7 +47,7 @@
                                             label="" wire:model="students.{{$index}}.section_id"
                                             for="students.{{$index}}.section_id">
                                             @foreach($this->sections as $section)
-                                                <option value="{{$section['id']}}">{{$section['name']}}</option>
+                                                <option value="{{$section->id}}">{{$section->name}}</option>
                                             @endforeach
                                         </x-select>
                                     @else
@@ -174,7 +181,7 @@
 
             <x-jet-secondary-button class="mt-9" wire:click.prevent="$toggle('editSections')">
                 <x-back-icon></x-back-icon>
-                Torna agli Studenti
+                Torna alle scuole
             </x-jet-secondary-button>
             <livewire:sections wire:key="{{ now() }}" :selected-school-id="$selectedSchoolId"></livewire:sections>
         @endif

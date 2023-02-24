@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Schools;
 use App\Http\Livewire\Students;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,5 @@ Route::get('/', function () {
 //    })->name('dashboard');
 
     Route::get('/studenti', Students::class)->name('students');
+    Route::get('/scuole', Schools::class)->name('schools');
 });

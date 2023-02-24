@@ -7,9 +7,11 @@ use App\Models\Section;
 use App\Models\Student;
 use App\Models\Transport;
 use App\Models\Trip;
+use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Optional;
 use Livewire\Component;
 
 class Students extends Component
@@ -44,6 +46,7 @@ class Students extends Component
 
     public Collection $schools;
     public int $selectedSchoolId;
+    public int|null $selectedSectionId;
 
     public bool $showTransportsModal = false;
 
@@ -66,6 +69,7 @@ class Students extends Component
     {
         $this->schools = School::all();
         $this->selectedSchoolId = 1;
+        $this->selectedSectionId = $this->sections->first()->id;
         $this->transports = Transport::all()->keyBy('id')->toArray();
         self::cacheComuni();
         $this->reloadStudents();
@@ -74,15 +78,16 @@ class Students extends Component
 
     public function getSectionsProperty()
     {
-        return Section::where('school_id', $this->selectedSchoolId)->get()->keyBy('id')->toArray();
+        return Section::where('school_id', $this->selectedSchoolId)->get()->keyBy('id');
     }
 
     public function reloadStudents()
     {
-        $school = School::where('id', $this->selectedSchoolId)->first();
+        if ($this->selectedSectionId) {
+            $section = Section::with('students')->find($this->selectedSectionId);
 
-        if ($school) {
-            $students = School::find($this->selectedSchoolId)->students()->with('trips', 'trips.transport1', 'trips.transport2')->get();
+
+            $students = $section->students()->with('trips', 'trips.transport1', 'trips.transport2')->get();
 
 
             $students = $students->map(function ($item) {
@@ -118,6 +123,7 @@ class Students extends Component
         } else {
             $this->students = null;
         }
+
     }
 
     public function setEditStudentField($index, $fieldName)
@@ -137,21 +143,6 @@ class Students extends Component
         $this->editStudentIndex = null;
     }
 
-//    public function saveTrips($index, $tripNr)
-//    {
-//
-//        $trip_arr = $this->students[$index][$tripNr] ?? NULL;
-//
-//        if (!is_null($trip_arr)) {
-//            $trip = optional(Trip::find($trip_arr['id']));
-//            $trip->update($trip_arr);
-//            $trip->transports()->sync(array((int)$this->editingTripTransport));
-//        }
-//
-//        $this->editStudentField = null;
-//        $this->editStudentIndex = null;
-//        $this->reloadStudents();
-//    }
 
     public function getComuniProperty()
     {
@@ -160,7 +151,15 @@ class Students extends Component
 
     public function schoolChanged()
     {
-        $this->students = School::find($this->selectedSchoolId)->students->toArray();
+        $school = School::with('sections')->find($this->selectedSchoolId);
+        $this->selectedSectionId = optional(optional($this->sections)->first())->id;
+        $this->sectionChanged();
+    }
+
+    public function sectionChanged()
+    {
+        $section = Section::with('students')->find($this->selectedSectionId);
+        $this->students = optional($section)->students;
     }
 
     public static function cacheComuni()
@@ -303,7 +302,8 @@ class Students extends Component
 
     }
 
-    public function deleteStudent($index) {
+    public function deleteStudent($index)
+    {
         $student = $this->students[$index] ?? NULL;
 
         if (!is_null($student))
