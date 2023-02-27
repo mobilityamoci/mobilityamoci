@@ -14,13 +14,7 @@
             @endforeach
         </x-select>
 
-
-        @if(!$editSections)
-
             <x-jet-button type="button" class="mt-9" wire:click.prevent="fetchResults()">Aggiungi Studente
-            </x-jet-button>
-
-            <x-jet-button type="button" class="mt-9" wire:click.prevent="$toggle('editSections')">Gestisci Sezioni
             </x-jet-button>
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-9">
@@ -176,15 +170,6 @@
                 @include('components.trips-modal')
 
             </div>
-
-        @else
-
-            <x-jet-secondary-button class="mt-9" wire:click.prevent="$toggle('editSections')">
-                <x-back-icon></x-back-icon>
-                Torna alle scuole
-            </x-jet-secondary-button>
-            <livewire:sections wire:key="{{ now() }}" :selected-school-id="$selectedSchoolId"></livewire:sections>
-        @endif
 
 
     </div>

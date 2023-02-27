@@ -13,11 +13,13 @@ class Schools extends Component
     public int|null $editSchoolId = null;
     public $schools;
 
-    public string $editingSchoolName = '';
+    protected $rules = [
+      'schools.*.name' => 'string|required'
+    ];
 
 
     public function mount() {
-        $this->schools = School::withCount('students','sections')->get();
+        $this->schools = School::withCount('students','sections')->get()->toArray();
     }
 
 
@@ -26,19 +28,26 @@ class Schools extends Component
         return view('livewire.schools');
     }
 
-    public function handleSections($schoolId) {
-        $this->editSchoolId = $schoolId;
-        $this->editingSections = true;
-    }
+//    public function handleSections($schoolId)
+//    {
+//        $this->editSchoolId = $schoolId;
+//        $this->editingSections = true;
+//    }
 
     public function hydrate()
     {
-        $this->schools->loadCount('students');
-        $this->schools->loadCount('sections');
+//        $this->schools->loadCount('students');
+//        $this->schools->loadCount('sections');
     }
 
-    public function saveSchool()
+    public function saveSchool($index)
     {
+        $this->validate();
+        $school = $this->schools[$index] ?? NULL;
 
+        if (!is_null($school))
+            optional(School::find($school['id']))->update($school);
+
+        $this->editSchoolId = null;
     }
 }

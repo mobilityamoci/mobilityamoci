@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 class School extends Model
 {
 
+    protected $guarded = ['id', 'created_at','updated_at'];
+
     public function students()
     {
         return $this->hasManyThrough(Student::class, Section::class,'school_id','section_id','id','id');

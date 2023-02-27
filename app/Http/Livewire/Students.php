@@ -71,7 +71,6 @@ class Students extends Component
         $this->selectedSchoolId = 1;
         $this->selectedSectionId = $this->sections->first()->id;
         $this->transports = Transport::all()->keyBy('id')->toArray();
-        self::cacheComuni();
         $this->reloadStudents();
     }
 
@@ -162,35 +161,7 @@ class Students extends Component
         $this->students = optional($section)->students;
     }
 
-    public static function cacheComuni()
-    {
-        return Cache::remember('comuni', 60 * 24, function () {
-            $response = Http::withToken(config('openapi.towns_token'))
-                ->retry(3, 100)
-                ->throw()
-                ->get('https://cap.openapi.it/cerca_comuni?provincia=piacenza');
 
-            $arr = $response->json()['data']['result'];
-
-            $response = Http::withToken('63cff56cabd5b551b243e868')
-                ->retry(3, 100)
-                ->throw()
-                ->get('https://cap.openapi.it/cerca_comuni?provincia=parma');
-
-            $arr = array_merge($arr, $response->json()['data']['result']);
-
-            $response = Http::withToken(config('openapi.towns_token'))
-                ->retry(3, 100)
-                ->throw()
-                ->get('https://cap.openapi.it/cerca_comuni?provincia=cremona');
-
-            $arr = array_merge($arr, $response->json()['data']['result']);
-
-            $arr = collect($arr)->keyBy('istat');
-
-            return $arr;
-        });
-    }
 
     public function startCreatingStudent()
     {
