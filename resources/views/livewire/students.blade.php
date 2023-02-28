@@ -51,8 +51,9 @@
                                     @endif
 
                                     @if($errors->has('students.'.$index.'.section_id'))
-                                        <div
-                                            class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.section_id')}}</div>
+                                        <div class="mt-2 text-sm text-red-600">
+                                            {{$errors->first('students.'.$index.'.section_id')}}
+                                        </div>
                                     @endif
                                 </td>
                                 <td class="my-th">
