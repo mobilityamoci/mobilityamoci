@@ -1,5 +1,4 @@
 <div class="p-7">
-
     <x-success-button class="my-2" wire:click.prevent="startCreatingSection()">Crea Sezione
     </x-success-button>
     <div class="place-items-center grid">

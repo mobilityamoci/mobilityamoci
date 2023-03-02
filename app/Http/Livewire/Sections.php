@@ -3,11 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Building;
-use App\Models\School;
 use App\Models\Section;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Str;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
 class Sections extends ModalComponent

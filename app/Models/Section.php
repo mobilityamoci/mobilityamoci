@@ -21,4 +21,14 @@ class Section extends Model
     {
         return $this->belongsTo(School::class);
     }
+
+    public function users()
+    {
+        return $this->morphToMany(User::class, 'associable','associables');
+    }
+
+    public function fullName(): string
+    {
+        return $this->name .' di '.$this->school->name;
+    }
 }

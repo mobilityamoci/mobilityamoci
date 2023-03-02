@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Schools;
 use App\Http\Livewire\Students;
+use App\Http\Livewire\Users;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,4 +31,5 @@ Route::get('/', function () {
 
     Route::get('/studenti', Students::class)->name('students');
     Route::get('/scuole', Schools::class)->name('schools');
+    Route::get('/utenti', Users::class)->name('users');
 });
