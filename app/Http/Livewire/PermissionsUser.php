@@ -96,6 +96,8 @@ class PermissionsUser extends ModalComponent
 
     public function removeSchool($school_id)
     {
+        $sections = Section::where('school_id',$school_id)->get();
+        $this->user->sections()->detach($sections);
         $this->user->schools()->detach($school_id);
     }
 
@@ -129,6 +131,12 @@ class PermissionsUser extends ModalComponent
         $this->user->load('schools');
     }
 
-
+    /**
+     * Supported: 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl'
+     */
+    public static function modalMaxWidth(): string
+    {
+        return '4xl';
+    }
 
 }

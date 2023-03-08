@@ -15,12 +15,17 @@
 {{--                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">--}}
 {{--                        {{ __('Dashboard') }}--}}
 {{--                    </x-jet-nav-link>--}}
-                    <x-jet-nav-link href="{{ route('students') }}" :active="request()->routeIs('students')">
-                        Studenti
-                    </x-jet-nav-link>
+                    @canAny(['all_schools','school','section'])
+                        <x-jet-nav-link href="{{ route('students') }}" :active="request()->routeIs('students')">
+                            Studenti
+                        </x-jet-nav-link>
+                    @endcanAny
+
+                    @can('admin')
                     <x-jet-nav-link href="{{ route('schools') }}" :active="request()->routeIs('schools')">
                         Scuole
                     </x-jet-nav-link>
+                    @endcan
                 </div>
             </div>
 

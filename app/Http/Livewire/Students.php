@@ -7,15 +7,14 @@ use App\Models\Section;
 use App\Models\Student;
 use App\Models\Transport;
 use App\Models\Trip;
-use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Optional;
 use Livewire\Component;
 
 class Students extends Component
 {
+
+    public $user;
 
     public $students;
     public int|null $editStudentIndex = null;
@@ -27,6 +26,8 @@ class Students extends Component
     public int|null $newSectionId = null;
     public int|null $newComuneIstat = null;
     public string|null $newIndirizzo = null;
+    public string|null $newName = null;
+    public string|null $newSurname = null;
 
     public int|null $editingTripTransport = null;
 
@@ -45,12 +46,21 @@ class Students extends Component
     public bool $editSections = false;
 
     public Collection $schools;
-    public int $selectedSchoolId;
+    public int|null $selectedSchoolId;
     public int|null $selectedSectionId;
 
     public bool $showTransportsModal = false;
 
-    protected $rules = [
+    public $canSeeNamesRoles = ['Insegnante', 'MMScolastico'];
+
+    protected $rulesWithName = [
+        'students.*.name' => 'string|required',
+        'students.*.surname' => 'string|required',
+        'students.*.town_istat' => 'integer|required|',
+        'students.*.section_id' => 'numeric|exists:sections,id'
+    ];
+
+    protected $rulesWithoutName = [
         'students.*.town_istat' => 'integer|required|',
         'students.*.section_id' => 'numeric|exists:sections,id'
     ];
@@ -67,9 +77,14 @@ class Students extends Component
 
     public function mount()
     {
-        $this->schools = School::all();
-        $this->selectedSchoolId = 1;
-        $this->selectedSectionId = $this->sections->first()->id;
+        $this->user = \Auth::user();
+        if ($this->user->can('all_schools')) {
+            $this->schools = School::all();
+        } else {
+            $this->schools = $this->user->schools;
+        }
+        $this->selectedSchoolId = optional($this->schools->first())->id;
+        $this->selectedSectionId = optional($this->sections->first())->id;
         $this->transports = Transport::all()->keyBy('id')->toArray();
         $this->reloadStudents();
     }
@@ -77,7 +92,10 @@ class Students extends Component
 
     public function getSectionsProperty()
     {
-        return Section::where('school_id', $this->selectedSchoolId)->get()->keyBy('id');
+        if ($this->user->hasAnyPermission(['all_schools', 'school']))
+            return Section::where('school_id', $this->selectedSchoolId)->get()->keyBy('id');
+        else
+            return $this->user->sections;
     }
 
     public function reloadStudents()
@@ -88,10 +106,9 @@ class Students extends Component
 
             $students = $section->students()->with('trips', 'trips.transport1', 'trips.transport2')->get();
 
-
             $students = $students->map(function ($item) {
                 if ($item->trips->isNotEmpty()) {
-                    $string = '1) Da <b>' . $this->comuni[$item->town_istat]['comune'] . '</b> in ';
+                    $string = '1) Da <b>'. $this->comuni[$item->town_istat]['comune'].'</b> in ';
                     $i = 0;
 
                     foreach ($item->trips as $trip) {
@@ -100,7 +117,10 @@ class Students extends Component
                         }
                         $string .= '<b>' . $trip->transport1->name . '</b>';
                         $trip->transport2 ? $string .= '<b>/' . $trip->transport2->name . '</b>' : $string .= '';
-                        $string .= ' fino a <b>' . $this->comuni[$trip->town_istat]['comune'] . '</b>';
+                        if ($trip->town_istat)
+                            $string .= ' fino a <b>'.$this->comuni[$trip->town_istat]['comune'] . '</b>';
+                        else
+                            $string .= ' (comune assente)';
                         $i++;
                     }
 
@@ -114,11 +134,6 @@ class Students extends Component
 
 
             $this->students = $students->toArray();
-//        dd($this->students);
-//        dd(collect($this->students[0]['trips'])->recursive()->where('order',1)->first()['transports']);
-//        foreach (collect($this->students[0]['trips'])->recursive()->where('order',1)->first()['transports'] as $item) {
-//            dd($item['name']);
-//        }
         } else {
             $this->students = null;
         }
@@ -132,12 +147,16 @@ class Students extends Component
 
     public function saveStudent($index)
     {
-        $this->validate();
-        $student = $this->students[$index] ?? NULL;
+        if ($this->user->hasAnyRole($this->canSeeNamesRoles))
+            $this->validate($this->rulesWithName);
+        else
+            $this->validate($this->rulesWithoutName);
 
-        if (!is_null($student))
+        $student = $this->students[$index] ?? NULL;
+        if (!is_null($student)) {
             optional(Student::find($student['id']))->update($student);
 
+        }
         $this->editStudentField = null;
         $this->editStudentIndex = null;
     }
@@ -158,27 +177,32 @@ class Students extends Component
     public function sectionChanged()
     {
         $section = Section::with('students')->find($this->selectedSectionId);
-        $this->students = optional($section)->students;
+        $this->reloadStudents();
     }
 
-
-
-    public function startCreatingStudent()
-    {
-        $this->addingNewStudent = true;
-    }
 
     public function createStudent()
     {
-        $this->validate([
-            'newIndirizzo' => 'string|required',
-            'newComuneIstat' => 'integer|required',
-            'newSectionId' => 'integer|required'
-        ]);
+        if ($this->user->hasAnyRole($this->canSeeNamesRoles))
+            $rules = [
+                'newName' => 'string|required',
+                'newSurname' => 'string|required',
+                'newIndirizzo' => 'string|required',
+                'newComuneIstat' => 'integer|required',
+                'newSectionId' => 'integer|required'
+            ];
+        else
+            $rules = [
+                'newIndirizzo' => 'string|required',
+                'newComuneIstat' => 'integer|required',
+                'newSectionId' => 'integer|required'
+            ];
+
+        $this->validate($rules);
 
         $student = Student::create([
-            'name' => null,
-            'surname' => null,
+            'name' => $this->newName,
+            'surname' => $this->newSurname,
             'school_id' => $this->selectedSchoolId,
             'section_id' => $this->newSectionId,
             'town_istat' => $this->newComuneIstat,

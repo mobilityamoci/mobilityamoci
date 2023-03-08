@@ -29,7 +29,7 @@ Route::get('/', function () {
 //        return view('dashboard');
 //    })->name('dashboard');
 
-    Route::get('/studenti', Students::class)->name('students');
-    Route::get('/scuole', Schools::class)->name('schools');
+    Route::middleware(['role_or_permission:all_schools|school|section'])->get('/studenti', Students::class)->name('students');
+    Route::middleware(['can:admin'])->get('/scuole', Schools::class)->name('schools');
     Route::get('/utenti', Users::class)->name('users');
 });

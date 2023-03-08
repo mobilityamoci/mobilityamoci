@@ -15,6 +15,7 @@ class TransportSeeder extends Seeder
      */
     public function run()
     {
+        Transport::truncate();
         Transport::create([
             'name' => 'Piedi'
         ]);
@@ -32,6 +33,9 @@ class TransportSeeder extends Seeder
         ]);
         Transport::create([
             'name' => 'Auto collettiva (3+ Studenti)'
+        ]);
+        Transport::create([
+            'name' => 'Treno'
         ]);
     }
 }
