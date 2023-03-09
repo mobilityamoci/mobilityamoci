@@ -26,4 +26,10 @@ class School extends Model
     {
         return $this->morphToMany(User::class, 'associable','associables');
     }
+
+    public function usersToAccept()
+    {
+        return $this->morphToMany(User::class, 'associable','associables')
+            ->whereNull('accepted_at');
+    }
 }

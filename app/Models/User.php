@@ -66,6 +66,23 @@ class User extends Authenticatable
         return $this->morphedByMany(Section::class, 'associable','associables');
     }
 
+    public function firstRoleString()
+    {
+        if (!is_null($this->roles)) {
+            $role = optional($this->roles->first())->name;
+
+            if ($role == 'Utente Base') {
+                $role = 'Studente';
+            }
+
+            $school = $this->schools->first()->name;
+
+            return $role . ' di ' . $school;
+        } else {
+            return '';
+        }
+    }
+
     public function homeRoute()
     {
         if ($this->hasAnyRole(['MMProvinciale','MMScolastico','Insegnante']))
