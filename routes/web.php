@@ -61,7 +61,7 @@ Route::middleware([
 
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/studenti', Students::class)->name('students');
     Route::middleware(['can:admin'])->get('/scuole', Schools::class)->name('schools');
-    Route::get('/utenti', Users::class)->name('users');
+    Route::middleware(['can:admin'])->get('/utenti', Users::class)->name('users');
     Route::get('/informazioni', SingleStudentInfo::class)->name('single-student.info');
 
 

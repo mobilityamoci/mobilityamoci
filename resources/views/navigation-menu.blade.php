@@ -26,6 +26,18 @@
                         Scuole
                     </x-jet-nav-link>
                     @endcan
+
+                    @can('admin')
+                        <x-jet-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">
+                            Utenti
+                        </x-jet-nav-link>
+                    @endcan
+
+                    @can('base')
+                        <x-jet-nav-link href="{{ route('single-student.info') }}" :active="request()->routeIs('single-student.info')">
+                            Il Mio Percorso
+                        </x-jet-nav-link>
+                    @endcan
                 </div>
             </div>
 

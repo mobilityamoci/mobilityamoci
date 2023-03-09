@@ -16,18 +16,13 @@ class LoginResponse implements LoginResponseContract
 
         $user = Auth::user();
 
-        if (is_null($user->accepted_at)) {
-            return redirect()->route('logout');
-        }
-
-
-        if ($user->hasAnyRole(['MMProvinciale','MMScolastico','Insegnante']))
+        if ($user->hasPermissionTo('admin'))
         {
-            return redirect()->intended(route('students'));
-        } else if ($user->hasAnyRole(['Utente Base'])) {
-            return redirect()->intended(route('single-student.info'));
-        } else if ($user->hasRole('Admin')) {
             return redirect()->intended(route('users'));
+        } else if ($user->hasAnyPermission(['all_schools','schools','section'])) {
+            return redirect()->route('students');
+        } else if ($user->hasPermissionTo('base')) {
+            return redirect()->intended(route('single-student.info'));
         }
 
         return redirect()->route('logout');
