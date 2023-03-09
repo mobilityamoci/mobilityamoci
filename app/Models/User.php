@@ -65,4 +65,18 @@ class User extends Authenticatable
     {
         return $this->morphedByMany(Section::class, 'associable','associables');
     }
+
+    public function homeRoute()
+    {
+        if ($this->hasAnyRole(['MMProvinciale','MMScolastico','Insegnante']))
+        {
+            return route('users');
+        } else if ($this->hasAnyRole(['Utente Base'])) {
+            return route('single-student.info');
+        } else if ($this->hasRole('Admin')) {
+            return route('users');
+        }
+
+        return route('logout');
+    }
 }

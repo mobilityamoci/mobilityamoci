@@ -1,44 +1,76 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <x-jet-authentication-card-logo/>
         </x-slot>
 
-        <x-jet-validation-errors class="mb-4" />
+        <x-jet-validation-errors class="mb-4"/>
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
             <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
-
-            <div>
-                <x-jet-label for="surname" value="Cognome" />
-                <x-jet-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')" required autocomplete="surname" />
+                <x-jet-label for="secret_password" value="Password Segreta (fornita dalla scuola)"/>
+                <x-jet-input id="secret_password" class="block mt-1 w-full" type="password"
+                             :value="old('secret_password')" name="secret_password" required/>
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-jet-label for="name" value="{{ __('Name') }}"/>
+                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
+                             autofocus autocomplete="name"/>
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <x-jet-label for="surname" value="Cognome"/>
+                <x-jet-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')"
+                             required autocomplete="surname"/>
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                <x-jet-label for="school_id" value="Per quale scuola ti stai iscrivendo?"/>
+                <x-select id="school_id" class="block mt-1 w-full" :value="old('school_id')" name="school_id"
+                          required>
+                    @foreach($schools as $school)
+                        <option value="{{$school->id}}">{{$school->name}}</option>
+                    @endforeach
+                </x-select>
             </div>
+
+            <div class="mt-4">
+                <x-jet-label for="role" value="Con quale ruolo ti stai iscrivendo?"/>
+                <x-select id="role" class="block mt-1 w-full" :value="old('role')" name="role"
+                          required>
+                    <option value="Insegnante">Insegnante</option>
+                    <option value="Utente Base">Studente</option>
+                </x-select>
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="email" value="{{ __('Email') }}"/>
+                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                             required/>
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="password" value="{{ __('Password') }}"/>
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                             autocomplete="new-password"/>
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}"/>
+                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                             name="password_confirmation" required autocomplete="new-password"/>
+            </div>
+
+
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-jet-label for="terms">
                         <div class="flex items-center">
-                            <x-jet-checkbox name="terms" id="terms" required />
+                            <x-jet-checkbox name="terms" id="terms" required/>
 
                             <div class="ml-2">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
@@ -51,7 +83,7 @@
                 </div>
             @endif
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-end mt-8">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
