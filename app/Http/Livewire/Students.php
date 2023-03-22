@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Enums\RolesEnum;
 use App\Models\School;
 use App\Models\Section;
 use App\Models\Student;
@@ -51,7 +52,7 @@ class Students extends Component
 
     public bool $showTransportsModal = false;
 
-    public $canSeeNamesRoles = ['Insegnante', 'MMScolastico'];
+    public $canSeeNamesRoles = [RolesEnum::INSEGNANTE, RolesEnum::MM_SCOLASTICO];
 
     protected $rulesWithName = [
         'students.*.name' => 'string|required',

@@ -3,8 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\School;
-use App\Models\Student;
 use App\Models\User;
+use App\Notifications\AcceptedUserNotification;
 use Livewire\Component;
 
 class AcceptUsers extends Component
@@ -13,6 +13,8 @@ class AcceptUsers extends Component
 
     public $schools;
     public int $selectedSchoolId;
+
+    protected $listeners = ['acceptUser', 'rejectUser'];
 
     public function mount()
     {
@@ -39,8 +41,18 @@ class AcceptUsers extends Component
 
     public function acceptUser($user_id)
     {
-        User::find($user_id)->update([
+        $user = User::find($user_id);
+        $user->update([
             'accepted_at' => now()
         ]);
+
+        $this->emitTo('users-table','refreshLivewireDatatable');
+        $user->notify(new AcceptedUserNotification());
+    }
+
+    public function rejectUser($user_id)
+    {
+        User::find($user_id)->delete();
+        $this->emitTo('users-table','refreshLivewireDatatable');
     }
 }

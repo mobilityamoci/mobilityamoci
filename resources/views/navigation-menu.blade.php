@@ -33,6 +33,12 @@
                         </x-jet-nav-link>
                     @endcan
 
+                    @can('accept-users')
+                        <x-jet-nav-link href="{{ route('accept.users') }}" :active="request()->routeIs('accept.users')">
+                            Richieste Utenti
+                        </x-jet-nav-link>
+                    @endcan
+
                     @can('base')
                         <x-jet-nav-link href="{{ route('single-student.info') }}" :active="request()->routeIs('single-student.info')">
                             Il Mio Percorso

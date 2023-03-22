@@ -26,7 +26,8 @@ class PermissionSeeder extends Seeder
 //            'all_sections',
             'section',
             'base',
-            'admin'
+            'admin',
+            'accept-users'
         ];
 
 
@@ -40,7 +41,8 @@ class PermissionSeeder extends Seeder
 
         $admin_permissions = [
             'admin',
-            'all_schools'
+            'all_schools',
+            'accept-users'
         ];
 
         foreach ($admin_permissions as $perm) {
@@ -60,7 +62,8 @@ class PermissionSeeder extends Seeder
         $MMScolastico = Role::create(['name' => 'MMScolastico']);
 
         $MMScolastico_permissions = [
-            'school'
+            'school',
+            'accept-users'
         ];
 
         foreach ($MMScolastico_permissions as $perm) {

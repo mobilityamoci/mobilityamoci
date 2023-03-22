@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd268b1e97c145b1771325b7dbbe2543",
+    "content-hash": "ce425601b3cab445b7ccbb95dd133094",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2464,6 +2464,82 @@
             "time": "2022-12-02T22:17:43+00:00"
         },
         {
+            "name": "mediconesystems/livewire-datatables",
+            "version": "v0.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MedicOneSystems/livewire-datatables.git",
+                "reference": "8dc46a772b082643d0d5d98518e14b410b260cfd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MedicOneSystems/livewire-datatables/zipball/8dc46a772b082643d0d5d98518e14b410b260cfd",
+                "reference": "8dc46a772b082643d0d5d98518e14b410b260cfd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^7.0|^8.0|^9.0",
+                "livewire/livewire": "^2.4.4",
+                "maatwebsite/excel": "^3.1",
+                "php": "^8.0",
+                "reedware/laravel-relation-joins": "^2.4|^3.0"
+            },
+            "require-dev": {
+                "laravel/legacy-factories": "^1.0.4",
+                "orchestra/testbench": "^4.0|5.0|6.0|^7.0",
+                "phpunit/phpunit": "^8.0|9.0|^9.5.10"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mediconesystems\\LivewireDatatables\\LivewireDatatablesServiceProvider"
+                    ],
+                    "aliases": {
+                        "LivewireDatatables": "Mediconesystems\\LivewireDatatables\\LivewireDatatablesFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mediconesystems\\LivewireDatatables\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Salmon",
+                    "email": "mark.salmon@mediconesystems.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Shane Burrell",
+                    "email": "shane@shaneburrell.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Herbert Maschke",
+                    "email": "thyseus@pm.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Advanced datatables using Laravel, Livewire, Tailwind CSS and Alpine JS",
+            "homepage": "https://github.com/mediconesystems/livewire-datatables",
+            "keywords": [
+                "laravel",
+                "livewire",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/MedicOneSystems/livewire-datatables/issues",
+                "source": "https://github.com/MedicOneSystems/livewire-datatables/tree/v0.10.0"
+            },
+            "time": "2022-11-27T12:39:55+00:00"
+        },
+        {
             "name": "mobiledetect/mobiledetectlib",
             "version": "2.8.41",
             "source": {
@@ -4039,6 +4115,69 @@
                 }
             ],
             "time": "2023-01-12T18:13:24+00:00"
+        },
+        {
+            "name": "reedware/laravel-relation-joins",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tylernathanreed/laravel-relation-joins.git",
+                "reference": "943620791dbf991dda06963967b0aaa28445768c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tylernathanreed/laravel-relation-joins/zipball/943620791dbf991dda06963967b0aaa28445768c",
+                "reference": "943620791dbf991dda06963967b0aaa28445768c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^7.30.4|^8.23|^9.0",
+                "illuminate/support": "^7.30.4|^8.23|^9.0",
+                "php": ">=7.2.5"
+            },
+            "require-dev": {
+                "illuminate/container": "^7.30.4|^8.23|^9.0",
+                "mockery/mockery": "^1.4.3",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpunit/phpunit": "^8.5|^9.5",
+                "squizlabs/php_codesniffer": "^3.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Reedware\\LaravelRelationJoins\\LaravelRelationJoinServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Reedware\\LaravelRelationJoins\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tyler Reed",
+                    "email": "tylernathanreed@gmail.com"
+                }
+            ],
+            "description": "Adds the ability to join on a relationship by name.",
+            "keywords": [
+                "eloquent",
+                "join",
+                "laravel",
+                "query",
+                "relation"
+            ],
+            "support": {
+                "issues": "https://github.com/tylernathanreed/laravel-relation-joins/issues",
+                "source": "https://github.com/tylernathanreed/laravel-relation-joins/tree/v3.0.0"
+            },
+            "time": "2022-02-09T15:28:12+00:00"
         },
         {
             "name": "spatie/laravel-collection-macros",
