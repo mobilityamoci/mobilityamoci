@@ -41,6 +41,11 @@ class Student extends Model
             ->orderBy('order');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
 
     public function trip1()

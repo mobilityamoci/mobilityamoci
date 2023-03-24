@@ -19,12 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/email/verify', function () {
-    dd('ei ciao');
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    dd('gsdfabilsadjhbksdjhbksd');
     $request->fulfill();
 
     return redirect()->route('profile.show');

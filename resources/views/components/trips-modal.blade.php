@@ -15,7 +15,7 @@
             </div>
             @if($showTransportsModal && !is_null($editStudentIndex))
                 <x-jet-button type="button" class="mt-5" wire:click="$toggle('addingNewTrip')">
-                    {{!$addingNewTrip ? 'Aggiungi Tappa' : 'Annulla Aggiunta'}}
+                    {{!$addingNewTrip ? 'Aggiungi Viaggio' : 'Annulla Aggiunta'}}
                 </x-jet-button>
                 <table class="mt-8 my-table">
                     <thead class="my-header">

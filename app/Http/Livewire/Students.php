@@ -52,7 +52,6 @@ class Students extends Component
 
     public bool $showTransportsModal = false;
 
-    public $canSeeNamesRoles = [RolesEnum::INSEGNANTE, RolesEnum::MM_SCOLASTICO];
 
     protected $rulesWithName = [
         'students.*.name' => 'string|required',
@@ -102,14 +101,17 @@ class Students extends Component
     public function reloadStudents()
     {
         if ($this->selectedSectionId) {
-            $section = Section::with('students')->find($this->selectedSectionId);
+            $section = Section::with('students','students.user')->find($this->selectedSectionId);
 
 
             $students = $section->students()->with('trips', 'trips.transport1', 'trips.transport2')->get();
 
             $students = $students->map(function ($item) {
+                $item['has_user'] = !is_null($item->user_id);
+
+
                 if ($item->trips->isNotEmpty()) {
-                    $string = '1) Da <b>'. $this->comuni[$item->town_istat]['comune'].'</b> in ';
+                    $string = '1) Da <b>' . $this->comuni[$item->town_istat]['comune'] . '</b> in ';
                     $i = 0;
 
                     foreach ($item->trips as $trip) {
@@ -119,7 +121,7 @@ class Students extends Component
                         $string .= '<b>' . $trip->transport1->name . '</b>';
                         $trip->transport2 ? $string .= '<b>/' . $trip->transport2->name . '</b>' : $string .= '';
                         if ($trip->town_istat)
-                            $string .= ' fino a <b>'.$this->comuni[$trip->town_istat]['comune'] . '</b>';
+                            $string .= ' fino a <b>' . $this->comuni[$trip->town_istat]['comune'] . '</b>';
                         else
                             $string .= ' (comune assente)';
                         $i++;
@@ -138,7 +140,6 @@ class Students extends Component
         } else {
             $this->students = null;
         }
-
     }
 
     public function setEditStudentField($index, $fieldName)
@@ -306,6 +307,11 @@ class Students extends Component
             optional(Student::find($student['id']))->delete();
 
         $this->reloadStudents();
+    }
+
+    public function getCanSeeNamesRolesProperty()
+    {
+        return [RolesEnum::INSEGNANTE->value, RolesEnum::MM_SCOLASTICO->value];
     }
 
 

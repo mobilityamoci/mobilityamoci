@@ -66,6 +66,11 @@ class User extends Authenticatable
         return $this->morphedByMany(Section::class, 'associable','associables');
     }
 
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
     public function firstRoleString()
     {
         if (!is_null($this->roles)) {
