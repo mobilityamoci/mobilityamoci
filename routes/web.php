@@ -2,7 +2,7 @@
 
 use App\Http\Livewire\AcceptUsers;
 use App\Http\Livewire\Schools;
-use App\Http\Livewire\SingleStudentInfo;
+use App\Http\Livewire\SingleStudent;
 use App\Http\Livewire\Students;
 use App\Http\Livewire\Users;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -63,7 +63,7 @@ Route::middleware([
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/studenti', Students::class)->name('students');
     Route::middleware(['can:admin'])->get('/scuole', Schools::class)->name('schools');
     Route::middleware(['can:admin'])->get('/utenti', Users::class)->name('users');
-    Route::middleware(['can:base'])->get('/informazioni', SingleStudentInfo::class)->name('single-student.info');
+    Route::middleware(['can:base'])->get('/informazioni', SingleStudent::class)->name('single-student');
     Route::get('/accetta-utenti', AcceptUsers::class)->name('accept.users');
 
 

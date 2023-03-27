@@ -94,7 +94,7 @@ class User extends Authenticatable
         {
             return route('users');
         } else if ($this->hasAnyRole(['Utente Base'])) {
-            return route('single-student.info');
+            return route('single-student');
         } else if ($this->hasRole('Admin')) {
             return route('users');
         }

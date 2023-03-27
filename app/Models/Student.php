@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Student extends Model
 {
@@ -45,6 +46,20 @@ class Student extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function fullName(): string
+    {
+        return ucwords($this->name.' '.$this->surname);
+    }
+
+    public function fullInfo(): string
+    {
+        $string = $this->fullName();
+        $string .= ' - '.$this->section->fullName();
+
+        return $string;
+    }
+
 
 
 

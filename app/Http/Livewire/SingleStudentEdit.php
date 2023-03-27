@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Cache;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
-class SingleStudentInfo extends Component
+class SingleStudentEdit extends Component
 {
 
     use LivewireAlert;
 
     public User $user;
 
-    public Student $student;
+    public ?Student $student;
 
     public $sections;
 
@@ -45,7 +45,7 @@ class SingleStudentInfo extends Component
         'student.surname' => 'cognome',
         'student.address' => 'indirizzo',
         'student.section_id' => 'sezione',
-        'student.town_istat' => 'comune di residenza',
+        'student.town_istat' => 'comune di domicilio',
         'student.trips.*.transport_1' => 'primo mezzo di trasporto',
         'student.trips.*.transport_2' => 'secondo mezzo di trasporto',
         'student.trips.*.town_istat' => 'comune di arrivo'
@@ -54,6 +54,8 @@ class SingleStudentInfo extends Component
 
     public function mount()
     {
+        $this->alert('success', 'Viaggio aggiornato');
+
         $this->user = auth()->user();
         $this->student = $this->user->student;
         $this->sections = $this->user->schools->first()->sections;
@@ -62,7 +64,7 @@ class SingleStudentInfo extends Component
 
     public function render()
     {
-        return view('livewire.single-student-info');
+        return view('livewire.single-student-edit');
     }
 
     public function reloadTrips()
@@ -141,5 +143,7 @@ class SingleStudentInfo extends Component
         $this->mount();
         $this->alert('success', 'Tappa Eliminata');
     }
+
+
 
 }

@@ -40,7 +40,7 @@
                     @endcan
 
                     @can('base')
-                        <x-jet-nav-link href="{{ route('single-student.info') }}" :active="request()->routeIs('single-student.info')">
+                        <x-jet-nav-link href="{{ route('single-student') }}" :active="request()->routeIs('single-student')">
                             Il Mio Percorso
                         </x-jet-nav-link>
                     @endcan
