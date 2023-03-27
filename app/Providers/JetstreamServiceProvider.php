@@ -46,9 +46,9 @@ class JetstreamServiceProvider extends ServiceProvider
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::where('email', $request->email)->first();
 
-            if (is_null(optional($user)->accepted_at)) {
+            if (is_null($user)) {
                 throw ValidationException::withMessages([
-                    Fortify::username() => "Non sei ancora stato accettato. Verifica con il responsabile della tua scuola.",
+                    Fortify::username() => "Credenziali non riconosciute.",
                 ]);
             }
 
@@ -58,6 +58,11 @@ class JetstreamServiceProvider extends ServiceProvider
                 return $user;
             }
 
+            if (is_null(optional($user)->accepted_at)) {
+                throw ValidationException::withMessages([
+                    Fortify::username() => "Non sei ancora stato accettato. Verifica con il responsabile della tua scuola.",
+                ]);
+            }
 
 
             return false;
