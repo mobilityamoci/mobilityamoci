@@ -1,8 +1,7 @@
-
 <div
     x-on:keydown.escape.window="$wire.closeTransportsModal"
     class="@if (!$showTransportsModal) hidden @endif flex items-center justify-center fixed left-0 bottom-0 w-full h-full bg-gray-800 bg-opacity-90">
-    <div class="bg-white rounded-lg w-3/4">
+    <div class="bg-white rounded-lg w-1/2">
         <div class="flex flex-col items-start p-4">
             <div class="flex items-center w-full border-b pb-4">
                 <div class="text-gray-900 font-medium text-lg">Modifica Percorso Studente</div>
@@ -17,14 +16,14 @@
                 <x-jet-button type="button" class="mt-5" wire:click="$toggle('addingNewTrip')">
                     {{!$addingNewTrip ? 'Aggiungi Viaggio' : 'Annulla Aggiunta'}}
                 </x-jet-button>
-                <table class="mt-8 my-table">
+                <table class="mt-8 table-auto my-table">
                     <thead class="my-header">
                     <tr>
-                        <th class="my-th">1° Mezzo</th>
-                        <th class="my-th">2° Mezzo</th>
+                        <th class="my-th">Mezzo</th>
                         <th class="my-th">Comune di arrivo</th>
+                        <th class="my-th">Indirizzo</th>
 
-                        <th class="my-th"></th>
+                        {{--                        <th class="my-th"></th>--}}
                         <th class="my-th"></th>
 
                     </tr>
@@ -46,26 +45,32 @@
                                 </td>
                                 <td class="my-th">
                                     <x-select
-                                        wire:model="students.{{$editStudentIndex}}.trips.{{$index}}.transport_2"
-                                        for="students.{{$editStudentIndex}}.trips.{{$index}}.transport_2">
-                                        <option selected value="">--------------------</option>
-                                        @foreach($this->transports as $transport)
-                                            <option
-                                                value="{{$transport['id']}}">{{$transport['name']}}</option>
-                                        @endforeach
-                                    </x-select>
-                                </td>
-                                <td class="my-th">
-                                    <x-select
                                         wire:model="students.{{$editStudentIndex}}.trips.{{$index}}.town_istat"
                                         for="students.{{$editStudentIndex}}.trip3.{{$index}}.town_istat">
-                                        <option selected value="{{null}}">--------------------</option>
+                                        <option selected value="{{null}}">Scuola</option>
                                         @foreach($this->comuni as $comune)
                                             <option
                                                 value="{{$comune['istat']}}">{{$comune['comune']}}</option>
                                         @endforeach
                                     </x-select>
                                 </td>
+                                <td class="my-th">
+                                    <x-jet-input
+                                        wire:model="students.{{$editStudentIndex}}.trips.{{$index}}.address"></x-jet-input>
+                                </td>
+
+                                {{--                                <td class="my-th">--}}
+                                {{--                                    <x-select--}}
+                                {{--                                        wire:model="students.{{$editStudentIndex}}.trips.{{$index}}.transport_2"--}}
+                                {{--                                        for="students.{{$editStudentIndex}}.trips.{{$index}}.transport_2">--}}
+                                {{--                                        <option selected value="">--------------------</option>--}}
+                                {{--                                        @foreach($this->transports as $transport)--}}
+                                {{--                                            <option--}}
+                                {{--                                                value="{{$transport['id']}}">{{$transport['name']}}</option>--}}
+                                {{--                                        @endforeach--}}
+                                {{--                                    </x-select>--}}
+                                {{--                                </td>--}}
+
                                 <td class="my-th">
                                     <x-jet-button type="button"
                                                   wire:click.prevent="saveTrip({{$index}})">Salva
@@ -77,19 +82,22 @@
                                 <td class="my-th">
                                     {{$trip['transport_1'] ? $transports[$trip['transport_1']]['name'] : ''}}
                                 </td>
-                                <td class="my-th">
-                                    {{$trip['transport_2'] ? $transports[$trip['transport_2']]['name'] : ''}}
-                                </td>
+                                {{--                                <td class="my-th">--}}
+                                {{--                                    {{$trip['transport_2'] ? $transports[$trip['transport_2']]['name'] : ''}}--}}
+                                {{--                                </td>--}}
                                 <td class="my-th">
                                     {{$trip['town_istat'] ? $this->comuni[$trip['town_istat']]['comune'] : ''}}
+                                </td>
+                                <td class="my-th">
+                                    {{$trip['address'] ?? ''}}
                                 </td>
                                 <td class="my-th">
                                     <x-jet-button type="button"
                                                   wire:click.prevent="$set('editTripIndex',{{$trip['id']}})">
                                         Modifica
                                     </x-jet-button>
-                                </td>
-                                <td class="my-th">
+                                    {{--                                </td>--}}
+                                    {{--                                <td class="my-th">--}}
                                     <x-jet-danger-button type="button"
                                                          wire:click.prevent="deleteTrip({{$index}})">
                                         Elimina
@@ -100,7 +108,6 @@
                     @endforeach
                     </tbody>
                     @if($addingNewTrip)
-
 
                         <td class="my-th">
                             <x-select
@@ -113,17 +120,17 @@
                                 @endforeach
                             </x-select>
                         </td>
-                        <td class="my-th">
-                            <x-select
-                                wire:model="newTripTransport2"
-                                for="newTripTransport1">
-                                <option selected value="">--------------------</option>
-                                @foreach($this->transports as $transport)
-                                    <option
-                                        value="{{$transport['id']}}">{{$transport['name']}}</option>
-                                @endforeach
-                            </x-select>
-                        </td>
+                        {{--                        <td class="my-th">--}}
+                        {{--                            <x-select--}}
+                        {{--                                wire:model="newTripTransport2"--}}
+                        {{--                                for="newTripTransport1">--}}
+                        {{--                                <option selected value="">--------------------</option>--}}
+                        {{--                                @foreach($this->transports as $transport)--}}
+                        {{--                                    <option--}}
+                        {{--                                        value="{{$transport['id']}}">{{$transport['name']}}</option>--}}
+                        {{--                                @endforeach--}}
+                        {{--                            </x-select>--}}
+                        {{--                        </td>--}}
                         <td class="my-th">
                             <x-select
                                 wire:model="newTripTownIstat"
@@ -136,12 +143,14 @@
                             </x-select>
                         </td>
                         <td class="my-th">
+                            <x-jet-input wire:model="newTripAddress"></x-jet-input>
+                        </td>
+                        <td class="my-th">
                             <x-jet-secondary-button wire:click="createTrip">Salva
                             </x-jet-secondary-button>
                         </td>
                     @endif
                 </table>
-
 
             @endif
             <div class="mt-8 ml-auto">

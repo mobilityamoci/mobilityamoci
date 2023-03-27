@@ -34,7 +34,8 @@ class Students extends Component
 
     public int|null $newTripTownIstat = null;
     public int|null $newTripTransport1 = null;
-    public int|null $newTripTransport2 = null;
+//    public int|null $newTripTransport2 = null;
+    public ?string $newTripAddress = null;
 
     public int|null $editTripIndex = null;
 
@@ -56,7 +57,7 @@ class Students extends Component
     protected $rulesWithName = [
         'students.*.name' => 'string|required',
         'students.*.surname' => 'string|required',
-        'students.*.town_istat' => 'integer|required|',
+        'students.*.town_istat' => 'integer|nullable|',
         'students.*.section_id' => 'numeric|exists:sections,id'
     ];
 
@@ -68,6 +69,9 @@ class Students extends Component
     protected $validationAttributes = [
         'students.*.town_istat' => 'comune',
         'students.*.section_id' => 'sezione',
+        'newTripTransport1' => '1° mezzo',
+        'newTripTownIstat' => 'comune intermedio',
+        'newTripAddress' => 'indirizzo intermedio'
     ];
 
     public function render()
@@ -101,7 +105,7 @@ class Students extends Component
     public function reloadStudents()
     {
         if ($this->selectedSectionId) {
-            $section = Section::with('students','students.user')->find($this->selectedSectionId);
+            $section = Section::with('students', 'students.user')->find($this->selectedSectionId);
 
 
             $students = $section->students()->with('trips', 'trips.transport1', 'trips.transport2')->get();
@@ -274,8 +278,9 @@ class Students extends Component
     {
         $this->validate([
             'newTripTransport1' => 'int|nullable',
-            'newTripTransport2' => 'int|nullable',
-            'newTripTownIstat' => 'int|required'
+//            'newTripTransport2' => 'int|nullable',
+            'newTripTownIstat' => 'int|nullable',
+            'newTripAddress' => 'string|nullable'
         ]);
 
         $student = $this->students[$this->editStudentIndex] ?? null;
@@ -288,7 +293,8 @@ class Students extends Component
                 'student_id' => $student['id'],
                 'transport_1' => $this->newTripTransport1,
                 'order' => $order,
-                'transport_2' => $this->newTripTransport2,
+                'address' => $this->newTripAddress,
+//                'transport_2' => $this->newTripTransport2,
                 'town_istat' => $this->newTripTownIstat,
             ]);
 

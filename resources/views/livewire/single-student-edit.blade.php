@@ -4,7 +4,7 @@
         <div>
 
             <x-jet-label class="text-xl">Nome</x-jet-label>
-            <x-jet-input class="w-full" wire:model="student.name"></x-jet-input>
+            <x-jet-input class="w-full" wire:model.lazy="student.name"></x-jet-input>
             @if($errors->has('student.name'))
                 <div class="mt-2 text-sm text-red-600">
                     {{$errors->first('student.name')}}
@@ -13,7 +13,7 @@
         </div>
         <div>
             <x-jet-label class="text-xl">Cognome</x-jet-label>
-            <x-jet-input class="w-full" wire:model="student.surname"></x-jet-input>
+            <x-jet-input class="w-full" wire:model.lazy="student.surname"></x-jet-input>
             @if($errors->has('student.surname'))
                 <div class="mt-2 text-sm text-red-600">
                     {{$errors->first('student.surname')}}
@@ -22,7 +22,7 @@
         </div>
         <div>
             <x-jet-label class="text-xl">Sezione</x-jet-label>
-            <x-select class="w-full" wire:model="student.section">
+            <x-select class="w-full" wire:model.lazy="student.section">
                 @foreach($this->sections as $section)
                     <option value="{{$section->id}}" class="capitalize">{{$section->name}}</option>
                 @endforeach
@@ -48,7 +48,7 @@
         </div>
         <div class="md:col-span-2">
             <x-jet-label class="text-xl">Indirizzo</x-jet-label>
-            <x-jet-input class="w-full" wire:model="student.address"></x-jet-input>
+            <x-jet-input class="w-full" wire:model.lazy="student.address"></x-jet-input>
             @if($errors->has('student.address'))
                 <div class="mt-2 text-sm text-red-600">
                     {{$errors->first('student.address')}}
@@ -85,26 +85,25 @@
                     </div>
                 @endif
             </div>
-            <div>
-                <x-jet-label class="text-lg">Mezzo (Seconda Opzione)</x-jet-label>
-                <x-select
-                    wire:change="saveTrip({{$index}})"
-                    wire:model="student.trips.{{$index}}.transport_2"
-                    for="student.trips.{{$index}}.transport_2">
-                    <option selected value="{{NULL}}">--------------------</option>
-                    @foreach($this->transports as $transport)
-                        <option
-                            value="{{$transport['id']}}">{{$transport['name']}}</option>
-                    @endforeach
-                </x-select>
-                @if($errors->has('student.trips.'.$index.'.transport_2'))
-                    <div class="mt-2 text-sm text-red-600">
-                        {{$errors->first('student.trips.'.$index.'.transport_2')}}
-                    </div>
-                @endif
-            </div>
+{{--            <div>--}}
+{{--                <x-select--}}
+{{--                    wire:change="saveTrip({{$index}})"--}}
+{{--                    wire:model="student.trips.{{$index}}.transport_2"--}}
+{{--                    for="student.trips.{{$index}}.transport_2">--}}
+{{--                    <option selected value="{{NULL}}">--------------------</option>--}}
+{{--                    @foreach($this->transports as $transport)--}}
+{{--                        <option--}}
+{{--                            value="{{$transport['id']}}">{{$transport['name']}}</option>--}}
+{{--                    @endforeach--}}
+{{--                </x-select>--}}
+{{--                @if($errors->has('student.trips.'.$index.'.transport_2'))--}}
+{{--                    <div class="mt-2 text-sm text-red-600">--}}
+{{--                        {{$errors->first('student.trips.'.$index.'.transport_2')}}--}}
+{{--                    </div>--}}
+{{--                @endif--}}
+{{--            </div>--}}
             <div class="md:col-span-2">
-                <x-jet-label class="text-lg">Comune di arrivo</x-jet-label>
+                <x-jet-label class="text-lg">Comune di arrivo o intermedio</x-jet-label>
                 <x-select class="w-full" wire:change="saveTrip({{$index}})"
                           wire:model="student.trips.{{$index}}.town_istat">
                     <option value="">Scuola</option>
@@ -118,9 +117,14 @@
                     </div>
                 @endif
             </div>
-            <div class="flex flex-col align-items-end">
+            <div>
+                <x-jet-label class="text-lg">Indirizzo Intermedio</x-jet-label>
+                <x-jet-input class="w-full" wire:change.defer="saveTrip({{$index}})"
+                             wire:model.lazy="student.trips.{{$index}}.address"></x-jet-input>
+            </div>
+            <div class="flex items-end justify-items-end">
                 <x-jet-danger-button wire:click="deleteTrip({{$index}})" class="h-1/2">
-                    <i class="fa-solid fa-trash"></i> Elimina Tappa
+                    <i class="fa-solid fa-trash mr-4"></i> Elimina Tappa
                 </x-jet-danger-button>
             </div>
         </div>
@@ -147,24 +151,8 @@
                     </div>
                 @endif
             </div>
-            <div>
-                <x-jet-label class="text-lg">Mezzo (Seconda Opzione)</x-jet-label>
-                <x-select
-                    wire:model="newTripTrans2">
-                    <option selected value="">--------------------</option>
-                    @foreach($this->transports as $transport)
-                        <option
-                            value="{{$transport['id']}}">{{$transport['name']}}</option>
-                    @endforeach
-                </x-select>
-                @if($errors->has('newTripTrans2'))
-                    <div class="mt-2 text-sm text-red-600">
-                        {{$errors->first('newTripTrans2')}}
-                    </div>
-                @endif
-            </div>
-            <div>
-                <x-jet-label class="text-lg">Comune di arrivo</x-jet-label>
+            <div class="md:col-span-2">
+                <x-jet-label class="text-lg">Comune di arrivo o intermedio</x-jet-label>
                 <x-select class="w-full"
                           wire:model="newTripIstat">
                     <option value="">Scuola</option>
@@ -178,7 +166,12 @@
                     </div>
                 @endif
             </div>
-            <div class="flex align-items-end">
+            <div>
+                <x-jet-label class="text-lg">Indirizzo Intermedio</x-jet-label>
+                <x-jet-input class="w-full"
+                             wire:model.lazy="newTripAddress"></x-jet-input>
+            </div>
+            <div class="flex items-end justify-items-end">
                 <x-success-button wire:click.prevent="addNewTrip">Aggiungi Tappa</x-success-button>
             </div>
         </div>

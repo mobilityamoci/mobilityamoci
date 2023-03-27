@@ -26,8 +26,8 @@ class SingleStudentEdit extends Component
     public bool $addingTrip = false;
 
     public $newTripTrans1;
-    public $newTripTrans2;
     public $newTripIstat;
+    public ?string  $newTripAddress;
 
     protected $rules = [
         'student.name' => 'required|string',
@@ -36,7 +36,7 @@ class SingleStudentEdit extends Component
         'student.section_id' => 'required|integer|exists:sections,id',
         'student.town_istat' => 'required|integer',
         'student.trips.*.transport_1' => 'required|integer|exists:transports,id',
-        'student.trips.*.transport_2' => 'integer|nullable',
+        'student.trips.*.address' => 'nullable|string',
         'student.trips.*.town_istat' => 'nullable|integer'
     ];
 
@@ -47,8 +47,9 @@ class SingleStudentEdit extends Component
         'student.section_id' => 'sezione',
         'student.town_istat' => 'comune di domicilio',
         'student.trips.*.transport_1' => 'primo mezzo di trasporto',
-        'student.trips.*.transport_2' => 'secondo mezzo di trasporto',
-        'student.trips.*.town_istat' => 'comune di arrivo'
+//        'student.trips.*.transport_2' => 'secondo mezzo di trasporto',
+        'student.trips.*.address' => 'indirizzo scalo',
+        'student.trips.*.town_istat' => 'comune scalo'
     ];
 
 
@@ -113,7 +114,7 @@ class SingleStudentEdit extends Component
     {
         $this->validate([
             'newTripTrans1' => 'required|integer|exists:transports,id',
-            'newTripTrans2' => 'integer|nullable',
+            'newTripAddress' => 'nullable|string',
             'newTripIstat' => 'nullable|integer'
         ]);
 
@@ -123,11 +124,13 @@ class SingleStudentEdit extends Component
         Trip::create([
             'student_id' => $this->student['id'],
             'transport_1' => $this->newTripTrans1,
+            'address' => $this->newTripAddress,
             'order' => $order,
-            'transport_2' => $this->newTripTrans2,
             'town_istat' => $this->newTripIstat,
         ]);
 
+        $this->newTripIstat = null;
+        $this->newTripAddress = null;
         $this->addingTrip = false;
         $this->alert('success', 'Tappa Aggiunta');
         $this->mount();
