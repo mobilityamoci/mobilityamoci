@@ -115,7 +115,7 @@ class Students extends Component
 
 
                 if ($item->trips->isNotEmpty()) {
-                    $string = '1) Da <b>' . $this->comuni[$item->town_istat]['comune'] . '</b> in ';
+                    $string = '1) Da <b>' . $this->comuni[$item->town_istat]['comune'] . ', '.$item->address.'</b> in ';
                     $i = 0;
 
                     foreach ($item->trips as $trip) {
@@ -125,13 +125,13 @@ class Students extends Component
                         $string .= '<b>' . $trip->transport1->name . '</b>';
                         $trip->transport2 ? $string .= '<b>/' . $trip->transport2->name . '</b>' : $string .= '';
                         if ($trip->town_istat)
-                            $string .= ' fino a <b>' . $this->comuni[$trip->town_istat]['comune'] . '</b>';
+                            $string .= ' fino a <b>' . $this->comuni[$trip->town_istat]['comune'] . ', '.$item->address.'</b>';
                         else
                             $string .= ' (comune assente)';
                         $i++;
                     }
 
-                    $string .= '<br>' . $i + 1 . ') <b>Scuola</b>';
+                    $string .= '<br>' . $i + 1 . ') <b>Arrivo a Scuola</b>';
                     $item['trip_string'] = $string;
                 } else {
                     $item['trip_string'] = '<b>Percorso ancora da creare!</b>';
