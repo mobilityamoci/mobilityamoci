@@ -50,6 +50,9 @@ class SingleStudentCreate extends Component
     public function mount()
     {
         $this->user = auth()->user();
+        $this->newStudentName = $this->user->name;
+        $this->newStudentSurname = $this->user->surname;
+
         $this->sections = $this->user->schools->first()->sections;
         $this->getPossibleStudents();
     }

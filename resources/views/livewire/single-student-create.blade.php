@@ -14,7 +14,7 @@
     <div class="grid my-6 sm:grid-cols-1 md:grid-cols-3 gap-4">
         <div>
             <x-jet-label class="text-xl">Nome</x-jet-label>
-            <x-jet-input class="w-full" value="{{$this->user->name}}" wire:model.lazy="newStudentName"></x-jet-input>
+            <x-jet-input class="w-full" wire:model.lazy="newStudentName"></x-jet-input>
             @if($errors->has('newStudentName'))
                 <div class="mt-2 text-sm text-red-600">
                     {{$errors->first('newStudentName')}}
@@ -23,7 +23,7 @@
         </div>
         <div>
             <x-jet-label class="text-xl">Cognome</x-jet-label>
-            <x-jet-input class="w-full" value="{{$this->user->surname}}" wire:model.lazy="newStudentSurname"></x-jet-input>
+            <x-jet-input class="w-full" wire:model.lazy="newStudentSurname"></x-jet-input>
             @if($errors->has('newStudentSurname'))
                 <div class="mt-2 text-sm text-red-600">
                     {{$errors->first('newStudentSurname')}}
