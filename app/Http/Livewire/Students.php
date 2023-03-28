@@ -125,7 +125,7 @@ class Students extends Component
                         $string .= '<b>' . $trip->transport1->name . '</b>';
                         $trip->transport2 ? $string .= '<b>/' . $trip->transport2->name . '</b>' : $string .= '';
                         if ($trip->town_istat)
-                            $string .= ' fino a <b>' . $this->comuni[$trip->town_istat]['comune'] . ', '.$item->address.'</b>';
+                            $string .= ' fino a <b>' . $this->comuni[$trip->town_istat]['comune'] . ', '.$trip->address.'</b>';
                         else
                             $string .= ' (comune assente)';
                         $i++;
