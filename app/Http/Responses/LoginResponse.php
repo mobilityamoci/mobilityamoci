@@ -2,8 +2,10 @@
 
 namespace App\Http\Responses;
 
+use App\Models\School;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use Spatie\Permission\Models\Permission;
 
 class LoginResponse implements LoginResponseContract
 {
@@ -19,7 +21,7 @@ class LoginResponse implements LoginResponseContract
         if ($user->hasPermissionTo('admin'))
         {
             return redirect()->intended(route('users'));
-        } else if ($user->hasAnyPermission(['all_schools','schools','section'])) {
+        } else if ($user->hasAnyPermission(['all_schools','school','section'])) {
             return redirect()->route('students');
         } else if ($user->hasPermissionTo('base')) {
             return redirect()->intended(route('single-student.info'));
