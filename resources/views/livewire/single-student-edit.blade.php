@@ -63,69 +63,71 @@
 
     <h3 class="text-3xl font-bold uppercase">Il mio viaggio</h3>
     @forelse($this->student->trips as $index => $trip)
-        <x-jet-label class="text-2xl mb-2">
-            {{$loop->iteration}}° tappa
-        </x-jet-label>
-        <div class="grid my-6 sm:grid-cols-1 md:grid-cols-5 gap-4 border-b-2 pb-2 border-b-gray-400">
-            <div>
-                <x-jet-label class="text-lg">Mezzo (Prima Opzione)</x-jet-label>
-                <x-select
-                    wire:change="saveTrip({{$index}})"
-                    wire:model="student.trips.{{$index}}.transport_1"
-                    for="student.trips.{{$index}}.transport_1">
-                    <option selected value="">--------------------</option>
-                    @foreach($this->transports as $transport)
-                        <option
-                            value="{{$transport['id']}}">{{$transport['name']}}</option>
-                    @endforeach
-                </x-select>
-                @if($errors->has('student.trips.'.$index.'.transport_1'))
-                    <div class="mt-2 text-sm text-red-600">
-                        {{$errors->first('student.trips.'.$index.'.transport_1')}}
-                    </div>
-                @endif
-            </div>
-{{--            <div>--}}
-{{--                <x-select--}}
-{{--                    wire:change="saveTrip({{$index}})"--}}
-{{--                    wire:model="student.trips.{{$index}}.transport_2"--}}
-{{--                    for="student.trips.{{$index}}.transport_2">--}}
-{{--                    <option selected value="{{NULL}}">--------------------</option>--}}
-{{--                    @foreach($this->transports as $transport)--}}
-{{--                        <option--}}
-{{--                            value="{{$transport['id']}}">{{$transport['name']}}</option>--}}
-{{--                    @endforeach--}}
-{{--                </x-select>--}}
-{{--                @if($errors->has('student.trips.'.$index.'.transport_2'))--}}
-{{--                    <div class="mt-2 text-sm text-red-600">--}}
-{{--                        {{$errors->first('student.trips.'.$index.'.transport_2')}}--}}
-{{--                    </div>--}}
-{{--                @endif--}}
-{{--            </div>--}}
-            <div class="md:col-span-2">
-                <x-jet-label class="text-lg">Comune di arrivo o intermedio</x-jet-label>
-                <x-select class="w-full" wire:change="saveTrip({{$index}})"
-                          wire:model="student.trips.{{$index}}.town_istat">
-                    <option value="">Scuola</option>
-                    @foreach($this->comuni as $comune)
-                        <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>
-                    @endforeach
-                </x-select>
-                @if($errors->has('student.trips.'.$index.'.town_istat'))
-                    <div class="mt-2 text-sm text-red-600">
-                        {{$errors->first('student.trips.'.$index.'.town_istat')}}
-                    </div>
-                @endif
-            </div>
-            <div>
-                <x-jet-label class="text-lg">Indirizzo Intermedio</x-jet-label>
-                <x-jet-input class="w-full" wire:change.defer="saveTrip({{$index}})"
-                             wire:model.lazy="student.trips.{{$index}}.address"></x-jet-input>
-            </div>
-            <div class="flex items-end justify-items-end">
-                <x-jet-danger-button wire:click="deleteTrip({{$index}})" class="h-1/2">
-                    <i class="fa-solid fa-trash mr-4"></i> Elimina Tappa
-                </x-jet-danger-button>
+        <div wire:key="{{$trip->index}}">
+            <x-jet-label class="text-2xl mb-2">
+                {{$loop->iteration}}° tappa
+            </x-jet-label>
+            <div class="grid my-6 sm:grid-cols-1 md:grid-cols-5 gap-4 border-b-2 pb-2 border-b-gray-400">
+                <div>
+                    <x-jet-label class="text-lg">Mezzo (Prima Opzione)</x-jet-label>
+                    <x-select
+                        wire:change="saveTrip({{$index}})"
+                        wire:model="student.trips.{{$index}}.transport_1"
+                        for="student.trips.{{$index}}.transport_1">
+                        <option selected value="">--------------------</option>
+                        @foreach($this->transports as $transport)
+                            <option
+                                value="{{$transport['id']}}">{{$transport['name']}}</option>
+                        @endforeach
+                    </x-select>
+                    @if($errors->has('student.trips.'.$index.'.transport_1'))
+                        <div class="mt-2 text-sm text-red-600">
+                            {{$errors->first('student.trips.'.$index.'.transport_1')}}
+                        </div>
+                    @endif
+                </div>
+                {{--            <div>--}}
+                {{--                <x-select--}}
+                {{--                    wire:change="saveTrip({{$index}})"--}}
+                {{--                    wire:model="student.trips.{{$index}}.transport_2"--}}
+                {{--                    for="student.trips.{{$index}}.transport_2">--}}
+                {{--                    <option selected value="{{NULL}}">--------------------</option>--}}
+                {{--                    @foreach($this->transports as $transport)--}}
+                {{--                        <option--}}
+                {{--                            value="{{$transport['id']}}">{{$transport['name']}}</option>--}}
+                {{--                    @endforeach--}}
+                {{--                </x-select>--}}
+                {{--                @if($errors->has('student.trips.'.$index.'.transport_2'))--}}
+                {{--                    <div class="mt-2 text-sm text-red-600">--}}
+                {{--                        {{$errors->first('student.trips.'.$index.'.transport_2')}}--}}
+                {{--                    </div>--}}
+                {{--                @endif--}}
+                {{--            </div>--}}
+                <div class="md:col-span-2">
+                    <x-jet-label class="text-lg">Comune di arrivo o intermedio</x-jet-label>
+                    <x-select class="w-full" wire:change="saveTrip({{$index}})"
+                              wire:model="student.trips.{{$index}}.town_istat">
+                        <option value="">Scuola</option>
+                        @foreach($this->comuni as $comune)
+                            <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>
+                        @endforeach
+                    </x-select>
+                    @if($errors->has('student.trips.'.$index.'.town_istat'))
+                        <div class="mt-2 text-sm text-red-600">
+                            {{$errors->first('student.trips.'.$index.'.town_istat')}}
+                        </div>
+                    @endif
+                </div>
+                <div>
+                    <x-jet-label class="text-lg">Indirizzo Intermedio</x-jet-label>
+                    <x-jet-input class="w-full" wire:change.defer="saveTrip({{$index}})"
+                                 wire:model.lazy="student.trips.{{$index}}.address"></x-jet-input>
+                </div>
+                <div class="flex items-end justify-items-end">
+                    <x-jet-danger-button wire:click="deleteTrip({{$index}})" class="h-1/2">
+                        <i class="fa-solid fa-trash mr-4"></i> Elimina Tappa
+                    </x-jet-danger-button>
+                </div>
             </div>
         </div>
     @empty
