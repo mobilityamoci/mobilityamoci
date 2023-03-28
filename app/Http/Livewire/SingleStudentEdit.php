@@ -143,8 +143,8 @@ class SingleStudentEdit extends Component
         if (!is_null($trip)) {
             $trip->delete();
         }
-        $this->mount();
         $this->alert('success', 'Tappa Eliminata');
+        $this->mount();
     }
 
 
