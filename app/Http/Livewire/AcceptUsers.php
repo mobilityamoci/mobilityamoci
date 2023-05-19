@@ -46,13 +46,13 @@ class AcceptUsers extends Component
             'accepted_at' => now()
         ]);
 
-        $this->emitTo('users-table','refreshLivewireDatatable');
+        $this->emitTo('users-table','refreshDatatable');
         $user->notify(new AcceptedUserNotification());
     }
 
     public function rejectUser($user_id)
     {
         User::find($user_id)->delete();
-        $this->emitTo('users-table','refreshLivewireDatatable');
+        $this->emitTo('users-table','refreshDatatable');
     }
 }

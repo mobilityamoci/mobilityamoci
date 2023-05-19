@@ -19,7 +19,7 @@
 <body class="font-sans antialiased">
 <x-jet-banner/>
 
-<div class="min-h-screen bg-gray-100">
+<div class="min-h-screen" style="background-image: url({{public_path('imgs/mappa_background.png')}})">
     @livewire('navigation-menu')
 
     <!-- Page Heading -->
