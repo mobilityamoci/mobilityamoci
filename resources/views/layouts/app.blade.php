@@ -19,23 +19,38 @@
 <body class="font-sans antialiased">
 <x-jet-banner/>
 
-<div class="min-h-screen" style="background-image: url({{public_path('imgs/mappa_background.png')}})">
-    @livewire('navigation-menu')
+<div class="min-h-screen bg-white" id="background-map"
+     style="background-size: cover; background-image: url('https://picsum.photos/id/238/1800/1900')"
+{{--     style="background-size: cover; background-image: url('data:image/png;base64,')"--}}
+>
 
-    <!-- Page Heading -->
-    @if (isset($header))
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
+
+
+    <div class="flex">
+        <!-- Card Column -->
+        <div class=" md:w-10/12 flex justify-center items-center">
+            <div class="p-6 bg-white h-fit m-24 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-100 md:w-10/12 bg-opacity-75">
+                <!-- Page Heading -->
+                @if (isset($header))
+                    <header class="bg-white shadow">
+                        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                            {{ $header }}
+                        </div>
+                    </header>
+                @endif
+
+                <!-- Page Content -->
+                <main>
+                    {{ $slot }}
+                </main>
             </div>
-        </header>
-    @endif
-
-    <!-- Page Content -->
-    <main>
-        {{ $slot }}
-    </main>
+        </div>
+        <div class=" md:w-2/12 justify-center flex items-center h-screen bg-transparent">
+            @livewire('navigation-menu')
+        </div>
+    </div>
 </div>
+
 
 @stack('modals')
 
@@ -47,5 +62,14 @@
 <x-livewire-alert::scripts/>
 
 @stack('scripts')
+
 </body>
+
+<script>
+    // setInterval(function () {
+    //     const imageNumber = Math.floor(Math.random() * 500);
+    //     const imageLink = 'https://picsum.photos/id/' + imageNumber + '/1800/1900';
+    //     $('#background-map').css("background-image", "url('" + imageLink + "')").css("background-size", "cover");
+    // }, 5000);
+</script>
 </html>

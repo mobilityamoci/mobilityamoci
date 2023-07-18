@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.navbar .container-fluid {
+    flex-direction: column;
+}
+
 @layer components {
     .my-table {
         @apply w-full text-sm text-left text-gray-500  table-fixed
