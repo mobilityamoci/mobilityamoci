@@ -4,8 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.navbar .container-fluid {
-    flex-direction: column;
+
+.my-modal {
+    z-index: 1;
 }
 
 @layer components {

@@ -17,6 +17,6 @@
                 : 'flex p-2 text-green rounded-md shadow-lg w-fit bg-white bg-opacity-75 transition';
 @endphp
 
-<a {{ $attributes->merge(['class' => $classes, 'href' => $href]) }}>
+<a style="z-index: 0" {{ $attributes->merge(['class' => $classes, 'href' => $href]) }}>
     {{ $slot }}
 </a>

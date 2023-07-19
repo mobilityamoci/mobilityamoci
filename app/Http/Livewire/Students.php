@@ -249,6 +249,11 @@ class Students extends Component
         $this->showTransportsModal = false;
     }
 
+    public function closeStudentModal()
+    {
+        $this->addingNewStudent = false;
+    }
+
     public function saveTrip($index)
     {
         $trip = $this->students[$this->editStudentIndex]['trips'][$index] ?? NULL;

@@ -1,6 +1,16 @@
 <div
+    x-cloak
+    @click.away="$wire.closeTransportsModal"
+    x-show="$wire.showTransportsModal"
+    x-transition:enter="transition ease-in duration-200"
+    x-transition:enter-start="opacity-0 transform "
+    x-transition:enter-end="opacity-100 transform "
+    x-transition:leave="transition ease-out duration-200"
+    x-transition:leave-start="opacity-100 transform"
+    x-transition:leave-end="opacity-0 transform"
+    style="display: none; z-index:1"
     x-on:keydown.escape.window="$wire.closeTransportsModal"
-    class="@if (!$showTransportsModal) hidden @endif flex items-center justify-center fixed left-0 bottom-0 w-full h-full bg-gray-800 bg-opacity-90">
+    class="my-modal flex  items-center justify-center fixed left-0 bottom-0 w-full h-full bg-gray-800 bg-opacity-90">
     <div class="bg-white rounded-lg w-1/2">
         <div class="flex flex-col items-start p-4">
             <div class="flex items-center w-full border-b pb-4">

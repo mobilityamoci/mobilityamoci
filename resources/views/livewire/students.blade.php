@@ -25,7 +25,8 @@
             </div>
 
             <div class="flex items-center">
-                <x-jet-button type="button" class="mt-9" wire:click="$emit('openModal', 'upload-students-import',{{json_encode(['selectedSectionId' => $selectedSectionId])}})">
+                <x-jet-button type="button" class="mt-9"
+                              wire:click="$emit('openModal', 'upload-students-import',{{json_encode(['selectedSectionId' => $selectedSectionId])}})">
                     <i class="fa-solid fa-fw fa-file-excel mr-2"></i> Importa Excel
                 </x-jet-button>
 
@@ -185,84 +186,121 @@
                 @endif
 
 
-                @if($addingNewStudent)
-                    <tr class="body-tr">
-                        @hasanyrole($this->canSeeNamesRoles)
-                        <td class="my-th">
-                            <label for="newName" hidden></label>
-                            <input type="text" wire:model.defer="newName" id="newName"
-                                   class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 ">
+                {{--                @if($addingNewStudent)--}}
+                {{--                    <tr class="body-tr">--}}
+                {{--                        @hasanyrole($this->canSeeNamesRoles)--}}
+                {{--                        <td class="my-th">--}}
+                {{--                            <label for="newName" hidden></label>--}}
+                {{--                            <input type="text" wire:model.defer="newName" id="newName"--}}
+                {{--                                   class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 ">--}}
 
-                            @if($errors->has('newName'))
-                                <div
-                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newName')}}</div>
-                            @endif
-                        </td>
-                        <td class="my-th">
-                            <label for="newSurname" hidden></label>
-                            <input type="text" wire:model.defer="newSurname" id="newSurname"
-                                   class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 ">
+                {{--                            @if($errors->has('newName'))--}}
+                {{--                                <div--}}
+                {{--                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newName')}}</div>--}}
+                {{--                            @endif--}}
+                {{--                        </td>--}}
+                {{--                        <td class="my-th">--}}
+                {{--                            <label for="newSurname" hidden></label>--}}
+                {{--                            <input type="text" wire:model.defer="newSurname" id="newSurname"--}}
+                {{--                                   class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 ">--}}
 
-                            @if($errors->has('newSurname'))
-                                <div
-                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newSurname')}}</div>
-                            @endif
-                        </td>
+                {{--                            @if($errors->has('newSurname'))--}}
+                {{--                                <div--}}
+                {{--                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newSurname')}}</div>--}}
+                {{--                            @endif--}}
+                {{--                        </td>--}}
 
 
-                        @endhasanyrole
-                        <td class="my-th">
-                            <x-select label="" wire:model="newSectionId"
-                                      for="newSectionId">
-                                <option value="">-------------------------------</option>
-                                @foreach($this->sections as $section)
-                                    <option
-                                        value="{{$section['id']}}">{{$section['name']}}</option>
-                                @endforeach
-                            </x-select>
-                            @if($errors->has('newSectionId'))
-                                <div
-                                    class="mt-2 text-sm text-red-600">{{$errors->first('newSectionId')}}</div>
-                            @endif
-                        </td>
-                        <td class="my-th">
-                            <x-select label="" wire:model="newComuneIstat"
-                                      for="newComuneIstat">
-                                <option selected value="">-------------------------------</option>
-                                @foreach($this->comuni as $comune)
-                                    <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>
-                                @endforeach
-                            </x-select>
-                            @if($errors->has('newComuneIstat'))
-                                <div
-                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newComuneIstat')}}</div>
-                            @endif
-                        </td>
-                        <td class="my-th">
-                            <label for="newIndirizzo" hidden></label>
-                            <input type="text" wire:model.defer="newIndirizzo" id="newIndirizzo"
-                                   class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 ">
+                {{--                        @endhasanyrole--}}
+                {{--                        <td class="my-th">--}}
+                {{--                            <x-select label="" wire:model="newSectionId"--}}
+                {{--                                      for="newSectionId">--}}
+                {{--                                <option value="">-------------------------------</option>--}}
+                {{--                                @foreach($this->sections as $section)--}}
+                {{--                                    <option--}}
+                {{--                                        value="{{$section['id']}}">{{$section['name']}}</option>--}}
+                {{--                                @endforeach--}}
+                {{--                            </x-select>--}}
+                {{--                            @if($errors->has('newSectionId'))--}}
+                {{--                                <div--}}
+                {{--                                    class="mt-2 text-sm text-red-600">{{$errors->first('newSectionId')}}</div>--}}
+                {{--                            @endif--}}
+                {{--                        </td>--}}
+                {{--                        <td class="my-th">--}}
+                {{--                            <x-select label="" wire:model="newComuneIstat"--}}
+                {{--                                      for="newComuneIstat">--}}
+                {{--                                <option selected value="">-------------------------------</option>--}}
+                {{--                                @foreach($this->comuni as $comune)--}}
+                {{--                                    <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>--}}
+                {{--                                @endforeach--}}
+                {{--                            </x-select>--}}
+                {{--                            @if($errors->has('newComuneIstat'))--}}
+                {{--                                <div--}}
+                {{--                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newComuneIstat')}}</div>--}}
+                {{--                            @endif--}}
+                {{--                        </td>--}}
+                {{--                        <td class="my-th">--}}
+                {{--                            <label for="newIndirizzo" hidden></label>--}}
+                {{--                            <input type="text" wire:model.defer="newIndirizzo" id="newIndirizzo"--}}
+                {{--                                   class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 ">--}}
 
-                            @if($errors->has('newIndirizzo'))
-                                <div
-                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newIndirizzo')}}</div>
-                            @endif
-                        </td>
-                        <td></td>
-                        <td class="my-th">
-                            <x-jet-button wire:click="createStudent" color="green">Salva</x-jet-button>
-                        </td>
-                    </tr>
-                @endif
+                {{--                            @if($errors->has('newIndirizzo'))--}}
+                {{--                                <div--}}
+                {{--                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newIndirizzo')}}</div>--}}
+                {{--                            @endif--}}
+                {{--                        </td>--}}
+                {{--                        <td></td>--}}
+                {{--                        <td class="my-th">--}}
+                {{--                            <x-jet-button wire:click="createStudent" color="green">Salva</x-jet-button>--}}
+                {{--                        </td>--}}
+                {{--                    </tr>--}}
+                {{--                @endif--}}
                 </tbody>
             </table>
             @include('components.trips-modal')
-
         </div>
-
-
     </div>
 
+
+    <x-jet-modal
+        x-on:keydown.escape.window="$wire.closeStudentModal"
+        x-cloak
+        x-show="$wire.addingNewStudent"
+        x-transition:enter="transition ease-in duration-200"
+        x-transition:enter-start="opacity-0 transform "
+        x-transition:enter-end="opacity-100 transform "
+        x-transition:leave="transition ease-out duration-200"
+        x-transition:leave-start="opacity-100 transform"
+        x-transition:leave-end="opacity-0 transform"
+        style="display: none"
+        class="my-modal flex my-modal items-center justify-center fixed left-0 bottom-0 w-full h-full bg-gray-800 bg-opacity-90">
+        <div class="bg-white rounded-lg w-1/2" @click.away="$wire.closeStudentModal">
+            <div class="flex flex-col items-start p-4">
+                <div class="flex items-center w-full border-b pb-4">
+                    <div class="text-gray-900 font-medium text-lg">Aggiungi Studente</div>
+                    <svg wire:click="closeStudentModal"
+                         class="ml-auto fill-current text-gray-700 w-6 h-6 cursor-pointer"
+                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                        <path
+                            d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/>
+                    </svg>
+                </div>
+                @if($addingNewStudent)
+
+                @endif
+                <div class="mt-8 ml-auto">
+                    {{--                                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"--}}
+                    {{--                                            type="submit">{{ $productId ? 'Save Changes' : 'Save' }}--}}
+                    {{--                                    </button>--}}
+                    <x-jet-button class="bg-gray-500 text-white font-bold py-2 px-4 rounded"
+                                  wire:click="closeStudentModal"
+                                  type="button"
+                                  data-dismiss="modal">Chiudi
+                    </x-jet-button>
+                </div>
+            </div>
+        </div>
+    </x-jet-modal>
 
 </div>
 
