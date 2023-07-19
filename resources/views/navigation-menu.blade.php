@@ -243,7 +243,7 @@
 {{--    </div>--}}
 {{--</nav>--}}
 
-@php($classes = "w-12 h-12  xl:w-32 xl:h-32")
+@php($classes = "w-16 h-16 md:w-24 md:h-24  3xl:w-32 3xl:h-32")
 
 
 <nav class="flex flex-col m-auto justify-between h-3/4">
