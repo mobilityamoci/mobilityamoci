@@ -28,8 +28,8 @@
 
     <div class="flex">
         <!-- Card Column -->
-        <div class=" md:w-10/12 flex justify-center items-center">
-            <div class="p-6 bg-white h-fit m-24 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-100 md:w-10/12 bg-opacity-75">
+        <div class="m-6 md:w-10/12 flex justify-center items-center">
+            <div class="p-3 bg-white h-fit w-full m-12 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 bg-opacity-75">
                 <!-- Page Heading -->
                 @if (isset($header))
                     <header class="bg-white shadow">
@@ -45,7 +45,7 @@
                 </main>
             </div>
         </div>
-        <div class=" md:w-2/12 justify-center flex items-center h-screen bg-transparent">
+        <div class=" md:w-2/12 justify-center flex items-center h-screen bg-transparent" style="position: sticky !important; top: 0 !important;">
             @livewire('navigation-menu')
         </div>
     </div>

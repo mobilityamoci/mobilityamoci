@@ -46,7 +46,7 @@
                     <th class="my-th">Sezione</th>
                     <th class="my-th">Comune Domicilio</th>
                     <th class="my-th">Indirizzo</th>
-                    <th class="my-th md:hidden lg:block">Percorso</th>
+                    <th class="my-th hidden xl:block">Percorso</th>
                     <th class="my-th">Azioni</th>
 
                 </tr>
@@ -144,7 +144,7 @@
                                     <input
                                         @click.away="$wire.editStudentField === '{{$index}}.address' ? $wire.saveStudent({{$index}}) : null"
                                         type="text" wire:model.defer="students.{{$index}}.address"
-                                        class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5">
+                                        class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block p-2.5">
 
                                 @else
                                     <div wire:click="setEditStudentField({{$index}},'address')"
@@ -157,7 +157,7 @@
                                         class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.address')}}</div>
                                 @endif
                             </td>
-                            <td class="my-th md:hidden lg:block">
+                            <td class="my-th hidden xl:block">
                                 <div wire:click.prevent="openTransportsModal({{$index}})">
                                     {!!  $student['trip_string']!!}
                                 </div>

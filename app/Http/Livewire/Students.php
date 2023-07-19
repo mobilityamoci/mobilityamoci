@@ -10,10 +10,12 @@ use App\Models\Transport;
 use App\Models\Trip;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class Students extends Component
 {
+    use LivewireAlert;
 
     public $user;
 
@@ -115,7 +117,7 @@ class Students extends Component
 
 
                 if ($item->trips->isNotEmpty()) {
-                    $string = '1) Da <b>' . $this->comuni[$item->town_istat]['comune'] . ' ('.$item->address.')</b> in ';
+                    $string = '1) Da <b>' . $this->comuni[$item->town_istat]['comune'] . ' (' . $item->address . ')</b> in ';
                     $i = 0;
 
                     foreach ($item->trips as $trip) {
@@ -125,7 +127,7 @@ class Students extends Component
                         $string .= '<b>' . $trip->transport1->name . '</b>';
                         $trip->transport2 ? $string .= '<b>/' . $trip->transport2->name . '</b>' : $string .= '';
                         if ($trip->town_istat)
-                            $string .= ' fino a <b>' . $this->comuni[$trip->town_istat]['comune'] . ' ('.$trip->address.')</b>';
+                            $string .= ' fino a <b>' . $this->comuni[$trip->town_istat]['comune'] . ' (' . $trip->address . ')</b>';
                         else
                             $string .= ' (comune assente)';
                         $i++;
@@ -165,6 +167,7 @@ class Students extends Component
         }
         $this->editStudentField = null;
         $this->editStudentIndex = null;
+        $this->alert('success', 'Utente salvato con successo');
     }
 
 
