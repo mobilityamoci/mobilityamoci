@@ -200,6 +200,9 @@ return [
         \App\Providers\CacheServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
 
+        //CUSTOM MIEI
+        \App\Providers\GeoServiceProvider::class
+
     ],
 
     /*

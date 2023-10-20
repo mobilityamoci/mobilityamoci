@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\School;
+use Clickbar\Magellan\Database\Eloquent\HasPostgisColumns;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,9 +14,16 @@ use Illuminate\Support\Str;
 
 class Student extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasPostgisColumns;
 
     protected $guarded = ['id', 'created_at','updated_at'];
+
+    protected array $postgisColumns = [
+        'geom_address' => [
+            'type' => 'geometry',
+            'srid' => 4326,
+        ],
+    ];
 
     public function delete()
     {

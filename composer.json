@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "clickbar/laravel-magellan": "^1.4",
         "guzzlehttp/guzzle": "^7.2",
         "jantinnerezo/livewire-alert": "^2.2",
         "laravel/framework": "^9.19",
@@ -15,6 +16,7 @@
         "livewire/livewire": "^2.11",
         "maatwebsite/excel": "^3.1",
         "rappasoft/laravel-livewire-tables": "^2.13",
+        "spatie/browsershot": "^3.58",
         "spatie/laravel-collection-macros": "^7.12",
         "spatie/laravel-permission": "^5.9",
         "wire-elements/modal": "^1.0"

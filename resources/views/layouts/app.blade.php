@@ -26,7 +26,7 @@
 
 
 
-    <div class="flex">
+    <div class="flex ">
         <!-- Card Column -->
         <div class="m-6 md:w-10/12 flex justify-center items-center">
             <div class="p-3 bg-white h-fit w-full m-12 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 bg-opacity-75">
