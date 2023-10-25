@@ -175,11 +175,6 @@
                                         </div>
                                     </td>
 
-
-                                                        <td class="my-th">
-                                                            <x-jet-button label="Salva" wire:click.prevent="saveStudent({{$index}})"
-                                                                      color="green"></x-jet-button>
-                                                        </td>
                                 </tr>
 
                             @endforeach

@@ -2,12 +2,15 @@
 
 namespace App\Observers;
 
+use App\Interfaces\IQgisService;
 use App\Models\Student;
 use App\Services\QgisService;
 
 class StudentsObserver
 {
-    public function __construct(QgisService $qgisService)
+    private IQgisService $qgisService;
+
+    public function __construct(IQgisService $qgisService)
     {
         $this->qgisService = $qgisService;
     }
@@ -31,7 +34,9 @@ class StudentsObserver
      */
     public function updating(Student $student)
     {
-        $student = $this->qgisService::georefStudent($student);
+        if ($student->isDirty(['address', 'town_istat'])) {
+            $student = $this->qgisService::georefStudent($student);
+        }
     }
 
     /**
