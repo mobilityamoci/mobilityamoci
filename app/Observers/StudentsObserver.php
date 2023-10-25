@@ -13,26 +13,25 @@ class StudentsObserver
     }
 
     /**
-     * Handle the Student "created" event.
+     * Handle the Student "creating" event.
      *
      * @param Student $student
      * @return void
      */
     public function creating(Student $student)
     {
-        $student->name = 'ti guardavo :)';
         $student = $this->qgisService::georefStudent($student);
     }
 
     /**
-     * Handle the Student "updated" event.
+     * Handle the Student "updating" event.
      *
      * @param Student $student
      * @return void
      */
-    public function updated(Student $student)
+    public function updating(Student $student)
     {
-        //
+        $student = $this->qgisService::georefStudent($student);
     }
 
     /**
