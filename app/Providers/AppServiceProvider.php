@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Interfaces\IQgisService;
 use App\Services\QgisService;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-      $this->app->bind(QgisService::class);
+      $this->app->bind(IQgisService::class);
     }
 
     /**

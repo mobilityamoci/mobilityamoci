@@ -2,16 +2,15 @@
 
 namespace App\Observers;
 
-use App\Interfaces\IQgisService;
 use App\Models\Building;
 use App\Services\QgisService;
 
 class BuildingsObserver
 {
 
-    private IQgisService $qgisService;
+    private QgisService $qgisService;
 
-    public function __construct(IQgisService $qgisService)
+    public function __construct(QgisService $qgisService)
     {
         $this->qgisService = $qgisService;
     }
