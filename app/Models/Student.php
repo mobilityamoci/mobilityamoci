@@ -50,6 +50,11 @@ class Student extends Model
             ->orderBy('order');
     }
 
+    public function trip1(): HasOne
+    {
+        return $this->hasOne(Trip::class)->where('order',1);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -71,12 +76,12 @@ class Student extends Model
 
 
 
-    public function trip1()
-    {
-        $builder = $this->trips()->where('order',1);
-
-        return new HasOne($builder->getQuery(), $this, 'student_id','id');
-    }
+//    public function trip1()
+//    {
+//        $builder = $this->trips()->where('order',1);
+//
+//        return new HasOne($builder->getQuery(), $this, 'student_id','id');
+//    }
 
     public function trip2()
     {
