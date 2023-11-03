@@ -7,7 +7,6 @@ use App\Models\Section;
 use App\Models\Student;
 use Clickbar\Magellan\Data\Geometries\Point;
 use DB;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class QgisService
@@ -31,21 +30,35 @@ class QgisService
 
     public static function getGeomPoint($address, $town_istat)
     {
+
+        //non togliere via, ma gli altri si
+        //provare con la base de
+        set_time_limit(0);
+        sleep(1);
         $baseUrl = 'https://nominatim.openstreetmap.org/search.php?';
-        $address = $address . ', ' . self::getComune($town_istat);
+        $address = $address . ', ' . getComune($town_istat);
+        $address = preg_replace('/\w*\.\w*/i', '', $address); //rimuovere parole con punti (iniziali di vie abbreviate, abbreviazioni varie (es. p.no per piacentino)
+        $address = preg_replace('/w{1,3}$/i', '', $address); //rimuove lettere singole o 2,3 lettere
+        $address = str_ireplace([ 'località', 'localita', 'piazza', 'strada', 'stradone', 'corso', 'vicolo', 'lungarno', 'viale',
+            'rione', 'contrada', 'colletta', 'salita', 'traversa', 'rampa', 'bastioni', 'piazzetta', 'chiasso', 'frazione', 'quartiere',
+            'rotonda', 'vico', 'stradone','loc',], '', $address);
+
+
+
+
         $baseUrl = $baseUrl . 'q=' . $address . '&polygon_geojson=1&format=jsonv2';
 
-        $res = Http::get($baseUrl)->json();
-        $lon = $res[0]['lon'];
-        $lat = $res[0]['lat'];
+        $res = Http::retry(3, 100)->get($baseUrl)->json();
+        if (isset($res[0]['lon']) && isset($res[0]['lat'])) {
+            $lon = $res[0]['lon'];
+            $lat = $res[0]['lat'];
+            return Point::makeGeodetic($lat, $lon);
+        }
 
-        return Point::makeGeodetic($lat, $lon);
+        return null;
+
     }
 
-    public static function getComune($town_istat)
-    {
-        return Cache::get('comuni')[$town_istat]['comune'];
-    }
 
     public static function test()
     {
@@ -63,9 +76,9 @@ class QgisService
                             	 		PUBLIC.STUDENTS.ID AS ID
                             		FROM PUBLIC.STUDENTS,
                             			BASI_CARTO.GRAFO_STRADALE_E_VERTICES_PGR
-                             where students.id in ('.$placeholders.') and geom_address is not null
+                             where students.id in (' . $placeholders . ') and geom_address is not null
                             ) as X limit 3;'), $students_id);
-dd($query);
+        dd($query);
 
 
     }

@@ -6,9 +6,7 @@ use App\Models\Student;
 use App\Models\Transport;
 use Illuminate\Support\Facades\Cache;
 use Maatwebsite\Excel\Concerns\OnEachRow;
-use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Row;
 
 class StudentsImport implements OnEachRow, WithHeadingRow
@@ -23,20 +21,20 @@ class StudentsImport implements OnEachRow, WithHeadingRow
 
     public function onRow(array|Row $row)
     {
-//        dd($row->toArray());
+        if (!isset($row['comune_di_residenza'])) {
+            return null;
+        }
 
-
-            if (!isset($row['nome'])) {
-                return null;
-            }
-        \DB::transaction(function () {
+        \DB::transaction(function () use ($row) {
 
             $comuni = Cache::get('comuni');
 
-            $comune_residenza = $row['comune_di_residenza'] ?? NULL;
+            $comune_residenza = ucwords(strtolower($row['comune_di_residenza'])) ?? NULL;
             if (!is_null($comune_residenza)) {
-                $residenza_town_istat = array_search($comune_residenza, $comuni->pluck('comune','istat')->toArray());
+                $residenza_town_istat = array_search($comune_residenza, $comuni->pluck('comune', 'istat')->toArray());
             }
+
+
 
             $student = Student::create([
                 'name' => $row['nome'] ?? NULL,
@@ -46,10 +44,11 @@ class StudentsImport implements OnEachRow, WithHeadingRow
                 'address' => $row['indirizzo_residenza'] ?? NULL
             ]);
 
+
             if (isset($row['1_mezzo_opzione_a'])) {
-                $trans_1 = Transport::where('name',$row['1_mezzo_opzione_a'])->first();
-                $trans_2 = isset($row['1_mezzo_opzione_b']) ? Transport::where('name',$row['1_mezzo_opzione_b'])->first() : NULL;
-                $comune_scalo = isset($row['1_comune_di_scalo']) ? array_search($row['1_comune_di_scalo'], $comuni->pluck('comune','istat')->toArray()) : NULL;
+                $trans_1 = Transport::where('name', $row['1_mezzo_opzione_a'])->first();
+                $trans_2 = isset($row['1_mezzo_opzione_b']) ? Transport::where('name', $row['1_mezzo_opzione_b'])->first() : NULL;
+                $comune_scalo = isset($row['1_comune_di_scalo']) ? array_search($row['1_comune_di_scalo'], $comuni->pluck('comune', 'istat')->toArray()) : NULL;
                 $student->trips()->create([
                     'order' => 1,
                     'transport_1' => $trans_1->id,
@@ -59,9 +58,9 @@ class StudentsImport implements OnEachRow, WithHeadingRow
             }
 
             if (isset($row['2_mezzo_opzione_a'])) {
-                $trans_1 = Transport::where('name',$row['2_mezzo_opzione_a'])->first();
-                $trans_2 = isset($row['2_mezzo_opzione_b']) ? Transport::where('name',$row['2_mezzo_opzione_b'])->first() : NULL;
-                $comune_scalo = isset($row['2_comune_di_scalo']) ? array_search($row['2_comune_di_scalo'], $comuni->pluck('comune','istat')->toArray()) : NULL;
+                $trans_1 = Transport::where('name', $row['2_mezzo_opzione_a'])->first();
+                $trans_2 = isset($row['2_mezzo_opzione_b']) ? Transport::where('name', $row['2_mezzo_opzione_b'])->first() : NULL;
+                $comune_scalo = isset($row['2_comune_di_scalo']) ? array_search($row['2_comune_di_scalo'], $comuni->pluck('comune', 'istat')->toArray()) : NULL;
                 $student->trips()->create([
                     'order' => 2,
                     'transport_1' => $trans_1->id,
@@ -82,8 +81,5 @@ class StudentsImport implements OnEachRow, WithHeadingRow
                 ]);
             }
         });
-
-
     }
-
 }

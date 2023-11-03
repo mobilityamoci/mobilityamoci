@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Imports\StudentsImport;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
-use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class UploadStudentsImport extends ModalComponent
@@ -31,10 +31,8 @@ class UploadStudentsImport extends ModalComponent
         $this->validate([
             'importFile' => 'file|required'
         ]);
-
-
-        \Maatwebsite\Excel\Facades\Excel::import(new StudentsImport($this->selectedSectionId), $this->importFile);
-
+        Excel::import(new StudentsImport($this->selectedSectionId), $this->importFile);
+        $this->emit('closeModal');
     }
 
     public function downloadTemplate(): BinaryFileResponse

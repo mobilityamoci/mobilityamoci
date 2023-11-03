@@ -57,8 +57,8 @@ class Students extends Component
 
 
     protected $rulesWithName = [
-        'students.*.name' => 'string|required',
-        'students.*.surname' => 'string|required',
+//        'students.*.name' => 'string|required',
+//        'students.*.surname' => 'string|required',
         'students.*.town_istat' => 'integer|nullable|',
         'students.*.section_id' => 'numeric|exists:sections,id'
     ];
@@ -160,11 +160,13 @@ class Students extends Component
         else
             $this->validate($this->rulesWithoutName);
 
+
         $student = $this->students[$index] ?? NULL;
         if (!is_null($student)) {
             optional(Student::find($student['id']))->update($student);
 
         }
+        dd(Student::find($student['id']));
         $this->editStudentField = null;
         $this->editStudentIndex = null;
         $this->alert('success', 'Utente salvato con successo');
@@ -194,8 +196,8 @@ class Students extends Component
     {
         if ($this->user->hasAnyRole($this->canSeeNamesRoles))
             $rules = [
-                'newName' => 'string|required',
-                'newSurname' => 'string|required',
+//                'newName' => 'string|required',
+//                'newSurname' => 'string|required',
                 'newIndirizzo' => 'string|required',
                 'newComuneIstat' => 'integer|required',
                 'newSectionId' => 'integer|required'

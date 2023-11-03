@@ -4,6 +4,7 @@
 use App\Models\School;
 use App\Models\User;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 
 function getSchoolsFromUser(User $user): Collection
 {
@@ -12,4 +13,15 @@ function getSchoolsFromUser(User $user): Collection
     } else {
         return $user->schools()->pluck('id');
     }
+}
+
+function getComune($town_istat)
+{
+
+    //TODO: remember non get
+    $comuni = Cache::get('comuni');
+    if ($comuni->has($town_istat)) {
+        return Cache::get('comuni')[$town_istat]['comune'];
+    }
+    return null;
 }
