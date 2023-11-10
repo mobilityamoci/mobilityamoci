@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasGeometryPoint;
 use Clickbar\Magellan\Database\Eloquent\HasPostgisColumns;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class Student extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasGeometryPoint;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
@@ -95,8 +96,5 @@ class Student extends Model
         return new HasOne($builder->getQuery(), $this, 'student_id', 'id');
     }
 
-    public function getGeomAddressAttribute()
-    {
-        return optional($this->geometryPoint)->point;
-    }
+
 }

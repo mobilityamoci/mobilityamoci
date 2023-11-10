@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Building;
 use App\Models\Student;
+use App\Models\Trip;
+use App\Observers\BuildingsObserver;
 use App\Observers\StudentsObserver;
+use App\Observers\TripsObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -15,6 +19,8 @@ class EventServiceProvider extends ServiceProvider
 
     protected $observers = [
         Student::class => [StudentsObserver::class],
+        Building::class => [BuildingsObserver::class],
+        Trip::class => [TripsObserver::class],
     ];
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasGeometryPoint;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -9,7 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Building extends Model
 {
 
-    protected $guarded = ['id', 'created_at','updated_at'];
+    use HasGeometryPoint;
+
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
     protected $with = ['geometryPoint'];
 
@@ -30,12 +33,6 @@ class Building extends Model
     {
         return $this->morphOne(GeometryPoint::class, 'georefable');
     }
-
-    public function getGeomAddressProperty()
-    {
-        return optional($this->geometryPoint)->point;
-    }
-
 
 
 }

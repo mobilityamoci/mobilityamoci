@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Building;
 use App\Models\Section;
 use App\Models\Student;
+use App\Models\Trip;
 use Clickbar\Magellan\Data\Geometries\Point;
 use DB;
 use Illuminate\Database\Eloquent\Model;
@@ -22,7 +23,6 @@ class QgisService
         [$point, $address_request] = self::getGeomPoint($student->address, $student->town_istat);
 
         self::updateOrCreateGeometryPoint($point, $student, $address_request);
-
     }
 
     public static function georefBuilding(Building $building)
@@ -30,8 +30,12 @@ class QgisService
         [$point, $address_request] = self::getGeomPoint($building->address, $building->town_istat);
 
         self::updateOrCreateGeometryPoint($point, $building, $address_request);
+    }
+    public static function georefTrip(Trip $trip)
+    {
+        [$point, $address_request] = self::getGeomPoint($trip->address, $trip->town_istat);
 
-
+        self::updateOrCreateGeometryPoint($point, $trip, $address_request);
     }
 
     public static function getGeomPoint($original_address, $town_istat)
@@ -130,11 +134,11 @@ class QgisService
 
     /**
      * @param Point|null $point
-     * @param Building|Student $model
+     * @param Building|Student|Trip $model
      * @param mixed $address_request
      * @return void
      */
-    private static function updateOrCreateGeometryPoint(Point|null $point, Building|Student $model, string|null $address_request): void
+    private static function updateOrCreateGeometryPoint(Point|null $point, Building|Student|Trip $model, string|null $address_request): void
     {
         if (is_null($point)) {
             if ($model->geometryPoint()->exists())
