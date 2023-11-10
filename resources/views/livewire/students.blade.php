@@ -1,19 +1,19 @@
 <div x-data="{}">
     <div style="width: 100%; height: 100vh">
-                <x-jet-label for="school">Seleziona la scuola:</x-jet-label>
-                <x-select wire:change="schoolChanged" class="col-auto" wire:model="selectedSchoolId" label="Seleziona Scuola"
-                          id="school">
-                    @foreach($schools as $school)
-                        <option @selected($selectedSchoolId == $school->id) value="{{$school->id}}">{{$school->name}}</option>
-                    @endforeach
-                </x-select>
+        <x-jet-label for="school">Seleziona la scuola:</x-jet-label>
+        <x-select wire:change="schoolChanged" class="col-auto" wire:model="selectedSchoolId" label="Seleziona Scuola"
+                  id="school">
+            @foreach($schools as $school)
+                <option @selected($selectedSchoolId == $school->id) value="{{$school->id}}">{{$school->name}}</option>
+            @endforeach
+        </x-select>
 
         <x-jet-label class="mt-4" for="section">Seleziona la sezione:</x-jet-label>
         <x-select wire:change="sectionChanged" class="col-auto" wire:model="selectedSectionId" label="Seleziona Sezione"
                   id="section">
             @foreach($this->sections as $section)
                 <option
-                        @selected($selectedSectionId == $section->id) value="{{$section->id}}">{{$section->name}}</option>
+                    @selected($selectedSectionId == $section->id) value="{{$section->id}}">{{$section->name}}</option>
             @endforeach
         </x-select>
 
@@ -35,7 +35,7 @@
         </div>
 
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-9">
+        <div class="relative table-wrp block overflow-y-auto shadow-md sm:rounded-lg mt-9" style="max-height: 70%">
             {{$errors->first()}}
             <table class="my-table table-auto">
                 <thead class="my-header">
@@ -60,14 +60,14 @@
                                         'bg-white' => !is_null($student['geom_address']),
 
                                         'font-bold' => is_null($student['geom_address']),])
-                        wire:key="{{$index}}">
+                            wire:key="{{$index}}">
                             @hasanyrole($this->canSeeNamesRoles)
                             <td class="my-th">
                                 @if($editStudentIndex === $index || $editStudentField === $index.'.name')
                                     <input
-                                            @click.away="$wire.editStudentField === '{{$index}}.name' ? $wire.saveStudent({{$index}}) : null"
-                                            for="students.{{$index}}.name" wire:model.defer="students.{{$index}}.name"
-                                            class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5">
+                                        @click.away="$wire.editStudentField === '{{$index}}.name' ? $wire.saveStudent({{$index}}) : null"
+                                        for="students.{{$index}}.name" wire:model.defer="students.{{$index}}.name"
+                                        class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5">
 
                                 @else
                                     <div wire:click="setEditStudentField({{$index}},'name')"
@@ -84,10 +84,10 @@
                             <td class="my-th">
                                 @if($editStudentIndex === $index || $editStudentField === $index.'.surname')
                                     <input
-                                            @click.away="$wire.editStudentField === '{{$index}}.surname' ? $wire.saveStudent({{$index}}) : null"
-                                            for="students.{{$index}}.surname"
-                                            wire:model.defer="students.{{$index}}.surname"
-                                            class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5">
+                                        @click.away="$wire.editStudentField === '{{$index}}.surname' ? $wire.saveStudent({{$index}}) : null"
+                                        for="students.{{$index}}.surname"
+                                        wire:model.defer="students.{{$index}}.surname"
+                                        class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5">
 
                                 @else
                                     <div wire:click="setEditStudentField({{$index}},'surname')"
@@ -105,9 +105,9 @@
                             <td class="my-th">
                                 @if($editStudentIndex === $index || $editStudentField === $index.'.section_id')
                                     <x-select
-                                            @click.away="$wire.editStudentField === '{{$index}}.section_id' ? $wire.saveStudent({{$index}}) : null"
-                                            label="" wire:model="students.{{$index}}.section_id"
-                                            for="students.{{$index}}.section_id">
+                                        @click.away="$wire.editStudentField === '{{$index}}.section_id' ? $wire.saveStudent({{$index}}) : null"
+                                        label="" wire:model="students.{{$index}}.section_id"
+                                        for="students.{{$index}}.section_id">
                                         @foreach($this->sections as $section)
                                             <option value="{{$section->id}}">{{$section->name}}</option>
                                         @endforeach
@@ -127,9 +127,9 @@
                             <td class="my-th">
                                 @if($editStudentIndex === $index || $editStudentField === $index.'.town_istat')
                                     <x-select
-                                            @click.away="$wire.editStudentField === '{{$index}}.town_istat' ? $wire.saveStudent({{$index}}) : null"
-                                            label="" wire:model="students.{{$index}}.town_istat"
-                                            for="students.{{$index}}.town_istat">
+                                        @click.away="$wire.editStudentField === '{{$index}}.town_istat' ? $wire.saveStudent({{$index}}) : null"
+                                        label="" wire:model="students.{{$index}}.town_istat"
+                                        for="students.{{$index}}.town_istat">
                                         @foreach($this->comuni as $comune)
                                             <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>
                                         @endforeach
@@ -142,16 +142,16 @@
 
                                 @if($errors->has('students.'.$index.'.town_istat'))
                                     <div
-                                            class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.town_istat')}}</div>
+                                        class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.town_istat')}}</div>
                                 @endif
                             </td>
 
                             <td class="my-th">
                                 @if($editStudentIndex === $index || $editStudentField === $index.'.address')
                                     <input
-                                            @click.away="$wire.editStudentField === '{{$index}}.address' ? $wire.saveStudent({{$index}}) : null"
-                                            type="text" wire:model.defer="students.{{$index}}.address"
-                                            class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+                                        @click.away="$wire.editStudentField === '{{$index}}.address' ? $wire.saveStudent({{$index}}) : null"
+                                        type="text" wire:model.defer="students.{{$index}}.address"
+                                        class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block p-2.5">
 
                                 @else
                                     <div wire:click="setEditStudentField({{$index}},'address')"
@@ -161,7 +161,7 @@
 
                                 @if($errors->has('students.'.$index.'.address'))
                                     <div
-                                            class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.address')}}</div>
+                                        class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.address')}}</div>
                                 @endif
                             </td>
                             <td class="my-th hidden xl:block">
@@ -197,7 +197,7 @@
 
                             @if($errors->has('newName'))
                                 <div
-                                        class="mt-2 text-sm text-red-600 ">{{$errors->first('newName')}}</div>
+                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newName')}}</div>
                             @endif
                         </td>
                         <td class="my-th">
@@ -207,7 +207,7 @@
 
                             @if($errors->has('newSurname'))
                                 <div
-                                        class="mt-2 text-sm text-red-600 ">{{$errors->first('newSurname')}}</div>
+                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newSurname')}}</div>
                             @endif
                         </td>
 
@@ -219,12 +219,12 @@
                                 <option value="">-------------------------------</option>
                                 @foreach($this->sections as $section)
                                     <option
-                                            value="{{$section['id']}}">{{$section['name']}}</option>
+                                        value="{{$section['id']}}">{{$section['name']}}</option>
                                 @endforeach
                             </x-select>
                             @if($errors->has('newSectionId'))
                                 <div
-                                        class="mt-2 text-sm text-red-600">{{$errors->first('newSectionId')}}</div>
+                                    class="mt-2 text-sm text-red-600">{{$errors->first('newSectionId')}}</div>
                             @endif
                         </td>
                         <td class="my-th">
@@ -237,7 +237,7 @@
                             </x-select>
                             @if($errors->has('newComuneIstat'))
                                 <div
-                                        class="mt-2 text-sm text-red-600 ">{{$errors->first('newComuneIstat')}}</div>
+                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newComuneIstat')}}</div>
                             @endif
                         </td>
                         <td class="my-th">
@@ -247,7 +247,7 @@
 
                             @if($errors->has('newIndirizzo'))
                                 <div
-                                        class="mt-2 text-sm text-red-600 ">{{$errors->first('newIndirizzo')}}</div>
+                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newIndirizzo')}}</div>
                             @endif
                         </td>
                         <td></td>
@@ -261,53 +261,7 @@
             @include('components.trips-modal')
         </div>
     </div>
-
-
-    <x-jet-modal
-            x-on:keydown.escape.window="$wire.closeStudentModal"
-            x-cloak
-            x-show="$wire.addingNewStudent"
-            x-transition:enter="transition ease-in duration-200"
-            x-transition:enter-start="opacity-0 transform "
-            x-transition:enter-end="opacity-100 transform "
-            x-transition:leave="transition ease-out duration-200"
-            x-transition:leave-start="opacity-100 transform"
-            x-transition:leave-end="opacity-0 transform"
-            style="display: none"
-            class="my-modal flex my-modal items-center justify-center fixed left-0 bottom-0 w-full h-full bg-gray-800 bg-opacity-90">
-        <div class="bg-white rounded-lg w-1/2" @click.away="$wire.closeStudentModal">
-            <div class="flex flex-col items-start p-4">
-                <div class="flex items-center w-full border-b pb-4">
-                    <div class="text-gray-900 font-medium text-lg">Aggiungi Studente</div>
-                    <svg wire:click="closeStudentModal"
-                         class="ml-auto fill-current text-gray-700 w-6 h-6 cursor-pointer"
-                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
-                        <path
-                                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/>
-                    </svg>
-                </div>
-                @if($addingNewStudent)
-
-                @endif
-                        <div class="mt-8 ml-auto">
-                                                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                                                        type="submit">Save
-                                                                </button>
-                            <x-jet-button class="bg-gray-500 text-white font-bold py-2 px-4 rounded"
-                                          wire:click="closeStudentModal"
-                                          type="button"
-                                          data-dismiss="modal">Chiudi
-                            </x-jet-button>
-                        </div>
-                    </div>
-                </div>
-            </x-jet-modal>
-
-
-{{--        <iframe disabled style="width: 100%; height: 100%"--}}
-{{--                src="http://mobilitiamoci.brainfarm.eu/lizmap/index.php/view/embed?repository=montpellier&project=events"></iframe>--}}
-{{--        <button class="btn btn-success" wire:click="" >Cliccami</button>--}}
-    </div>
+</div>
 
 
 

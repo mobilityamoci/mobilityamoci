@@ -16,7 +16,7 @@
     <!-- Styles -->
     @livewireStyles
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans antialiased" style="height: 100%; overflow: hidden">
 <x-jet-banner/>
 
 <div class="min-h-screen bg-white" id="background-map"
