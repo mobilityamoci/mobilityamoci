@@ -49,7 +49,7 @@ class QgisService
 
         $address = str_ireplace(['località', 'localita', 'piazza', 'strada', 'stradone', 'corso', 'vicolo', 'lungarno', 'viale',
             'rione', 'contrada', 'colletta', 'salita', 'traversa', 'rampa', 'bastioni', 'piazzetta', 'chiasso', 'frazione', 'quartiere',
-            'rotonda', 'vico', 'stradone', 'loc',], '', $address);
+            'rotonda', 'vico', 'stradone', 'loc','largo'], '', $address);
 
         $geom = self::performGet($baseUrl, $address);
         sleep(1);

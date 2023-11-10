@@ -76,5 +76,5 @@ function getComuneByName($name)
 function sanitizeAddress(string $string)
 {
     $string = preg_replace('/\w*\.\w*/i', '', $string);
-    return preg_replace('/w{1,2}$/i', '', $string);
+    return preg_replace('/\b(?!(via)\b) [a-zA-Z]{1,3} \b/i', ' ', $string);
 }
