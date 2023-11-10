@@ -7,6 +7,7 @@ use App\Models\Section;
 use App\Models\Student;
 use Clickbar\Magellan\Data\Geometries\Point;
 use DB;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 
 class QgisService
@@ -16,53 +17,57 @@ class QgisService
 
     }
 
-    public static function georefStudent(Student $student): Student
+    public static function georefStudent(Student $student)
     {
-        $student->geom_address = self::getGeomPoint($student->address, $student->town_istat);
-        return $student;
+        [$point, $address_request] = self::getGeomPoint($student->address, $student->town_istat);
+
+        self::updateOrCreateGeometryPoint($point, $student, $address_request);
+
     }
 
-    public static function georefBuilding(Building $building): Building
+    public static function georefBuilding(Building $building)
     {
-        $building->geom_address = self::getGeomPoint($building->address, $building->town_istat);
-        return $building;
+        [$point, $address_request] = self::getGeomPoint($building->address, $building->town_istat);
+
+        self::updateOrCreateGeometryPoint($point, $building, $address_request);
+
+
     }
 
-    public static function getGeomPoint($address, $town_istat)
+    public static function getGeomPoint($original_address, $town_istat)
     {
-        //provare con la base de
         set_time_limit(0);
-        sleep(1);
-        $baseUrl = 'https://nominatim.openstreetmap.org/search.php?';
+        $baseUrl = 'https://nominatim.openstreetmap.org/search.php?limit=1';
 
-        $address = $address . ', ' . getComune($town_istat);
+        $address = $original_address . ', ' . getComune($town_istat);
         $geom = self::performGet($baseUrl, $address);
+        sleep(1);
 
         if (!is_null($geom)) {
-            return $geom;
+            return [$geom, $address];
         }
 
-        $address = $address . ', ' . getComune($town_istat);
         $address = str_ireplace(['località', 'localita', 'piazza', 'strada', 'stradone', 'corso', 'vicolo', 'lungarno', 'viale',
             'rione', 'contrada', 'colletta', 'salita', 'traversa', 'rampa', 'bastioni', 'piazzetta', 'chiasso', 'frazione', 'quartiere',
             'rotonda', 'vico', 'stradone', 'loc',], '', $address);
 
         $geom = self::performGet($baseUrl, $address);
+        sleep(1);
 
         if (!is_null($geom)) {
-            return $geom;
+            return [$geom, $address];
         }
 
-        $address = preg_replace('/\w*\.\w*/i', '', $address); //rimuovere parole con punti (iniziali di vie abbreviate, abbreviazioni varie (es. p.no per piacentino)
-        $address = preg_replace('/w{1,3}$/i', '', $address); //rimuove lettere singole o 2,3 lettere
+        $address = sanitizeAddress($address);
 
         $geom = self::performGet($baseUrl, $address);
+        sleep(1);
 
         if (!is_null($geom)) {
-            return $geom;
+            return [$geom, $address];
         }
 
-        return null;
+        return [null, null];
     }
 
     /**
@@ -72,7 +77,7 @@ class QgisService
      */
     private static function performGet(string $baseUrl, string $address): ?Point
     {
-        $baseUrl = $baseUrl . 'q=' . $address . '&polygon_geojson=1&format=jsonv2';
+        $baseUrl = $baseUrl . '&q=' . $address . '&polygon_geojson=1&format=jsonv2';
         $res = Http::retry(3, 100)->get($baseUrl)->json();
         if (isset($res[0]['lon']) && isset($res[0]['lat'])) {
             $lon = $res[0]['lon'];
@@ -83,9 +88,8 @@ class QgisService
         return null;
     }
 
-    public static function test()
+    public static function saveClosestPoint($section)
     {
-        $section = Section::find(1);
         $studentsStrada = $section->students_strada;
 
         $students_id = $studentsStrada->pluck('id')->toArray();
@@ -100,10 +104,13 @@ class QgisService
                             		FROM PUBLIC.STUDENTS,
                             			BASI_CARTO.GRAFO_STRADALE_E_VERTICES_PGR
                              where students.id in (' . $placeholders . ') and geom_address is not null
-                            ) as X limit 3;'), $students_id);
+                            ) as X limit '.count($students_id).';'), $students_id);
 
 
-        $studentsMezzi = $section->students_mezzi();
+        $studentsMezzi = $section->students_mezzi;
+        $students_id = $studentsMezzi->pluck('id')->toArray();
+        $placeholders = implode(",", array_fill(0, count($students_id), '?'));
+
 
         $query = DB::select(DB::raw('SELECT ST_CLOSESTPOINT(X.PT1,X.PT2) as CLOSEST_POINT, X.INDIRIZZO, X.ID
                             FROM
@@ -114,10 +121,35 @@ class QgisService
                             		FROM PUBLIC.STUDENTS,
                             			BASI_CARTO.GRAFO_STRADALE_E_VERTICES_PGR
                              where students.id in (' . $placeholders . ') and geom_address is not null
-                            ) as X limit 3;'), $students_id);
+                            ) as X limit '.count($students_id).';'), $students_id);
 
     }
 
+    /**
+     * @param Point|null $point
+     * @param Building|Student $model
+     * @param mixed $address_request
+     * @return void
+     */
+    private static function updateOrCreateGeometryPoint(Point|null $point, Building|Student $model, string|null $address_request): void
+    {
+        if (is_null($point)) {
+            if ($model->geometryPoint()->exists())
+                $model->geometryPoint()->delete();
+        } else {
+            $model->geometryPoint()->updateOrCreate(
+                [
+                    'georefable_id' => $model->id,
+                    'georefable_type' => Building::class
+                ],
+                [
+                    'point' => $point,
+                    'address_original' => $model->address,
+                    'address_request' => $address_request,
+                ]
+            );
+        }
+    }
 
 
 }

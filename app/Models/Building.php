@@ -11,6 +11,11 @@ class Building extends Model
 
     protected $guarded = ['id', 'created_at','updated_at'];
 
+    protected $with = ['geometryPoint'];
+
+    protected $appends = ['geom_address'];
+
+
     public function schools(): BelongsTo
     {
         return $this->belongsTo(School::class);
@@ -21,7 +26,15 @@ class Building extends Model
         return $this->hasMany(Student::class);
     }
 
+    public function geometryPoint()
+    {
+        return $this->morphOne(GeometryPoint::class, 'georefable');
+    }
 
+    public function getGeomAddressProperty()
+    {
+        return optional($this->geometryPoint)->point;
+    }
 
 
 

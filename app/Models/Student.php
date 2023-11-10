@@ -2,33 +2,31 @@
 
 namespace App\Models;
 
-use App\Models\School;
 use Clickbar\Magellan\Database\Eloquent\HasPostgisColumns;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class Student extends Model
 {
-    use SoftDeletes, HasPostgisColumns;
+    use SoftDeletes;
 
-    protected $guarded = ['id', 'created_at','updated_at'];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    protected array $postgisColumns = [
-        'geom_address' => [
-            'type' => 'geometry',
-            'srid' => 4326,
-        ],
-    ];
+    protected $with = ['geometryPoint'];
+
+    protected $appends = ['geom_address'];
+
+    public function geometryPoint()
+    {
+        return $this->morphOne(GeometryPoint::class, 'georefable');
+    }
 
     public function delete()
     {
-        DB::transaction(function()
-        {
+        DB::transaction(function () {
             $this->trips()->delete();
             parent::delete();
         });
@@ -52,7 +50,7 @@ class Student extends Model
 
     public function trip1(): HasOne
     {
-        return $this->hasOne(Trip::class)->where('order',1);
+        return $this->hasOne(Trip::class)->where('order', 1);
     }
 
     public function user()
@@ -62,13 +60,13 @@ class Student extends Model
 
     public function fullName(): string
     {
-        return ucwords($this->name.' '.$this->surname);
+        return ucwords($this->name . ' ' . $this->surname);
     }
 
     public function fullInfo(): string
     {
         $string = $this->fullName();
-        $string .= ' - '.$this->section->fullName();
+        $string .= ' - ' . $this->section->fullName();
 
         return $string;
     }
@@ -85,15 +83,20 @@ class Student extends Model
 
     public function trip2()
     {
-        $builder = $this->trips()->where('order',2);
+        $builder = $this->trips()->where('order', 2);
 
-        return new HasOne($builder->getQuery(), $this, 'student_id','id');
+        return new HasOne($builder->getQuery(), $this, 'student_id', 'id');
     }
 
     public function trip3()
     {
-        $builder = $this->trips()->where('order',3);
+        $builder = $this->trips()->where('order', 3);
 
-        return new HasOne($builder->getQuery(), $this, 'student_id','id');
+        return new HasOne($builder->getQuery(), $this, 'student_id', 'id');
+    }
+
+    public function getGeomAddressAttribute()
+    {
+        return optional($this->geometryPoint)->point;
     }
 }
