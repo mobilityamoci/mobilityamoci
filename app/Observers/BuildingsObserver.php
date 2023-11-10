@@ -21,9 +21,9 @@ class BuildingsObserver
      * @param Building $building
      * @return void
      */
-    public function creating(Building $building)
+    public function created(Building $building)
     {
-        $building = $this->qgisService::georefBuilding($building);
+        $this->qgisService::georefBuilding($building);
     }
 
     /**
@@ -35,7 +35,7 @@ class BuildingsObserver
     public function updating(Building $building)
     {
         if ($building->isDirty(['address', 'town_istat'])) {
-            $building = $this->qgisService::georefBuilding($building);
+            $this->qgisService::georefBuilding($building);
         }
     }
 

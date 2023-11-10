@@ -20,9 +20,9 @@ class StudentsObserver
      * @param Student $student
      * @return void
      */
-    public function creating(Student $student)
+    public function created(Student $student)
     {
-        $student = $this->qgisService::georefStudent($student);
+        $this->qgisService::georefStudent($student);
     }
 
     /**
@@ -34,7 +34,7 @@ class StudentsObserver
     public function updating(Student $student)
     {
         if ($student->isDirty(['address', 'town_istat'])) {
-            $student = $this->qgisService::georefStudent($student);
+            $this->qgisService::georefStudent($student);
         }
     }
 

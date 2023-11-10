@@ -78,39 +78,11 @@ class Students extends Component
 
     public function render()
     {
-        return view('livewire.students');
-    }
-
-    public function mount()
-    {
-        $this->user = \Auth::user();
-        if ($this->user->can('all_schools')) {
-            $this->schools = School::all();
-        } else {
-            $this->schools = $this->user->schools;
-        }
-        $this->selectedSchoolId = optional($this->schools->first())->id;
-        $this->selectedSectionId = optional($this->sections->first())->id;
-        $this->transports = Transport::all()->keyBy('id')->toArray();
-        $this->reloadStudents();
-    }
-
-
-    public function getSectionsProperty()
-    {
-        if ($this->user->hasAnyPermission(['all_schools', 'school']))
-            return Section::where('school_id', $this->selectedSchoolId)->get()->keyBy('id');
-        else
-            return $this->user->sections;
-    }
-
-    public function reloadStudents()
-    {
         if ($this->selectedSectionId) {
             $section = Section::with('students', 'students.user')->find($this->selectedSectionId);
 
 
-            $students = $section->students()->with('trips', 'trips.transport1', 'trips.transport2')->get();
+            $students = $section->students()->with('trips', 'trips.transport1', 'trips.transport2')->orderBy('name')->get();
 
             $students = $students->map(function ($item) {
                 $item['has_user'] = !is_null($item->user_id);
@@ -139,13 +111,42 @@ class Students extends Component
                     $item['trip_string'] = '<b>Percorso ancora da creare!</b>';
                 }
                 return $item;
-            });
+            })->sortBy('name');
 
 
             $this->students = $students->toArray();
         } else {
             $this->students = null;
         }
+        return view('livewire.students');
+    }
+
+    public function mount()
+    {
+        $this->user = \Auth::user();
+        if ($this->user->can('all_schools')) {
+            $this->schools = School::all();
+        } else {
+            $this->schools = $this->user->schools;
+        }
+        $this->selectedSchoolId = optional($this->schools->first())->id;
+        $this->selectedSectionId = optional($this->sections->first())->id;
+        $this->transports = Transport::all()->keyBy('id')->toArray();
+        $this->reloadStudents();
+    }
+
+
+    public function getSectionsProperty()
+    {
+        if ($this->user->hasAnyPermission(['all_schools', 'school']))
+            return Section::where('school_id', $this->selectedSchoolId)->get()->keyBy('id');
+        else
+            return $this->user->sections;
+    }
+
+    public function reloadStudents()
+    {
+
     }
 
     public function setEditStudentField($index, $fieldName)
@@ -166,7 +167,6 @@ class Students extends Component
             optional(Student::find($student['id']))->update($student);
 
         }
-        dd(Student::find($student['id']));
         $this->editStudentField = null;
         $this->editStudentIndex = null;
         $this->alert('success', 'Utente salvato con successo');
