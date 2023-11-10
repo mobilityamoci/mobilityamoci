@@ -40,31 +40,31 @@ class QgisService
         $baseUrl = 'https://nominatim.openstreetmap.org/search.php?limit=1';
 
         $address = $original_address . ', ' . getComune($town_istat);
-        $geom = self::performGet($baseUrl, $address);
+        [$geom, $address_res] = self::performGet($baseUrl, $address);
         sleep(1);
 
         if (!is_null($geom)) {
-            return [$geom, $address];
+            return [$geom, $address_res];
         }
 
         $address = str_ireplace(['località', 'localita', 'piazza', 'strada', 'stradone', 'corso', 'vicolo', 'lungarno', 'viale',
             'rione', 'contrada', 'colletta', 'salita', 'traversa', 'rampa', 'bastioni', 'piazzetta', 'chiasso', 'frazione', 'quartiere',
             'rotonda', 'vico', 'stradone', 'loc','largo'], '', $address);
 
-        $geom = self::performGet($baseUrl, $address);
+        [$geom, $address_res] = self::performGet($baseUrl, $address);
         sleep(1);
 
         if (!is_null($geom)) {
-            return [$geom, $address];
+            return [$geom, $address_res];
         }
 
         $address = sanitizeAddress($address);
 
-        $geom = self::performGet($baseUrl, $address);
+        [$geom, $address_res] = self::performGet($baseUrl, $address);
         sleep(1);
 
         if (!is_null($geom)) {
-            return [$geom, $address];
+            return [$geom, $address_res];
         }
 
         return [null, null];
@@ -73,19 +73,22 @@ class QgisService
     /**
      * @param string $baseUrl
      * @param string $address
-     * @return Point|null
+     * @return array
      */
-    private static function performGet(string $baseUrl, string $address): ?Point
+    private static function performGet(string $baseUrl, string $address): array
     {
-        $baseUrl = $baseUrl . '&q=' . $address . '&polygon_geojson=1&format=jsonv2';
+        $baseUrl = $baseUrl . '&q=' . $address . '&addressdetails=1&polygon_geojson=1&format=jsonv2';
         $res = Http::retry(3, 100)->get($baseUrl)->json();
         if (isset($res[0]['lon']) && isset($res[0]['lat'])) {
+            $address = $res[0]['address']['road'] ?? '';
+            $address .= ' ' . $res[0]['address']['house_number'] ?? '';
+            $address .= ' ,' . $res[0]['address']['county'] ?? '';
             $lon = $res[0]['lon'];
             $lat = $res[0]['lat'];
-            return Point::makeGeodetic($lat, $lon);
+            return [Point::makeGeodetic($lat, $lon), $address];
         }
 
-        return null;
+        return [null,null];
     }
 
     public static function saveClosestPoint($section)
