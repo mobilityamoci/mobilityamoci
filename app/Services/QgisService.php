@@ -3,10 +3,14 @@
 namespace App\Services;
 
 use App\Models\Building;
+use App\Models\GeometryPoint;
 use App\Models\School;
 use App\Models\Student;
 use App\Models\Trip;
 use Clickbar\Magellan\Data\Geometries\Point;
+use Clickbar\Magellan\Database\PostgisFunctions\ST;
+use Clickbar\Magellan\IO\Generator\WKB\WKBGenerator;
+use Clickbar\Magellan\IO\Parser\WKT\WKTParser;
 use DB;
 use Illuminate\Support\Facades\Http;
 
@@ -123,7 +127,7 @@ FROM
 
     public static function getGeomPoint($original_address, $town_istat)
     {
-        $baseUrl = 'https://10.0.16.23:8080/search.php?limit=1';
+        $baseUrl = 'http://10.0.16.23:8080/search.php?limit=1';
 
         $address = $original_address . ', ' . getComune($town_istat);
         [$geom, $address_res] = self::performGet($baseUrl, $address);
@@ -164,11 +168,11 @@ FROM
         $res = Http::retry(3, 100)->get($baseUrl)->json();
         if (isset($res[0]['lon']) && isset($res[0]['lat'])) {
             $address = $res[0]['address']['road'] ?? '';
-            $address .= ' ' . $res[0]['address']['house_number'] ?? '';
-            $address .= ' ,' . $res[0]['address']['county'] ?? '';
+            $address .= ' ' . ($res[0]['address']['house_number'] ?? '');
+            $address .= ' ,' . ($res[0]['address']['county'] ?? '');
             $lon = $res[0]['lon'];
             $lat = $res[0]['lat'];
-            return [Point::makeGeodetic($lat, $lon), $address];
+            return [Point::makeGeodetic($lat,$lon), $address];
         }
 
         return [null, null];
@@ -226,7 +230,7 @@ FROM
             $model->geometryPoint()->updateOrCreate(
                 [
                     'georefable_id' => $model->id,
-                    'georefable_type' => Building::class
+                    'georefable_type' => $model::class
                 ],
                 [
                     'point' => $point,

@@ -25,7 +25,7 @@ return new class extends Migration
         Schema::create('geometry_points', function (Blueprint $table) {
             $table->id();
             $table->morphs('georefable');
-            $table->magellanGeometry('point');
+            $table->magellanGeometry('point',32632);
             $table->string('address_original')->nullable();
             $table->string('address_request')->nullable();
             $table->timestamps();

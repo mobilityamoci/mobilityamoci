@@ -30,7 +30,7 @@ return [
          *
          * @see https://postgis.net/docs/ST_Transform.html
          */
-        'transform_to_database_projection' => false,
+        'transform_to_database_projection' => true,
     ],
 
     /**
@@ -76,13 +76,14 @@ return [
      * will raise an error stating that the projection is not lng/lat and therefore shouldn't be accessed that way
      */
     'geodetic_srids' => [
-        32632,
+        4326,
         4267,
         4269,
+        32632
     ],
 
     /**
      * The default SRID that will be set in the Point Geometry Class when using the makeGeodetic factory function.
      */
-    'geodetic_default_srid' => 32632,
+    'geodetic_default_srid' => 4326,
 ];

@@ -20,7 +20,7 @@
 <x-jet-banner/>
 
 <div class="min-h-screen bg-white" id="background-map"
-     style="background-size: cover; background-image: url('https://picsum.photos/id/238/1800/1900')"
+     style="background-size: cover; background-image:   url({{asset('cool-background.png')}})"
 {{--     style="background-size: cover; background-image: url('data:image/png;base64,')"--}}
 >
 
@@ -28,8 +28,8 @@
 
     <div class="flex ">
         <!-- Card Column -->
-        <div class="m-6 md:w-10/12 flex justify-center items-center">
-            <div class="p-3 bg-white h-fit w-full m-12 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 bg-opacity-75">
+        <div  class="m-6 md:w-10/12 flex align-middle">
+            <div style="overflow:scroll; max-height: 85vh; overflow-x: hidden" class="p-3 bg-white h-fit w-full m-12 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 bg-opacity-75">
                 <!-- Page Heading -->
                 @if (isset($header))
                     <header class="bg-white shadow">
@@ -73,3 +73,5 @@
     // }, 5000);
 </script>
 </html>
+
+//TODO:

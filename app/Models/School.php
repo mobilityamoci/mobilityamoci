@@ -22,6 +22,11 @@ class School extends Model
         return $this->hasMany(Section::class);
     }
 
+    public function buildings()
+    {
+        return $this->hasMany(Building::class);
+    }
+
     public function users()
     {
         return $this->morphToMany(User::class, 'associable','associables');

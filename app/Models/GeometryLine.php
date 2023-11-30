@@ -11,4 +11,11 @@ class GeometryLine extends Model
     use HasGeometryPoint;
 
     protected $guarded = ['id','created_at','updated_at'];
+
+    protected array $postgisColumns = [
+        'line' => [
+            'type' => 'geometry',
+            'srid' => 32632,
+        ],
+    ];
 }
