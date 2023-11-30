@@ -3,12 +3,11 @@
 namespace App\Services;
 
 use App\Models\Building;
-use App\Models\Section;
+use App\Models\School;
 use App\Models\Student;
 use App\Models\Trip;
 use Clickbar\Magellan\Data\Geometries\Point;
 use DB;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 
 class QgisService
@@ -31,21 +30,103 @@ class QgisService
 
         self::updateOrCreateGeometryPoint($point, $building, $address_request);
     }
+
     public static function georefTrip(Trip $trip)
     {
         [$point, $address_request] = self::getGeomPoint($trip->address, $trip->town_istat);
 
         self::updateOrCreateGeometryPoint($point, $trip, $address_request);
+        if (!is_null($point)) {
+            self::createLineOfTrip($trip);
+        }
+    }
+
+    public static function createLineOfTrip(Trip $trip)
+    {
+        if ($trip->order == 1) {
+            $georefable_id1 = $trip->student->id;
+            $georefable_type1 = Student::class;
+            $georefable_id2 = $trip->id;
+            $georefable_type2 = Trip::class;
+        } else if ($trip->order == 2) {
+            $georefable_id1 = $trip->previousTrip->id;
+            $georefable_type1 = Trip::class;
+            $georefable_id2 = $trip->id;
+            $georefable_type2 = Trip::class;
+        } else {
+            $georefable_id1 = $trip->previousTrip->id;
+            $georefable_type1 = Trip::class;
+            $georefable_id2 = $trip->student->school->id;
+            $georefable_type2 = School::class;
+        }
+
+        $result = DB::select(DB::raw("SELECT
+    ST_LineMerge(ST_Union(arr.array)) as line
+FROM
+    (
+        SELECT
+            ARRAY(
+                SELECT
+                    r.geom AS geom
+                FROM
+                    pgr_dijkstra(
+                        'SELECT CAST(id AS BIGINT), source, target, length AS cost FROM basi_carto.routes',
+                        (
+                            SELECT
+                                b.id AS gp_id
+                            FROM
+                                geometry_points AS a
+                            CROSS JOIN LATERAL (
+                                SELECT
+                                    id, rv.the_geom
+                                FROM
+                                    basi_carto.routes_vertices rv
+                                ORDER BY
+                                    rv.the_geom <-> ST_Transform(a.point, 32632)
+                                LIMIT 1
+                            ) AS b
+                            WHERE
+                                a.georefable_type = ? AND a.georefable_id = ?
+                        ),
+                        (
+                            SELECT
+                                b.id AS gp_id
+                            FROM
+                                geometry_points AS a
+                            CROSS JOIN LATERAL (
+                                SELECT
+                                    id, rv.the_geom
+                                FROM
+                                    basi_carto.routes_vertices rv
+                                ORDER BY
+                                    rv.the_geom <-> ST_Transform(a.point, 32632)
+                                LIMIT 1
+                            ) AS b
+                            WHERE
+                                a.georefable_type = ? AND a.georefable_id = ?
+                        ),
+                        FALSE
+                    ) AS di
+                JOIN basi_carto.routes r ON
+                    r.id = di.edge
+            )
+        ) AS arr"), [$georefable_type1, $georefable_id1, $georefable_type2, $georefable_id2])[0];
+
+        $trip->geometryLine()->updateOrCreate([
+            'lineable_id' => $trip->id,
+            'lineable_type' => Trip::class
+        ], [
+            'line' => $result->line,
+            'is_public_transportation' => false
+        ]);
     }
 
     public static function getGeomPoint($original_address, $town_istat)
     {
-        set_time_limit(0);
-        $baseUrl = 'https://nominatim.openstreetmap.org/search.php?limit=1';
+        $baseUrl = 'https://10.0.16.23:8080/search.php?limit=1';
 
         $address = $original_address . ', ' . getComune($town_istat);
         [$geom, $address_res] = self::performGet($baseUrl, $address);
-        sleep(1);
 
         if (!is_null($geom)) {
             return [$geom, $address_res];
@@ -53,10 +134,9 @@ class QgisService
 
         $address = str_ireplace(['località', 'localita', 'piazza', 'strada', 'stradone', 'corso', 'vicolo', 'lungarno', 'viale',
             'rione', 'contrada', 'colletta', 'salita', 'traversa', 'rampa', 'bastioni', 'piazzetta', 'chiasso', 'frazione', 'quartiere',
-            'rotonda', 'vico', 'stradone', 'loc','largo'], '', $address);
+            'rotonda', 'vico', 'stradone', 'loc', 'largo'], '', $address);
 
         [$geom, $address_res] = self::performGet($baseUrl, $address);
-        sleep(1);
 
         if (!is_null($geom)) {
             return [$geom, $address_res];
@@ -65,7 +145,6 @@ class QgisService
         $address = sanitizeAddress($address);
 
         [$geom, $address_res] = self::performGet($baseUrl, $address);
-        sleep(1);
 
         if (!is_null($geom)) {
             return [$geom, $address_res];
@@ -92,7 +171,7 @@ class QgisService
             return [Point::makeGeodetic($lat, $lon), $address];
         }
 
-        return [null,null];
+        return [null, null];
     }
 
     public static function saveClosestPoint($section)
@@ -111,7 +190,7 @@ class QgisService
                             		FROM PUBLIC.STUDENTS,
                             			BASI_CARTO.GRAFO_STRADALE_E_VERTICES_PGR
                              where students.id in (' . $placeholders . ') and geom_address is not null
-                            ) as X limit '.count($students_id).';'), $students_id);
+                            ) as X limit ' . count($students_id) . ';'), $students_id);
 
 
         $studentsMezzi = $section->students_mezzi;
@@ -128,7 +207,7 @@ class QgisService
                             		FROM PUBLIC.STUDENTS,
                             			BASI_CARTO.GRAFO_STRADALE_E_VERTICES_PGR
                              where students.id in (' . $placeholders . ') and geom_address is not null
-                            ) as X limit '.count($students_id).';'), $students_id);
+                            ) as X limit ' . count($students_id) . ';'), $students_id);
 
     }
 

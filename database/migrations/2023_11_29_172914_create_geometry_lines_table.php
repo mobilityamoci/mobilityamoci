@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('buildings', function (Blueprint $table) {
-            $table->magellanGeometry('geom_address', 32632)->nullable();
-
+        Schema::create('geometry_lines', function (Blueprint $table) {
+            $table->id();
+            $table->magellanLineString('line', 32632);
+            $table->morphs('lineable');
+            $table->boolean('is_public_transportation')->default(0);
+            $table->timestamps();
         });
     }
 
@@ -26,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('buildings', function (Blueprint $table) {
-            $table->dropColumn('geom_address');
-        });
+        Schema::dropIfExists('geometry_lines');
     }
 };

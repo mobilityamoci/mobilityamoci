@@ -16,7 +16,7 @@ class GeometryPoint extends Model
     protected array $postgisColumns = [
         'point' => [
             'type' => 'geometry',
-            'srid' => 4326,
+            'srid' => 32632,
         ],
     ];
 }

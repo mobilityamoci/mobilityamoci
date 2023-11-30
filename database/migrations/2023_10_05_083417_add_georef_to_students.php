@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->magellanGeometry('geom_address', 4326)->nullable();
+            $table->magellanGeometry('geom_address', 32632)->nullable();
         });
     }
 

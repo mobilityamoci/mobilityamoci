@@ -18,7 +18,7 @@ return [
          * array on the model.
          */
         'default_postgis_type' => 'geometry',
-        'default_srid' => 4326,
+        'default_srid' => 32632,
 
         /**
          * When set to true, the Eloquent model will automatically transform geometries to the database projection
@@ -36,7 +36,7 @@ return [
     /**
      * The generator that should be used when converting a geometry to JSON.
      * This should be a sensitive default for most WGS use-cases, but remember that
-     * the GeoJSON standard is only defined for SRID 4326 and will fail otherwise. You
+     * the GeoJSON standard is only defined for SRID 32632 and will fail otherwise. You
      * may use another generator if you need to support other SRIDs eg. the WKT generator.
      */
     'json_generator' => \Clickbar\Magellan\IO\Generator\Geojson\GeojsonGenerator::class,
@@ -76,7 +76,7 @@ return [
      * will raise an error stating that the projection is not lng/lat and therefore shouldn't be accessed that way
      */
     'geodetic_srids' => [
-        4326,
+        32632,
         4267,
         4269,
     ],
@@ -84,5 +84,5 @@ return [
     /**
      * The default SRID that will be set in the Point Geometry Class when using the makeGeodetic factory function.
      */
-    'geodetic_default_srid' => 4326,
+    'geodetic_default_srid' => 32632,
 ];
