@@ -3,15 +3,13 @@
 namespace App\Services;
 
 use App\Models\Building;
-use App\Models\GeometryPoint;
 use App\Models\School;
 use App\Models\Student;
 use App\Models\Trip;
 use Clickbar\Magellan\Data\Geometries\Point;
-use Clickbar\Magellan\Database\PostgisFunctions\ST;
 use Clickbar\Magellan\IO\Generator\WKB\WKBGenerator;
-use Clickbar\Magellan\IO\Parser\WKT\WKTParser;
 use DB;
+use geoPHP;
 use Illuminate\Support\Facades\Http;
 
 class QgisService
@@ -127,13 +125,20 @@ FROM
 
     public static function getGeomPoint($original_address, $town_istat)
     {
-        $baseUrl = 'http://10.0.16.23:8080/search.php?limit=1';
+        /* @var Point $geom */
+        $limit = DB::connection('basi_carto')->selectOne('SELECT geom from limiti_pc where cod_istat = ?', [$town_istat]);
+        $polygon = geoPHP::load($limit->geom)->components[0];
 
+        $baseUrl = 'http://10.0.16.23:8080/search.php?limit=1';
+        $WKBgenerator = new WKBGenerator();
         $address = $original_address . ', ' . getComune($town_istat);
         [$geom, $address_res] = self::performGet($baseUrl, $address);
 
+
         if (!is_null($geom)) {
-            return [$geom, $address_res];
+            $point = geoPHP::load($WKBgenerator->generate($geom));
+            if ($polygon->pointInPolygon($point))
+                return [$geom, $address_res];
         }
 
         $address = str_ireplace(['località', 'localita', 'piazza', 'strada', 'stradone', 'corso', 'vicolo', 'lungarno', 'viale',
@@ -143,7 +148,9 @@ FROM
         [$geom, $address_res] = self::performGet($baseUrl, $address);
 
         if (!is_null($geom)) {
-            return [$geom, $address_res];
+            $point = geoPHP::load($WKBgenerator->generate($geom));
+            if ($polygon->pointInPolygon($point))
+                return [$geom, $address_res];
         }
 
         $address = sanitizeAddress($address);
@@ -151,7 +158,9 @@ FROM
         [$geom, $address_res] = self::performGet($baseUrl, $address);
 
         if (!is_null($geom)) {
-            return [$geom, $address_res];
+            $point = geoPHP::load($WKBgenerator->generate($geom));
+            if ($polygon->pointInPolygon($point))
+                return [$geom, $address_res];
         }
 
         return [null, null];
@@ -172,7 +181,7 @@ FROM
             $address .= ' ,' . ($res[0]['address']['county'] ?? '');
             $lon = $res[0]['lon'];
             $lat = $res[0]['lat'];
-            return [Point::makeGeodetic($lat,$lon), $address];
+            return [Point::makeGeodetic($lat, $lon), $address];
         }
 
         return [null, null];

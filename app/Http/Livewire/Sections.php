@@ -48,6 +48,7 @@ class Sections extends ModalComponent
 
     public function saveSection($index)
     {
+
         $this->validate();
 
         $section = $this->sections[$index] ?? NULL;
@@ -65,6 +66,7 @@ class Sections extends ModalComponent
 
     public function createSection()
     {
+        dd('eo');
         $this->validate([
             'newSectionName' => 'string|required',
             'newBuildingId' => 'int|required'

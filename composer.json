@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.11",
         "maatwebsite/excel": "^3.1",
+        "phayes/geophp": "^1.2",
         "rappasoft/laravel-livewire-tables": "^2.13",
         "spatie/browsershot": "^3.58",
         "spatie/laravel-collection-macros": "^7.12",
