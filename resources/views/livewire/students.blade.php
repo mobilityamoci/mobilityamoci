@@ -1,5 +1,5 @@
 <div x-data="{}">
-    <div style="width: 100%; height: 100vh">
+    <div style="width: 100%; height: 90vh">
         <x-jet-label for="school">Seleziona la scuola:</x-jet-label>
         <x-select wire:change="schoolChanged" class="col-auto" wire:model="selectedSchoolId" label="Seleziona Scuola"
                   id="school">
@@ -53,6 +53,75 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if($addingNewStudent)
+                    <tr class="body-tr">
+                        @hasanyrole($this->canSeeNamesRoles)
+                        <td class="my-th">
+                            <label for="newName" hidden></label>
+                            <input type="text" wire:model.defer="newName" id="newName"
+                                   class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 ">
+
+                            @if($errors->has('newName'))
+                                <div
+                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newName')}}</div>
+                            @endif
+                        </td>
+                        <td class="my-th">
+                            <label for="newSurname" hidden></label>
+                            <input type="text" wire:model.defer="newSurname" id="newSurname"
+                                   class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 ">
+
+                            @if($errors->has('newSurname'))
+                                <div
+                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newSurname')}}</div>
+                            @endif
+                        </td>
+
+
+                        @endhasanyrole
+                        <td class="my-th">
+                            <x-select label="" wire:model="newSectionId"
+                                      for="newSectionId">
+                                <option value="">-------------------------------</option>
+                                @foreach($this->sections as $section)
+                                    <option
+                                        value="{{$section['id']}}">{{$section['name']}}</option>
+                                @endforeach
+                            </x-select>
+                            @if($errors->has('newSectionId'))
+                                <div
+                                    class="mt-2 text-sm text-red-600">{{$errors->first('newSectionId')}}</div>
+                            @endif
+                        </td>
+                        <td class="my-th">
+                            <x-select label="" wire:model="newComuneIstat"
+                                      for="newComuneIstat">
+                                <option selected value="">-------------------------------</option>
+                                @foreach($this->comuni as $comune)
+                                    <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>
+                                @endforeach
+                            </x-select>
+                            @if($errors->has('newComuneIstat'))
+                                <div
+                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newComuneIstat')}}</div>
+                            @endif
+                        </td>
+                        <td class="my-th">
+                            <label for="newIndirizzo" hidden></label>
+                            <input type="text" wire:model.defer="newIndirizzo" id="newIndirizzo"
+                                   class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 ">
+
+                            @if($errors->has('newIndirizzo'))
+                                <div
+                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newIndirizzo')}}</div>
+                            @endif
+                        </td>
+                        <td></td>
+                        <td class="my-th">
+                            <x-jet-button wire:click="createStudent" color="green">Salva</x-jet-button>
+                        </td>
+                    </tr>
+                @endif
                 @if($this->students)
                     @foreach($this->students as $index => $student)
                         <tr @class([
@@ -187,75 +256,7 @@
                 @endif
 
 
-                @if($addingNewStudent)
-                    <tr class="body-tr">
-                        @hasanyrole($this->canSeeNamesRoles)
-                        <td class="my-th">
-                            <label for="newName" hidden></label>
-                            <input type="text" wire:model.defer="newName" id="newName"
-                                   class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 ">
 
-                            @if($errors->has('newName'))
-                                <div
-                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newName')}}</div>
-                            @endif
-                        </td>
-                        <td class="my-th">
-                            <label for="newSurname" hidden></label>
-                            <input type="text" wire:model.defer="newSurname" id="newSurname"
-                                   class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 ">
-
-                            @if($errors->has('newSurname'))
-                                <div
-                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newSurname')}}</div>
-                            @endif
-                        </td>
-
-
-                        @endhasanyrole
-                        <td class="my-th">
-                            <x-select label="" wire:model="newSectionId"
-                                      for="newSectionId">
-                                <option value="">-------------------------------</option>
-                                @foreach($this->sections as $section)
-                                    <option
-                                        value="{{$section['id']}}">{{$section['name']}}</option>
-                                @endforeach
-                            </x-select>
-                            @if($errors->has('newSectionId'))
-                                <div
-                                    class="mt-2 text-sm text-red-600">{{$errors->first('newSectionId')}}</div>
-                            @endif
-                        </td>
-                        <td class="my-th">
-                            <x-select label="" wire:model="newComuneIstat"
-                                      for="newComuneIstat">
-                                <option selected value="">-------------------------------</option>
-                                @foreach($this->comuni as $comune)
-                                    <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>
-                                @endforeach
-                            </x-select>
-                            @if($errors->has('newComuneIstat'))
-                                <div
-                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newComuneIstat')}}</div>
-                            @endif
-                        </td>
-                        <td class="my-th">
-                            <label for="newIndirizzo" hidden></label>
-                            <input type="text" wire:model.defer="newIndirizzo" id="newIndirizzo"
-                                   class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 ">
-
-                            @if($errors->has('newIndirizzo'))
-                                <div
-                                    class="mt-2 text-sm text-red-600 ">{{$errors->first('newIndirizzo')}}</div>
-                            @endif
-                        </td>
-                        <td></td>
-                        <td class="my-th">
-                            <x-jet-button wire:click="createStudent" color="green">Salva</x-jet-button>
-                        </td>
-                    </tr>
-                @endif
                 </tbody>
             </table>
             @include('components.trips-modal')
