@@ -31,8 +31,10 @@ class Sections extends ModalComponent
 
     public function mount($selectedSchoolId)
     {
-        $this->buildings = Building::where('school_id', $this->selectedSchoolId)->get()->keyBy('id')->toArray();
+        $buildings = Building::where('school_id', $this->selectedSchoolId)->get()->keyBy('id');
+        $this->buildings = $buildings->toArray();
         $this->selectedSchoolId = $selectedSchoolId;
+        $this->newBuildingId = $buildings->first()->id;
         $this->reloadSections();
     }
 

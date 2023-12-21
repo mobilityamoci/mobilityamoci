@@ -95,11 +95,11 @@
                                     </div>
                                 @endif
 
-                                @if($errors->has('students.'.$index.'.surname'))
-                                    <div class="mt-2 text-sm text-red-600">
-                                        {{$errors->first('students.'.$index.'.surname')}}
-                                    </div>
-                                @endif
+                                    @if($errors->has('students.'.$index.'.surname'))
+                                        <div class="mt-2 text-sm text-red-600">
+                                            {{$errors->first('students.'.$index.'.surname')}}
+                                        </div>
+                                    @endif
                             </td>
                             @endhasanyrole
                             <td class="my-th">

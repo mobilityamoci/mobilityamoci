@@ -50,14 +50,25 @@
                             <x-jet-input
                                 type="text" wire:model.defer="newSectionName">
                             </x-jet-input>
+                            @if($errors->has('newSectionName'))
+                                <div class="mt-2 text-sm text-red-600">
+                                    {{$errors->first('newSectionName')}}
+                                </div>
+                            @endif
                         </td>
                         <td class="my-th">
                             <x-select
                                 type="text" wire:model.defer="newBuildingId" for="newBuildingId">
+                                <option value="">-------</option>
                                 @foreach($this->buildings as $building_index=>$building)
                                     <option value="{{$building_index}}">{{$building['name']}}</option>
                                 @endforeach
                             </x-select>
+                            @if($errors->has('newBuildingId'))
+                                <div class="mt-2 text-sm text-red-600">
+                                    {{$errors->first('newBuildingId')}}
+                                </div>
+                            @endif
                         </td>
                         <td class="my-th">
                             <div></div>
