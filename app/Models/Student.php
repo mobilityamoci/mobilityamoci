@@ -96,5 +96,10 @@ class Student extends Model
         return new HasOne($builder->getQuery(), $this, 'student_id', 'id');
     }
 
+    public function building()
+    {
+        return $this->hasOneThrough(Building::class, Section::class);
+    }
+
 
 }

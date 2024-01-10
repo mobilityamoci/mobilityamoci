@@ -89,7 +89,7 @@ class Students extends Component
 
 
                 if ($item->trips->isNotEmpty()) {
-                    $string = '1) Da <b>' . $this->comuni[$item->town_istat]['comune'] . ' (' . $item->address . ')</b> in ';
+                    $string = '1) Da <b>' . $this->comuni[$item->town_istat]['comune']  . ' (' . $item->address . ')</b> in ';
                     $i = 0;
 
                     foreach ($item->trips as $trip) {
@@ -296,6 +296,16 @@ class Students extends Component
         $student = $this->students[$this->editStudentIndex] ?? null;
         if (!is_null($student)) {
 
+            if ($this->newTripTownIstat == 0) {
+                $section = Section::with('building', 'building.geometryPoint')->find($this->selectedSectionId);
+
+                $address = $section->building->geometryPoint->address_request;
+                $istat = $section->building->town_istat;
+            } else {
+                $address = $this->newTripAddress;
+                $istat = $this->newTripTownIstat;
+            }
+
             $order = Student::find($student['id'])->trips()->max('order');
             $order++;
 
@@ -303,11 +313,12 @@ class Students extends Component
                 'student_id' => $student['id'],
                 'transport_1' => $this->newTripTransport1,
                 'order' => $order,
-                'address' => $this->newTripAddress,
+                'address' => $address,
 //                'transport_2' => $this->newTripTransport2,
-                'town_istat' => $this->newTripTownIstat,
+                'town_istat' => $istat,
             ]);
 
+        $this->reset(['newComuneIstat','newTripTransport1','newTripAddress']);
             $this->reloadStudents();
             $this->editTripIndex = null;
             $this->addingNewTrip = false;

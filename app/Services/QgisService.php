@@ -125,9 +125,17 @@ FROM
 
     public static function getGeomPoint($original_address, $town_istat)
     {
+        set_time_limit(0);
         /* @var Point $geom */
         $limit = DB::connection('basi_carto')->selectOne('SELECT geom from limiti_pc where cod_istat = ?', [$town_istat]);
-        $polygon = geoPHP::load($limit->geom)->components[0];
+        if (!is_null($limit))
+        {
+            $multipolygon = geoPHP::load($limit->geom);
+            $polygon = $multipolygon->components[0];
+            $polygon->setSRID("32632");
+        }
+        else
+            $polygon = false;
 
         $baseUrl = 'http://10.0.16.23:8080/search.php?limit=1';
         $WKBgenerator = new WKBGenerator();
@@ -137,7 +145,7 @@ FROM
 
         if (!is_null($geom)) {
             $point = geoPHP::load($WKBgenerator->generate($geom));
-            if ($polygon->pointInPolygon($point))
+            if ($polygon && $polygon->pointInPolygon($point))
                 return [$geom, $address_res];
         }
 
@@ -149,7 +157,7 @@ FROM
 
         if (!is_null($geom)) {
             $point = geoPHP::load($WKBgenerator->generate($geom));
-            if ($polygon->pointInPolygon($point))
+            if ($polygon && $polygon->pointInPolygon($point))
                 return [$geom, $address_res];
         }
 
@@ -159,11 +167,17 @@ FROM
 
         if (!is_null($geom)) {
             $point = geoPHP::load($WKBgenerator->generate($geom));
-            if ($polygon->pointInPolygon($point))
+            if ($polygon && $polygon->pointInPolygon($point))
                 return [$geom, $address_res];
         }
+        if ($polygon) {
+            $centroid = $polygon->getCentroid("32632");
+//            dd($polygon, $centroid, $centroid->out("wkt"), Point::make($centroid->getY(), $centroid->getX()));
+            return [Point::makeGeodetic($centroid->getY(),$centroid->getX()), $original_address];
+        } else {
+            return [null, null];
+        }
 
-        return [null, null];
     }
 
     /**

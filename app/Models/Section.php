@@ -45,4 +45,9 @@ class Section extends Model
     {
         return $this->name .' di '.$this->school->name;
     }
+
+    public function building()
+    {
+        return $this->belongsTo(Building::class);
+    }
 }

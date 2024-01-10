@@ -14,7 +14,7 @@
     <div class="bg-white rounded-lg w-1/2">
         <div class="flex flex-col items-start p-4">
             <div class="flex items-center w-full border-b pb-4">
-                <div class="text-gray-900 font-medium text-lg">Modifica Percorso Studente</div>
+                <div class="text-gray-900 font-medium text-lg">Modifica Percorso Studenteee</div>
                 <svg wire:click="closeTransportsModal"
                      class="ml-auto fill-current text-gray-700 w-6 h-6 cursor-pointer"
                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
@@ -145,7 +145,7 @@
                             <x-select
                                 wire:model="newTripTownIstat"
                                 for="newTripTownIstat">
-                                <option selected value="">--------------------</option>
+                                <option value="0">Scuola</option>
                                 @foreach($this->comuni as $comune)
                                     <option
                                         value="{{$comune['istat']}}">{{$comune['comune']}}</option>
@@ -153,7 +153,7 @@
                             </x-select>
                         </td>
                         <td class="my-th">
-                            <x-jet-input wire:model="newTripAddress"></x-jet-input>
+                            <x-jet-input :disabled="$newTripTownIstat == 0" wire:model="newTripAddress"></x-jet-input>
                         </td>
                         <td class="my-th">
                             <x-jet-secondary-button wire:click="createTrip">Salva
