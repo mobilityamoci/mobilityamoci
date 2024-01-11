@@ -64,7 +64,7 @@
     <h3 class="text-3xl font-bold uppercase">Il mio viaggio</h3>
     @forelse($this->student->trips as $index => $trip)
         <div wire:key="{{$trip->index}}">
-            <x-jet-label class="text-2xl mb-2">
+            <x-jet-label class="flex items-center justify-center text-2xl mb-2">
                 {{$loop->iteration}}° tappa
             </x-jet-label>
             <div class="grid my-6 sm:grid-cols-1 md:grid-cols-5 gap-4 border-b-2 pb-2 border-b-gray-400">
@@ -118,11 +118,13 @@
                         </div>
                     @endif
                 </div>
-                <div>
-                    <x-jet-label class="text-lg">Indirizzo Intermedio</x-jet-label>
-                    <x-jet-input class="w-full" wire:change.defer="saveTrip({{$index}})"
-                                 wire:model.lazy="student.trips.{{$index}}.address"></x-jet-input>
-                </div>
+                @if($trip->town_istat != 0)
+                    <div>
+                        <x-jet-label class="text-lg">Indirizzo Intermedio</x-jet-label>
+                        <x-jet-input class="w-full" wire:change.defer="saveTrip({{$index}})"
+                                     wire:model.lazy="student.trips.{{$index}}.address"></x-jet-input>
+                    </div>
+                @endif
                 <div class="flex items-end justify-items-end">
                     <x-jet-danger-button wire:click="deleteTrip({{$index}})" class="h-1/2">
                         <i class="fa-solid fa-trash mr-4"></i> Elimina Tappa
@@ -133,7 +135,7 @@
     @empty
     @endforelse
     @if($addingTrip)
-        <x-jet-label class="text-2xl mb-2">
+        <x-jet-label class="flex items-center justify-center text-2xl mb-2">
             {{sizeof($student->trips)+1}}° tappa
         </x-jet-label>
         <div class="grid my-6 sm:grid-cols-1 md:grid-cols-5 gap-4 border-b-2 pb-2 border-b-gray-400">
@@ -168,23 +170,33 @@
                     </div>
                 @endif
             </div>
-            <div>
-                <x-jet-label class="text-lg">Indirizzo Intermedio</x-jet-label>
-                <x-jet-input class="w-full"
-                             wire:model.lazy="newTripAddress"></x-jet-input>
-            </div>
+            @if($newTripIstat != 0)
+                <div>
+                    <x-jet-label class="text-lg">Indirizzo Intermedio</x-jet-label>
+                    <x-jet-input class="w-full"
+                                 wire:model.lazy="newTripAddress"></x-jet-input>
+                </div>
+            @endif
             <div class="flex items-end justify-items-end">
                 <x-success-button wire:click.prevent="addNewTrip">Aggiungi Tappa</x-success-button>
             </div>
         </div>
     @endif
-    <div class="grid justify-items-end">
-        <x-jet-button wire:click.prevent="$toggle('addingTrip')">@if($addingTrip)
-                Annulla
-            @else
-                Aggiungi Tappa
-            @endif
-        </x-jet-button>
-    </div>
+    @if($trip->town_istat != 0)
+        <div class="grid justify-items-end">
+            <x-jet-button wire:click.prevent="$toggle('addingTrip')">@if($addingTrip)
+                    Annulla
+                @else
+                    Aggiungi Tappa
+                @endif
+            </x-jet-button>
+        </div>
+    @else
+        <div >
+            <x-jet-label class="flex items-center justify-center text-2xl mb-2">
+                Viaggio concluso. Grazie!
+            </x-jet-label>
+        </div>
+    @endif
 
 </div>

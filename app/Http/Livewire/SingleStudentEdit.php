@@ -26,8 +26,8 @@ class SingleStudentEdit extends Component
     public bool $addingTrip = false;
 
     public $newTripTrans1;
-    public $newTripIstat;
-    public ?string  $newTripAddress;
+    public $newTripIstat = 0;
+    public ?string  $newTripAddress = '';
 
     protected $rules = [
         'student.name' => 'required|string',

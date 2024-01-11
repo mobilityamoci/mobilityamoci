@@ -60,7 +60,7 @@
         </div>
         <div class="md:col-span-2">
             <x-jet-label class="text-xl">Indirizzo</x-jet-label>
-            <x-jet-input class="w-full" wire:model="newStudentAddress"></x-jet-input>
+            <x-jet-input class="w-full" wire:model.lazy="newStudentAddress"></x-jet-input>
             @if($errors->has('newStudentAddress'))
                 <div class="mt-2 text-sm text-red-600">
                     {{$errors->first('newStudentAddress')}}
