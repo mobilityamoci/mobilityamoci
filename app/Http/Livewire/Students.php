@@ -19,6 +19,8 @@ class Students extends Component
 
     public $user;
 
+//    public $querySelectedSection = 1;
+
     public $students;
     public int|null $editStudentIndex = null;
     public string|null $editStudentField = null;
@@ -50,8 +52,9 @@ class Students extends Component
     public bool $editSections = false;
 
     public Collection $schools;
-    public int|null $selectedSchoolId;
-    public int|null $selectedSectionId;
+    public  $selectedSchoolId;
+
+    public  $selectedSectionId;
 
     public bool $showTransportsModal = false;
 
@@ -74,6 +77,11 @@ class Students extends Component
         'newTripTransport1' => '1° mezzo',
         'newTripTownIstat' => 'comune intermedio',
         'newTripAddress' => 'indirizzo intermedio'
+    ];
+
+    protected $queryString = [
+        'selectedSectionId' => ['except' => 1, 'as' => 'sezione'],
+        'selectedSchoolId' => ['except' => 1, 'as' => 'scuola'],
     ];
 
     public function render()
@@ -129,10 +137,9 @@ class Students extends Component
         } else {
             $this->schools = $this->user->schools;
         }
-        $this->selectedSchoolId = optional($this->schools->first())->id;
-        $this->selectedSectionId = optional($this->sections->first())->id;
+        $this->selectedSchoolId = $this->selectedSchoolId ?? optional($this->schools->first())->id;
+        $this->selectedSectionId = $this->selectedSectionId ??  optional($this->sections->first())->id;
         $this->transports = Transport::all()->keyBy('id')->toArray();
-        $this->reloadStudents();
     }
 
 
@@ -144,10 +151,7 @@ class Students extends Component
             return $this->user->sections;
     }
 
-    public function reloadStudents()
-    {
 
-    }
 
     public function setEditStudentField($index, $fieldName)
     {
@@ -185,11 +189,6 @@ class Students extends Component
         $this->sectionChanged();
     }
 
-    public function sectionChanged()
-    {
-        $section = Section::with('students')->find($this->selectedSectionId);
-        $this->reloadStudents();
-    }
 
 
     public function createStudent()
@@ -228,8 +227,6 @@ class Students extends Component
         $this->newIndirizzo = null;
         $this->newComuneIstat = null;
         $this->newSectionId = null;
-
-        $this->reloadStudents();
     }
 
     public function closeModal()
