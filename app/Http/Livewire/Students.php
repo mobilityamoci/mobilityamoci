@@ -189,14 +189,10 @@ class Students extends Component
         $this->sectionChanged();
     }
 
-
-
     public function createStudent()
     {
         if ($this->user->hasAnyRole($this->canSeeNamesRoles))
             $rules = [
-//                'newName' => 'string|required',
-//                'newSurname' => 'string|required',
                 'newIndirizzo' => 'string|required',
                 'newComuneIstat' => 'integer|required',
                 'newSectionId' => 'integer|required'
@@ -337,6 +333,4 @@ class Students extends Component
     {
         return [RolesEnum::INSEGNANTE->value, RolesEnum::MM_SCOLASTICO->value];
     }
-
-
 }
