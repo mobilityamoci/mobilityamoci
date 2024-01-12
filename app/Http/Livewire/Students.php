@@ -262,7 +262,6 @@ class Students extends Component
         }
         $this->editTripIndex = null;
         $this->editingTripTransport = null;
-        $this->reloadStudents();
     }
 
     public function deleteTrip($index)
@@ -274,7 +273,6 @@ class Students extends Component
 
         $this->editTripIndex = null;
         $this->editingTripTransport = null;
-        $this->reloadStudents();
     }
 
     public function createTrip()
@@ -325,8 +323,6 @@ class Students extends Component
 
         if (!is_null($student))
             optional(Student::find($student['id']))->delete();
-
-        $this->reloadStudents();
     }
 
     public function getCanSeeNamesRolesProperty()
