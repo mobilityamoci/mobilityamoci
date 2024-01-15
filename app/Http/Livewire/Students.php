@@ -191,9 +191,13 @@ class Students extends Component
     {
         $school = School::with('sections')->find($this->selectedSchoolId);
         $this->selectedSectionId = optional(optional($this->sections)->first())->id;
-        $this->sectionChanged();
     }
 
+    public function sectionChanged()
+    {
+        $section = Section::with('school')->find($this->selectedSectionId);
+        $this->selectedSchoolId = optional($section)->school_id;
+    }
     public function createStudent()
     {
         if ($this->user->hasAnyRole($this->canSeeNamesRoles))

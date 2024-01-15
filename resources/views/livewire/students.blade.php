@@ -1,7 +1,7 @@
 <div x-data="{}">
     <div style="width: 100%; height: 90vh">
         <x-jet-label for="school">Seleziona la scuola:</x-jet-label>
-        <x-select class="col-auto" wire:model="selectedSchoolId" label="Seleziona Scuola"
+        <x-select class="col-auto" wire:model="selectedSchoolId" wire:change="schoolChanged" label="Seleziona Scuola"
                   id="school">
             @foreach($schools as $school)
                 <option @selected($selectedSchoolId == $school->id) value="{{$school->id}}">{{$school->name}}</option>
@@ -9,7 +9,7 @@
         </x-select>
 
         <x-jet-label class="mt-4" for="section">Seleziona la sezione:</x-jet-label>
-        <x-select class="col-auto" wire:model="selectedSectionId" label="Seleziona Sezione"
+        <x-select class="col-auto" wire:model="selectedSectionId" wire:change="sectionChanged" label="Seleziona Sezione"
                   id="section">
             @foreach($this->sections as $section)
                 <option
