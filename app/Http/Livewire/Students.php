@@ -86,8 +86,13 @@ class Students extends Component
 
     public function render()
     {
+
         if ($this->selectedSectionId) {
-            $section = Section::with('students', 'students.user')->find($this->selectedSectionId);
+            $section = Section::with('students', 'students.user')->where('id',$this->selectedSectionId)->where('school_id', $this->selectedSchoolId)->firstOr(function () {
+                $this->selectedSectionId = $this->sections->first(function ($section) {
+                    return $section->school_id = $this->selectedSchoolId;
+                });
+            });
 
 
             $students = $section->students()->with('trips', 'trips.transport1', 'trips.transport2')->orderBy('name')->get();

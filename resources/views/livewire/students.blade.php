@@ -35,9 +35,9 @@
         </div>
 
 
-        <div class="relative table-wrp block overflow-y-auto shadow-md sm:rounded-lg mt-9" style="max-height: 70%">
+        <div class="relative table-wrap block overflow-y-auto shadow-md sm:rounded-lg mt-9" style="max-height: 70%; max-width: 100%;">
             {{$errors->first()}}
-            <table class="my-table table-auto">
+            <table class="my-table table-fixed">
                 <thead class="my-header">
                 <tr>
                     @hasanyrole($this->canSeeNamesRoles)
@@ -181,6 +181,7 @@
                                             <option value="{{$section->id}}">{{$section->name}}</option>
                                         @endforeach
                                     </x-select>
+                            @dd($this->sections[$student['section_id']]['name'])
                                 @else
                                     <div wire:click="setEditStudentField({{$index}},'section_id')"
                                          class="my-th">{{$this->sections[$student['section_id']]['name']}}
@@ -233,7 +234,7 @@
                                         class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.address')}}</div>
                                 @endif
                             </td>
-                            <td class="my-th hidden xl:block">
+                            <td class="my-th hidden xl:block" style="word-wrap: break-word">
                                 <div wire:click.prevent="openTransportsModal({{$index}})">
                                     {!!  $student['trip_string']!!}
                                 </div>
