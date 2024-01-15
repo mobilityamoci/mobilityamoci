@@ -37,7 +37,7 @@
 
         <div class="relative table-wrap block overflow-y-auto shadow-md sm:rounded-lg mt-9" style="max-height: 70%; max-width: 100%;">
             {{$errors->first()}}
-            <table class="my-table table-fixed">
+            <table class="my-table table-auto">
                 <thead class="my-header">
                 <tr>
                     @hasanyrole($this->canSeeNamesRoles)
