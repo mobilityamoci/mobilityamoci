@@ -187,11 +187,11 @@
                                     </div>
                                 @endif
 
-                                @if($errors->has('students.'.$index.'.section_id'))
-                                    <div class="mt-2 text-sm text-red-600">
-                                        {{$errors->first('students.'.$index.'.section_id')}}
-                                    </div>
-                                @endif
+{{--                                @if($errors->has('students.'.$index.'.section_id'))--}}
+{{--                                    <div class="mt-2 text-sm text-red-600">--}}
+{{--                                        {{$errors->first('students.'.$index.'.section_id')}}--}}
+{{--                                    </div>--}}
+{{--                                @endif--}}
                             </td>
                             <td class="my-th">
                                 @if($editStudentIndex === $index || $editStudentField === $index.'.town_istat')
