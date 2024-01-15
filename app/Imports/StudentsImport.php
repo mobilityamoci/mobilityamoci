@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\Section;
 use App\Models\Student;
 use App\Models\Transport;
 use Illuminate\Support\Facades\Cache;
@@ -13,9 +14,16 @@ class StudentsImport implements OnEachRow, WithHeadingRow
 {
     private $section_id;
 
+    private $school_address;
+
+    private $school_istat;
+
     public function __construct($section_id)
     {
+        $section = Section::with('building','building.geometryPoint')->find($section_id);
         $this->section_id = $section_id;
+        $this->school_address = $section->building->geometryPoint->address_request;
+        $this->school_istat = $section->building->town_istat;
     }
 
 
@@ -34,12 +42,10 @@ class StudentsImport implements OnEachRow, WithHeadingRow
                 $residenza_town_istat = getComuneByName($comune_residenza);
             }
             $address = '';
-            if (is_null($residenza_town_istat))
-            {
+            if (is_null($residenza_town_istat)) {
                 $residenza_town_istat = config('custom.geo.piacenza_istat');
                 $address = $comune_residenza . ' ';
             }
-
 
 
             $student = Student::create([
@@ -53,37 +59,60 @@ class StudentsImport implements OnEachRow, WithHeadingRow
 
             if (isset($row['1_mezzo_opzione_a'])) {
                 $trans_1 = Transport::where('name', $row['1_mezzo_opzione_a'])->first();
-                $trans_2 = isset($row['1_mezzo_opzione_b']) ? Transport::where('name', $row['1_mezzo_opzione_b'])->first() : NULL;
-                $comune_scalo = isset($row['1_comune_di_scalo']) ? getComuneByName($row['1_comune_di_scalo']) : NULL;
+
+                if (isset($row['1_comune_di_scalo']) && strtolower($row['1_comune_di_scalo']) == strtolower('scuola')) {
+                    $comune_scalo = $this->school_istat;
+                    $indirizzo = $this->school_address;
+                } else {
+                    $indirizzo = isset($row['1_comune_indirizzo']) ? getComuneByName($row['1_comune_indirizzo']) : NULL;
+                    $comune_scalo = isset($row['1_comune_di_scalo']) ? getComuneByName($row['1_comune_di_scalo']) : NULL;
+                }
+
                 $student->trips()->create([
                     'order' => 1,
                     'transport_1' => $trans_1->id,
-                    'transport_2' => $trans_2->id,
-                    'town_istat' => $comune_scalo
+                    'town_istat' => $comune_scalo,
+                    'address' => $indirizzo
                 ]);
             }
 
             if (isset($row['2_mezzo_opzione_a'])) {
                 $trans_1 = Transport::where('name', $row['2_mezzo_opzione_a'])->first();
-                $trans_2 = isset($row['2_mezzo_opzione_b']) ? Transport::where('name', $row['2_mezzo_opzione_b'])->first() : NULL;
-                $comune_scalo = isset($row['2_comune_di_scalo']) ? getComuneByName($row['2_comune_di_scalo']) : NULL;
+
+                if (isset($row['2_comune_di_scalo']) && strtolower($row['2_comune_di_scalo']) == strtolower('scuola')) {
+                    $comune_scalo = $this->school_istat;
+                    $indirizzo = $this->school_address;
+
+                } else {
+                    $indirizzo = isset($row['2_comune_di_scalo']) ? getComuneByName($row['2_comune_di_scalo']) : NULL;
+                    $comune_scalo = isset($row['2_comune_di_scalo']) ? getComuneByName($row['2_comune_di_scalo']) : NULL;
+                }
+
+
                 $student->trips()->create([
                     'order' => 2,
                     'transport_1' => $trans_1->id,
-                    'transport_2' => $trans_2->id,
-                    'town_istat' => $comune_scalo
+                    'town_istat' => $comune_scalo,
+                    'address' => $indirizzo
                 ]);
             }
 
             if (isset($row['3_mezzo_opzione_a'])) {
                 $trans_1 = Transport::where('name', $row['3_mezzo_opzione_a'])->first();
-                $trans_2 = isset($row['3_mezzo_opzione_b']) ? Transport::where('name', $row['3_mezzo_opzione_b'])->first() : NULL;
-                $comune_scalo = isset($row['3_comune_di_scalo']) ? $row['3_comune_di_scalo'] : NULL;
+
+                if (isset($row['3_comune_di_scalo']) && strtolower($row['3_comune_di_scalo']) == strtolower('scuola')) {
+                    $comune_scalo = $this->school_istat;
+                    $indirizzo = $this->school_address;
+                } else {
+                    $indirizzo = isset($row['3_comune_di_scalo']) ? getComuneByName($row['3_comune_di_scalo']) : NULL;
+                    $comune_scalo = isset($row['3_comune_di_scalo']) ? getComuneByName($row['3_comune_di_scalo']) : NULL;
+                }
+
                 $student->trips()->create([
                     'order' => 3,
                     'transport_1' => $trans_1->id,
-                    'transport_2' => $trans_2->id,
-                    'town_istat' => $comune_scalo
+                    'town_istat' => $comune_scalo,
+                    'address' => $indirizzo
                 ]);
             }
         });

@@ -23,7 +23,7 @@
             hover:file:text-green-700" aria-describedby="file_input_help" id="file_input" type="file" wire:model="importFile">
         <p class="mt-1 text-sm text-gray-500" id="file_input_help"></p>
 
-        <x-success-button class="float-right mb-8 mt-10" wire:click.prevent="submitImport()">Importa</x-success-button>
+        <x-success-button wire:loading.class="bg-gray" wire:loading.attr="disabled" class="float-right mb-8 mt-10" wire:click.prevent="submitImport()">Importa</x-success-button>
 
     </form>
 
