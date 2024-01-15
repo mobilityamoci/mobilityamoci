@@ -20,7 +20,7 @@
 <x-jet-banner/>
 
 <div class="min-h-screen bg-white" id="background-map"
-     style="background-size: cover; background-image:   url({{asset('cool-background.png')}})"
+     style="background-size: cover; background-image:   url({{asset('mappa-piacenza.png')}})"
 {{--     style="background-size: cover; background-image: url('data:image/png;base64,')"--}}
 >
 
