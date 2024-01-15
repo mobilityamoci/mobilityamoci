@@ -310,7 +310,6 @@ class Students extends Component
             ]);
 
         $this->reset(['newComuneIstat','newTripTransport1','newTripAddress']);
-            $this->reloadStudents();
             $this->editTripIndex = null;
             $this->addingNewTrip = false;
         }

@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\AcceptUsers;
 use App\Http\Livewire\Schools;
+use App\Http\Livewire\ShowMappa;
 use App\Http\Livewire\SingleStudent;
 use App\Http\Livewire\Students;
 use App\Http\Livewire\Users;
@@ -64,6 +65,7 @@ Route::middleware([
     Route::middleware(['can:admin'])->get('/scuole', Schools::class)->name('schools');
     Route::middleware(['can:admin'])->get('/utenti', Users::class)->name('users');
     Route::middleware(['can:base'])->get('/informazioni', SingleStudent::class)->name('single-student');
+    Route::middleware(['can:admin'])->get('/mappa', ShowMappa::class)->name('mappa.index');
     Route::get('/accetta-utenti', AcceptUsers::class)->name('accept.users');
 
 
