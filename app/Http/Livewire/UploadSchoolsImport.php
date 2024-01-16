@@ -32,7 +32,6 @@ class UploadSchoolsImport extends ModalComponent
             'importFile' => 'file|required'
         ]);
         Excel::import(new SchoolsBuildingsImport(), $this->importFile);
-        dd('ei');
         $this->emit('closeModal');
     }
 }
