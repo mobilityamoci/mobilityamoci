@@ -182,7 +182,7 @@
             </div>
         </div>
     @endif
-    @if($trip->town_istat != 0)
+    @if(isset($trip) && $trip->town_istat != 0)
         <div class="grid justify-items-end">
             <x-jet-button wire:click.prevent="$toggle('addingTrip')">@if($addingTrip)
                     Annulla
