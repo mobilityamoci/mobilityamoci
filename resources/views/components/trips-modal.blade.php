@@ -14,7 +14,7 @@
     <div class="bg-white rounded-lg w-1/2">
         <div class="flex flex-col items-start p-4">
             <div class="flex items-center w-full border-b pb-4">
-                <div class="text-gray-900 font-medium text-lg">Modifica Percorso Studenteee</div>
+                <div class="text-gray-900 font-medium text-lg">Modifica Percorso Studente</div>
                 <svg wire:click="closeTransportsModal"
                      class="ml-auto fill-current text-gray-700 w-6 h-6 cursor-pointer"
                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
@@ -23,6 +23,12 @@
                 </svg>
             </div>
             @if($showTransportsModal && !is_null($editStudentIndex))
+                <div class="text-gray-900 font-medium text-md">Percorso Attuale Studente</div>
+
+                <br>
+                <p>{!! $student['trip_string'] !!}</p>
+                <br>
+
                 <x-jet-button type="button" class="mt-5" wire:click="$toggle('addingNewTrip')">
                     {{!$addingNewTrip ? 'Aggiungi Viaggio' : 'Annulla Aggiunta'}}
                 </x-jet-button>

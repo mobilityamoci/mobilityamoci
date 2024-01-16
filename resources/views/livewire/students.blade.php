@@ -47,7 +47,7 @@
                     <th class="my-th">Sezione</th>
                     <th class="my-th">Comune Domicilio</th>
                     <th class="my-th">Indirizzo</th>
-                    <th class="my-th hidden xl:block">Percorso</th>
+                    <th class="my-th hidden xxl:block">Percorso</th>
                     <th class="my-th">Azioni</th>
 
                 </tr>
@@ -181,7 +181,6 @@
                                             <option value="{{$section->id}}">{{$section->name}}</option>
                                         @endforeach
                                     </x-select>
-                            @dd($this->sections[$student['section_id']]['name'])
                                 @else
                                     <div wire:click="setEditStudentField({{$index}},'section_id')"
                                          class="my-th">{{$this->sections[$student['section_id']]['name']}}
