@@ -234,7 +234,7 @@
                                         class="mt-2 text-sm text-red-600">{{$errors->first('students.'.$index.'.address')}}</div>
                                 @endif
                             </td>
-                            <td class="my-th hidden xl:block" style="word-wrap: break-word">
+                            <td class="my-th hidden xxl:block" style="word-wrap: break-word">
                                 <div wire:click.prevent="openTransportsModal({{$index}})">
                                     {!!  $student['trip_string']!!}
                                 </div>
