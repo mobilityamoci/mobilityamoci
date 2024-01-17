@@ -191,7 +191,7 @@
                 @endif
             </x-jet-button>
         </div>
-    @else
+    @elseif ($this->student->trips->count() > 0)
         <div >
             <x-jet-label class="flex items-center justify-center text-2xl mb-2">
                 Viaggio concluso. Grazie!

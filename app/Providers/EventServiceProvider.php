@@ -3,15 +3,16 @@
 namespace App\Providers;
 
 use App\Models\Building;
+use App\Models\School;
 use App\Models\Student;
 use App\Models\Trip;
 use App\Observers\BuildingsObserver;
+use App\Observers\SchoolsObserver;
 use App\Observers\StudentsObserver;
 use App\Observers\TripsObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -21,6 +22,7 @@ class EventServiceProvider extends ServiceProvider
         Student::class => [StudentsObserver::class],
         Building::class => [BuildingsObserver::class],
         Trip::class => [TripsObserver::class],
+        School::class => [SchoolsObserver::class]
     ];
 
 

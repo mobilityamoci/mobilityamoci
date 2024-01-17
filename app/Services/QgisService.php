@@ -201,42 +201,42 @@ FROM
         return [null, null];
     }
 
-    public static function saveClosestPoint($section)
-    {
-        $studentsStrada = $section->students_strada;
-
-        $students_id = $studentsStrada->pluck('id')->toArray();
-        $placeholders = implode(",", array_fill(0, count($students_id), '?'));
-
-        $query = DB::select(DB::raw('SELECT ST_CLOSESTPOINT(X.PT1,X.PT2) as CLOSEST_POINT, X.INDIRIZZO, X.ID
-                            FROM
-                            (SELECT PUBLIC.STUDENTS.geom_address AS PT1,
-                            			BASI_CARTO.GRAFO_STRADALE_E_VERTICES_PGR.THE_GEOM AS PT2,
-                            	 		PUBLIC.STUDENTS.ADDRESS AS INDIRIZZO,
-                            	 		PUBLIC.STUDENTS.ID AS ID
-                            		FROM PUBLIC.STUDENTS,
-                            			BASI_CARTO.GRAFO_STRADALE_E_VERTICES_PGR
-                             where students.id in (' . $placeholders . ') and geom_address is not null
-                            ) as X limit ' . count($students_id) . ';'), $students_id);
-
-
-        $studentsMezzi = $section->students_mezzi;
-        $students_id = $studentsMezzi->pluck('id')->toArray();
-        $placeholders = implode(",", array_fill(0, count($students_id), '?'));
-
-
-        $query = DB::select(DB::raw('SELECT ST_CLOSESTPOINT(X.PT1,X.PT2) as CLOSEST_POINT, X.INDIRIZZO, X.ID
-                            FROM
-                            (SELECT PUBLIC.STUDENTS.geom_address AS PT1,
-                            			BASI_CARTO.GRAFO_STRADALE_E_VERTICES_PGR.THE_GEOM AS PT2,
-                            	 		PUBLIC.STUDENTS.ADDRESS AS INDIRIZZO,
-                            	 		PUBLIC.STUDENTS.ID AS ID
-                            		FROM PUBLIC.STUDENTS,
-                            			BASI_CARTO.GRAFO_STRADALE_E_VERTICES_PGR
-                             where students.id in (' . $placeholders . ') and geom_address is not null
-                            ) as X limit ' . count($students_id) . ';'), $students_id);
-
-    }
+//    public static function saveClosestPoint($section)
+//    {
+//        $studentsStrada = $section->students_strada;
+//
+//        $students_id = $studentsStrada->pluck('id')->toArray();
+//        $placeholders = implode(",", array_fill(0, count($students_id), '?'));
+//
+//        $query = DB::select(DB::raw('SELECT ST_CLOSESTPOINT(X.PT1,X.PT2) as CLOSEST_POINT, X.INDIRIZZO, X.ID
+//                            FROM
+//                            (SELECT PUBLIC.STUDENTS.geom_address AS PT1,
+//                            			BASI_CARTO.GRAFO_STRADALE_E_VERTICES_PGR.THE_GEOM AS PT2,
+//                            	 		PUBLIC.STUDENTS.ADDRESS AS INDIRIZZO,
+//                            	 		PUBLIC.STUDENTS.ID AS ID
+//                            		FROM PUBLIC.STUDENTS,
+//                            			BASI_CARTO.GRAFO_STRADALE_E_VERTICES_PGR
+//                             where students.id in (' . $placeholders . ') and geom_address is not null
+//                            ) as X limit ' . count($students_id) . ';'), $students_id);
+//
+//
+//        $studentsMezzi = $section->students_mezzi;
+//        $students_id = $studentsMezzi->pluck('id')->toArray();
+//        $placeholders = implode(",", array_fill(0, count($students_id), '?'));
+//
+//
+//        $query = DB::select(DB::raw('SELECT ST_CLOSESTPOINT(X.PT1,X.PT2) as CLOSEST_POINT, X.INDIRIZZO, X.ID
+//                            FROM
+//                            (SELECT PUBLIC.STUDENTS.geom_address AS PT1,
+//                            			BASI_CARTO.GRAFO_STRADALE_E_VERTICES_PGR.THE_GEOM AS PT2,
+//                            	 		PUBLIC.STUDENTS.ADDRESS AS INDIRIZZO,
+//                            	 		PUBLIC.STUDENTS.ID AS ID
+//                            		FROM PUBLIC.STUDENTS,
+//                            			BASI_CARTO.GRAFO_STRADALE_E_VERTICES_PGR
+//                             where students.id in (' . $placeholders . ') and geom_address is not null
+//                            ) as X limit ' . count($students_id) . ';'), $students_id);
+//
+//    }
 
     /**
      * @param Point|null $point
