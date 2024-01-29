@@ -64,9 +64,9 @@
                                         wire:model="students.{{$editStudentIndex}}.trips.{{$index}}.town_istat"
                                         for="students.{{$editStudentIndex}}.trip3.{{$index}}.town_istat">
                                         <option selected value="{{null}}">Scuola</option>
-                                        @foreach($this->comuni as $comune)
+                                        @foreach($this->comuni as $key => $comune)
                                             <option
-                                                value="{{$comune['istat']}}">{{$comune['comune']}}</option>
+                                                value="{{$key}}">{{$comune}}</option>
                                         @endforeach
                                     </x-select>
                                 </td>
@@ -102,7 +102,7 @@
                                 {{--                                    {{$trip['transport_2'] ? $transports[$trip['transport_2']]['name'] : ''}}--}}
                                 {{--                                </td>--}}
                                 <td class="my-th">
-                                    {{$trip['town_istat'] ? $this->comuni[$trip['town_istat']]['comune'] : ''}}
+                                    {{$trip['town_istat'] ? $this->comuni[$trip['town_istat']] : ''}}
                                 </td>
                                 <td class="my-th">
                                     {{$trip['address'] ?? ''}}
@@ -152,9 +152,9 @@
                                 wire:model="newTripTownIstat"
                                 for="newTripTownIstat">
                                 <option value="0">Scuola</option>
-                                @foreach($this->comuni as $comune)
+                                @foreach($this->comuni as $key => $comune)
                                     <option
-                                        value="{{$comune['istat']}}">{{$comune['comune']}}</option>
+                                        value="{{$key}}">{{$comune}}</option>
                                 @endforeach
                             </x-select>
                         </td>

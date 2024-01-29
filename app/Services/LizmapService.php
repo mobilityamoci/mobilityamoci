@@ -18,7 +18,7 @@ class LizmapService
         else if ($user->hasAnyRole(['MMScolastico', 'Insegnante'])) {
 
             $schools = $user->schools;
-
+            $str = '&my_filter=';
             foreach ($schools as $school) {
                 $str .= '' . $school->uuid . '';
                 if (next($schools)) $str .= ",";

@@ -35,7 +35,7 @@ class StudentsImport implements OnEachRow, WithHeadingRow
 
         \DB::transaction(function () use ($row) {
 
-            $comuni = Cache::get('comuni');
+            $comuni = getComuniArray();
 
             $comune_residenza = ucwords(strtolower($row['comune_di_residenza'])) ?? NULL;
             if (!is_null($comune_residenza)) {

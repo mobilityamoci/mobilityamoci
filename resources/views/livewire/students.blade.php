@@ -97,8 +97,8 @@
                             <x-select label="" wire:model="newComuneIstat"
                                       for="newComuneIstat">
                                 <option selected value="">-------------------------------</option>
-                                @foreach($this->comuni as $comune)
-                                    <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>
+                                @foreach($this->comuni as $key => $comune)
+                                    <option value="{{$key}}">{{$comune}}</option>
                                 @endforeach
                             </x-select>
                             @if($errors->has('newComuneIstat'))
@@ -199,13 +199,13 @@
                                         @click.away="$wire.editStudentField === '{{$index}}.town_istat' ? $wire.saveStudent({{$index}}) : null"
                                         label="" wire:model="students.{{$index}}.town_istat"
                                         for="students.{{$index}}.town_istat">
-                                        @foreach($this->comuni as $comune)
-                                            <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>
+                                        @foreach($this->comuni as $key => $comune)
+                                            <option value="{{$key}}">{{$comune}}</option>
                                         @endforeach
                                     </x-select>
                                 @else
                                     <div wire:click="setEditStudentField({{$index}},'town_istat')"
-                                         class="my-th">{{$student['town_istat'] ? $this->comuni[$student['town_istat']]['comune'] : ''}}
+                                         class="my-th">{{$student['town_istat'] ? $this->comuni[$student['town_istat']] : ''}}
                                     </div>
                                 @endif
 

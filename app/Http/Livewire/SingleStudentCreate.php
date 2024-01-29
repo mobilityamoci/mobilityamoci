@@ -96,7 +96,7 @@ class SingleStudentCreate extends Component
 
     public function getComuniProperty()
     {
-        return Cache::get('comuni');
+        return getComuniArray();
     }
 
     public function createStudent()

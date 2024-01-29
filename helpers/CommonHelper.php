@@ -22,14 +22,14 @@ function getComune($town_istat)
 }
 
 
-function getAllComuni()
+function getComuniArray()
 {
-    return Comune::all();
+    return Comune::all()->pluck(['label'], ['cod_istat']);
 }
 
 function getComuneByName($name)
 {
-    $comuni = getAllComuni();
+    $comuni = Comune::all();
     $residenza_town_istat = array_search($name, $comuni->pluck('label', 'cod_istat')->toArray());
 
     if ($residenza_town_istat)

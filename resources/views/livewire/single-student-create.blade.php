@@ -49,7 +49,7 @@
             <x-select class="w-full" wire:model="newStudentIstat">
                 <option value="">----------------</option>
                 @foreach($this->comuni as $comune)
-                    <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>
+                    <option value="{{$comune->cod_istat}}">{{$comune->label}}</option>
                 @endforeach
             </x-select>
             @if($errors->has('newStudentIstat'))

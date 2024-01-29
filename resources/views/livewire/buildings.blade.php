@@ -31,13 +31,13 @@
                                 <x-select
                                     @click.away="$wire.editBuildingField === '{{$index}}.town_istat' ? $wire.saveBuilding({{$index}}) : null"
                                     wire:model="buildings.{{$index}}.town_istat" for="buildings.{{$index}}.town_istat">
-                                    @foreach($this->comuni as $comune)
-                                        <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>
+                                    @foreach($this->comuni as $key => $comune)
+                                        <option value="{{$key}}">{{$comune}}</option>
                                     @endforeach
                                 </x-select>
                             @else
                                 <div wire:click="setEditBuildingField({{$index}},'town_istat')"
-                                     class="my-th">{{$building['town_istat'] ? $this->comuni[$building['town_istat']]['comune'] : ''}}
+                                     class="my-th">{{$building['town_istat'] ? $this->comuni[$building['town_istat']] : ''}}
                                 </div>
                             @endif
 
@@ -76,8 +76,8 @@
                             <x-select label="" wire:model="newBuildingTownIstat"
                                       for="newComuneIstat">
                                 <option selected value="">-------------------------------</option>
-                                @foreach($this->comuni as $comune)
-                                    <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>
+                                @foreach($this->comuni as $key => $comune)
+                                    <option value="{{$key}}">{{$comune}}</option>
                                 @endforeach
                             </x-select>
                         </td>

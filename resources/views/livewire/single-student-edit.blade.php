@@ -36,8 +36,8 @@
         <div>
             <x-jet-label class="text-xl">Comune di domicilio</x-jet-label>
             <x-select class="w-full" wire:model="student.town_istat">
-                @foreach($this->comuni as $comune)
-                    <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>
+                @foreach($this->comuni as $key => $comune)
+                    <option value="{{$key}}">{{$comune}}</option>
                 @endforeach
             </x-select>
             @if($errors->has('student.town_istat'))
@@ -108,8 +108,8 @@
                     <x-select class="w-full" wire:change="saveTrip({{$index}})"
                               wire:model="student.trips.{{$index}}.town_istat">
                         <option value="">Scuola</option>
-                        @foreach($this->comuni as $comune)
-                            <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>
+                        @foreach($this->comuni as $key => $comune)
+                            <option value="{{$key}}">{{$comune}}</option>
                         @endforeach
                     </x-select>
                     @if($errors->has('student.trips.'.$index.'.town_istat'))
@@ -160,8 +160,8 @@
                 <x-select class="w-full"
                           wire:model="newTripIstat">
                     <option value="">Scuola</option>
-                    @foreach($this->comuni as $comune)
-                        <option value="{{$comune['istat']}}">{{$comune['comune']}}</option>
+                    @foreach($this->comuni as $key => $comune)
+                        <option value="{{$key}}">{{$comune}}</option>
                     @endforeach
                 </x-select>
                 @if($errors->has('newTripIstat'))

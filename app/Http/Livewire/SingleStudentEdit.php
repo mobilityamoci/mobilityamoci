@@ -76,7 +76,7 @@ class SingleStudentEdit extends Component
 
     public function getComuniProperty()
     {
-        return Cache::get('comuni');
+        return getComuniArray();
     }
 
     public function saveTrip($index)

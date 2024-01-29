@@ -102,7 +102,7 @@ class Sections extends ModalComponent
 
     public function getComuniProperty()
     {
-        return Cache::get('comuni');
+        return getComuniArray();
     }
 
     /**
