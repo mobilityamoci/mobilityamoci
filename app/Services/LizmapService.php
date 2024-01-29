@@ -20,7 +20,7 @@ class LizmapService
             $schools = $user->schools;
             $str = '&my_filter=';
             foreach ($schools as $school) {
-                $str .= '' . $school->uuid . '';
+                $str .= $school->uuid;
                 if (next($schools)) $str .= ",";
             }
 
