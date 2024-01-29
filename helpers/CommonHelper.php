@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Models\Comune;
 use App\Models\School;
 use App\Models\User;
 use Illuminate\Support\Collection;
@@ -17,54 +18,24 @@ function getSchoolsFromUser(User $user): Collection
 
 function getComune($town_istat)
 {
-    $comuni = getAllComuni();
-    if ($comuni->has($town_istat)) {
-        return Cache::get('comuni')[$town_istat]['comune'];
-    }
-    return null;
+    return optional(Comune::where('cod_istat', $town_istat)->first())->label ?? '';
 }
 
 
 function getAllComuni()
 {
-    return Cache::remember('comuni', 60 * 24, function () {
-        $response = Http::withToken(config('openapi.towns_token'))
-            ->retry(3, 100)
-            ->throw()
-            ->get('https://cap.openapi.it/cerca_comuni?provincia=piacenza');
-
-        $arr = $response->json()['data']['result'];
-
-        $response = Http::withToken('63cff56cabd5b551b243e868')
-            ->retry(3, 100)
-            ->throw()
-            ->get('https://cap.openapi.it/cerca_comuni?provincia=parma');
-
-        $arr = array_merge($arr, $response->json()['data']['result']);
-
-        $response = Http::withToken(config('openapi.towns_token'))
-            ->retry(3, 100)
-            ->throw()
-            ->get('https://cap.openapi.it/cerca_comuni?provincia=cremona');
-
-        $arr = array_merge($arr, $response->json()['data']['result']);
-
-        return collect($arr)->map(function ($item) {
-            $item['soundex'] = soundex($item['comune']);
-            return $item;
-        })->keyBy('istat');
-    });
+    return Comune::all();
 }
 
 function getComuneByName($name)
 {
     $comuni = getAllComuni();
-    $residenza_town_istat = array_search($name, $comuni->pluck('comune', 'istat')->toArray());
+    $residenza_town_istat = array_search($name, $comuni->pluck('label', 'cod_istat')->toArray());
 
     if ($residenza_town_istat)
         return $residenza_town_istat;
 
-    $residenza_town_istat = array_search(soundex($name), $comuni->pluck('soundex', 'istat')->toArray());
+    $residenza_town_istat = array_search(soundex($name), $comuni->pluck('soundex', 'cod_istat')->toArray());
 
     if ($residenza_town_istat)
         return $residenza_town_istat;
