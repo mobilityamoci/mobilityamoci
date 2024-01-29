@@ -25,6 +25,6 @@ class CacheServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        getAllComuni();
+//        getAllComuni();
     }
 }

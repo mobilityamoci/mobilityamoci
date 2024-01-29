@@ -17,8 +17,6 @@ class GeoServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(IQgisService::class, QgisService::class);
-
     }
 
     /**

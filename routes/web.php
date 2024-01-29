@@ -65,7 +65,7 @@ Route::middleware([
     Route::middleware(['can:admin'])->get('/scuole', Schools::class)->name('schools');
     Route::middleware(['can:admin'])->get('/utenti', Users::class)->name('users');
     Route::middleware(['can:base'])->get('/informazioni', SingleStudent::class)->name('single-student');
-    Route::middleware(['can:admin'])->get('/mappa', ShowMappa::class)->name('mappa.index');
+    Route::middleware(['role_or_permission:all_schools|school|section'])->get('/mappa', ShowMappa::class)->name('mappa.index');
     Route::get('/accetta-utenti', AcceptUsers::class)->name('accept.users');
 
 

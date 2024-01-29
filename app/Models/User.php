@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Services\LizmapService;
+use App\Services\QgisService;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -56,6 +58,12 @@ class User extends Authenticatable
     ];
 
 
+    public function __construct(array $attributes = [],)
+    {
+        parent::__construct($attributes);
+    }
+
+
     public function schools(): MorphToMany
     {
         return $this->morphedByMany(School::class, 'associable','associables');
@@ -100,5 +108,10 @@ class User extends Authenticatable
         }
 
         return route('logout');
+    }
+
+    public function lizmapFilter()
+    {
+        return (new LizmapService())->generateLizmapFilter($this);
     }
 }

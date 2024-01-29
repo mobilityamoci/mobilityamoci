@@ -248,7 +248,7 @@
 
 <nav class="flex flex-col m-auto justify-between h-3/4">
 
-    @can('admin')
+    @canany(['all_schools','school','section'])
         <x-jet-nav-link :active="request()->routeIs('mappa.index')" :href='route("mappa.index")'>
 
             <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24">
