@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\School;
 use App\Models\User;
 
 class LizmapService
@@ -11,23 +12,28 @@ class LizmapService
 
     }
 
-    public function generateLizmapFilter(User $user)
+    public function generateLizmapLink(User $user)
     {
-        if ($user->hasAnyRole(['Admin', 'MMProvinciale']))
-            return null;
-        else if ($user->hasAnyRole(['MMScolastico', 'Insegnante'])) {
-
+        $host = config('custom.lizmap.host');
+        if ($user->hasAnyRole(['Admin', 'MMProvinciale'])) {
+            $schools = School::all();
+            $projectName = config('custom.lizmap.provinciale');
+        } else if ($user->hasAnyRole(['MMScolastico', 'Insegnante'])) {
             $schools = $user->schools;
-            $str = '&my_filter=';
-            foreach ($schools as $school) {
-                $str .= $school->uuid;
-                if (next($schools)) $str .= ",";
-            }
-
-            return $str;
-
+            $projectName = config('custom.lizmap.scolastico');
+        } else {
+            $schools = null;
+            $projectName = null;
         }
-        return null;
+
+        $filter = '&my_filter=';
+        foreach ($schools as $school) {
+            $filter .= $school->uuid;
+            if (next($schools)) $filter .= ",";
+        }
+
+        return  $host . '/view/embed?repository=' . $projectName . '&project=' . $projectName . $filter;
+
 
     }
 }

@@ -110,8 +110,8 @@ class User extends Authenticatable
         return route('logout');
     }
 
-    public function lizmapFilter()
+    public function lizmapLink()
     {
-        return (new LizmapService())->generateLizmapFilter($this);
+        return (new LizmapService())->generateLizmapLink($this);
     }
 }
