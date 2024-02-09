@@ -136,7 +136,7 @@
     @endforelse
     @if($addingTrip)
         <x-jet-label class="flex items-center justify-center text-2xl mb-2">
-            {{sizeof($student->trips)+1}}° tappa
+            {{sizeof($this->student->trips)+1}}° tappa
         </x-jet-label>
         <div class="grid my-6 sm:grid-cols-1 md:grid-cols-5 gap-4 border-b-2 pb-2 border-b-gray-400">
             <div>
@@ -182,7 +182,7 @@
             </div>
         </div>
     @endif
-    @if(isset($trip) && $trip->town_istat != 0)
+    @if($this->canAddTrip)
         <div class="grid justify-items-end">
             <x-jet-button wire:click.prevent="$toggle('addingTrip')">@if($addingTrip)
                     Annulla
@@ -190,12 +190,6 @@
                     Aggiungi Tappa
                 @endif
             </x-jet-button>
-        </div>
-    @elseif ($this->student->trips->count() > 0)
-        <div >
-            <x-jet-label class="flex items-center justify-center text-2xl mb-2">
-                Viaggio concluso. Grazie!
-            </x-jet-label>
         </div>
     @endif
 

@@ -26,7 +26,7 @@ class SingleStudentEdit extends Component
 
     public $newTripTrans1;
     public $newTripIstat = 0;
-    public ?string  $newTripAddress = '';
+    public ?string $newTripAddress = '';
 
     protected $rules = [
         'student.name' => 'required|string',
@@ -146,6 +146,22 @@ class SingleStudentEdit extends Component
         $this->mount();
     }
 
+    public function getStudentTripsProperty()
+    {
+        return collect($this->student->trips);
+    }
+
+
+    public function getCanAddTripProperty()
+    {
+        if ($this->studentTrips->isNotEmpty()) {
+            return !$this->studentTrips->search(function ($item) {
+                    return $item->town_istat == 0;
+                });
+        } else {
+            return true;
+        }
+    }
 
 
 }
