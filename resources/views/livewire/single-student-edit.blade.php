@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <div class="grid justify-items-end">
+    <div class="grid justify-items-end my-8">
         <x-success-button wire:click.prevent="saveStudent">Aggiorna Dati</x-success-button>
     </div>
 

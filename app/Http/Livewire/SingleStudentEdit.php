@@ -6,7 +6,6 @@ use App\Models\Student;
 use App\Models\Transport;
 use App\Models\Trip;
 use App\Models\User;
-use Illuminate\Support\Facades\Cache;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 

@@ -29,6 +29,6 @@ class SingleStudent extends Component
 
     public function render()
     {
-        return view('livewire.single-student');
+        return view('livewire.single-student')->layout('layouts.student-layout');
     }
 }
