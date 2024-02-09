@@ -14,7 +14,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-my-nav-link href="{{ route('students') }}" :active="request()->routeIs('students')">
-                        {{ __('students') }}
+                        {{ __('Le mie Info') }}
                     </x-my-nav-link>
                 </div>
             </div>
