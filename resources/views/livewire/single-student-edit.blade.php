@@ -60,8 +60,8 @@
     <div class="grid justify-items-end my-8">
         <x-success-button wire:click.prevent="saveStudent">Aggiorna Dati</x-success-button>
     </div>
-
-    <h3 class="text-3xl font-bold uppercase">Il mio viaggio</h3>
+    <hr>
+    <h3 class="text-3xl font-bold uppercase my-6">Il mio viaggio</h3>
     @forelse($this->student->trips as $index => $trip)
         <div wire:key="{{$trip->index}}">
             <x-jet-label class="flex items-center justify-center text-2xl mb-2">
@@ -126,7 +126,7 @@
                     </div>
                 @endif
                 <div class="flex items-end justify-items-end">
-                    <x-jet-danger-button wire:click="deleteTrip({{$index}})" class="h-1/2">
+                    <x-jet-danger-button wire:click="deleteTrip({{$index}})">
                         <i class="fa-solid fa-trash mr-4"></i> Elimina Tappa
                     </x-jet-danger-button>
                 </div>
