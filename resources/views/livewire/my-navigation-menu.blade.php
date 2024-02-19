@@ -137,12 +137,6 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('students') }}" :active="request()->routeIs('students')">
-                {{ __('students') }}
-            </x-jet-responsive-nav-link>
-        </div>
-
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
@@ -159,6 +153,11 @@
             </div>
 
             <div class="mt-3 space-y-1">
+
+                <x-jet-responsive-nav-link href="{{ route('single-student') }}" :active="request()->routeIs('single-student')">
+                    {{ __('Mie Informazioni') }}
+                </x-jet-responsive-nav-link>
+
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Profile') }}

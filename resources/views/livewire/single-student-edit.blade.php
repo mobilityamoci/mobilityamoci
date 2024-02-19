@@ -138,7 +138,7 @@
         <x-jet-label class="flex items-center justify-center text-2xl mb-2">
             {{sizeof($this->student->trips)+1}}° tappa
         </x-jet-label>
-        <div class="grid my-6 sm:grid-cols-1 md:grid-cols-5 gap-4 border-b-2 pb-2 border-b-gray-400">
+        <div class="grid sm:grid-cols-1 md:grid-cols-5 gap-4 border-b-2 pb-2 border-b-gray-400">
             <div>
                 <x-jet-label class="text-lg">Mezzo (Prima Opzione)</x-jet-label>
                 <x-select

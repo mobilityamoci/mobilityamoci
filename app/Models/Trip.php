@@ -50,4 +50,8 @@ class Trip extends Model
     {
         return array_search($this->transport_1, Transport::MEZZI_PRIVATI);
     }
+    public function hasMezzoPubblico(): bool
+    {
+        return array_search($this->transport_1, Transport::MEZZI_PUBBLICI);
+    }
 }
