@@ -26,7 +26,6 @@ class SchoolTypeOfTransportStudentChart
     {
         return $this->chart->pieChart()
             ->setTitle('Mezzi usati dai ragazzi.')
-            ->setSubtitle('Season 2021.')
             ->addData(
                 [
                     Student::whereIn('section_id', $this->sections)->whereHas('trip1', function (Builder $query) {
