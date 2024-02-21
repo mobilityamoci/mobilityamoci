@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\AcceptUsers;
 use App\Http\Livewire\Schools;
+use App\Http\Livewire\ShowGraphs;
 use App\Http\Livewire\ShowMappa;
 use App\Http\Livewire\SingleStudent;
 use App\Http\Livewire\Students;
@@ -57,16 +58,16 @@ Route::middleware([
         else
             return redirect()->route('login');
     });
-//    Route::get('/dashboard', function () {
-//        return view('dashboard');
-//    })->name('dashboard');
+
+    Route::get('/accetta-utenti', AcceptUsers::class)->name('accept.users');
+
 
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/studenti', Students::class)->name('students');
     Route::middleware(['can:admin'])->get('/scuole', Schools::class)->name('schools');
     Route::middleware(['can:admin'])->get('/utenti', Users::class)->name('users');
     Route::middleware(['can:base'])->get('/informazioni', SingleStudent::class)->name('single-student');
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/mappa', ShowMappa::class)->name('mappa.index');
-    Route::get('/accetta-utenti', AcceptUsers::class)->name('accept.users');
+    Route::middleware(['role_or_permission:all_schools|school|section'])->get('/statistiche', ShowGraphs::class)->name('graphs-show');
 
 
 });

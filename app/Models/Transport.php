@@ -22,6 +22,8 @@ class Transport extends Model
 
     public const MEZZI_PRIVATI = [self::PIEDI, self::BICICLETTA, self::AUTO, self::AUTO_2, self::AUTO_3];
 
+
+
     public function trips(): HasMany
     {
         return $this->hasMany(Trip::class);
