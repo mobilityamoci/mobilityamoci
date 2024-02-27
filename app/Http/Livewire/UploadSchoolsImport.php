@@ -33,6 +33,7 @@ class UploadSchoolsImport extends ModalComponent
         ]);
 
         try {
+            $this->alert('success', 'Inizio caricamento!');
             Excel::import(new SchoolsBuildingsImport(), $this->importFile);
             $this->emit('closeModal');
         } catch (\Exception $exception) {

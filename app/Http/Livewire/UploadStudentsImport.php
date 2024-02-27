@@ -34,6 +34,7 @@ class UploadStudentsImport extends ModalComponent
         ]);
 
         try {
+            $this->alert('success', 'Inizio caricamento!');
             Excel::import(new StudentsImport($this->selectedSectionId), $this->importFile);
             $this->emit('closeModal');
         } catch (\Exception $exception) {
