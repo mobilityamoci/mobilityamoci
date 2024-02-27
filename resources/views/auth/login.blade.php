@@ -31,7 +31,7 @@
                 focus:placeholder-gray-500
                 focus:bg-white
                 focus:border-gray-600
-                focus:outline-none">
+                focus:outline-none" name="password">
                     <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
 
                         <svg class="h-6 text-gray-700" fill="none" @click="show = !show"
