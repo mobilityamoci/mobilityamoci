@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Imports\StudentsImport;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use Maatwebsite\Excel\Facades\Excel;
@@ -11,7 +12,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 class UploadStudentsImport extends ModalComponent
 {
 
-    use WithFileUploads;
+    use WithFileUploads, LivewireAlert;
 
     public $importFile;
     public int $selectedSectionId;
@@ -31,8 +32,13 @@ class UploadStudentsImport extends ModalComponent
         $this->validate([
             'importFile' => 'file|required'
         ]);
-        Excel::import(new StudentsImport($this->selectedSectionId), $this->importFile);
-        $this->emit('closeModal');
+
+        try {
+            Excel::import(new StudentsImport($this->selectedSectionId), $this->importFile);
+            $this->emit('closeModal');
+        } catch (\Exception $exception) {
+            $this->alert('error', 'File con formato sbagliato!');
+        }
     }
 
     public function downloadTemplate(): BinaryFileResponse

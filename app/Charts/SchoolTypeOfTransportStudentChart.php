@@ -38,16 +38,17 @@ class SchoolTypeOfTransportStudentChart
                         $query->where('transport_1', Transport::BUS_COMUNALE);
                     })->count(),
                     Student::whereIn('section_id', $this->sections)->whereHas('trip1', function (Builder $query) {
-                        $query->where('transport_1', Transport::AUTO);
+                        $query->where('transport_1', Transport::AUTO_3);
                     })->count(),
                     Student::whereIn('section_id', $this->sections)->whereHas('trip1', function (Builder $query) {
                         $query->where('transport_1', Transport::AUTO_2);
                     })->count(),
                     Student::whereIn('section_id', $this->sections)->whereHas('trip1', function (Builder $query) {
-                        $query->where('transport_1', Transport::AUTO_3);
-                    })->count(),
+                        $query->where('transport_1', Transport::AUTO);
+                    })->count()
                 ]
             )
-            ->setLabels(['A Piedi', 'In Bici', 'Bus Comunale', 'Auto', 'Auto condivisa', 'Auto Condivisa 3+']);
+            ->setColors(['#90EE90','#C0F9C0 ', '#C0F9C0','#FFF080', '#FFC080','#FF9090'])
+            ->setLabels(['A Piedi', 'In Bici', 'Bus Comunale','Auto Condivisa 3+', 'Auto condivisa','Auto' ]);
     }
 }
