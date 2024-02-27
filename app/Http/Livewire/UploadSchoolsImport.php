@@ -36,6 +36,7 @@ class UploadSchoolsImport extends ModalComponent
             Excel::import(new SchoolsBuildingsImport(), $this->importFile);
             $this->emit('closeModal');
         } catch (\Exception $exception) {
+            \Log::error($exception);
             $this->alert('error', 'File con formato sbagliato!');
         }
     }
