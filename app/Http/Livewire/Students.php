@@ -80,7 +80,7 @@ class Students extends Component
     ];
 
     protected $queryString = [
-//        'selectedSectionId' => ['except' => 1, 'as' => 'sezione'],
+        'selectedSectionId' => ['except' => 1, 'as' => 'sezione'],
         'selectedSchoolId' => ['except' => 1, 'as' => 'scuola'],
     ];
 

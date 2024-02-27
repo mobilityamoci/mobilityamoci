@@ -14,7 +14,7 @@
     <form wire:submit.prevent="save" class="mt-8">
 
 
-        <label class="block text-lg mb-2 text-sm font-medium text-gray-900" for="file_input">Carica File
+        <label class="block text-lg mb-2 font-medium text-gray-900" for="file_input">Carica File
             compilato</label>
         <input class="mt-5 text-sm text-grey-500
             file:mr-5 file:py-2 file:px-6

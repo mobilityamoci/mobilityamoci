@@ -131,8 +131,8 @@ class SingleStudentCreate extends Component
     {
         $section_ids = $this->user->schools->first()->sections->pluck('id');
         $this->possibleStudents = Student::where(function ($query) {
-            $query->orWhere('surname', 'LIKE', '%' . $this->user->surname . '%');
-            $query->orWhere('name', 'LIKE', '%' . $this->user->name . '%');
+            $query->orWhere('surname', 'ILIKE', '%' . $this->user->surname . '%');
+            $query->orWhere('name', 'ILIKE', '%' . $this->user->name . '%');
         })
             ->whereIn('section_id', $section_ids)
             ->whereNull('user_id')

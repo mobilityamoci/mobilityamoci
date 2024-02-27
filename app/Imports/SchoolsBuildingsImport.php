@@ -18,7 +18,7 @@ class SchoolsBuildingsImport implements ToCollection, WithHeadingRow
             $schoolName = $row['scuola'];
             if (is_null($schoolName))
                 continue;
-            $school = School::where('name', $schoolName)->firstOrCreate([
+            $school = School::where('name', 'ilike',$schoolName)->firstOrCreate([
                'name' => $schoolName,
             ]);
 

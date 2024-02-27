@@ -58,7 +58,7 @@ class StudentsImport implements OnEachRow, WithHeadingRow
 
 
             if (isset($row['1_mezzo_opzione_a'])) {
-                $trans_1 = Transport::where('name', $row['1_mezzo_opzione_a'])->first();
+                $trans_1 = Transport::where('name', 'ILIKE',$row['1_mezzo_opzione_a'])->first();
 
                 if (isset($row['1_comune_di_scalo']) && strtolower($row['1_comune_di_scalo']) == strtolower('scuola')) {
                     $comune_scalo = $this->school_istat;
@@ -77,7 +77,7 @@ class StudentsImport implements OnEachRow, WithHeadingRow
             }
 
             if (isset($row['2_mezzo_opzione_a'])) {
-                $trans_1 = Transport::where('name', $row['2_mezzo_opzione_a'])->first();
+                $trans_1 = Transport::where('name', 'ILIKE',$row['2_mezzo_opzione_a'])->first();
 
                 if (isset($row['2_comune_di_scalo']) && strtolower($row['2_comune_di_scalo']) == strtolower('scuola')) {
                     $comune_scalo = $this->school_istat;
@@ -98,7 +98,7 @@ class StudentsImport implements OnEachRow, WithHeadingRow
             }
 
             if (isset($row['3_mezzo_opzione_a'])) {
-                $trans_1 = Transport::where('name', $row['3_mezzo_opzione_a'])->first();
+                $trans_1 = Transport::where('name', 'ILIKE',$row['3_mezzo_opzione_a'])->first();
 
                 if (isset($row['3_comune_di_scalo']) && strtolower($row['3_comune_di_scalo']) == strtolower('scuola')) {
                     $comune_scalo = $this->school_istat;
