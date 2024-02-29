@@ -61,8 +61,9 @@ class QgisService
             $georefable_id2 = $trip->student->school->id;
             $georefable_type2 = School::class;
         }
+        if ($trip->hasMezzoPrivato()) {
 
-        $result = DB::select(DB::raw("SELECT
+            $result = DB::select(DB::raw("SELECT
     ST_LineMerge(ST_Union(arr.array)) as line
 FROM
     (
@@ -114,27 +115,143 @@ FROM
             )
         ) AS arr"), [$georefable_type1, $georefable_id1, $georefable_type2, $georefable_id2])[0];
 
-        $trip->geometryLine()->updateOrCreate([
+        } else {
+            $result = DB::select(DB::raw("select
+	(
+	select
+		ST_LineMerge(ST_Union(dijkstra.array)) as line
+	from
+		(
+		select
+			array(
+			select
+				tt.geom as geom
+			from
+				pgr_dijkstra(
+'SELECT CAST(id AS BIGINT), source, target, 1 AS cost FROM basi_carto.tratti_tpl_32632 where shape_id = ' || shape_id,
+				start_shape.source,
+				end_shape.target,
+				false) as di
+			join basi_carto.tratti_tpl_32632 tt on
+				tt.id = di.edge)
+			)as dijkstra)
+from
+	(
+	select
+		a.id as start_id,
+		st_transform(a.geom,
+		32632) as start_geom,
+		b.id as end_id,
+		st_transform(b.geom,
+		32632) as end_geom,
+		(array
+    (
+		select
+			unnest(a.route_ids)
+	intersect
+		select
+			unnest(b.route_ids)
+    ))[1] as route_name,
+		shapes_tratti.shape_id as shape_id
+	from
+		(
+		select
+			row_number() over () as rnum,
+			id,
+			geom,
+			route_ids
+		from
+			basi_carto.stops_tpl_14092023 st
+		order by
+			ST_Transform(st.geom,
+			32632) <-> (
+			select
+				point
+			from
+				public.geometry_points gp
+			where
+				gp.georefable_type = ? AND gp.georefable_id = ?)
+		limit 5) as a,
+		(
+		select
+			row_number() over () as rnum,
+			id,
+			geom,
+			route_ids
+		from
+			basi_carto.stops_tpl_14092023 st
+		order by
+			ST_Transform(st.geom,
+			32632) <-> (
+			select
+				point
+			from
+				public.geometry_points gp
+			where
+				gp.georefable_type = ? AND gp.georefable_id = ?)
+		limit 5) as b,
+		basi_carto.shapes_tratti_32632 shapes_tratti
+	where
+		a.route_ids && b.route_ids
+		and
+	shapes_tratti.route_id = (array
+    (
+		select
+			unnest(a.route_ids)
+	intersect
+		select
+			unnest(b.route_ids)
+    ))[1]
+	order by
+		(a.rnum + b.rnum,
+		a.rnum,
+		b.rnum)
+	limit 1) as result
+cross join lateral (
+	select
+		source
+	from
+		basi_carto.tratti_tpl_32632 tt
+	where
+		tt.shape_id = result.shape_id
+	order by
+		start_geom <-> tt.geom
+	limit 1
+) as start_shape
+cross join lateral (
+	select
+		target
+	from
+		basi_carto.tratti_tpl_32632 tt
+	where
+		tt.shape_id = result.shape_id
+	order by
+		end_geom <-> tt.geom
+	limit 1
+) as end_shape;
+"), [$georefable_type1, $georefable_id1, $georefable_type2, $georefable_id2])[0];
+        }
+
+        $test = $trip->geometryLine()->updateOrCreate([
             'lineable_id' => $trip->id,
             'lineable_type' => Trip::class
         ], [
             'line' => $result->line,
-            'is_public_transportation' => false
+            'is_public_transportation' => $trip->hasMezzoPubblico()
         ]);
     }
 
-    public static function getGeomPoint($original_address, $town_istat)
+    public
+    static function getGeomPoint($original_address, $town_istat)
     {
         set_time_limit(0);
         /* @var Point $geom */
         $limit = DB::connection('basi_carto')->selectOne('SELECT geom from limiti_pc where cod_istat = ?', [$town_istat]);
-        if (!is_null($limit))
-        {
+        if (!is_null($limit)) {
             $multipolygon = geoPHP::load($limit->geom);
             $polygon = $multipolygon->components[0];
             $polygon->setSRID("32632");
-        }
-        else
+        } else
             $polygon = false;
 
         $baseUrl = 'http://10.0.16.23:8080/search.php?limit=1';
@@ -173,7 +290,7 @@ FROM
         if ($polygon) {
             $centroid = $polygon->getCentroid("32632");
 //            dd($polygon, $centroid, $centroid->out("wkt"), Point::make($centroid->getY(), $centroid->getX()));
-            return [Point::makeGeodetic($centroid->getY(),$centroid->getX()), $original_address];
+            return [Point::makeGeodetic($centroid->getY(), $centroid->getX()), $original_address];
         } else {
             return [null, null];
         }
@@ -185,7 +302,8 @@ FROM
      * @param string $address
      * @return array
      */
-    private static function performGet(string $baseUrl, string $address): array
+    private
+    static function performGet(string $baseUrl, string $address): array
     {
         $baseUrl = $baseUrl . '&q=' . $address . '&addressdetails=1&polygon_geojson=1&format=jsonv2';
         $res = Http::retry(3, 100)->get($baseUrl)->json();
@@ -244,7 +362,8 @@ FROM
      * @param mixed $address_request
      * @return void
      */
-    private static function updateOrCreateGeometryPoint(Point|null $point, Building|Student|Trip $model, string|null $address_request): void
+    private
+    static function updateOrCreateGeometryPoint(Point|null $point, Building|Student|Trip $model, string|null $address_request): void
     {
         if (is_null($point)) {
             if ($model->geometryPoint()->exists())
