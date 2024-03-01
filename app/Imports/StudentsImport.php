@@ -6,12 +6,20 @@ use App\Models\Section;
 use App\Models\Student;
 use App\Models\Transport;
 use Illuminate\Support\Facades\Cache;
+use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\OnEachRow;
+use Maatwebsite\Excel\Concerns\SkipsErrors;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Row;
 
-class StudentsImport implements OnEachRow, WithHeadingRow
+class StudentsImport implements OnEachRow, WithHeadingRow, SkipsOnFailure, SkipsOnError
 {
+
+    use Importable, SkipsErrors, SkipsFailures;
+
     private $section_id;
 
     private $school_address;

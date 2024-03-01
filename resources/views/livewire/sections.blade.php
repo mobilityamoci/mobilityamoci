@@ -1,7 +1,17 @@
 <div class="p-7">
+    <div class="justify-between">
+
     <x-success-button class="my-2" wire:click.prevent="startCreatingSection()">Crea Sezione
     </x-success-button>
-    <div class="place-items-center grid">
+
+        <x-jet-button type="button" class="mt-9"
+                      wire:click="$emit('openModal', 'sections-school-import-modal', {{json_encode(['selectedSchoolId' => $selectedSchoolId])}})"
+        >
+            <i class="fa-solid fa-fw fa-file-excel mr-2"></i> Carica Excel sezioni
+        </x-jet-button>
+
+    </div>
+    <div class="place-items-center grid mt-4">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="my-table ">
                 <thead class="my-header">

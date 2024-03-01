@@ -4,9 +4,9 @@
         <div></div>
         <div class="flex items-center">
             <x-jet-button type="button" class="mt-9"
-                          wire:click="$emit('openModal', 'upload-schools-import')"
+                          wire:click="$emit('openModal', 'upload-schools-import-modal')"
             >
-                <i class="fa-solid fa-fw fa-file-excel mr-2"></i> Importa Excel
+                <i class="fa-solid fa-fw fa-file-excel mr-2"></i> Carica Excel scuole e sedi
             </x-jet-button>
         </div>
     </div>
