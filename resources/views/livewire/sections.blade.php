@@ -5,7 +5,7 @@
     </x-success-button>
 
         <x-jet-button type="button" class="mt-9"
-                      wire:click="$emit('openModal', 'sections-school-import-modal', {{json_encode(['selectedSchoolId' => $selectedSchoolId])}})"
+                      wire:click="$emit('openModal', 'modals.sections-school-import-modal', {{json_encode(['selectedSchoolId' => $selectedSchoolId])}})"
         >
             <i class="fa-solid fa-fw fa-file-excel mr-2"></i> Carica Excel sezioni
         </x-jet-button>

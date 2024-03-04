@@ -3,9 +3,10 @@
 
 use App\Models\Comune;
 use App\Models\School;
+use App\Models\Transport;
 use App\Models\User;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 function getSchoolsFromUser(User $user): Collection
 {
@@ -30,7 +31,7 @@ function getComuniArray()
 function getComuneByName($name)
 {
     $comuni = Comune::all();
-    $residenza_town_istat = array_search($name, $comuni->pluck('label', 'cod_istat')->toArray());
+    $residenza_town_istat = array_search(strtoupper($name), $comuni->pluck('label', 'cod_istat')->toArray());
 
     if ($residenza_town_istat)
         return $residenza_town_istat;
@@ -48,4 +49,19 @@ function sanitizeAddress(string $string)
 {
     $string = preg_replace('/\w*\.\w*/i', '', $string);
     return preg_replace('/\b(?!(via)\b) [a-zA-Z]{1,3} \b/i', ' ', $string);
+}
+
+function matchTransportNameToId(string $name)
+{
+    return match (true) {
+        Str::contains(Str::lower($name), ['bus', 'bus comunale', 'autobus', 'pullman', 'pulman', 'autobus comunale']) => Transport::BUS_COMUNALE,
+        Str::contains(Str::lower($name), ['macchina', 'auto', 'automobile', 'moto', 'motocicletta', 'motorino', 'scooter']) => Transport::AUTO,
+        Str::contains(Str::lower($name),'auto collettiva (2 studenti)') => Transport::AUTO_2,
+        Str::contains(Str::lower($name),'auto collettiva (3+ studenti)') => Transport::AUTO_3,
+        Str::contains(Str::lower($name),['piedi', 'a piedi']) => Transport::PIEDI,
+        Str::contains(Str::lower($name),['bici', 'bicicletta']) => Transport::BICICLETTA,
+        Str::contains(Str::lower($name),'treno') => Transport::TRENO,
+        default => Transport::AUTO //OPINABILE
+    };
+
 }

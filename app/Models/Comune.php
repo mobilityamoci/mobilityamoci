@@ -9,4 +9,6 @@ class Comune extends Model
 {
     protected $table = 'limiti_pc';
     protected $connection = 'basi_carto';
+
+
 }

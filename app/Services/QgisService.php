@@ -171,7 +171,7 @@ from
 				public.geometry_points gp
 			where
 				gp.georefable_type = ? AND gp.georefable_id = ?)
-		limit 5) as a,
+		limit 10) as a,
 		(
 		select
 			row_number() over () as rnum,
@@ -189,7 +189,7 @@ from
 				public.geometry_points gp
 			where
 				gp.georefable_type = ? AND gp.georefable_id = ?)
-		limit 5) as b,
+		limit 10) as b,
 		basi_carto.shapes_tratti_32632 shapes_tratti
 	where
 		a.route_ids && b.route_ids
@@ -229,7 +229,7 @@ cross join lateral (
 		end_geom <-> tt.geom
 	limit 1
 ) as end_shape;
-"), [$georefable_type1, $georefable_id1, $georefable_type2, $georefable_id2])[0];
+"), [$georefable_type1, $georefable_id1, $georefable_type2, $georefable_id2])[0] ?? null;
         }
 
         $test = $trip->geometryLine()->updateOrCreate([

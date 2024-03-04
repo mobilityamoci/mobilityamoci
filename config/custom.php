@@ -1,7 +1,7 @@
 <?php
 return [
     'geo' =>[
-        'piacenza_istat' => 33022
+        'piacenza_istat' => 33032
     ],
     'lizmap' => [
         'host' => env('LIZMAP_HOST'),

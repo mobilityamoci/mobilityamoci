@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\modals;
 
 use App\Imports\StudentsImport;
+use App\Imports\WholeSchoolStudentImport;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
@@ -15,12 +16,14 @@ class UploadStudentsImportModal extends ModalComponent
 
     public $importFile;
     public int $selectedSectionId;
+    public int $selectedSchoolId;
     public $importErrors;
     public $importFailures;
 
-    public function mount(int $selectedSectionId)
+    public function mount(int $selectedSectionId, int $selectedSchoolId)
     {
         $this->selectedSectionId = $selectedSectionId;
+        $this->selectedSchoolId = $selectedSchoolId;
     }
 
     public function render()
@@ -36,7 +39,7 @@ class UploadStudentsImportModal extends ModalComponent
 
         try {
             $this->alert('warning', 'Inizio caricamento!');
-            $import = (new StudentsImport($this->selectedSectionId));
+            $import = (new WholeSchoolStudentImport($this->selectedSchoolId));
             $import->import($this->importFile);
             $this->alert('success', 'Caricamento finito!');
             $this->importErrors = $import->errors();
@@ -52,6 +55,6 @@ class UploadStudentsImportModal extends ModalComponent
 
     public function downloadTemplate(): BinaryFileResponse
     {
-        return response()->download(public_path('templates/template_studenti.xlsx'));
+        return response()->download(public_path('templates/template_studenti_scuola_intera.xlsx'));
     }
 }

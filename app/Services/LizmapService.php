@@ -29,10 +29,10 @@ class LizmapService
         $filter = '&my_filter=';
         foreach ($schools as $school) {
             $filter .= $school->uuid;
-            if (next($schools)) $filter .= ",";
+            $filter .= ",";
         }
 
-        return  $host . '/view/embed?repository=' . $projectName . '&project=' . $projectName . $filter;
+        return $host . '/view/embed?repository=' . $projectName . '&project=' . $projectName . $filter;
 
 
     }

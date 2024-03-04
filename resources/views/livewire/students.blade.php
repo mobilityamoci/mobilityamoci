@@ -34,7 +34,7 @@
 
                 <div class="flex items-center">
                     <x-jet-button type="button" class="mt-9"
-                                  wire:click="$emit('openModal', 'upload-students-import',{{json_encode(['selectedSectionId' => $selectedSectionId])}})">
+                                  wire:click="$emit('openModal', 'modals.upload-students-import-modal',{{json_encode(['selectedSectionId' => $selectedSectionId, 'selectedSchoolId' => $selectedSchoolId])}})">
                         <i class="fa-solid fa-fw fa-file-excel mr-2"></i> Carica Excel Studenti
                     </x-jet-button>
 
