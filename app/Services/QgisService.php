@@ -232,13 +232,14 @@ cross join lateral (
 "), [$georefable_type1, $georefable_id1, $georefable_type2, $georefable_id2])[0] ?? null;
         }
 
-        $test = $trip->geometryLine()->updateOrCreate([
-            'lineable_id' => $trip->id,
-            'lineable_type' => Trip::class
-        ], [
-            'line' => $result->line,
-            'is_public_transportation' => $trip->hasMezzoPubblico()
-        ]);
+        if (!is_null($result) && !is_null($result->line))
+            $trip->geometryLine()->updateOrCreate([
+                'lineable_id' => $trip->id,
+                'lineable_type' => Trip::class
+            ], [
+                'line' => $result->line,
+                'is_public_transportation' => $trip->hasMezzoPubblico()
+            ]);
     }
 
     public
