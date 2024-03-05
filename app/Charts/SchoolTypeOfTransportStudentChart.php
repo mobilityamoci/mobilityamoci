@@ -24,6 +24,15 @@ class SchoolTypeOfTransportStudentChart
 
     public function build(): PieChart
     {
+
+        $test = Student::whereIn('section_id', $this->sections)->whereHas('trip1', function (Builder $query) {
+            $query->where('transport_1', Transport::PIEDI);
+        })->count();
+
+        $test2 = Student::whereIn('section_id', $this->sections)->whereHas('trip1', function (Builder $query) {
+            $query->where('transport_1', Transport::BUS_COMUNALE);
+        })->count();
+
         return $this->chart->pieChart()
             ->setTitle('Mezzi usati dai ragazzi.')
             ->addData(
@@ -48,7 +57,6 @@ class SchoolTypeOfTransportStudentChart
                     })->count()
                 ]
             )
-            ->setColors(['#90EE90','#C0F9C0 ', '#C0F9C0','#FFF080', '#FFC080','#FF9090'])
             ->setLabels(['A Piedi', 'In Bici', 'Bus Comunale','Auto Condivisa 3+', 'Auto condivisa','Auto' ]);
     }
 }
