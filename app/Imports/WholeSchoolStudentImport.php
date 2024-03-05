@@ -16,7 +16,7 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class WholeSchoolStudentImport implements ToCollection, WithValidation,WithHeadingRow, SkipsOnFailure, SkipsOnError
+class WholeSchoolStudentImport implements ToCollection, WithValidation, WithHeadingRow, SkipsOnFailure, SkipsOnError
 {
 
     use Importable, SkipsErrors, SkipsFailures;
@@ -34,7 +34,7 @@ class WholeSchoolStudentImport implements ToCollection, WithValidation,WithHeadi
      */
     public function collection(Collection $collection)
     {
-        $sections = Section::with('building','building.geometryPoint')->where('school_id', $this->school_id)->get();
+        $sections = Section::with('building', 'building.geometryPoint')->where('school_id', $this->school_id)->get();
 
         foreach ($collection->groupBy('sezione') as $sezioneName => $grouped) {
             if (is_null($sezioneName))
@@ -137,7 +137,8 @@ class WholeSchoolStudentImport implements ToCollection, WithValidation,WithHeadi
     public function rules(): array
     {
         return [
-          'sezione' => Rule::exists('sections','name')
+            'sezione' => Rule::exists('sections', 'name'),
+            'comune_di_residenza' => 'required|string'
         ];
     }
 }
