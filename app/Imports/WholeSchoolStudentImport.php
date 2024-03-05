@@ -49,7 +49,8 @@ class WholeSchoolStudentImport implements ToCollection, WithValidation,WithHeadi
                 $this->failures()->add("Sezione $sezioneName non trovata. Le righe relative non sono state importate.");
 
             foreach ($grouped as $row) {
-                $comune_residenza = ucwords(strtolower($row['comune_di_residenza'])) ?? NULL;
+
+                $comune_residenza = ucwords(strtolower(optional($row['comune_di_residenza']))) ?? NULL;
                 if (!is_null($comune_residenza)) {
                     $residenza_town_istat = getComuneByName($comune_residenza);
                 }
