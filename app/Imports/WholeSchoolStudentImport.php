@@ -50,7 +50,7 @@ class WholeSchoolStudentImport implements ToCollection, WithValidation, WithHead
 
             foreach ($grouped as $row) {
 
-                if (!$row['comune_di_residenza'])
+                if (!$row['comune_di_residenza'] || !$row['indirizzo_residenza'])
                     continue;
 
                 $comune_residenza = ucwords(strtolower($row['comune_di_residenza'])) ?? NULL;
