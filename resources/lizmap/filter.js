@@ -1292,6 +1292,7 @@ var lizLayerFilterTool = function () {
             const url_filter = urlParams.get('my_filter');
 
             let filter_string = "\"school_id\" ILIKE '%";
+            let scuola_filter_string = "\"scuola_id\" ILIKE '%";
             if (url_filter === null || url_filter === '' || url_filter.length < 36) {
                 filter_string += "niente%'"
             } else {
@@ -1304,16 +1305,21 @@ var lizLayerFilterTool = function () {
 
                     if (index !== 0) {
                         filter_string += " OR \"school_id\" ILIKE \'%"
+                        scuola_filter_string += " OR \"scuola_id\" ILIKE \'%"
                     }
 
+                    scuola_filter_string += val + "%'"
                     filter_string += val + "%'"
                     return true;
                 })
             }
 
+
+
             lizMap.triggerLayerFilter("Studente", filter_string);
             lizMap.triggerLayerFilter("Percorso", filter_string);
-
+            console.log(scuola_filter_string);
+            lizMap.triggerLayerFilter("Scuola", scuola_filter_string);
 
             // Listen to the layer selector changes
             $('#liz-filter-layer-selector').change(function () {
