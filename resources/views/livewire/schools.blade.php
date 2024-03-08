@@ -3,11 +3,13 @@
     <div class="flex justify-between">
         <div></div>
         <div class="flex items-center">
-            <x-jet-button type="button" class="mt-9"
-                          wire:click="$emit('openModal', 'modals.upload-schools-import-modal')"
-            >
-                <i class="fa-solid fa-fw fa-file-excel mr-2"></i> Carica Excel scuole e sedi
-            </x-jet-button>
+            @can('admin')
+                <x-jet-button type="button" class="mt-9"
+                              wire:click="$emit('openModal', 'modals.upload-schools-import-modal')"
+                >
+                    <i class="fa-solid fa-fw fa-file-excel mr-2"></i> Carica Excel scuole e sedi
+                </x-jet-button>
+            @endcan
         </div>
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-9  ">

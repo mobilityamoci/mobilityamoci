@@ -137,11 +137,7 @@ class Students extends Component
     public function mount()
     {
         $this->user = \Auth::user();
-        if ($this->user->can('all_schools')) {
-            $this->schools = School::all();
-        } else {
-            $this->schools = $this->user->schools;
-        }
+        $this->schools = getUserSchools();
         $this->selectedSchoolId = $this->selectedSchoolId ?? optional($this->schools->first())->id;
         $this->selectedSectionId = $this->selectedSectionId ??  optional($this->sections->first())->id;
         $this->transports = Transport::all()->keyBy('id')->toArray();

@@ -65,3 +65,13 @@ function matchTransportNameToId(string $name)
     };
 
 }
+
+function getUserSchools($with = [], $withCount = [])
+{
+    $user = Auth::user();
+    if ($user->can('all_schools')) {
+        return  School::with($with)->withCount($withCount)->get();
+    } else {
+        return $user->schools()->with($with)->withCount($withCount)->get();
+    }
+}

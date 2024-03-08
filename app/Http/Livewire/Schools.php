@@ -19,7 +19,7 @@ class Schools extends Component
 
 
     public function mount() {
-        $this->schools = School::withCount('students','sections')->get()->toArray();
+        $this->schools = getUserSchools([], ['students','sections'])->toArray();
     }
 
 
