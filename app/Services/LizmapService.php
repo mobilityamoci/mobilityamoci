@@ -12,17 +12,25 @@ class LizmapService
 
     }
 
-    public function generateLizmapLink(User $user)
+    public function generateLizmapLink(User $user, iterable|null $schools = null)
     {
         $host = config('custom.lizmap.host');
+
+        if ($schools)
+            $schools = School::whereIn('id', $schools)->get();
+
         if ($user->hasAnyRole(['Admin', 'MMProvinciale'])) {
-            $schools = School::all();
+            if (!$schools)
+                $schools = School::all();
+
             $projectName = config('custom.lizmap.provinciale');
         } else if ($user->hasAnyRole(['MMScolastico', 'Insegnante'])) {
-            $schools = $user->schools;
+            if (!$schools)
+                $schools = $user->schools;
             $projectName = config('custom.lizmap.scolastico');
         } else {
-            $schools = null;
+            if (!$schools)
+                $schools = null;
             $projectName = null;
         }
 

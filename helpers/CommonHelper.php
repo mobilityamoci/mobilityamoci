@@ -66,7 +66,7 @@ function matchTransportNameToId(string $name)
 
 }
 
-function getUserSchools($with = [], $withCount = [])
+function getUserSchools($with = [], $withCount = []): Collection
 {
     $user = Auth::user();
     if ($user->can('all_schools')) {

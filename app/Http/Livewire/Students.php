@@ -185,7 +185,6 @@ class Students extends Component
 
     public function schoolChanged()
     {
-        $school = School::with('sections')->find($this->selectedSchoolId);
         $this->selectedSectionId = optional(optional($this->sections)->first())->id;
     }
 
