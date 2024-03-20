@@ -1320,7 +1320,7 @@ var lizLayerFilterTool = function () {
             lizMap.triggerLayerFilter("Auto", filter_string);
             lizMap.triggerLayerFilter("Piedi", filter_string);
             lizMap.triggerLayerFilter("Bicicletta", filter_string);
-            lizMap.triggerLayerFilter("Bus comunale", filter_string);
+            lizMap.triggerLayerFilter("Bus Comunale", filter_string);
             lizMap.triggerLayerFilter("Scuola", scuola_filter_string);
 
             // Listen to the layer selector changes
