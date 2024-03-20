@@ -1317,8 +1317,10 @@ var lizLayerFilterTool = function () {
 
 
             lizMap.triggerLayerFilter("Studente", filter_string);
-            lizMap.triggerLayerFilter("Percorso", filter_string);
-            console.log(scuola_filter_string);
+            lizMap.triggerLayerFilter("Auto", filter_string);
+            lizMap.triggerLayerFilter("Piedi", filter_string);
+            lizMap.triggerLayerFilter("Bicicletta", filter_string);
+            lizMap.triggerLayerFilter("Bus comunale", filter_string);
             lizMap.triggerLayerFilter("Scuola", scuola_filter_string);
 
             // Listen to the layer selector changes
