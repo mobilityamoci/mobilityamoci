@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Models\School;
 use Livewire\Component;
-use Ramsey\Collection\Collection;
 
 class Schools extends Component
 {
@@ -14,12 +13,13 @@ class Schools extends Component
     public $schools;
 
     protected $rules = [
-      'schools.*.name' => 'string|required'
+        'schools.*.name' => 'string|required'
     ];
 
 
-    public function mount() {
-        $this->schools = getUserSchools([], ['students','sections'])->toArray();
+    public function mount()
+    {
+        $this->schools = getUserSchools([], ['students', 'sections'])->toArray();
     }
 
 
@@ -49,5 +49,12 @@ class Schools extends Component
             optional(School::find($school['id']))->update($school);
 
         $this->editSchoolId = null;
+    }
+
+    public function goToSchoolStudents($index)
+    {
+        $school = $this->schools[$index] ?? NULL;
+        if ($school)
+            $this->redirectRoute('students', ['scuola' => $school['id']]);
     }
 }

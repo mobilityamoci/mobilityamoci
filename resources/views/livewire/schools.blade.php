@@ -44,26 +44,31 @@
                     <td class="my-th">{{$school['students_count']}}</td>
                     <td class="my-th">{{$school['sections_count']}}</td>
                     <td class="my-th">
-                        @if($editSchoolId == null || $editSchoolId != $index)
-                            <x-jet-secondary-button type="button"
-                                                    wire:click.prevent="$set('editSchoolId',{{$index}})">
-                                <i class="fa-solid fa-pen-to-square fa-fw mr-1"></i> Modifica Nome
-                            </x-jet-secondary-button>
-                            <x-jet-button type="button"
-                                          wire:click="$emit('openModal', 'sections', {{json_encode(['selectedSchoolId' => $school['id']])}})"
-                            >
-                                <i class="fa-solid fa-users-line fa-fw mr-1"></i> Sezioni
+                        @canany(['admin','school'])
+                            @if($editSchoolId == null || $editSchoolId != $index)
+                                <x-jet-secondary-button type="button"
+                                                        wire:click.prevent="$set('editSchoolId',{{$index}})">
+                                    <i class="fa-solid fa-pen-to-square fa-fw mr-1"></i> Modifica Nome
+                                </x-jet-secondary-button>
+                                <x-jet-button type="button"
+                                              wire:click="$emit('openModal', 'sections', {{json_encode(['selectedSchoolId' => $school['id']])}})"
+                                >
+                                    <i class="fa-solid fa-users-line fa-fw mr-1"></i> Sezioni
+                                </x-jet-button>
+                                <x-jet-button type="button"
+                                              wire:click="$emit('openModal', 'buildings', {{json_encode(['selectedSchoolId' => $school['id']])}})"
+                                >
+                                    <i class="fa-solid fa-school fa-fw mr-1"></i> Sedi
+                                </x-jet-button>
+                            @else
+                                <x-jet-secondary-button type="button" wire:click.prevent="saveSchool({{$index}})">
+                                    <i class="fa-solid fa-circle-check fa-fw mr-1"></i> Salva
+                                </x-jet-secondary-button>
+                            @endif
+                        @endcanany
+                            <x-jet-button type="button" wire:click.prevent="goToSchoolStudents({{$index}})">
+                                Vai A Studenti
                             </x-jet-button>
-                            <x-jet-button type="button"
-                                          wire:click="$emit('openModal', 'buildings', {{json_encode(['selectedSchoolId' => $school['id']])}})"
-                            >
-                                <i class="fa-solid fa-school fa-fw mr-1"></i> Sedi
-                            </x-jet-button>
-                        @else
-                            <x-jet-secondary-button type="button" wire:click.prevent="saveSchool({{$index}})">
-                                <i class="fa-solid fa-circle-check fa-fw mr-1"></i> Salva
-                            </x-jet-secondary-button>
-                        @endif
                     </td>
                 </tr>
             @endforeach

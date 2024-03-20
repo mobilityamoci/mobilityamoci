@@ -22,7 +22,7 @@ class LoginResponse implements LoginResponseContract
         {
             return redirect()->intended(route('users'));
         } else if ($user->hasAnyPermission(['all_schools','school','section'])) {
-            return redirect()->route('students');
+            return redirect()->route('schools');
         } else if ($user->hasPermissionTo('base')) {
             return redirect()->intended(route('single-student'));
         }
