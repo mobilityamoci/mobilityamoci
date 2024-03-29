@@ -9,30 +9,24 @@ use ArielMejiaDev\LarapexCharts\LarapexChart;
 use ArielMejiaDev\LarapexCharts\PieChart;
 use Illuminate\Database\Eloquent\Builder;
 
-class SchoolTypeOfTransportStudentChart
+class TypeOfTransportStudentChart
 {
-    protected $chart;
+    protected LarapexChart $chart;
     protected School $school;
-    protected $sections;
+    protected array $sections;
 
-    public function __construct(School $school, LarapexChart $chart)
+    public function __construct(School $school, LarapexChart $chart, array $sections = null)
     {
         $this->chart = $chart;
         $this->school = $school;
-        $this->sections = $this->school->sections->pluck('id')->toArray();
+        if ($sections)
+            $this->sections = $sections;
+        else
+            $this->sections = $this->school->sections->pluck('id')->toArray();
     }
 
     public function build(): PieChart
     {
-
-        $test = Student::whereIn('section_id', $this->sections)->whereHas('trip1', function (Builder $query) {
-            $query->where('transport_1', Transport::PIEDI);
-        })->count();
-
-        $test2 = Student::whereIn('section_id', $this->sections)->whereHas('trip1', function (Builder $query) {
-            $query->where('transport_1', Transport::BUS_COMUNALE);
-        })->count();
-
         return $this->chart->pieChart()
             ->setTitle('Mezzi usati dai ragazzi.')
             ->addData(
@@ -47,16 +41,11 @@ class SchoolTypeOfTransportStudentChart
                         $query->where('transport_1', Transport::BUS_COMUNALE);
                     })->count(),
                     Student::whereIn('section_id', $this->sections)->whereHas('trip1', function (Builder $query) {
-                        $query->where('transport_1', Transport::AUTO_3);
-                    })->count(),
-                    Student::whereIn('section_id', $this->sections)->whereHas('trip1', function (Builder $query) {
-                        $query->where('transport_1', Transport::AUTO_2);
-                    })->count(),
-                    Student::whereIn('section_id', $this->sections)->whereHas('trip1', function (Builder $query) {
                         $query->where('transport_1', Transport::AUTO);
-                    })->count()
+                    })->count(),
                 ]
             )
-            ->setLabels(['A Piedi', 'In Bici', 'Bus Comunale','Auto Condivisa 3+', 'Auto condivisa','Auto' ]);
+            ->setColors(['#13B647','#A6CEE3','#CD4EFF','#DF2238'])
+            ->setLabels(['A Piedi', 'In Bici', 'Bus Comunale', 'Auto']);
     }
 }

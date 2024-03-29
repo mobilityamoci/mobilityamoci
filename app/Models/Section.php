@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\Student;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class Section extends Model
 {
-    use HasFactory;
+    use HasRelationships;
 
     protected $guarded = ['id', 'created_at','updated_at'];
 
@@ -49,5 +48,16 @@ class Section extends Model
     public function building()
     {
         return $this->belongsTo(Building::class);
+    }
+
+    public function trips()
+    {
+        return $this->hasManyDeepFromRelations($this->students(), (new Student())->trips());
+    }
+
+    public function geometry_lines()
+    {
+        return $this->hasManyDeepFromRelations($this->trips(), (new Trip())->geometryLine());
+
     }
 }

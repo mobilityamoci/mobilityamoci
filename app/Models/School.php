@@ -6,9 +6,12 @@ use App\Http\Livewire\Students;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class School extends Model
 {
+
+    use HasRelationships;
 
     protected $guarded = ['id', 'created_at','updated_at'];
 
@@ -36,5 +39,10 @@ class School extends Model
     {
         return $this->morphToMany(User::class, 'associable','associables')
             ->whereNull('accepted_at');
+    }
+
+    public function trips()
+    {
+        return $this->hasManyDeepFromRelations($this->students(), (new Student())->trips());
     }
 }

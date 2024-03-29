@@ -41,7 +41,34 @@ class LizmapService
         }
 
         return $host . '/view/embed?repository=' . $projectName . '&project=' . $projectName . $filter;
-
-
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

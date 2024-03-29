@@ -28,4 +28,5 @@ class Transport extends Model
     {
         return $this->hasMany(Trip::class);
     }
+
 }

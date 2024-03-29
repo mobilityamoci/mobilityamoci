@@ -4,7 +4,9 @@ namespace App\Services;
 
 use App\Models\Building;
 use App\Models\School;
+use App\Models\Section;
 use App\Models\Student;
+use App\Models\Transport;
 use App\Models\Trip;
 use Clickbar\Magellan\Data\Geometries\Point;
 use Clickbar\Magellan\IO\Generator\WKB\WKBGenerator;
@@ -382,6 +384,138 @@ cross join lateral (
                 ]
             );
         }
+    }
+
+    public static function calculatePollutionAndCaloriesForSection(Section $section)
+    {
+        $trips = $section->trips;
+
+        return self::calculatePollutionAndCaloriesForTripsSum($trips);
+    }
+
+    public static function calculatePollutionAndCaloriesForSchool(School $school)
+    {
+        $trips = $school->trips;
+
+        return self::calculatePollutionAndCaloriesForTripsSum($trips);
+    }
+
+    /**
+     * @param mixed $trips
+     * @return float[]
+     */
+    private static function calculatePollutionAndCaloriesForTripsSum(mixed $trips): array
+    {
+        if (count($trips) > 0) {
+
+            $tripsIds = $trips->pluck('id')->toArray();
+            $placeholder = '(' . rtrim(str_repeat('?,', count($tripsIds)), ',') . ')';
+
+
+            $resPol = DB::select(DB::raw("select round(sum(ST_Length(gl.line)::numeric),2)
+                                        from trips t
+                                        join geometry_lines gl on gl.lineable_type = 'App\Models\Trip' and gl.lineable_id = t.id
+                                        where t.id in $placeholder and t.transport_1 = ?"), array_merge($tripsIds, [Transport::AUTO]));
+
+            $resPiedi = DB::select(DB::raw("select round(sum(ST_Length(gl.line)::numeric),2)
+                                        from trips t
+                                        join geometry_lines gl on gl.lineable_type = 'App\Models\Trip' and gl.lineable_id = t.id
+                                        where t.id in $placeholder and t.transport_1 = ?"), array_merge($tripsIds, [Transport::PIEDI]));
+            $resBici = DB::select(DB::raw("select round(sum(ST_Length(gl.line)::numeric),2)
+                                        from trips t
+                                        join geometry_lines gl on gl.lineable_type = 'App\Models\Trip' and gl.lineable_id = t.id
+                                        where t.id in $placeholder and t.transport_1 = ?"), array_merge($tripsIds, [Transport::BICICLETTA]));
+
+            if ($resPol && isset($resPol[0])) {
+                $distance = $resPol[0]->round;
+            } else {
+                $distance = 0;
+            }
+
+            if ($resPiedi && isset($resPiedi[0])) {
+                $distancePiedi = $resPiedi[0]->round;
+            } else {
+                $distancePiedi = 0;
+            }
+
+            if ($resBici && isset($resBici[0])) {
+                $distanceBici = $resBici[0]->round;
+            } else {
+                $distanceBici = 0;
+            }
+
+
+            return [
+                'carburante' => round($distance * 0.0000869, 2),
+                'co2' => round($distance * 0.1630846, 2),
+                'co' => round($distance * 0.0007853, 2),
+                'nox' => round($distance * 0.0004256, 2),
+                'pm10' => round($distance * 0.0000297, 2),
+                'kcal_piedi' => round($distancePiedi * 0.0225, 2),
+                'kcal_bici' => round($distanceBici * 0.0075, 2),
+            ];
+        }
+        return [
+            'carburante' => 0,
+            'co2' => 0,
+            'co' => 0,
+            'nox' => 0,
+            'pm10' => 0,
+            'kcal_piedi' => 0,
+            'kcal_bici' => 0,
+        ];
+    }
+
+    public static function calculatePollutionAndCaloriesForTrips(mixed $trips)
+    {
+        if (count($trips) > 0) {
+
+            $tripsIds = $trips->pluck('id')->toArray();
+            $placeholder = '(' . rtrim(str_repeat('?,', count($tripsIds)), ',') . ')';
+
+
+            $res = collect(DB::select(DB::raw("select
+	                                        	round(ST_Length(gl.line)::numeric,
+	                                        	2) as distance,
+	                                        	t.transport_1 as transport_id,
+	                                        	trans.name as transport_name
+	                                        from
+	                                        	trips t
+	                                        join geometry_lines gl on
+	                                        	gl.lineable_type = 'App\Models\Trip'
+	                                        	and gl.lineable_id = t.id
+	                                        	join transports trans on
+	                                        	t.transport_1 = trans.id
+	                                        where
+	                                        	t.id in $placeholder"), array_merge($tripsIds)));
+
+            foreach ($res as $trip) {
+                if ($trip->transport_id == Transport::AUTO) {
+                    $trip->carburante = round($trip->distance * 0.0000869, 2);
+                    $trip->co2 = round($trip->distance * 0.1630846, 2);
+                    $trip->co = round($trip->distance * 0.0007853, 2);
+                    $trip->nox = round($trip->distance * 0.0004256, 2);
+                    $trip->pm10 = round($trip->distance * 0.0000297, 2);
+                    $trip->kcal = 0;
+                } else if ($trip->transport_id == Transport::BICICLETTA || $trip->transport_id == Transport::PIEDI) {
+                    $trip->carburante = 0;
+                    $trip->co2 = 0;
+                    $trip->co = 0;
+                    $trip->nox = 0;
+                    $trip->pm10 = 0;
+                    $trip->kcal = $trip->transport_id == Transport::BICICLETTA ? round($trip->distance * 0.0075, 2) : round($trip->distance * 0.0225, 2);
+                } else {
+                    $trip->carburante = 0;
+                    $trip->co2 = 0;
+                    $trip->co = 0;
+                    $trip->nox = 0;
+                    $trip->pm10 = 0;
+                    $trip->kcal = 0;
+                }
+            }
+            return $res;
+        }
+        return null;
     }
 
 
