@@ -19,7 +19,7 @@ class Schools extends Component
 
     public function mount()
     {
-        $this->schools = getUserSchools([], ['students', 'sections'])->toArray();
+        $this->schools = getUserSchools(false, [], ['students', 'sections'])->toArray();
     }
 
 
