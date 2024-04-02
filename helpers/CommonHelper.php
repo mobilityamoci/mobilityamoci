@@ -55,7 +55,7 @@ function matchTransportNameToId(string $name)
 {
     return match (true) {
         Str::contains(Str::lower($name), ['bus', 'bus comunale', 'autobus', 'pullman', 'pulman', 'autobus comunale']) => Transport::BUS_COMUNALE,
-        Str::contains(Str::lower($name), ['macchina', 'auto', 'automobile', 'moto', 'motocicletta', 'motorino', 'scooter']) => Transport::AUTO,
+        Str::contains(Str::lower($name), ['in macchina', 'macchina', 'auto', 'automobile', 'moto', 'motocicletta', 'motorino', 'scooter']) => Transport::AUTO,
         Str::contains(Str::lower($name), 'auto collettiva (2 studenti)') => Transport::AUTO_2,
         Str::contains(Str::lower($name), 'auto collettiva (3+ studenti)') => Transport::AUTO_3,
         Str::contains(Str::lower($name), ['piedi', 'a piedi']) => Transport::PIEDI,
