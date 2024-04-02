@@ -43,11 +43,7 @@ class SectionsSchoolImportModal extends ModalComponent
         try {
             $this->alert('success', 'Inizio caricamento!');
             $import = (new SectionsSchoolImport($this->selectedSchoolId))->import($this->importFile);
-            $this->importErrors = $import->errors();
-            $this->importFailures = $import->failures();
-            if ($this->importErrors->isEmpty() && $this->importFailures->isEmpty()) {
-                $this->emit('closeModal');
-            }
+            $this->emit('closeModal');
         } catch (\Exception $exception) {
             \Log::error($exception);
             $this->alert('error', 'File con formato sbagliato!');
