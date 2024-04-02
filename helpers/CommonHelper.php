@@ -72,11 +72,11 @@ function getUserSchools($onlyPopulated = false, $with = [], $withCount = []): Co
     if ($user->can('all_schools')) {
         $q = School::with($with)->withCount($withCount);
         if ($onlyPopulated)
-            $q->whereHas('students');
+            $q->whereHas('sections');
     } else {
         $q = $user->schools()->with($with)->withCount($withCount);
         if ($onlyPopulated)
-            $q->whereHas('students');
+            $q->whereHas('sections');
     }
     return $q->get();
 }
