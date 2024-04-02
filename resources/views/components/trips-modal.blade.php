@@ -50,7 +50,7 @@
                             @if($editTripIndex === $trip['id'])
                                 <td class="my-th">
                                     <x-select
-                                        wire:model="students.{{$editStudentIndex}}.trips.{{$index}}.transport_1"
+                                        wire:model.defer="students.{{$editStudentIndex}}.trips.{{$index}}.transport_1"
                                         for="students.{{$editStudentIndex}}.trips.{{$index}}.transport_1">
                                         <option selected value="">--------------------</option>
                                         @foreach($this->transports as $transport)
@@ -61,7 +61,7 @@
                                 </td>
                                 <td class="my-th">
                                     <x-select
-                                        wire:model="students.{{$editStudentIndex}}.trips.{{$index}}.town_istat"
+                                        wire:model.defer="students.{{$editStudentIndex}}.trips.{{$index}}.town_istat"
                                         for="students.{{$editStudentIndex}}.trip3.{{$index}}.town_istat">
                                         <option selected value="{{null}}">Scuola</option>
                                         @foreach($this->comuni as $key => $comune)
@@ -72,7 +72,7 @@
                                 </td>
                                 <td class="my-th">
                                     <x-jet-input
-                                        wire:model="students.{{$editStudentIndex}}.trips.{{$index}}.address"></x-jet-input>
+                                        wire:model.defer="students.{{$editStudentIndex}}.trips.{{$index}}.address"></x-jet-input>
                                 </td>
 
                                 {{--                                <td class="my-th">--}}
