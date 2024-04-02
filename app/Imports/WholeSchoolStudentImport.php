@@ -75,12 +75,13 @@ class WholeSchoolStudentImport implements ToCollection, WithValidation, WithHead
                 if (isset($row['1_mezzo'])) {
                     $trans_1 = matchTransportNameToId($row['1_mezzo']);
 
-                    if (isset($row['1_comune_di_scalo']) && strtolower($row['1_comune_di_scalo']) == strtolower('scuola')) {
-                        $comune_scalo = $section->building->town_istat;
-                        $indirizzo = $section->building->address;
-                    } else {
+                    if (!(isset($row['1_comune_di_scalo']) && strtolower($row['1_comune_di_scalo']) == strtolower('scuola'))) {
                         $indirizzo = isset($row['1_comune_indirizzo']) ? getComuneByName($row['1_comune_indirizzo']) : NULL;
                         $comune_scalo = isset($row['1_comune_di_scalo']) ? getComuneByName($row['1_comune_di_scalo']) : NULL;
+
+                    } else {
+                        $comune_scalo = $section->building->town_istat;
+                        $indirizzo = $section->building->address;
                     }
 
                     $student->trips()->create([
