@@ -137,7 +137,6 @@ class WholeSchoolStudentImport implements ToCollection, WithValidation, WithHead
     public function rules(): array
     {
         return [
-            'sezione' => Rule::exists('sections', 'name'),
             'comune_di_residenza' => 'required|string'
         ];
     }
