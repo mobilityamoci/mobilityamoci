@@ -20,7 +20,7 @@ class ShowMappa extends Component
 
     public function mount()
     {
-        $this->schools = getUserSchools();
+        $this->schools = getUserSchools(true);
     }
 
     public function getLizmapLinkProperty()

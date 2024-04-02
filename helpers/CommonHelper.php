@@ -56,22 +56,27 @@ function matchTransportNameToId(string $name)
     return match (true) {
         Str::contains(Str::lower($name), ['bus', 'bus comunale', 'autobus', 'pullman', 'pulman', 'autobus comunale']) => Transport::BUS_COMUNALE,
         Str::contains(Str::lower($name), ['macchina', 'auto', 'automobile', 'moto', 'motocicletta', 'motorino', 'scooter']) => Transport::AUTO,
-        Str::contains(Str::lower($name),'auto collettiva (2 studenti)') => Transport::AUTO_2,
-        Str::contains(Str::lower($name),'auto collettiva (3+ studenti)') => Transport::AUTO_3,
-        Str::contains(Str::lower($name),['piedi', 'a piedi']) => Transport::PIEDI,
-        Str::contains(Str::lower($name),['bici', 'bicicletta']) => Transport::BICICLETTA,
-        Str::contains(Str::lower($name),'treno') => Transport::TRENO,
+        Str::contains(Str::lower($name), 'auto collettiva (2 studenti)') => Transport::AUTO_2,
+        Str::contains(Str::lower($name), 'auto collettiva (3+ studenti)') => Transport::AUTO_3,
+        Str::contains(Str::lower($name), ['piedi', 'a piedi']) => Transport::PIEDI,
+        Str::contains(Str::lower($name), ['bici', 'bicicletta']) => Transport::BICICLETTA,
+        Str::contains(Str::lower($name), 'treno') => Transport::TRENO,
         default => Transport::AUTO //OPINABILE
     };
 
 }
 
-function getUserSchools($with = [], $withCount = []): Collection
+function getUserSchools($onlyPopulated = false, $with = [], $withCount = []): Collection
 {
     $user = Auth::user();
     if ($user->can('all_schools')) {
-        return  School::with($with)->withCount($withCount)->get();
+        $q = School::with($with)->withCount($withCount);
+        if ($onlyPopulated)
+            $q->whereHas('students');
     } else {
-        return $user->schools()->with($with)->withCount($withCount)->get();
+        $q = $user->schools()->with($with)->withCount($withCount);
+        if ($onlyPopulated)
+            $q->whereHas('students');
     }
+    return $q->get();
 }

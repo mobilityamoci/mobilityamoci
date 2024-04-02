@@ -48,11 +48,7 @@ class ShowGraphs extends Component
     public function mount()
     {
         $this->user = \Auth::user();
-        if ($this->user->can('all_schools')) {
-            $this->schools = School::all();
-        } else {
-            $this->schools = $this->user->schools;
-        }
+        $this->schools = getUserSchools(true);
         $this->selectedSchoolId = $this->selectedSchoolId ?? optional($this->schools->first())->id;
         $this->selectedSectionId = $this->selectedSectionId ?? 0;
         $this->transports = Transport::all()->keyBy('id')->toArray();
