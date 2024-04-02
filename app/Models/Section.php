@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class Section extends Model
@@ -11,6 +12,13 @@ class Section extends Model
 
     protected $guarded = ['id', 'created_at','updated_at'];
 
+
+    protected static function boot() {
+        parent::boot();
+        static::addGlobalScope('order', function (Builder $builder) {
+            $builder->orderBy('name');
+        });
+    }
     public function students()
     {
         return $this->hasMany(Student::class);
