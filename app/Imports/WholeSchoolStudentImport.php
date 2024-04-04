@@ -6,7 +6,6 @@ use App\Models\Section;
 use App\Models\Student;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
@@ -75,14 +74,14 @@ class WholeSchoolStudentImport implements ToCollection, WithValidation, WithHead
                 if (isset($row['1_mezzo'])) {
                     $trans_1 = matchTransportNameToId($row['1_mezzo']);
 
-                    if (!(isset($row['1_comune_di_scalo']) && strtolower($row['1_comune_di_scalo']) == strtolower('scuola'))) {
+                    if (!is_null($row['1_comune_di_scalo']) && strtolower($row['1_comune_di_scalo']) != 'scuola') {
                         $indirizzo = isset($row['1_comune_indirizzo']) ? getComuneByName($row['1_comune_indirizzo']) : NULL;
                         $comune_scalo = isset($row['1_comune_di_scalo']) ? getComuneByName($row['1_comune_di_scalo']) : NULL;
-
                     } else {
                         $comune_scalo = $section->building->town_istat;
                         $indirizzo = $section->building->address;
                     }
+
 
                     $student->trips()->create([
                         'order' => 1,
@@ -95,12 +94,12 @@ class WholeSchoolStudentImport implements ToCollection, WithValidation, WithHead
                 if (isset($row['2_mezzo'])) {
                     $trans_1 = matchTransportNameToId($row['2_mezzo']);
 
-                    if (isset($row['2_comune_di_scalo']) && strtolower($row['2_comune_di_scalo']) == strtolower('scuola')) {
-                        $comune_scalo = $section->building->town_istat;
-                        $indirizzo = $section->building->address;
-                    } else {
+                    if (!is_null($row['2_comune_di_scalo']) && strtolower($row['2_comune_di_scalo']) != 'scuola') {
                         $indirizzo = isset($row['2_comune_di_scalo']) ? getComuneByName($row['2_comune_di_scalo']) : NULL;
                         $comune_scalo = isset($row['2_comune_di_scalo']) ? getComuneByName($row['2_comune_di_scalo']) : NULL;
+                    } else {
+                        $comune_scalo = $section->building->town_istat;
+                        $indirizzo = $section->building->address;
                     }
 
 
@@ -115,12 +114,12 @@ class WholeSchoolStudentImport implements ToCollection, WithValidation, WithHead
                 if (isset($row['3_mezzo'])) {
                     $trans_1 = matchTransportNameToId($row['3_mezzo']);
 
-                    if (isset($row['3_comune_di_scalo']) && strtolower($row['3_comune_di_scalo']) == strtolower('scuola')) {
-                        $comune_scalo = $section->building->town_istat;
-                        $indirizzo = $section->building->address;
-                    } else {
+                    if (!is_null($row['3_comune_di_scalo']) && strtolower($row['3_comune_di_scalo']) != 'scuola') {
                         $indirizzo = isset($row['3_comune_di_scalo']) ? getComuneByName($row['3_comune_di_scalo']) : NULL;
                         $comune_scalo = isset($row['3_comune_di_scalo']) ? getComuneByName($row['3_comune_di_scalo']) : NULL;
+                    } else {
+                        $comune_scalo = $section->building->town_istat;
+                        $indirizzo = $section->building->address;
                     }
 
                     $student->trips()->create([
