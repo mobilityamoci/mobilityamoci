@@ -48,25 +48,26 @@ class QgisService
 
     public static function createLineOfTrip(Trip $trip)
     {
-        if ($trip->order == 1) {
-            $georefable_id1 = $trip->student->id;
-            $georefable_type1 = Student::class;
-            $georefable_id2 = $trip->id;
-            $georefable_type2 = Trip::class;
-        } else if ($trip->order == 2) {
-            $georefable_id1 = $trip->previousTrip->id;
-            $georefable_type1 = Trip::class;
-            $georefable_id2 = $trip->id;
-            $georefable_type2 = Trip::class;
-        } else {
-            $georefable_id1 = $trip->previousTrip->id;
-            $georefable_type1 = Trip::class;
-            $georefable_id2 = $trip->student->school->id;
-            $georefable_type2 = School::class;
-        }
-        if ($trip->hasMezzoPrivato()) {
+        try {
+            if ($trip->order == 1) {
+                $georefable_id1 = $trip->student->id;
+                $georefable_type1 = Student::class;
+                $georefable_id2 = $trip->id;
+                $georefable_type2 = Trip::class;
+            } else if ($trip->order == 2) {
+                $georefable_id1 = $trip->previousTrip->id;
+                $georefable_type1 = Trip::class;
+                $georefable_id2 = $trip->id;
+                $georefable_type2 = Trip::class;
+            } else {
+                $georefable_id1 = $trip->previousTrip->id;
+                $georefable_type1 = Trip::class;
+                $georefable_id2 = $trip->student->school->id;
+                $georefable_type2 = School::class;
+            }
+            if ($trip->hasMezzoPrivato()) {
 
-            $result = DB::select(DB::raw("SELECT
+                $result = DB::select(DB::raw("SELECT
     ST_LineMerge(ST_Union(arr.array)) as line
 FROM
     (
@@ -118,8 +119,8 @@ FROM
             )
         ) AS arr"), [$georefable_type1, $georefable_id1, $georefable_type2, $georefable_id2])[0];
 
-        } else {
-            $result = DB::select(DB::raw("select
+            } else {
+                $result = DB::select(DB::raw("select
 	(
 	select
 		ST_LineMerge(ST_Union(dijkstra.array)) as line
@@ -233,9 +234,9 @@ cross join lateral (
 	limit 1
 ) as end_shape;
 "), [$georefable_type1, $georefable_id1, $georefable_type2, $georefable_id2])[0] ?? null;
-        }
+            }
 
-        try {
+
             if (!is_null($result) && !is_null($result->line))
                 $trip->geometryLine()->updateOrCreate([
                     'lineable_id' => $trip->id,
