@@ -41,11 +41,13 @@ class QgisService
 
     public static function georefTrip(Trip $trip)
     {
-        [$point, $address_request] = self::getGeomPoint($trip->address, $trip->town_istat);
+        if ($trip->student->town_istat) {
+            [$point, $address_request] = self::getGeomPoint($trip->address, $trip->town_istat);
 
-        self::updateOrCreateGeometryPoint($point, $trip, $address_request);
-        if (!is_null($point)) {
-            self::createLineOfTrip($trip);
+            self::updateOrCreateGeometryPoint($point, $trip, $address_request);
+            if (!is_null($point)) {
+                self::createLineOfTrip($trip);
+            }
         }
     }
 

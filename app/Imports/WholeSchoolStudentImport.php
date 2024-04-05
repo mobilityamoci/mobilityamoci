@@ -70,11 +70,10 @@ class WholeSchoolStudentImport implements ToCollection, WithValidation, WithHead
                     'surname' => $row['cognome'] ?? NULL,
                     'town_istat' => $residenza_town_istat ?? NULL,
                     'section_id' => $section->id,
-                    'address' => $address . $row['indirizzo_residenza'] ?? NULL
+                    'address' => $address . $row['indirizzo_residenza'] ?? NULL,
+                    'town_name' => $comune_residenza
                 ]);
 
-                if (!$residenza_town_istat)
-                    continue;
 
                 if (isset($row['1_mezzo'])) {
                     $trans_1 = matchTransportNameToId($row['1_mezzo']);
