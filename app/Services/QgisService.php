@@ -24,9 +24,12 @@ class QgisService
 
     public static function georefStudent(Student $student)
     {
-        [$point, $address_request] = self::getGeomPoint($student->address, $student->town_istat);
+        if ($student->town_istat) {
 
-        self::updateOrCreateGeometryPoint($point, $student, $address_request);
+            [$point, $address_request] = self::getGeomPoint($student->address, $student->town_istat);
+
+            self::updateOrCreateGeometryPoint($point, $student, $address_request);
+        }
     }
 
     public static function georefBuilding(Building $building)
@@ -255,7 +258,7 @@ cross join lateral (
     {
         set_time_limit(0);
         /* @var Point $geom */
-        $limit = DB::connection('basi_carto')->selectOne('SELECT geom from limiti_pc where cod_istat = ?', [$town_istat]);
+        $limit = DB::connection('basi_carto')->selectOne('SELECT geom from limiti_comuni where cod_istat = ?', [$town_istat]);
         if (!is_null($limit)) {
             $multipolygon = geoPHP::load($limit->geom);
             $polygon = $multipolygon->components[0];

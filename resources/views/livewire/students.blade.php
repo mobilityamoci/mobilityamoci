@@ -136,6 +136,7 @@
                             <tr @class([
                                         'bg-red-200' => is_null($student['geom_address']),
                                         'bg-white' => !is_null($student['geom_address']),
+                                        'bg-yellow-200' => is_null($student['trips']),
 
                                         'font-bold' => is_null($student['geom_address']),])
                                 wire:key="{{$index}}">

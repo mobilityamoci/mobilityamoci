@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comune extends Model
 {
-    protected $table = 'limiti_pc';
+    protected $table = 'limiti_comuni';
     protected $connection = 'basi_carto';
 
 

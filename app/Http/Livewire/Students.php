@@ -86,7 +86,6 @@ class Students extends Component
 
     public function render()
     {
-
         if ($this->selectedSectionId) {
             $section = Section::with('students', 'students.user')->where('id',$this->selectedSectionId)->where('school_id', $this->selectedSchoolId)->firstOr(function () {
                 $this->selectedSectionId = $this->sections->first(function ($section) {

@@ -41,7 +41,7 @@ function getComuneByName($name)
     if ($residenza_town_istat)
         return $residenza_town_istat;
 
-    return config('custom.geo.piacenza_istat');
+    return null;
 
 }
 

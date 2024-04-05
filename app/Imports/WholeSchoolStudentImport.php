@@ -4,6 +4,8 @@ namespace App\Imports;
 
 use App\Models\Section;
 use App\Models\Student;
+use App\Models\Transport;
+use Hamcrest\Arrays\IsArray;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\Importable;
@@ -87,7 +89,8 @@ class WholeSchoolStudentImport implements ToCollection, WithValidation, WithHead
                         'order' => 1,
                         'transport_1' => $trans_1,
                         'town_istat' => $comune_scalo,
-                        'address' => $indirizzo
+                        'address' => $indirizzo,
+                        'is_public_transportation' => in_array($trans_1, Transport::MEZZI_PUBBLICI)
                     ]);
                 }
 
@@ -107,7 +110,8 @@ class WholeSchoolStudentImport implements ToCollection, WithValidation, WithHead
                         'order' => 2,
                         'transport_1' => $trans_1,
                         'town_istat' => $comune_scalo,
-                        'address' => $indirizzo
+                        'address' => $indirizzo,
+                        'is_public_transportation' => in_array($trans_1, Transport::MEZZI_PUBBLICI)
                     ]);
                 }
 
@@ -126,7 +130,8 @@ class WholeSchoolStudentImport implements ToCollection, WithValidation, WithHead
                         'order' => 3,
                         'transport_1' => $trans_1,
                         'town_istat' => $comune_scalo,
-                        'address' => $indirizzo
+                        'address' => $indirizzo,
+                        'is_public_transportation' => in_array($trans_1, Transport::MEZZI_PUBBLICI)
                     ]);
                 }
             }

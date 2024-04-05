@@ -18,7 +18,7 @@ class Transport extends Model
     public const AUTO_3  = 6;
     public const TRENO = 7;
 
-    public const MEZZI_PUBBLICI = [self::BUS_COMUNALE];
+    public const MEZZI_PUBBLICI = [self::BUS_COMUNALE, self::TRENO];
 
     public const MEZZI_PRIVATI = [self::PIEDI, self::BICICLETTA, self::AUTO, self::AUTO_2, self::AUTO_3];
 
