@@ -31,7 +31,7 @@ class PollutionStudentGraph
         else
             $arr = QgisService::calculatePollutionAndCaloriesForSchool($this->school);
         return $this->chart->barChart()
-            ->setTitle('Inquinanti')
+            ->setTitle('Inquinanti (g/anno)')
             ->addData('Inquinanti',[$arr['carburante'], $arr['co2'],$arr['co'],$arr['nox'],$arr['pm10']])
             ->setGrid()
             ->setLabels(['Carburante','CO2', 'CO','NOX','PM10']);

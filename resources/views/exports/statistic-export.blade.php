@@ -3,12 +3,12 @@
     <tr>
         <th>Mezzo di trasporto</th>
         <th>Distanza (in metri)</th>
-        <th>Carburante</th>
-        <th>CO2</th>
-        <th>CO</th>
-        <th>NOX</th>
-        <th>PM10</th>
-        <th>KCal</th>
+        <th>Carburante (g/anno)</th>
+        <th>CO2 (g/anno)</th>
+        <th>CO (g/anno)</th>
+        <th>NOX (g/anno)</th>
+        <th>PM10 (g/anno)</th>
+        <th>KCal (KCal/anno)</th>
     </tr>
     </thead>
     <tbody>

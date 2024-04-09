@@ -32,7 +32,7 @@ class CaloriesStudentGraph
             $arr = QgisService::calculatePollutionAndCaloriesForSchool($this->school);
 
         return $this->chart->barChart()
-            ->setTitle('Calorie')
+            ->setTitle('Calorie (KCal/anno)')
             ->addData('', [$arr['kcal_piedi'], $arr['kcal_bici']])
             ->setColors(['#00E396'])
             ->setGrid()
