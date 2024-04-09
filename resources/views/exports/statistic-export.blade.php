@@ -2,7 +2,7 @@
     <thead>
     <tr>
         <th>Mezzo di trasporto</th>
-        <th>Distanza (in metri)</th>
+        <th>Distanza (in km)</th>
         <th>Carburante (g/anno)</th>
         <th>CO2 (g/anno)</th>
         <th>CO (g/anno)</th>
@@ -16,7 +16,7 @@
         @forelse($res as $trip)
             <tr>
                 <td>{{$trip->transport_name}}</td>
-                <td>{{$trip->distance}}</td>
+                <td>{{$trip->distance / 1000}}</td>
                 <td>{{$trip->carburante}}</td>
                 <td>{{$trip->co2}}</td>
                 <td>{{$trip->co}}</td>
