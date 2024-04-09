@@ -16,7 +16,7 @@
         @forelse($res as $trip)
             <tr>
                 <td>{{$trip->transport_name}}</td>
-                <td>{{$trip->distance / 1000}}</td>
+                <td>{{number_format($trip->distance / 1000,2)}}</td>
                 <td>{{$trip->carburante}}</td>
                 <td>{{$trip->co2}}</td>
                 <td>{{$trip->co}}</td>
