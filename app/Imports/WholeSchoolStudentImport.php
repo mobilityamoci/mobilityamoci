@@ -57,10 +57,11 @@ class WholeSchoolStudentImport implements ToCollection, WithValidation, WithHead
                 $comune_residenza = ucwords(strtolower($row['comune_di_residenza'])) ?? NULL;
                 if (!is_null($comune_residenza)) {
                     $residenza_town_istat = getComuneByName($comune_residenza);
+                } else {
+                    continue;
                 }
                 $address = '';
-                if (is_null($residenza_town_istat)) {
-                    $residenza_town_istat = config('custom.geo.piacenza_istat');
+                if (!$residenza_town_istat) {
                     $address = $comune_residenza . ' ';
                 }
 

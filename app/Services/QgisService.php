@@ -9,6 +9,7 @@ use App\Models\Student;
 use App\Models\Transport;
 use App\Models\Trip;
 use Clickbar\Magellan\Data\Geometries\Point;
+use Clickbar\Magellan\Database\PostgisFunctions\ST;
 use Clickbar\Magellan\IO\Generator\WKB\WKBGenerator;
 use DB;
 use geoPHP;
@@ -25,7 +26,6 @@ class QgisService
     public static function georefStudent(Student $student)
     {
         if ($student->town_istat) {
-
             [$point, $address_request] = self::getGeomPoint($student->address, $student->town_istat);
 
             self::updateOrCreateGeometryPoint($point, $student, $address_request);
@@ -260,11 +260,10 @@ cross join lateral (
     {
         set_time_limit(0);
         /* @var Point $geom */
-        $limit = DB::connection('basi_carto')->selectOne('SELECT geom from limiti_comuni where cod_istat = ?', [$town_istat]);
+        $limit = DB::selectOne('SELECT ST_Transform(lc.geom, 4326) as geom from basi_carto.limiti_comuni lc where lc.cod_istat = ?', [$town_istat]);
         if (!is_null($limit)) {
             $multipolygon = geoPHP::load($limit->geom);
             $polygon = $multipolygon->components[0];
-            $polygon->setSRID("32632");
         } else
             $polygon = false;
 
@@ -279,7 +278,6 @@ cross join lateral (
             if ($polygon && $polygon->pointInPolygon($point))
                 return [$geom, $address_res];
         }
-
         $address = str_ireplace(['località', 'localita', 'piazza', 'strada', 'stradone', 'corso', 'vicolo', 'lungarno', 'viale',
             'rione', 'contrada', 'colletta', 'salita', 'traversa', 'rampa', 'bastioni', 'piazzetta', 'chiasso', 'frazione', 'quartiere',
             'rotonda', 'vico', 'stradone', 'loc', 'largo'], '', $address);
@@ -324,9 +322,10 @@ cross join lateral (
         if (isset($res[0]['lon']) && isset($res[0]['lat'])) {
             $address = $res[0]['address']['road'] ?? '';
             $address .= ' ' . ($res[0]['address']['house_number'] ?? '');
-            $address .= ' ,' . ($res[0]['address']['county'] ?? '');
+            $address .= ' ,' . ($res[0]['address']['village'] ?? '');
             $lon = $res[0]['lon'];
             $lat = $res[0]['lat'];
+
             return [Point::makeGeodetic($lat, $lon), $address];
         }
 

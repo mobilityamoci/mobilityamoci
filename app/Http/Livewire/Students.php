@@ -99,7 +99,7 @@ class Students extends Component
             $students = $students->map(function ($item) {
                 $item['has_user'] = !is_null($item->user_id);
 
-                if ($item->trips->isNotEmpty()) {
+                if ($item->trips->isNotEmpty() && $item->town_istat) {
                     $string = '1) Da <b>' . $this->comuni[$item->town_istat]  . ' (' . $item->address . ')</b> in ';
                     $i = 0;
 

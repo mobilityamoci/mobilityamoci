@@ -36,7 +36,7 @@ function getComuneByName($name)
     if ($residenza_town_istat)
         return $residenza_town_istat;
 
-    $residenza_town_istat = array_search(soundex($name), $comuni->pluck('soundex', 'cod_istat')->toArray());
+    $residenza_town_istat = array_search(soundex($name), $comuni->pluck('labelSoundex', 'cod_istat')->toArray());
 
     if ($residenza_town_istat)
         return $residenza_town_istat;
