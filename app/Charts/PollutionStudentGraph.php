@@ -30,10 +30,16 @@ class PollutionStudentGraph
             $arr = QgisService::calculatePollutionAndCaloriesForSection($this->section);
         else
             $arr = QgisService::calculatePollutionAndCaloriesForSchool($this->school);
+
         return $this->chart->barChart()
-            ->setTitle('Inquinanti (g/anno)')
+            ->setTitle('Inquinanti')
             ->addData('Inquinanti',[$arr['carburante'], $arr['co2'],$arr['co'],$arr['nox'],$arr['pm10']])
             ->setGrid()
-            ->setLabels(['Carburante','CO2', 'CO','NOX','PM10']);
+            ->setOptions(['yaxis' => ['logarithmic' => true]])
+            ->setLabels(['Carburante (l/anno)','CO2 (g/anno)', 'CO (g/anno)','NOX (g/anno)','PM10 (g/anno)']);
+    }
+
+    private static function rank($score){
+        return log($score,1.104104805);
     }
 }

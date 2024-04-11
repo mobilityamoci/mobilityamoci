@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Charts\CaloriesStudentGraph;
+use App\Charts\KilometersStudentGraph;
 use App\Charts\PollutionStudentGraph;
 use App\Charts\TypeOfTransportStudentChart;
 use App\Exports\StatisticsSchoolExport;
@@ -11,6 +12,7 @@ use App\Models\School;
 use App\Models\Section;
 use App\Models\Transport;
 use App\Models\User;
+use App\Services\QgisService;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 use Excel;
 use Illuminate\Support\Collection;
@@ -86,6 +88,14 @@ class ShowGraphs extends Component
             $chartVar = new CaloriesStudentGraph($this->selectedSchool, new LarapexChart());
         return $chartVar->build();
     }
+    public function getChartKilometersProperty()
+    {
+        if ($this->selectedSectionId)
+            $chartVar = new KilometersStudentGraph($this->selectedSchool, new LarapexChart(), [$this->selectedSectionId]);
+        else
+            $chartVar = new KilometersStudentGraph($this->selectedSchool, new LarapexChart());
+        return $chartVar->build();
+    }
 
     public function getSelectedSchoolProperty()
     {
@@ -118,6 +128,14 @@ class ShowGraphs extends Component
         } else {
             return Excel::download(new StatisticsSchoolExport($this->selectedSchool), str_replace(' ', '',$this->selectedSchool->name).'_mobilita.xlsx');
         }
+    }
+
+    public function getPollutionArrayProperty()
+    {
+        if ($this->selectedSectionId)
+            return QgisService::calculatePollutionAndCaloriesForSection($this->selectedSection);
+        else
+            return QgisService::calculatePollutionAndCaloriesForSchool($this->selectedSchool);
     }
 
 
