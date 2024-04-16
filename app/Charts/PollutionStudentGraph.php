@@ -38,8 +38,4 @@ class PollutionStudentGraph
             ->setOptions(['yaxis' => ['logarithmic' => true]])
             ->setLabels(['Carburante (l/anno)','CO2 (g/anno)', 'CO (g/anno)','NOX (g/anno)','PM10 (g/anno)']);
     }
-
-    private static function rank($score){
-        return log($score,1.104104805);
-    }
 }
