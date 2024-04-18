@@ -150,7 +150,7 @@
 
                                     @else
                                         <div wire:click="setEditStudentField({{$index}},'name')"
-                                             class="my-th">{{$student['name']}}
+                                             class="my-th">{{$student['name'] ?? $student['id']}}
                                         </div>
                                     @endif
 
