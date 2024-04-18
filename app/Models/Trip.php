@@ -58,11 +58,11 @@ class Trip extends Model
 
     public function hasMezzoPrivato(): bool
     {
-        return array_search($this->transport_1, Transport::MEZZI_PRIVATI);
+        return in_array($this->transport_1, Transport::MEZZI_PRIVATI);
     }
 
     public function hasMezzoPubblico(): bool
     {
-        return array_search($this->transport_1, Transport::MEZZI_PUBBLICI);
+        return in_array($this->transport_1, Transport::MEZZI_PUBBLICI);
     }
 }

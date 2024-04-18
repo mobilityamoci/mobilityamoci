@@ -81,7 +81,7 @@ FROM
                     r.geom AS geom
                 FROM
                     pgr_dijkstra(
-                        'SELECT CAST(id AS BIGINT), source, target, length AS cost, length as reverse cost FROM basi_carto.routes',
+                        'SELECT CAST(id AS BIGINT), source, target, length AS cost, length as reverse_cost  FROM basi_carto.routes',
                         (
                             SELECT
                                 b.id AS gp_id
@@ -136,7 +136,7 @@ FROM
 				tt.geom as geom
 			from
 				pgr_dijkstra(
-'SELECT CAST(id AS BIGINT), source, target, 1 AS cost FROM basi_carto.tratti_tpl_32632 where shape_id = ' || shape_id,
+'SELECT CAST(id AS BIGINT), source, target, 1 AS cost, 1 as reverse_cost FROM basi_carto.tratti_tpl_32632 where shape_id = ' || shape_id,
 				start_shape.source,
 				end_shape.target,
 				false) as di
