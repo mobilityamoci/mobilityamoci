@@ -24,9 +24,9 @@ class Building extends Model
         return $this->belongsTo(School::class);
     }
 
-    public function students(): HasMany
+    public function sections()
     {
-        return $this->hasMany(Student::class);
+        return $this->hasMany(Section::class);
     }
 
     public function geometryPoint()
