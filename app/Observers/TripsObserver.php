@@ -40,6 +40,10 @@ class TripsObserver
         }
     }
 
+    public function deleting(Trip $trip)
+    {
+    }
+
     /**
      * Handle the Trips "deleted" event.
      *

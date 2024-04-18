@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Traits\HasGeometryPoint;
-use Clickbar\Magellan\Database\Eloquent\HasPostgisColumns;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -28,7 +27,10 @@ class Student extends Model
     public function delete()
     {
         DB::transaction(function () {
-            $this->trips()->delete();
+            $this->geometryPoint()->delete();
+            $this->trips()->each(function ($trip) {
+                $trip->delete();
+            });
             parent::delete();
         });
     }

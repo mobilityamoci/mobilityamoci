@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\HasGeometryPoint;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\DB;
 
 class Trip extends Model
 {
@@ -26,6 +27,15 @@ class Trip extends Model
         return $this->morphOne(GeometryLine::class, 'lineable');
     }
 
+    public function delete()
+    {
+        DB::transaction(function () {
+            $this->geometryLine()->delete();
+            $this->geometryPoint()->delete();
+            parent::delete();
+        });
+    }
+
     public function transport1(): BelongsTo
     {
         return $this->belongsTo(Transport::class, 'transport_1', 'id');
@@ -43,13 +53,14 @@ class Trip extends Model
 
     public function previousTrip()
     {
-        return $this->hasOne(Trip::class, 'student_id', 'student_id')->where('order',$this->order - 1);
+        return $this->hasOne(Trip::class, 'student_id', 'student_id')->where('order', $this->order - 1);
     }
 
     public function hasMezzoPrivato(): bool
     {
         return array_search($this->transport_1, Transport::MEZZI_PRIVATI);
     }
+
     public function hasMezzoPubblico(): bool
     {
         return array_search($this->transport_1, Transport::MEZZI_PUBBLICI);
