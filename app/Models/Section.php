@@ -9,7 +9,7 @@ use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 class Section extends Model
 {
     use HasRelationships;
-
+    protected $table = 'my_sections';
     protected $guarded = ['id', 'created_at','updated_at'];
 
 

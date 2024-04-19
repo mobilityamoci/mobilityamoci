@@ -45,4 +45,9 @@ class School extends Model
     {
         return $this->hasManyDeepFromRelations($this->students(), (new Student())->trips());
     }
+
+    public function surveys()
+    {
+        return $this->hasMany(Survey::class);
+    }
 }

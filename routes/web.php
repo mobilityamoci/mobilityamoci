@@ -68,6 +68,8 @@ Route::middleware([
     Route::middleware(['can:base'])->get('/informazioni', SingleStudent::class)->name('single-student');
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/mappa', ShowMappa::class)->name('mappa.index');
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/statistiche', ShowGraphs::class)->name('graphs-show');
+    Route::middleware(['role_or_permission:all_schools|school|section'])->get('/sondaggi', \App\Http\Livewire\Surveys::class)->name('surveys');
 
+//    Route::get('/survey/edit/{survey}', [SurveyController::class, 'edit'])->name('survey.edit');
 
 });
