@@ -21,7 +21,6 @@ class SurveyCreateModal extends ModalComponent
 
     public function mount(int $selectedSchoolId)
     {
-        $this->questions = json_decode('{"1":{"content":"Domanda 1","type":"text","options":{"1":"Risposta 1"}},"2":{"content":"Domanda 2","type":"number","options":{"1":"Risposta 1"}},"3":{"content":"Domanda 3","type":"radio","options":{"1":"Risposta 1","2":"Risposta 2"}},"4":{"content":"Domanda 4","type":"multiselect","options":{"1":"Risposta 1","2":"Risposta 2","3":"Risposta 3","4":"Risposta 4"}}}', true);
         $this->selectedSchoolId = $selectedSchoolId;
     }
 
@@ -62,6 +61,7 @@ class SurveyCreateModal extends ModalComponent
     {
         $survey = Survey::create(['name' => $this->surveyName, 'school_id' => $this->selectedSchoolId]);
         $survey->questions()->createMany($this->questions);
+        $this->alert('success', 'Sondaggio creato con successo.');
         $this->emit('closeModal');
     }
 

@@ -13,7 +13,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('surveyable', function (Blueprint $table) {
+        Schema::create('surveyables', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Survey::class)->constrained();
             $table->morphs('surveyable');

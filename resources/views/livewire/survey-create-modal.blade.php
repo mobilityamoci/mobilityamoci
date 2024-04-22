@@ -53,10 +53,10 @@
     </div>
 
     <hr class="h-2 my-8 bg-gray-200 border-0 dark:bg-gray-700">
-    <div class="flex flex-row-reverse my-3">
+    <div class="flex flex-row-reverse my-3 gap-4">
         <x-jet-button wire:key="create_survey" wire:click="createSurvey">Crea Sondaggio</x-jet-button>
+        <x-jet-secondary-button wire:key="close_modal" wire:click="$emit('close-modal')">Chiudi</x-jet-secondary-button>
+
     </div>
 
-
-    {!! json_encode($this->questions) !!}
 </div>

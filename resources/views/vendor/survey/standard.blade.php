@@ -1,3 +1,4 @@
+@props(['onlyView' => false])
 <div class="card">
     <div class="card-header bg-white p-4">
         <h1 class="text-xl font-bold">{{ $survey->name }}</h1>
@@ -26,7 +27,7 @@
             @include('survey::questions.single')
         @endforeach
 
-        @if($eligible)
+        @if($eligible && !$onlyView)
             <x-jet-button class="mt-5">Invia risposte</x-jet-button>
         @endif
     @endif

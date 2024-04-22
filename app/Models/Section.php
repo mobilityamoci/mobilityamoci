@@ -24,6 +24,11 @@ class Section extends Model
         return $this->hasMany(Student::class);
     }
 
+    public function surveys()
+    {
+        return $this->morphToMany(Survey::class, 'surveyable');
+    }
+
     public function students_strada()
     {
         return $this->students()->whereHas('trip1', function ($q) {

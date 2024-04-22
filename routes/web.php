@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SurveyController;
 use App\Http\Livewire\AcceptUsers;
 use App\Http\Livewire\Schools;
 use App\Http\Livewire\ShowGraphs;
@@ -70,6 +71,6 @@ Route::middleware([
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/statistiche', ShowGraphs::class)->name('graphs-show');
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/sondaggi', \App\Http\Livewire\Surveys::class)->name('surveys');
 
-//    Route::get('/survey/edit/{survey}', [SurveyController::class, 'edit'])->name('survey.edit');
+    Route::get('/survey/edit/{survey}', [SurveyController::class, 'edit'])->name('survey.edit');
 
 });
