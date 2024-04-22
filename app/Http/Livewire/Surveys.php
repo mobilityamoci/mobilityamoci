@@ -17,7 +17,9 @@ class Surveys extends Component
 
     public bool $showSurveyModal = false;
 
-
+    protected $queryString = [
+        'selectedSchoolId' => ['except' => 1, 'as' => 'scuola'],
+    ];
     public function render()
     {
         return view('livewire.surveys');
@@ -30,10 +32,6 @@ class Surveys extends Component
         $this->selectedSchoolId = $this->selectedSchoolId ?? optional($this->schools->first())->id;
     }
 
-    public function schoolChanged()
-    {
-        $this->selectedSectionId = optional(optional($this->sections)->first())->id;
-    }
 
     public function getSelectedSchoolProperty()
     {
