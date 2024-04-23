@@ -10,7 +10,6 @@ class Survey extends \MattDaneshvar\Survey\Models\Survey
 {
     protected $fillable = ['school_id', 'settings', 'name', 'uuid'];
 
-
     public static function boot()
     {
         parent::boot();
@@ -20,6 +19,6 @@ class Survey extends \MattDaneshvar\Survey\Models\Survey
     }
     public function sections()
     {
-        return $this->morphedByMany(Section::class, 'surveyable');
+        return $this->morphedByMany(Section::class, 'surveyable')->withTimestamps();
     }
 }

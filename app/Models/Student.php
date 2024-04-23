@@ -40,6 +40,11 @@ class Student extends Model
         return $this->belongsTo(Section::class);
     }
 
+    public function surveys()
+    {
+        return $this->hasManyThrough(Survey::class, Section::class);
+    }
+
     public function school()
     {
         return $this->section->school;
