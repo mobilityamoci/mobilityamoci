@@ -5,13 +5,14 @@ namespace App\Http\Livewire\modals;
 use App\Models\School;
 use App\Models\Section;
 use App\Models\Survey;
+use App\Traits\SelectedSchool;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use LivewireUI\Modal\ModalComponent;
 
 class SurveyShareModal extends ModalComponent
 {
 
-    use LivewireAlert;
+    use LivewireAlert, SelectedSchool;
     public $selectedSchoolId;
     public $selectedSurveyId;
     public array $selectedSectionIds;
@@ -41,10 +42,6 @@ class SurveyShareModal extends ModalComponent
         $this->selectedSectionIds = $this->selectedSchool->sections->pluck('id')->toArray();
     }
 
-    public function getSelectedSchoolProperty()
-    {
-        return School::find($this->selectedSchoolId);
-    }
 
     public function getSelectedSurveyProperty()
     {

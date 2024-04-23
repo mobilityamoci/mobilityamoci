@@ -7,6 +7,8 @@ use App\Http\Livewire\ShowGraphs;
 use App\Http\Livewire\ShowMappa;
 use App\Http\Livewire\SingleStudent;
 use App\Http\Livewire\Students;
+use App\Http\Livewire\Surveys;
+use App\Http\Livewire\SurveysUser;
 use App\Http\Livewire\Users;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
@@ -69,8 +71,9 @@ Route::middleware([
     Route::middleware(['can:base'])->get('/informazioni', SingleStudent::class)->name('single-student');
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/mappa', ShowMappa::class)->name('mappa.index');
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/statistiche', ShowGraphs::class)->name('graphs-show');
-    Route::middleware(['role_or_permission:all_schools|school|section'])->get('/sondaggi', \App\Http\Livewire\Surveys::class)->name('surveys');
+    Route::middleware(['role_or_permission:all_schools|school|section'])->get('/sondaggi/crea', Surveys::class)->name('surveys');
+    Route::middleware(['can:base'])->get('/i-miei-sondaggi', [SurveysUser::class])->name('survey-users');
 
-    Route::get('/survey/edit/{survey}', [SurveyController::class, 'edit'])->name('survey.edit');
+//    Route::get('/survey/edit/{survey}', [SurveyController::class, 'edit'])->name('survey.edit');
 
 });

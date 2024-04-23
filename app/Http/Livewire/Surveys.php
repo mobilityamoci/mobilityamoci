@@ -4,13 +4,14 @@ namespace App\Http\Livewire;
 
 use App\Models\School;
 use App\Models\Survey;
+use App\Traits\SelectedSchool;
 use Illuminate\Support\Collection;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class Surveys extends Component
 {
-    use LivewireAlert;
+    use LivewireAlert, SelectedSchool;
 
     public $user;
     public Collection $schools;
@@ -35,11 +36,6 @@ class Surveys extends Component
         $this->selectedSchoolId = $this->selectedSchoolId ?? optional($this->schools->first())->id;
     }
 
-
-    public function getSelectedSchoolProperty()
-    {
-
-    }
 
     public function getSelectedSurveyProperty()
     {

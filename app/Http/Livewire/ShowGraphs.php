@@ -13,6 +13,7 @@ use App\Models\Section;
 use App\Models\Transport;
 use App\Models\User;
 use App\Services\QgisService;
+use App\Traits\SelectedSchool;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 use Excel;
 use Illuminate\Support\Collection;
@@ -22,7 +23,7 @@ use Livewire\Component;
 class ShowGraphs extends Component
 {
 
-    use LivewireAlert;
+    use LivewireAlert, SelectedSchool;
 
     public User $user;
 
@@ -97,10 +98,7 @@ class ShowGraphs extends Component
         return $chartVar->build();
     }
 
-    public function getSelectedSchoolProperty()
-    {
-        return School::find($this->selectedSchoolId);
-    }
+
 
     public function getSelectedSectionProperty()
     {
