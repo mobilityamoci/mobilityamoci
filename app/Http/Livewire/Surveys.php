@@ -5,14 +5,16 @@ namespace App\Http\Livewire;
 use App\Models\School;
 use App\Models\Survey;
 use Illuminate\Support\Collection;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class Surveys extends Component
 {
+    use LivewireAlert;
 
     public $user;
     public Collection $schools;
-    public  $selectedSchoolId;
+    public $selectedSchoolId;
     public int $selectedSurveyId;
 
     public bool $showSurveyModal = false;
@@ -20,6 +22,7 @@ class Surveys extends Component
     protected $queryString = [
         'selectedSchoolId' => ['except' => 1, 'as' => 'scuola'],
     ];
+
     public function render()
     {
         return view('livewire.surveys');
@@ -35,7 +38,7 @@ class Surveys extends Component
 
     public function getSelectedSchoolProperty()
     {
-        return School::with('surveys')->find($this->selectedSchoolId);
+
     }
 
     public function getSelectedSurveyProperty()
@@ -47,5 +50,10 @@ class Surveys extends Component
     {
         return $this->selectedSchool->surveys;
 
+    }
+
+    public function copyUuid()
+    {
+        $this->alert('success', 'Codice copiato!');
     }
 }

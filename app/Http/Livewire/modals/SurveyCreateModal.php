@@ -2,11 +2,14 @@
 
 namespace App\Http\Livewire\modals;
 
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use LivewireUI\Modal\ModalComponent;
 use App\Models\Survey;
 
 class SurveyCreateModal extends ModalComponent
 {
+
+    use LivewireAlert;
 
     public int $selectedSchoolId;
     public string $surveyName = 'Inserisci nome';
