@@ -63,12 +63,12 @@ class Students extends Component
 //        'students.*.name' => 'string|required',
 //        'students.*.surname' => 'string|required',
         'students.*.town_istat' => 'integer|nullable|',
-        'students.*.section_id' => 'numeric|exists:sections,id'
+        'students.*.section_id' => 'numeric|exists:my_sections,id'
     ];
 
     protected $rulesWithoutName = [
         'students.*.town_istat' => 'integer|required|',
-        'students.*.section_id' => 'numeric|exists:sections,id'
+        'students.*.section_id' => 'numeric|exists:my_sections,id'
     ];
 
     protected $validationAttributes = [

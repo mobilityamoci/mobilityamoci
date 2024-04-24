@@ -1,5 +1,7 @@
 <div>
     <h3 class="text-3xl font-bold uppercase">I miei dati</h3>
+    {!! $errors !!}
+    {!! $student->section_id !!}
     <div class="grid my-6 sm:grid-cols-1 md:grid-cols-3 gap-4">
         <div>
 
@@ -22,14 +24,14 @@
         </div>
         <div>
             <x-jet-label class="text-xl">Sezione</x-jet-label>
-            <x-select class="w-full" wire:model.lazy="student.section">
+            <x-select class="w-full" wire:model.lazy="student.section_id">
                 @foreach($this->sections as $section)
                     <option value="{{$section->id}}" class="capitalize">{{$section->name}}</option>
                 @endforeach
             </x-select>
-            @if($errors->has('student.section'))
+            @if($errors->has('student.section_id'))
                 <div class="mt-2 text-sm text-red-600">
-                    {{$errors->first('student.section')}}
+                    {{$errors->first('student.section_id')}}
                 </div>
             @endif
         </div>
@@ -58,7 +60,7 @@
     </div>
 
     <div class="grid justify-items-end my-8">
-        <x-success-button wire:click.prevent="saveStudent">Aggiorna Dati</x-success-button>
+        <x-success-button wire:click="saveStudent">Aggiorna Dati</x-success-button>
     </div>
     <hr>
     <h3 class="text-3xl font-bold uppercase my-6">Il mio viaggio</h3>

@@ -32,7 +32,7 @@ class SingleStudentEdit extends Component
         'student.name' => 'required|string',
         'student.surname' => 'required|string',
         'student.address' => 'required|string',
-        'student.section_id' => 'required|integer|exists:sections,id',
+        'student.section_id' => 'required|integer',
         'student.town_istat' => 'required|integer',
         'student.trips.*.transport_1' => 'required|integer|exists:transports,id',
         'student.trips.*.address' => 'nullable|string',
@@ -51,6 +51,11 @@ class SingleStudentEdit extends Component
         'student.trips.*.town_istat' => 'comune scalo'
     ];
 
+    public function render()
+    {
+        return view('livewire.single-student-edit');
+    }
+
 
     public function mount()
     {
@@ -60,11 +65,6 @@ class SingleStudentEdit extends Component
         $this->student = $this->user->student;
         $this->sections = $this->user->schools->first()->sections;
         $this->transports = Transport::all();
-    }
-
-    public function render()
-    {
-        return view('livewire.single-student-edit');
     }
 
     public function reloadTrips()
@@ -97,15 +97,21 @@ class SingleStudentEdit extends Component
 
     public function saveStudent()
     {
+        $this->alert('success', 'Dati aggiornati');
         $this->validate([
             'student.name' => 'required|string',
             'student.surname' => 'required|string',
             'student.address' => 'required|string',
-            'student.section_id' => 'required|integer|exists:sections,id',
+            'student.section_id' => 'required|integer',
             'student.town_istat' => 'required|integer',
         ]);
         $this->student->save();
-        $this->alert('success', 'Dati aggiornati');
+
+    }
+
+    public function test()
+    {
+        $this->alert('error', 'Dati aggiornati');
 
     }
 
@@ -156,8 +162,8 @@ class SingleStudentEdit extends Component
     {
         if ($this->studentTrips->isNotEmpty()) {
             return !$this->studentTrips->search(function ($item) {
-                    return $item->town_istat == 0;
-                });
+                return $item->town_istat == 0;
+            });
         } else {
             return true;
         }

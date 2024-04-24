@@ -28,7 +28,7 @@ class SingleStudentCreate extends Component
         'newStudentName' => 'required|string',
         'newStudentSurname' => 'required|string',
         'newStudentAddress' => 'required|string',
-        'newStudentSection' => 'required|integer|exists:sections,id',
+        'newStudentSection' => 'required|integer|exists:my_sections,id',
         'newStudentIstat' => 'required|integer',
     ];
 

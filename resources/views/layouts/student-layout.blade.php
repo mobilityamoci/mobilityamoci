@@ -37,8 +37,6 @@
     </main>
 </div>
 
-@stack('modals')
-
-@livewireScripts
+@include('layouts.body-scripts')
 </body>
 </html>
