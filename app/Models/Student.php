@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class Student extends Model
 {
-    use SoftDeletes, HasGeometryPoint;
+    use SoftDeletes, HasGeometryPoint, HasRelationships;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
@@ -42,7 +43,7 @@ class Student extends Model
 
     public function surveys()
     {
-        return $this->hasManyThrough(Survey::class, Section::class);
+        return $this->hasManyDeepFromRelations($this->section(), (new Section)->surveys());
     }
 
     public function school()

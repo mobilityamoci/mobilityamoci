@@ -59,11 +59,4 @@
 
 </body>
 
-<script>
-    // setInterval(function () {
-    //     const imageNumber = Math.floor(Math.random() * 500);
-    //     const imageLink = 'https://picsum.photos/id/' + imageNumber + '/1800/1900';
-    //     $('#background-map').css("background-image", "url('" + imageLink + "')").css("background-size", "cover");
-    // }, 5000);
-</script>
 </html>

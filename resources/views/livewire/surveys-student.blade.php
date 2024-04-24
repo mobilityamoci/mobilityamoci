@@ -1,4 +1,4 @@
-<div>
+<div class="md:flex justify-center">
     <table class="my-table table-auto">
         <thead class="my-header">
         <tr>

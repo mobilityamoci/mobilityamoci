@@ -72,7 +72,7 @@ Route::middleware([
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/mappa', ShowMappa::class)->name('mappa.index');
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/statistiche', ShowGraphs::class)->name('graphs-show');
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/sondaggi/crea', Surveys::class)->name('surveys');
-    Route::middleware(['can:base'])->get('/i-miei-sondaggi', [SurveysStudent::class])->name('survey-users');
+    Route::middleware(['can:base'])->get('/i-miei-sondaggi', SurveysStudent::class)->name('survey-users');
 
 //    Route::get('/survey/edit/{survey}', [SurveyController::class, 'edit'])->name('survey.edit');
 

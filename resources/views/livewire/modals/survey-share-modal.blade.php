@@ -8,7 +8,7 @@
     <div class="my-14 flex flex-wrap">
         @foreach($this->selectedSchool->sections as $section)
             <div class="flex items-center m-4">
-                <x-jet-checkbox wire:key="checkbox_{{$section->id}}" wire:model="selectedSectionIds" id="checkbox-{{$section->id}}" value="{{$section->id}}" class="w-4 h-4"/>
+                <x-jet-checkbox wire:key="checkbox_{{$section->id}}" wire:model.defer="selectedSectionIds" id="checkbox-{{$section->id}}" value="{{$section->id}}" class="w-4 h-4"/>
                 <x-jet-label for="checkbox-{{$section->id}}" class="m-2 text-md">{{$section->name}}</x-jet-label>
             </div>
         @endforeach

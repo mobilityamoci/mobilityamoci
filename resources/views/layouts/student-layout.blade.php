@@ -17,25 +17,30 @@
     @livewireStyles
 </head>
 <body class="font-sans antialiased">
-<x-jet-banner />
+<x-jet-banner/>
 
-<div class="min-h-screen bg-gray-100">
+<div class="min-h-screen bg-gray-100"
+     style="background-size: cover; background-image:   url({{asset('mappa-piacenza.png')}})">
     @livewire('my-navigation-menu')
 
-    <!-- Page Heading -->
-    @if (isset($header))
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
-    @endif
+    <div class="flex ">
+        <!-- Card Column -->
+            <div style="overflow:scroll; max-height: 85vh; overflow-x: hidden"
+                 class="p-3 bg-white h-fit w-full m-12 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 bg-opacity-75">
+                <!-- Page Heading -->
+                @if (isset($header))
+                    <header class="bg-white shadow">
+                        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                            {{ $header }}
+                        </div>
+                    </header>
+                @endif
 
-    <!-- Page Content -->
-    <main>
-        {{ $slot }}
-    </main>
-</div>
+                <!-- Page Content -->
+                <main>
+                    {{ $slot }}
+                </main>
+        </div>
 
 @include('layouts.body-scripts')
 </body>
