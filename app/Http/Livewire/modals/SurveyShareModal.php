@@ -31,8 +31,8 @@ class SurveyShareModal extends ModalComponent
 
     public function shareToSections()
     {
-        $this->selectedSurvey->sections()->detach();
-        $this->selectedSurvey->sections()->attach($this->selectedSections);
+        $this->selectedSurvey->mySections()->detach();
+        $this->selectedSurvey->mySections()->attach($this->selectedSections);
         $this->alert('success', 'Sondaggio condiviso con successo.');
         $this->emit('closeModal');
     }

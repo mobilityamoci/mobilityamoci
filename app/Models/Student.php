@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use MattDaneshvar\Survey\Models\Entry;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class Student extends Model
@@ -44,6 +45,16 @@ class Student extends Model
     public function surveys()
     {
         return $this->hasManyDeepFromRelations($this->section(), (new Section)->surveys());
+    }
+
+    public function submittedSurveys()
+    {
+        return $this->belongsToMany(Survey::class, 'entries', 'participant_id', 'survey_id');
+    }
+
+    public function entries()
+    {
+        return $this->hasMany(Entry::class);
     }
 
     public function school()

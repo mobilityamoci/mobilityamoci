@@ -1,7 +1,5 @@
 <div>
     <h3 class="text-3xl font-bold uppercase">I miei dati</h3>
-    {!! $errors !!}
-    {!! $student->section_id !!}
     <div class="grid my-6 sm:grid-cols-1 md:grid-cols-3 gap-4">
         <div>
 

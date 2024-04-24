@@ -16,11 +16,11 @@
                     <x-my-nav-link href="{{ route('single-student') }}" :active="request()->routeIs('single-student')">
                         {{ __('Il Mio Viaggio') }}
                     </x-my-nav-link>
-                    <x-my-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                        {{ __('Le mie Info') }}
-                    </x-my-nav-link>
                     <x-my-nav-link href="{{ route('survey-users') }}" :active="request()->routeIs('survey-users')">
                         {{ __('Sondaggi') }}
+                    </x-my-nav-link>
+                    <x-my-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                        {{ __('Le mie Info') }}
                     </x-my-nav-link>
                 </div>
             </div>

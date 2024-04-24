@@ -21,7 +21,7 @@
 
 <div class="min-h-screen bg-gray-100"
      style="background-size: cover; background-image:   url({{asset('mappa-piacenza.png')}})">
-    @livewire('my-navigation-menu')
+    @livewire('student-navigation-menu')
 
     <div class="flex ">
         <!-- Card Column -->

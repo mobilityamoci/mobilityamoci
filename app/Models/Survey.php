@@ -17,7 +17,7 @@ class Survey extends \MattDaneshvar\Survey\Models\Survey
             $model->uuid = (string) Str::uuid();
         });
     }
-    public function sections()
+    public function mySections()
     {
         return $this->morphedByMany(Section::class, 'surveyable')->withTimestamps();
     }
