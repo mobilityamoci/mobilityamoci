@@ -18,7 +18,8 @@ class SurveysStudentList extends Component
 
     }
 
-    public function answerSurvey(int $surveyId) {
+    public function answerSurvey(int $surveyId)
+    {
         $this->emitTo('surveys-student', 'switch', 'survey-student-answer', $surveyId);
     }
 
@@ -26,6 +27,15 @@ class SurveysStudentList extends Component
     {
         /* @var Student $student */
         $student = Auth::user()->student;
-        return $student->surveys()->get();
+        return $student->surveys()->get()->filter(function ($survey) {
+            return !in_array($survey->id, $this->submittedSurveys->pluck('id')->toArray());
+        });
+    }
+
+    public function getSubmittedSurveysProperty()
+    {
+        /* @var Student $student */
+        $student = Auth::user()->student;
+        return $student->submittedSurveys()->get();
     }
 }

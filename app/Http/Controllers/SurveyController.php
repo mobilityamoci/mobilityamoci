@@ -30,7 +30,7 @@ class SurveyController extends Controller
             return redirect()->route('survey-users');
         }
 
-        (new Entry)->for($survey)->by($user)->fromArray($request->except('_token'))->push();
+        (new Entry)->for($survey)->by($user->student)->fromArray($request->except('_token'))->push();
 
         return redirect()->route('survey-users');
     }

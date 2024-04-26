@@ -52,10 +52,6 @@ class Student extends Model
         return $this->belongsToMany(Survey::class, 'entries', 'participant_id', 'survey_id');
     }
 
-    public function entries()
-    {
-        return $this->hasMany(Entry::class);
-    }
 
     public function school()
     {
