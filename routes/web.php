@@ -74,6 +74,7 @@ Route::middleware([
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/sondaggi/crea', Surveys::class)->name('surveys');
     Route::middleware(['can:base'])->get('/i-miei-sondaggi', SurveysStudent::class)->name('survey-users');
 
+    Route::middleware(['can:base'])->post('/sondaggio/{survey}/submit', [SurveyController::class, 'submitAnswer'])->name('sondaggio.submit');
 //    Route::get('/survey/edit/{survey}', [SurveyController::class, 'edit'])->name('survey.edit');
 
 });

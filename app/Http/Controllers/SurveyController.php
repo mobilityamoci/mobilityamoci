@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use MattDaneshvar\Survey\Models\Entry;
 use MattDaneshvar\Survey\Models\Survey;
@@ -22,8 +23,15 @@ class SurveyController extends Controller
         return view('surveys.edit', compact('survey'));
     }
 
-    public function respond(Survey $survey, Request $request)
+    public function submitAnswer(Survey $survey, Request $request)
     {
+        $user = Auth::user();
+        if (!$user->student->surveys->contains($survey)) {
+            return redirect()->route('survey-users');
+        }
 
+        (new Entry)->for($survey)->by($user)->fromArray($request->except('_token'))->push();
+
+        return redirect()->route('survey-users');
     }
 }
