@@ -11,45 +11,25 @@ use Livewire\Component;
 
 class Surveys extends Component
 {
-    use LivewireAlert, SelectedSchool;
-
-    public $user;
-    public Collection $schools;
-    public $selectedSchoolId;
     public int $selectedSurveyId;
-
-    public bool $showSurveyModal = false;
-
-    protected $queryString = [
-        'selectedSchoolId' => ['except' => 1, 'as' => 'scuola'],
+    private $component = '';
+    protected $listeners = [
+        'switch'
     ];
-
     public function render()
     {
-        return view('livewire.surveys');
+        return view('livewire.surveys', ['component' => $this->component]);
     }
 
-    public function mount()
+    public function mount(string $component = 'surveys-table')
     {
-        $this->user = \Auth::user();
-        $this->schools = getUserSchools(true);
-        $this->selectedSchoolId = $this->selectedSchoolId ?? optional($this->schools->first())->id;
+        $this->component = $component;
     }
 
-
-    public function getSelectedSurveyProperty()
+    public function switch(string $component, int $surveyId)
     {
-        return Survey::find($this->selectedSurveyId);
+        $this->component = $component;
+        $this->selectedSurveyId = $surveyId;
     }
 
-    public function getSurveysProperty()
-    {
-        return $this->selectedSchool->surveys;
-
-    }
-
-    public function copyUuid()
-    {
-        $this->alert('success', 'Codice copiato!');
-    }
 }

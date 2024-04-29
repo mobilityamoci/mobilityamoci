@@ -2,14 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Enums\RolesEnum;
-use App\Models\School;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\Transport;
 use App\Models\Trip;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -52,9 +49,9 @@ class Students extends Component
     public bool $editSections = false;
 
     public Collection $schools;
-    public  $selectedSchoolId;
+    public $selectedSchoolId;
 
-    public  $selectedSectionId;
+    public $selectedSectionId;
 
     public bool $showTransportsModal = false;
 
@@ -87,7 +84,7 @@ class Students extends Component
     public function render()
     {
         if ($this->selectedSectionId) {
-            $section = Section::with('students', 'students.user')->where('id',$this->selectedSectionId)->where('school_id', $this->selectedSchoolId)->firstOr(function () {
+            $section = Section::with('students', 'students.user')->where('id', $this->selectedSectionId)->where('school_id', $this->selectedSchoolId)->firstOr(function () {
                 $this->selectedSectionId = $this->sections->first(function ($section) {
                     return $section->school_id = $this->selectedSchoolId;
                 });
@@ -100,7 +97,7 @@ class Students extends Component
                 $item['has_user'] = !is_null($item->user_id);
 
                 if ($item->trips->isNotEmpty() && $item->town_istat) {
-                    $string = '1) Da <b>' . $this->comuni[$item->town_istat]  . ' (' . $item->address . ')</b> in ';
+                    $string = '1) Da <b>' . $this->comuni[$item->town_istat] . ' (' . $item->address . ')</b> in ';
                     $i = 0;
 
                     foreach ($item->trips as $trip) {
@@ -137,7 +134,7 @@ class Students extends Component
         $this->user = \Auth::user();
         $this->schools = getUserSchools(true);
         $this->selectedSchoolId = $this->selectedSchoolId ?? optional($this->schools->first())->id;
-        $this->selectedSectionId = $this->selectedSectionId ??  optional($this->sections->first())->id;
+        $this->selectedSectionId = $this->selectedSectionId ?? optional($this->sections->first())->id;
         $this->transports = Transport::all()->keyBy('id')->toArray();
     }
 
@@ -149,7 +146,6 @@ class Students extends Component
         else
             return $this->user->sections;
     }
-
 
 
     public function setEditStudentField($index, $fieldName)
@@ -191,6 +187,7 @@ class Students extends Component
         $section = Section::with('school')->find($this->selectedSectionId);
         $this->selectedSchoolId = optional($section)->school_id;
     }
+
     public function createStudent()
     {
         if ($this->user->hasAnyRole($this->canSeeNamesRoles))
@@ -311,7 +308,7 @@ class Students extends Component
                 'town_istat' => $istat,
             ]);
 
-        $this->reset(['newComuneIstat','newTripTransport1','newTripAddress']);
+            $this->reset(['newComuneIstat', 'newTripTransport1', 'newTripAddress']);
             $this->editTripIndex = null;
             $this->addingNewTrip = false;
         }
@@ -328,6 +325,6 @@ class Students extends Component
 
     public function getCanSeeNamesRolesProperty()
     {
-        return [RolesEnum::INSEGNANTE->value, RolesEnum::MM_SCOLASTICO->value];
+        return getCanSeeNameRoles();
     }
 }

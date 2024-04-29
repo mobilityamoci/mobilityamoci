@@ -15,11 +15,6 @@ class SurveyController extends Controller
 
     public function edit(Survey $survey)
     {
-//        (new Entry)->for($survey)->by(\Auth::user())->fromArray([
-//            'q1' => 5,
-//            'q2' => 'elo',
-//            'q3' => 'Yes',
-//        ])->push();
         return view('surveys.edit', compact('survey'));
     }
 

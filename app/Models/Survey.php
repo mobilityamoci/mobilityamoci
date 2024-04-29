@@ -19,6 +19,11 @@ class Survey extends \MattDaneshvar\Survey\Models\Survey
         });
     }
 
+    public function entries()
+    {
+        return $this->hasMany(Entry::class);
+    }
+
     public function mySections()
     {
         return $this->morphedByMany(Section::class, 'surveyable')->withTimestamps();
