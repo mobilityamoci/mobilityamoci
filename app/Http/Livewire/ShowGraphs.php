@@ -3,12 +3,9 @@
 namespace App\Http\Livewire;
 
 use App\Charts\CaloriesStudentGraph;
-use App\Charts\KilometersStudentGraph;
-use App\Charts\PollutionStudentGraph;
 use App\Charts\TypeOfTransportStudentChart;
 use App\Exports\StatisticsSchoolExport;
 use App\Exports\StatisticsSectionExport;
-use App\Models\School;
 use App\Models\Section;
 use App\Models\Transport;
 use App\Models\User;
@@ -52,7 +49,10 @@ class ShowGraphs extends Component
     {
         $this->user = \Auth::user();
         $this->schools = getUserSchools(true);
-        $this->selectedSchoolId = $this->selectedSchoolId ?? optional($this->schools->first())->id;
+        if (\Auth::user()->hasRole('admin'))
+            $this->selectedSchoolId = $this->selectedSchoolId ?? 0;
+        else
+            $this->selectedSchoolId = $this->selectedSchoolId ?? optional($this->schools->first())->id;
         $this->selectedSectionId = $this->selectedSectionId ?? 0;
         $this->transports = Transport::all()->keyBy('id')->toArray();
 
@@ -72,14 +72,14 @@ class ShowGraphs extends Component
         return $chartVar->build();
     }
 
-    public function getChartPollutionProperty()
-    {
-        if ($this->selectedSectionId)
-            $chartVar = new PollutionStudentGraph($this->selectedSchool, new LarapexChart(), [$this->selectedSectionId]);
-        else
-            $chartVar = new PollutionStudentGraph($this->selectedSchool, new LarapexChart());
-        return $chartVar->build();
-    }
+//    public function getChartPollutionProperty()
+//    {
+//        if ($this->selectedSectionId)
+//            $chartVar = new PollutionStudentGraph($this->selectedSchool, new LarapexChart(), [$this->selectedSectionId]);
+//        else
+//            $chartVar = new PollutionStudentGraph($this->selectedSchool, new LarapexChart());
+//        return $chartVar->build();
+//    }
 
     public function getChartCaloriesProperty()
     {
@@ -89,15 +89,14 @@ class ShowGraphs extends Component
             $chartVar = new CaloriesStudentGraph($this->selectedSchool, new LarapexChart());
         return $chartVar->build();
     }
-    public function getChartKilometersProperty()
-    {
-        if ($this->selectedSectionId)
-            $chartVar = new KilometersStudentGraph($this->selectedSchool, new LarapexChart(), [$this->selectedSectionId]);
-        else
-            $chartVar = new KilometersStudentGraph($this->selectedSchool, new LarapexChart());
-        return $chartVar->build();
-    }
-
+//    public function getChartKilometersProperty()
+//    {
+//        if ($this->selectedSectionId)
+//            $chartVar = new KilometersStudentGraph($this->selectedSchool, new LarapexChart(), [$this->selectedSectionId]);
+//        else
+//            $chartVar = new KilometersStudentGraph($this->selectedSchool, new LarapexChart());
+//        return $chartVar->build();
+//    }
 
 
     public function getSelectedSectionProperty()
@@ -122,9 +121,9 @@ class ShowGraphs extends Component
 //        $this->emit('refresh');
         if ($this->selectedSectionId) {
             $trips = $this->selectedSection->trips;
-            return Excel::download(new StatisticsSectionExport($trips), $this->selectedSection->name.'_mobilita.xlsx');
+            return Excel::download(new StatisticsSectionExport($trips), $this->selectedSection->name . '_mobilita.xlsx');
         } else {
-            return Excel::download(new StatisticsSchoolExport($this->selectedSchool), str_replace(' ', '',$this->selectedSchool->name).'_mobilita.xlsx');
+            return Excel::download(new StatisticsSchoolExport($this->selectedSchool), str_replace(' ', '', $this->selectedSchool->name) . '_mobilita.xlsx');
         }
     }
 

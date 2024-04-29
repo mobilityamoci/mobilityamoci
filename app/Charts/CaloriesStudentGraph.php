@@ -14,28 +14,33 @@ class CaloriesStudentGraph
     protected School $school;
     protected Section|null $section;
 
-    public function __construct(School $school, LarapexChart $chart, array $sections = null)
+    public function __construct(School|null $school, LarapexChart $chart, array $sections = null)
     {
         $this->chart = $chart;
         $this->school = $school;
-        if ($sections)
-            $this->section = Section::find($sections[0]);
-        else
-            $this->section = null;
+        if ($this->school)
+            if ($sections)
+                $this->section = Section::find($sections[0]);
+            else
+                $this->section = null;
     }
 
     public function build(): BarChart
     {
-        if ($this->section)
-            $arr = QgisService::calculatePollutionAndCaloriesForSection($this->section);
+        if ($this->school)
+            if ($this->section)
+                $arr = QgisService::calculatePollutionAndCaloriesForSection($this->section);
+            else
+                $arr = QgisService::calculatePollutionAndCaloriesForSchool($this->school);
         else
-            $arr = QgisService::calculatePollutionAndCaloriesForSchool($this->school);
+                $arr = QgisService::calculatePollutionAndCaloriesForAllSchools();
 
-        return $this->chart->barChart()
-            ->setTitle('Calorie (KCal/anno)')
-            ->addData('', [$arr['kcal_piedi'], $arr['kcal_bici']])
-            ->setColors(['#00E396'])
-            ->setGrid()
-            ->setXAxis(['KCal a piedi','KCal in bici']);
+
+            return $this->chart->barChart()
+                ->setTitle('Calorie (KCal/anno)')
+                ->addData('', [$arr['kcal_piedi'], $arr['kcal_bici']])
+                ->setColors(['#00E396'])
+                ->setGrid()
+                ->setXAxis(['KCal a piedi', 'KCal in bici']);
     }
 }

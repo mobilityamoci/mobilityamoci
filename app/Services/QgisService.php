@@ -409,6 +409,13 @@ cross join lateral (
         return self::calculatePollutionAndCaloriesForTripsSum($trips);
     }
 
+    public static function calculatePollutionAndCaloriesForAllSchools()
+    {
+        $trips = $school->trips;
+
+        return self::calculatePollutionAndCaloriesForTripsSum($trips);
+    }
+
 
 
     /**

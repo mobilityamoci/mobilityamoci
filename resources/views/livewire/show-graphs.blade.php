@@ -2,10 +2,14 @@
     <x-jet-label for="school">Seleziona la scuola:</x-jet-label>
     <x-select class="col-auto" wire:model="selectedSchoolId" wire:change="refresh" label="Seleziona Scuola"
               id="school">
+        @hasrole('admin')
+        <option @selected(!$selectedSchoolId) value="0">Tutte le scuole</option>
+        @endhasrole
         @foreach($schools as $school)
             <option @selected($selectedSchoolId == $school->id) value="{{$school->id}}">{{$school->name}}</option>
         @endforeach
     </x-select>
+
     <x-jet-label class="mt-4" for="section">Seleziona la sezione:</x-jet-label>
     <x-select class="col-auto" wire:model="selectedSectionId" wire:change="refresh" label="Seleziona Sezione"
               id="section">
@@ -28,9 +32,8 @@
                                 Scarica Excel
                             </x-jet-button>
                         </div>
-                        {!! $this->chartTransport->container() !!}
 
-{{--                        {!! $this->chartKilometers->container() !!}--}}
+                        {!! $this->chartTransport->container() !!}
 
                         <div class="flex">
 
@@ -62,7 +65,8 @@
                                         <th class="my-th">{{$this->pollutionArray['pm10']}} kg</th>
                                     </tr>
                                     <tr>
-                                        <th class="my-th">Alberi necessari per neutralizzare la CO2 emessa annualmente</th>
+                                        <th class="my-th">Alberi necessari per neutralizzare la CO2 emessa annualmente
+                                        </th>
                                         <th class="my-th">{{$this->pollutionArray['trees']}} alberi</th>
                                     </tr>
                                     </tbody>
@@ -85,12 +89,12 @@
 
 @push('scripts')
     <script src="{{ $this->chartTransport->cdn() }}"></script>
-    <script src="{{ $this->chartPollution->cdn() }}"></script>
+    {{--    <script src="{{ $this->chartPollution->cdn() }}"></script>--}}
     <script src="{{ $this->chartCalories->cdn() }}"></script>
-{{--    <script src="{{ $this->chartKilometers->cdn() }}"></script>--}}
+    {{--    <script src="{{ $this->chartKilometers->cdn() }}"></script>--}}
 
     {{ $this->chartTransport->script() }}
-    {{ $this->chartPollution->script() }}
+    {{--    {{ $this->chartPollution->script() }}--}}
     {{ $this->chartCalories->script() }}
-{{--    {{ $this->chartKilometers->script() }}--}}
+    {{--    {{ $this->chartKilometers->script() }}--}}
 @endpush
