@@ -10,4 +10,9 @@ class StudentNavigationMenu extends Component
     {
         return view('livewire.student-navigation-menu');
     }
+
+    public function getSurveysCountProperty()
+    {
+        return \Auth::user()->student->surveysToSubmit()->count();
+    }
 }

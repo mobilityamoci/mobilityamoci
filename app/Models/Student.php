@@ -52,6 +52,13 @@ class Student extends Model
         return $this->belongsToMany(Survey::class, 'entries', 'participant_id', 'survey_id');
     }
 
+    public function surveysToSubmit()
+    {
+        return $this->surveys->filter(function ($survey) {
+            return !in_array($survey->id, $this->submittedSurveys->pluck('id')->toArray());
+        });
+    }
+
 
     public function school()
     {
