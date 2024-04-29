@@ -12,7 +12,7 @@ return [
          */
         'tables' => [
             'surveys' => 'surveys',
-            'sections' => 'ssections',
+            'sections' => 'sections',
             'questions' => 'questions',
             'entries' => 'entries',
             'answers' => 'answers',
