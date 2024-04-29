@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('students') }}">
+                    <a href="{{ route('home') }}">
                         <img style="height: 60px; width: auto" src="{{asset('imgs/logo.png')}}">
 
                     </a>
@@ -17,7 +17,7 @@
                         {{ __('Il Mio Viaggio') }}
                     </x-my-nav-link>
                     <x-my-nav-link href="{{ route('survey-users') }}" :active="request()->routeIs('survey-users')">
-                        {{ __('Sondaggi') }}
+                        {{ __('I Miei Sondaggi') }}
                         @if ($this->surveysCount)
                             <span
                                 class="inline-flex items-center justify-center w-4 h-4 ms-2 text-xs font-semibold text-green-800 bg-green-200 rounded-full ml-3">

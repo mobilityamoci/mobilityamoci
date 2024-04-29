@@ -60,7 +60,7 @@ Route::middleware([
             return redirect(Auth::user()->homeRoute());
         else
             return redirect()->route('login');
-    });
+    })->name('home');
 
     Route::get('/accetta-utenti', AcceptUsers::class)->name('accept.users');
 
