@@ -1,4 +1,7 @@
 <div>
+    @can('admin')
+    eilaaaa<br>
+    @endhasrole
     <x-jet-label for="school">Seleziona la scuola:</x-jet-label>
     <x-select class="col-auto" wire:model="selectedSchoolId" wire:change="refresh" label="Seleziona Scuola"
               id="school">

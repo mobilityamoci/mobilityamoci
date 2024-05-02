@@ -36,21 +36,23 @@ class TypeOfTransportStudentChart
             $query = Student::newQuery();
 
 
+
+
         return $this->chart->pieChart()
             ->setTitle('Mezzi usati dai ragazzi.')
             ->addData(
                 [
-                    $query->whereHas('trip1', function (Builder $query) {
-                        $query->where('transport_1', Transport::PIEDI);
+                    (clone $query)->whereHas('trip1', function (Builder $q) {
+                        $q->where('transport_1', Transport::PIEDI);
                     })->count(),
-                    $query->whereHas('trip1', function (Builder $query) {
-                        $query->where('transport_1', Transport::BICICLETTA);
+                    (clone $query)->whereHas('trip1', function (Builder $q) {
+                        $q->where('transport_1', Transport::BICICLETTA);
                     })->count(),
-                    $query->whereHas('trip1', function (Builder $query) {
-                        $query->where('transport_1', Transport::BUS_COMUNALE);
+                    (clone $query)->whereHas('trip1', function (Builder $q) {
+                        $q->where('transport_1', Transport::BUS_COMUNALE);
                     })->count(),
-                    $query->whereHas('trip1', function (Builder $query) {
-                        $query->where('transport_1', Transport::AUTO);
+                    (clone $query)->whereHas('trip1', function (Builder $q) {
+                        $q->where('transport_1', Transport::AUTO);
                     })->count(),
                 ]
             )
