@@ -33,7 +33,7 @@ class TypeOfTransportStudentChart
         if ($this->school)
             $query = Student::whereIn('section_id', $this->sections);
         else
-            $query = Student::newQuery();
+            $query = Student::query();
 
 
 

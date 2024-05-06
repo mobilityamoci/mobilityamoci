@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Services\QgisService;
 use App\Traits\SelectedSchool;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
+use Auth;
 use Excel;
 use Illuminate\Support\Collection;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -47,9 +48,9 @@ class ShowGraphs extends Component
 
     public function mount()
     {
-        $this->user = \Auth::user();
+        $this->user = Auth::user();
         $this->schools = getUserSchools(true);
-        if (\Auth::user()->hasRole('admin'))
+        if (Auth::user()->hasAnyPermission('admin'))
             $this->selectedSchoolId = $this->selectedSchoolId ?? 0;
         else
             $this->selectedSchoolId = $this->selectedSchoolId ?? optional($this->schools->first())->id;
@@ -131,8 +132,14 @@ class ShowGraphs extends Component
     {
         if ($this->selectedSectionId)
             return QgisService::calculatePollutionAndCaloriesForSection($this->selectedSection);
-        else
-            return QgisService::calculatePollutionAndCaloriesForSchool($this->selectedSchool);
+        else {
+            if ($this->selectedSchoolId)
+                return QgisService::calculatePollutionAndCaloriesForSchool($this->selectedSchool);
+            else
+                return QgisService::calculatePollutionAndCaloriesForAllSchools();
+
+
+        }
     }
 
 

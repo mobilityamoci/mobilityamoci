@@ -11,8 +11,8 @@ use ArielMejiaDev\LarapexCharts\LarapexChart;
 class CaloriesStudentGraph
 {
     protected LarapexChart $chart;
-    protected School $school;
-    protected Section|null $section;
+    protected School|null $school;
+    protected Section $section;
 
     public function __construct(School|null $school, LarapexChart $chart, array $sections = null)
     {

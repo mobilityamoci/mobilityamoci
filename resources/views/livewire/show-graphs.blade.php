@@ -1,13 +1,10 @@
 <div>
-    @can('admin')
-    eilaaaa<br>
-    @endhasrole
     <x-jet-label for="school">Seleziona la scuola:</x-jet-label>
     <x-select class="col-auto" wire:model="selectedSchoolId" wire:change="refresh" label="Seleziona Scuola"
               id="school">
-        @hasrole('admin')
+        @canAny(['admin','all_schools'])
         <option @selected(!$selectedSchoolId) value="0">Tutte le scuole</option>
-        @endhasrole
+        @endcanAny
         @foreach($schools as $school)
             <option @selected($selectedSchoolId == $school->id) value="{{$school->id}}">{{$school->name}}</option>
         @endforeach

@@ -416,6 +416,7 @@ cross join lateral (
         foreach ($schools as $school) {
             $trips->push($school->trips);
         }
+        $trips = $trips->flatten();
 
         return self::calculatePollutionAndCaloriesForTripsSum($trips);
     }
