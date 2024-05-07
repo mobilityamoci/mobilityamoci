@@ -32,7 +32,7 @@
                 <x-select id="school_id" class="block mt-1 w-full" :value="old('school_id')" name="school_id"
                           required>
                     @foreach($schools as $school)
-                        <option value="{{$school->id}}">{{$school->name}}</option>
+                        <option @selected(old('role')) value="{{$school->id}}">{{$school->name}}</option>
                     @endforeach
                 </x-select>
             </div>
@@ -63,7 +63,6 @@
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password"
                              name="password_confirmation" required autocomplete="new-password"/>
             </div>
-
 
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
