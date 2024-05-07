@@ -32,7 +32,7 @@
                 <x-select id="school_id" class="block mt-1 w-full" :value="old('school_id')" name="school_id"
                           required>
                     @foreach($schools as $school)
-                        <option @selected(old('role')) value="{{$school->id}}">{{$school->name}}</option>
+                        <option @selected(old('school_id') == $school->id) value="{{$school->id}}">{{$school->name}}</option>
                     @endforeach
                 </x-select>
             </div>
@@ -41,8 +41,8 @@
                 <x-jet-label for="role" value="Con quale ruolo ti stai iscrivendo?"/>
                 <x-select id="role" class="block mt-1 w-full" :value="old('role')" name="role"
                           required>
-                    <option value="Insegnante">Insegnante</option>
-                    <option value="Utente Base">Studente</option>
+                    <option  @selected(old('role') == "Insegnante") value="Insegnante">Insegnante</option>
+                    <option @selected(old('role') == "Utente Base") value="Utente Base">Studente</option>
                 </x-select>
             </div>
 
