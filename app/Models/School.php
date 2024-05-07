@@ -2,11 +2,8 @@
 
 namespace App\Models;
 
-use App\Http\Livewire\Students;
-use App\Models\Student;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class School extends Model
@@ -53,7 +50,7 @@ class School extends Model
     }
 
 
-    public function scopeActive(Builder $query)
+    public function scopeActive($query)
     {
         $query->whereHas('sections');
     }

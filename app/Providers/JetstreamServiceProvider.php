@@ -69,7 +69,7 @@ class JetstreamServiceProvider extends ServiceProvider
         });
 
         Fortify::registerView(function () {
-            $schools = School::all();
+            $schools = School::active()->get();
             $sections = Section::all();
             return view('auth.register', compact('schools','sections'));
         });
