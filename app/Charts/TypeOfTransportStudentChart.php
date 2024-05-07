@@ -36,10 +36,11 @@ class TypeOfTransportStudentChart
             $query = Student::query();
 
 
-
+        $count = (clone $query)->whereHas('trip1')->count();
 
         return $this->chart->pieChart()
-            ->setTitle('Mezzi usati dai ragazzi.')
+            ->setTitle('Mezzi usati.')
+            ->setSubtitle("Calcoli effettuati su $count studenti.")
             ->addData(
                 [
                     (clone $query)->whereHas('trip1', function (Builder $q) {
@@ -56,7 +57,8 @@ class TypeOfTransportStudentChart
                     })->count(),
                 ]
             )
+            ->setDataLabels()
             ->setColors(['#13B647', '#A6CEE3', '#CD4EFF', '#DF2238'])
-            ->setLabels(['A Piedi', 'In Bici', 'Bus Comunale', 'Auto']);
+            ->setLabels(['A Piedi', 'In Bicicletta', 'Bus Comunale', 'Auto']);
     }
 }

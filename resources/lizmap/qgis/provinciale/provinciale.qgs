@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="3.28.1-Firenze" saveUserFull="le barto" saveDateTime="2024-03-20T15:11:24" saveUser="edoba" projectname="Percorsi casa-scuola Comune di Piacenza">
+<qgis projectname="Percorsi casa-scuola Comune di Piacenza" saveDateTime="2024-05-06T17:08:31" version="3.28.1-Firenze" saveUserFull="le barto" saveUser="edoba">
   <homePath path=""/>
   <title>Percorsi casa-scuola Comune di Piacenza</title>
   <transaction mode="Disabled"/>
@@ -21,32 +21,32 @@
     <customproperties>
       <Option/>
     </customproperties>
-    <layer-tree-layer checked="Qt::Checked" patch_size="-1,-1" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=Point checkPrimaryKeyUnicity='1' table=&quot;public&quot;.&quot;anon_studenti_lizmap&quot; (geom)" legend_split_behavior="0" expanded="1" legend_exp="" providerKey="postgres" id="anon_studenti_lizmap_c2509e73_50d3_4a92_81bc_122d5b635ee3" name="Studente">
+    <layer-tree-layer providerKey="postgres" legend_exp="" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=Point checkPrimaryKeyUnicity='1' table=&quot;public&quot;.&quot;anon_studenti_lizmap&quot; (geom)" id="anon_studenti_lizmap_c2509e73_50d3_4a92_81bc_122d5b635ee3" checked="Qt::Checked" patch_size="-1,-1" expanded="1" legend_split_behavior="0" name="Studente">
       <customproperties>
         <Option/>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Checked" patch_size="-1,-1" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=Point checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;scuole_lizmap&quot; (geom)" legend_split_behavior="0" expanded="1" legend_exp="" providerKey="postgres" id="scuole_lizmap_a5b53ba0_5bcf_4771_97cc_f4cb9b602141" name="Scuola">
+    <layer-tree-layer providerKey="postgres" legend_exp="" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=Point checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;scuole_lizmap&quot; (geom)" id="scuole_lizmap_a5b53ba0_5bcf_4771_97cc_f4cb9b602141" checked="Qt::Checked" patch_size="-1,-1" expanded="1" legend_split_behavior="0" name="Scuola">
       <customproperties>
         <Option/>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Checked" patch_size="-1,-1" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=LineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;viaggi_lizmap&quot; (geom) sql=&quot;mezzo&quot; = 'AUTO'" legend_split_behavior="0" expanded="1" legend_exp="" providerKey="postgres" id="viaggi_lizmap_64ff4c8b_02ba_42a9_9ed3_3a4ed93996c1" name="Auto">
+    <layer-tree-layer providerKey="postgres" legend_exp="" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=LineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;viaggi_lizmap&quot; (geom) sql=&quot;mezzo&quot; = 'AUTO'" id="viaggi_lizmap_64ff4c8b_02ba_42a9_9ed3_3a4ed93996c1" checked="Qt::Checked" patch_size="-1,-1" expanded="1" legend_split_behavior="0" name="Auto">
       <customproperties>
         <Option/>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Checked" patch_size="-1,-1" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=LineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;viaggi_lizmap&quot; (geom) sql=&quot;mezzo&quot; = 'BICICLETTA'" legend_split_behavior="0" expanded="1" legend_exp="" providerKey="postgres" id="Percorso_537bdde0_dd27_4221_853b_31a268273b77" name="Bicicletta">
+    <layer-tree-layer providerKey="postgres" legend_exp="" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=LineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;viaggi_lizmap&quot; (geom) sql=&quot;mezzo&quot; = 'BICICLETTA'" id="Percorso_537bdde0_dd27_4221_853b_31a268273b77" checked="Qt::Checked" patch_size="-1,-1" expanded="1" legend_split_behavior="0" name="Bicicletta">
       <customproperties>
         <Option/>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Checked" patch_size="-1,-1" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=LineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;viaggi_lizmap&quot; (geom) sql=&quot;mezzo&quot; = 'PIEDI'" legend_split_behavior="0" expanded="1" legend_exp="" providerKey="postgres" id="Percorso_79e26d45_1524_4d48_a1c5_3e32c1de52ac" name="Piedi">
+    <layer-tree-layer providerKey="postgres" legend_exp="" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=LineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;viaggi_lizmap&quot; (geom) sql=&quot;mezzo&quot; = 'PIEDI'" id="Percorso_79e26d45_1524_4d48_a1c5_3e32c1de52ac" checked="Qt::Checked" patch_size="-1,-1" expanded="1" legend_split_behavior="0" name="Piedi">
       <customproperties>
         <Option/>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Checked" patch_size="-1,-1" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=LineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;viaggi_lizmap&quot; (geom) sql=&quot;mezzo&quot; = 'BUS COMUNALE'" legend_split_behavior="0" expanded="1" legend_exp="" providerKey="postgres" id="Percorso_9048b3b0_2bf6_4b06_ad77_8c189a1eaf9e" name="Bus Comunale">
+    <layer-tree-layer providerKey="postgres" legend_exp="" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=LineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;viaggi_lizmap&quot; (geom) sql=&quot;mezzo&quot; = 'BUS COMUNALE'" id="Percorso_9048b3b0_2bf6_4b06_ad77_8c189a1eaf9e" checked="Qt::Checked" patch_size="-1,-1" expanded="1" legend_split_behavior="0" name="Bus Comunale">
       <customproperties>
         <Option/>
       </customproperties>
@@ -57,7 +57,7 @@
           <Option value="Overview" type="QString" name="wmsShortName"/>
         </Option>
       </customproperties>
-      <layer-tree-layer checked="Qt::Checked" patch_size="-1,-1" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table=&quot;basi_carto&quot;.&quot;limiti_pc&quot; (geom)" legend_split_behavior="0" expanded="1" legend_exp="" providerKey="postgres" id="limiti_pc_fabfe866_a85b_43ec_b627_21dd60a572df" name="Limiti">
+      <layer-tree-layer providerKey="postgres" legend_exp="" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table=&quot;basi_carto&quot;.&quot;limiti_pc&quot; (geom)" id="limiti_pc_fabfe866_a85b_43ec_b627_21dd60a572df" checked="Qt::Checked" patch_size="-1,-1" expanded="1" legend_split_behavior="0" name="Limiti">
         <customproperties>
           <Option/>
         </customproperties>
@@ -73,26 +73,26 @@
       <item>Percorso_537bdde0_dd27_4221_853b_31a268273b77</item>
     </custom-order>
   </layer-tree-group>
-  <snapping-settings intersection-snapping="0" maxScale="0" tolerance="12" unit="1" self-snapping="0" minScale="0" scaleDependencyMode="0" mode="2" enabled="0" type="1">
+  <snapping-settings self-snapping="0" intersection-snapping="0" enabled="0" tolerance="12" minScale="0" unit="1" scaleDependencyMode="0" mode="2" type="1" maxScale="0">
     <individual-layer-settings>
-      <layer-setting maxScale="0" tolerance="12" minScale="0" units="1" enabled="0" type="1" id="limiti_pc_fabfe866_a85b_43ec_b627_21dd60a572df"/>
-      <layer-setting maxScale="0" tolerance="12" minScale="0" units="1" enabled="0" type="1" id="scuole_lizmap_a5b53ba0_5bcf_4771_97cc_f4cb9b602141"/>
-      <layer-setting maxScale="0" tolerance="12" minScale="0" units="1" enabled="0" type="1" id="anon_studenti_lizmap_c2509e73_50d3_4a92_81bc_122d5b635ee3"/>
-      <layer-setting maxScale="0" tolerance="12" minScale="0" units="1" enabled="0" type="1" id="Percorso_79e26d45_1524_4d48_a1c5_3e32c1de52ac"/>
-      <layer-setting maxScale="0" tolerance="12" minScale="0" units="1" enabled="0" type="1" id="viaggi_lizmap_64ff4c8b_02ba_42a9_9ed3_3a4ed93996c1"/>
-      <layer-setting maxScale="0" tolerance="12" minScale="0" units="1" enabled="0" type="1" id="Percorso_537bdde0_dd27_4221_853b_31a268273b77"/>
-      <layer-setting maxScale="0" tolerance="12" minScale="0" units="1" enabled="0" type="1" id="Percorso_9048b3b0_2bf6_4b06_ad77_8c189a1eaf9e"/>
+      <layer-setting enabled="0" tolerance="12" units="1" minScale="0" id="limiti_pc_fabfe866_a85b_43ec_b627_21dd60a572df" type="1" maxScale="0"/>
+      <layer-setting enabled="0" tolerance="12" units="1" minScale="0" id="Percorso_9048b3b0_2bf6_4b06_ad77_8c189a1eaf9e" type="1" maxScale="0"/>
+      <layer-setting enabled="0" tolerance="12" units="1" minScale="0" id="anon_studenti_lizmap_c2509e73_50d3_4a92_81bc_122d5b635ee3" type="1" maxScale="0"/>
+      <layer-setting enabled="0" tolerance="12" units="1" minScale="0" id="scuole_lizmap_a5b53ba0_5bcf_4771_97cc_f4cb9b602141" type="1" maxScale="0"/>
+      <layer-setting enabled="0" tolerance="12" units="1" minScale="0" id="Percorso_79e26d45_1524_4d48_a1c5_3e32c1de52ac" type="1" maxScale="0"/>
+      <layer-setting enabled="0" tolerance="12" units="1" minScale="0" id="viaggi_lizmap_64ff4c8b_02ba_42a9_9ed3_3a4ed93996c1" type="1" maxScale="0"/>
+      <layer-setting enabled="0" tolerance="12" units="1" minScale="0" id="Percorso_537bdde0_dd27_4221_853b_31a268273b77" type="1" maxScale="0"/>
     </individual-layer-settings>
   </snapping-settings>
   <relations/>
   <polymorphicRelations/>
-  <mapcanvas annotationsVisible="1" name="theMapCanvas">
+  <mapcanvas name="theMapCanvas" annotationsVisible="1">
     <units>meters</units>
     <extent>
-      <xmin>552931.13116559037007391</xmin>
-      <ymin>4987792.32313097547739744</ymin>
-      <xmax>555538.97774609574116766</xmax>
-      <ymax>4989412.46865206491202116</ymax>
+      <xmin>494770.36305356957018375</xmin>
+      <ymin>4915181.38325834553688765</ymin>
+      <xmax>661672.54420591332018375</xmax>
+      <ymax>5018870.69660806935280561</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -113,46 +113,46 @@
   </mapcanvas>
   <projectModels/>
   <legend updateDrawingOrder="true">
-    <legendlayer checked="Qt::Checked" drawingOrder="-1" open="true" name="Studente" showFeatureCount="0">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="anon_studenti_lizmap_c2509e73_50d3_4a92_81bc_122d5b635ee3" visible="1"/>
+    <legendlayer checked="Qt::Checked" showFeatureCount="0" drawingOrder="-1" open="true" name="Studente">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile layerid="anon_studenti_lizmap_c2509e73_50d3_4a92_81bc_122d5b635ee3" isInOverview="0" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Checked" drawingOrder="-1" open="true" name="Scuola" showFeatureCount="0">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="scuole_lizmap_a5b53ba0_5bcf_4771_97cc_f4cb9b602141" visible="1"/>
+    <legendlayer checked="Qt::Checked" showFeatureCount="0" drawingOrder="-1" open="true" name="Scuola">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile layerid="scuole_lizmap_a5b53ba0_5bcf_4771_97cc_f4cb9b602141" isInOverview="0" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Checked" drawingOrder="-1" open="true" name="Auto" showFeatureCount="0">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="viaggi_lizmap_64ff4c8b_02ba_42a9_9ed3_3a4ed93996c1" visible="1"/>
+    <legendlayer checked="Qt::Checked" showFeatureCount="0" drawingOrder="-1" open="true" name="Auto">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile layerid="viaggi_lizmap_64ff4c8b_02ba_42a9_9ed3_3a4ed93996c1" isInOverview="0" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Checked" drawingOrder="-1" open="true" name="Bicicletta" showFeatureCount="0">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="Percorso_537bdde0_dd27_4221_853b_31a268273b77" visible="1"/>
+    <legendlayer checked="Qt::Checked" showFeatureCount="0" drawingOrder="-1" open="true" name="Bicicletta">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile layerid="Percorso_537bdde0_dd27_4221_853b_31a268273b77" isInOverview="0" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Checked" drawingOrder="-1" open="true" name="Piedi" showFeatureCount="0">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="Percorso_79e26d45_1524_4d48_a1c5_3e32c1de52ac" visible="1"/>
+    <legendlayer checked="Qt::Checked" showFeatureCount="0" drawingOrder="-1" open="true" name="Piedi">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile layerid="Percorso_79e26d45_1524_4d48_a1c5_3e32c1de52ac" isInOverview="0" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Checked" drawingOrder="-1" open="true" name="Bus Comunale" showFeatureCount="0">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="Percorso_9048b3b0_2bf6_4b06_ad77_8c189a1eaf9e" visible="1"/>
+    <legendlayer checked="Qt::Checked" showFeatureCount="0" drawingOrder="-1" open="true" name="Bus Comunale">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile layerid="Percorso_9048b3b0_2bf6_4b06_ad77_8c189a1eaf9e" isInOverview="0" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendgroup checked="Qt::Checked" open="true" name="Overview">
-      <legendlayer checked="Qt::Checked" drawingOrder="-1" open="true" name="Limiti" showFeatureCount="0">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="limiti_pc_fabfe866_a85b_43ec_b627_21dd60a572df" visible="1"/>
+      <legendlayer checked="Qt::Checked" showFeatureCount="0" drawingOrder="-1" open="true" name="Limiti">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile layerid="limiti_pc_fabfe866_a85b_43ec_b627_21dd60a572df" isInOverview="0" visible="1"/>
         </filegroup>
       </legendlayer>
     </legendgroup>
   </legend>
   <mapViewDocks/>
-  <main-annotation-layer legendPlaceholderImage="" autoRefreshEnabled="0" refreshOnNotifyMessage="" refreshOnNotifyEnabled="0" type="annotation" autoRefreshTime="0">
+  <main-annotation-layer refreshOnNotifyEnabled="0" legendPlaceholderImage="" refreshOnNotifyMessage="" autoRefreshTime="0" type="annotation" autoRefreshEnabled="0">
     <id>Annotazioni_bb6749c5_6a90_465c_adb7_cbb6f834f4cf</id>
     <datasource></datasource>
     <keywordList>
@@ -203,7 +203,7 @@
     <paintEffect/>
   </main-annotation-layer>
   <projectlayers>
-    <maplayer minScale="100000000" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="0" simplifyDrawingTol="1" geometry="Line" readOnly="0" legendPlaceholderImage="" simplifyLocal="0" autoRefreshEnabled="0" wkbType="LineString" simplifyDrawingHints="1" refreshOnNotifyEnabled="0" type="vector" labelsEnabled="0" simplifyAlgorithm="0" autoRefreshTime="0" maxScale="0" simplifyMaxScale="1" refreshOnNotifyMessage="" symbologyReferenceScale="-1">
+    <maplayer legendPlaceholderImage="" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" minScale="100000000" simplifyMaxScale="1" refreshOnNotifyEnabled="0" symbologyReferenceScale="-1" geometry="Line" readOnly="0" simplifyLocal="0" simplifyAlgorithm="0" simplifyDrawingHints="1" maxScale="0" hasScaleBasedVisibilityFlag="0" type="vector" autoRefreshTime="0" wkbType="LineString" autoRefreshEnabled="0" labelsEnabled="0" simplifyDrawingTol="1">
       <extent>
         <xmin>548497.77379999961704016</xmin>
         <ymin>4982093.65514567121863365</ymin>
@@ -269,7 +269,7 @@
           </spatialrefsys>
         </crs>
         <extent>
-          <spatial dimensions="2" maxx="0" miny="0" maxz="0" minz="0" crs="EPSG:32632" maxy="0" minx="0"/>
+          <spatial minz="0" dimensions="2" crs="EPSG:32632" miny="0" maxz="0" minx="0" maxy="0" maxx="0"/>
           <temporal>
             <period>
               <start></start>
@@ -294,13 +294,13 @@
         <Searchable>1</Searchable>
         <Private>0</Private>
       </flags>
-      <temporal endExpression="" durationField="id" fixedDuration="0" endField="" durationUnit="min" accumulate="0" mode="0" limitMode="0" enabled="0" startField="" startExpression="">
+      <temporal durationField="id" endField="" durationUnit="min" enabled="0" fixedDuration="0" endExpression="" startExpression="" mode="0" startField="" limitMode="0" accumulate="0">
         <fixedRange>
           <start></start>
           <end></end>
         </fixedRange>
       </temporal>
-      <elevation extrusion="0" respectLayerSymbol="1" extrusionEnabled="0" binding="Centroid" symbology="Line" clamping="Terrain" showMarkerSymbolInSurfacePlots="0" type="IndividualFeatures" zscale="1" zoffset="0">
+      <elevation extrusion="0" clamping="Terrain" respectLayerSymbol="1" extrusionEnabled="0" showMarkerSymbolInSurfacePlots="0" zscale="1" zoffset="0" symbology="Line" type="IndividualFeatures" binding="Centroid">
         <data-defined-properties>
           <Option type="Map">
             <Option value="" type="QString" name="name"/>
@@ -309,7 +309,7 @@
           </Option>
         </data-defined-properties>
         <profileLineSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -317,7 +317,7 @@
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+            <layer pass="0" enabled="1" class="SimpleLine" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="align_dash_pattern"/>
                 <Option value="square" type="QString" name="capstyle"/>
@@ -358,7 +358,7 @@
           </symbol>
         </profileLineSymbol>
         <profileFillSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="fill" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="fill" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -366,7 +366,7 @@
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleFill">
+            <layer pass="0" enabled="1" class="SimpleFill" locked="0">
               <Option type="Map">
                 <Option value="3x:0,0,0,0,0,0" type="QString" name="border_width_map_unit_scale"/>
                 <Option value="225,89,137,255" type="QString" name="color"/>
@@ -391,7 +391,7 @@
           </symbol>
         </profileFillSymbol>
         <profileMarkerSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="marker" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="marker" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -399,7 +399,7 @@
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleMarker">
+            <layer pass="0" enabled="1" class="SimpleMarker" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="angle"/>
                 <Option value="square" type="QString" name="cap_style"/>
@@ -432,9 +432,9 @@
           </symbol>
         </profileMarkerSymbol>
       </elevation>
-      <renderer-v2 referencescale="-1" symbollevels="0" enableorderby="0" type="singleSymbol" forceraster="0">
+      <renderer-v2 enableorderby="0" referencescale="-1" forceraster="0" type="singleSymbol" symbollevels="0">
         <symbols>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="0">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="0">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -442,7 +442,7 @@
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+            <layer pass="0" enabled="1" class="SimpleLine" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="align_dash_pattern"/>
                 <Option value="square" type="QString" name="capstyle"/>
@@ -491,19 +491,19 @@
             <Option value="&quot;destinazione&quot;" type="QString"/>
           </Option>
           <Option value="0" type="int" name="embeddedWidgets/count"/>
-          <Option name="variableNames"/>
-          <Option name="variableValues"/>
+          <Option type="invalid" name="variableNames"/>
+          <Option type="invalid" name="variableValues"/>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
-      <SingleCategoryDiagramRenderer diagramType="Histogram" attributeLegend="1">
-        <DiagramCategory rotationOffset="270" spacing="5" diagramOrientation="Up" scaleBasedVisibility="0" barWidth="5" direction="0" backgroundAlpha="255" sizeScale="3x:0,0,0,0,0,0" spacingUnit="MM" sizeType="MM" backgroundColor="#ffffff" lineSizeType="MM" minimumSize="0" penWidth="0" height="15" labelPlacementMethod="XHeight" showAxis="1" minScaleDenominator="0" penAlpha="255" scaleDependency="Area" spacingUnitScale="3x:0,0,0,0,0,0" enabled="0" maxScaleDenominator="1e+08" width="15" lineSizeScale="3x:0,0,0,0,0,0" penColor="#000000" opacity="1">
-          <fontProperties bold="0" italic="0" strikethrough="0" description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" style="" underline="0"/>
-          <attribute color="#000000" label="" field="" colorOpacity="1"/>
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+        <DiagramCategory sizeScale="3x:0,0,0,0,0,0" barWidth="5" lineSizeScale="3x:0,0,0,0,0,0" spacing="5" showAxis="1" scaleBasedVisibility="0" sizeType="MM" diagramOrientation="Up" spacingUnitScale="3x:0,0,0,0,0,0" backgroundAlpha="255" minimumSize="0" scaleDependency="Area" penColor="#000000" penAlpha="255" maxScaleDenominator="1e+08" labelPlacementMethod="XHeight" width="15" spacingUnit="MM" penWidth="0" opacity="1" enabled="0" minScaleDenominator="0" direction="0" height="15" lineSizeType="MM" backgroundColor="#ffffff" rotationOffset="270">
+          <fontProperties description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0" bold="0"/>
+          <attribute color="#000000" colorOpacity="1" field="" label=""/>
           <axisSymbol>
-            <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="">
+            <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="">
               <data_defined_properties>
                 <Option type="Map">
                   <Option value="" type="QString" name="name"/>
@@ -511,7 +511,7 @@
                   <Option value="collection" type="QString" name="type"/>
                 </Option>
               </data_defined_properties>
-              <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+              <layer pass="0" enabled="1" class="SimpleLine" locked="0">
                 <Option type="Map">
                   <Option value="0" type="QString" name="align_dash_pattern"/>
                   <Option value="square" type="QString" name="capstyle"/>
@@ -553,7 +553,7 @@
           </axisSymbol>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings dist="0" zIndex="0" placement="2" obstacle="0" linePlacementFlags="18" priority="0" showAll="1">
+      <DiagramLayerSettings placement="2" obstacle="0" dist="0" showAll="1" linePlacementFlags="18" priority="0" zIndex="0">
         <properties>
           <Option type="Map">
             <Option value="" type="QString" name="name"/>
@@ -599,40 +599,40 @@
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="id" name=""/>
-        <alias index="1" field="school_id" name=""/>
-        <alias index="2" field="mezzo" name=""/>
-        <alias index="3" field="destinazione" name=""/>
+        <alias field="id" name="" index="0"/>
+        <alias field="school_id" name="" index="1"/>
+        <alias field="mezzo" name="" index="2"/>
+        <alias field="destinazione" name="" index="3"/>
       </aliases>
       <defaults>
-        <default expression="" applyOnUpdate="0" field="id"/>
-        <default expression="" applyOnUpdate="0" field="school_id"/>
-        <default expression="" applyOnUpdate="0" field="mezzo"/>
-        <default expression="" applyOnUpdate="0" field="destinazione"/>
+        <default field="id" applyOnUpdate="0" expression=""/>
+        <default field="school_id" applyOnUpdate="0" expression=""/>
+        <default field="mezzo" applyOnUpdate="0" expression=""/>
+        <default field="destinazione" applyOnUpdate="0" expression=""/>
       </defaults>
       <constraints>
-        <constraint unique_strength="1" notnull_strength="1" constraints="3" field="id" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="school_id" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="mezzo" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="destinazione" exp_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="1" constraints="3" field="id" unique_strength="1"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="school_id" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="mezzo" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="destinazione" unique_strength="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint desc="" field="id" exp=""/>
-        <constraint desc="" field="school_id" exp=""/>
-        <constraint desc="" field="mezzo" exp=""/>
-        <constraint desc="" field="destinazione" exp=""/>
+        <constraint field="id" desc="" exp=""/>
+        <constraint field="school_id" desc="" exp=""/>
+        <constraint field="mezzo" desc="" exp=""/>
+        <constraint field="destinazione" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns>
-          <column width="-1" type="field" hidden="0" name="id"/>
-          <column width="-1" type="field" hidden="0" name="destinazione"/>
-          <column width="-1" type="field" hidden="0" name="mezzo"/>
-          <column width="383" type="field" hidden="0" name="school_id"/>
-          <column width="-1" type="actions" hidden="1"/>
+          <column width="-1" hidden="0" type="field" name="id"/>
+          <column width="-1" hidden="0" type="field" name="destinazione"/>
+          <column width="-1" hidden="0" type="field" name="mezzo"/>
+          <column width="383" hidden="0" type="field" name="school_id"/>
+          <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -663,11 +663,11 @@ control = dialog.findChild(QWidget, "MyLineEdit")
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <editable>
-        <field editable="1" name="destinazione"/>
-        <field editable="1" name="id"/>
-        <field editable="1" name="mezzo"/>
-        <field editable="1" name="name"/>
-        <field editable="1" name="school_id"/>
+        <field name="destinazione" editable="1"/>
+        <field name="id" editable="1"/>
+        <field name="mezzo" editable="1"/>
+        <field name="name" editable="1"/>
+        <field name="school_id" editable="1"/>
       </editable>
       <labelOnTop>
         <field labelOnTop="0" name="destinazione"/>
@@ -677,29 +677,29 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         <field labelOnTop="0" name="school_id"/>
       </labelOnTop>
       <reuseLastValue>
-        <field reuseLastValue="0" name="destinazione"/>
-        <field reuseLastValue="0" name="id"/>
-        <field reuseLastValue="0" name="mezzo"/>
-        <field reuseLastValue="0" name="name"/>
-        <field reuseLastValue="0" name="school_id"/>
+        <field name="destinazione" reuseLastValue="0"/>
+        <field name="id" reuseLastValue="0"/>
+        <field name="mezzo" reuseLastValue="0"/>
+        <field name="name" reuseLastValue="0"/>
+        <field name="school_id" reuseLastValue="0"/>
       </reuseLastValue>
       <dataDefinedFieldProperties/>
       <widgets/>
       <previewExpression>"destinazione"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer minScale="100000000" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="0" simplifyDrawingTol="1" geometry="Line" readOnly="0" legendPlaceholderImage="" simplifyLocal="0" autoRefreshEnabled="0" wkbType="LineString" simplifyDrawingHints="1" refreshOnNotifyEnabled="0" type="vector" labelsEnabled="0" simplifyAlgorithm="0" autoRefreshTime="0" maxScale="0" simplifyMaxScale="1" refreshOnNotifyMessage="" symbologyReferenceScale="-1">
+    <maplayer legendPlaceholderImage="" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" minScale="100000000" simplifyMaxScale="1" refreshOnNotifyEnabled="0" symbologyReferenceScale="-1" geometry="Line" readOnly="0" simplifyLocal="0" simplifyAlgorithm="0" simplifyDrawingHints="1" maxScale="0" hasScaleBasedVisibilityFlag="0" type="vector" autoRefreshTime="0" wkbType="LineString" autoRefreshEnabled="0" labelsEnabled="0" simplifyDrawingTol="1">
       <extent>
-        <xmin>550688.20160439680330455</xmin>
+        <xmin>546333.74519999977201223</xmin>
         <ymin>4968839.44253226462751627</ymin>
-        <xmax>556319.76515437092166394</xmax>
-        <ymax>4989553.98908338043838739</ymax>
+        <xmax>570066.95529999968130141</xmax>
+        <ymax>4990128.6057474659755826</ymax>
       </extent>
       <wgs84extent>
-        <xmin>9.64168999998942056</xmin>
-        <ymin>44.87074718519138372</ymin>
-        <xmax>9.71529124132620048</xmax>
-        <ymax>45.05763025224116092</ymax>
+        <xmin>9.5865675495731324</xmin>
+        <ymin>44.86952818722154746</ymin>
+        <xmax>9.88994913917428953</xmax>
+        <ymax>45.06310092911733278</ymax>
       </wgs84extent>
       <id>Percorso_79e26d45_1524_4d48_a1c5_3e32c1de52ac</id>
       <datasource>dbname='postgres' host=10.0.16.23 port=5432 user='postgres' password='MobMob2023**' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=LineString checkPrimaryKeyUnicity='0' table="public"."viaggi_lizmap" (geom) sql="mezzo" = 'PIEDI'</datasource>
@@ -754,7 +754,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </spatialrefsys>
         </crs>
         <extent>
-          <spatial dimensions="2" maxx="0" miny="0" maxz="0" minz="0" crs="EPSG:32632" maxy="0" minx="0"/>
+          <spatial minz="0" dimensions="2" crs="EPSG:32632" miny="0" maxz="0" minx="0" maxy="0" maxx="0"/>
           <temporal>
             <period>
               <start></start>
@@ -779,13 +779,13 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         <Searchable>1</Searchable>
         <Private>0</Private>
       </flags>
-      <temporal endExpression="" durationField="id" fixedDuration="0" endField="" durationUnit="min" accumulate="0" mode="0" limitMode="0" enabled="0" startField="" startExpression="">
+      <temporal durationField="id" endField="" durationUnit="min" enabled="0" fixedDuration="0" endExpression="" startExpression="" mode="0" startField="" limitMode="0" accumulate="0">
         <fixedRange>
           <start></start>
           <end></end>
         </fixedRange>
       </temporal>
-      <elevation extrusion="0" respectLayerSymbol="1" extrusionEnabled="0" binding="Centroid" symbology="Line" clamping="Terrain" showMarkerSymbolInSurfacePlots="0" type="IndividualFeatures" zscale="1" zoffset="0">
+      <elevation extrusion="0" clamping="Terrain" respectLayerSymbol="1" extrusionEnabled="0" showMarkerSymbolInSurfacePlots="0" zscale="1" zoffset="0" symbology="Line" type="IndividualFeatures" binding="Centroid">
         <data-defined-properties>
           <Option type="Map">
             <Option value="" type="QString" name="name"/>
@@ -794,7 +794,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </Option>
         </data-defined-properties>
         <profileLineSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -802,7 +802,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+            <layer pass="0" enabled="1" class="SimpleLine" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="align_dash_pattern"/>
                 <Option value="square" type="QString" name="capstyle"/>
@@ -843,7 +843,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileLineSymbol>
         <profileFillSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="fill" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="fill" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -851,7 +851,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleFill">
+            <layer pass="0" enabled="1" class="SimpleFill" locked="0">
               <Option type="Map">
                 <Option value="3x:0,0,0,0,0,0" type="QString" name="border_width_map_unit_scale"/>
                 <Option value="225,89,137,255" type="QString" name="color"/>
@@ -876,7 +876,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileFillSymbol>
         <profileMarkerSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="marker" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="marker" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -884,7 +884,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleMarker">
+            <layer pass="0" enabled="1" class="SimpleMarker" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="angle"/>
                 <Option value="square" type="QString" name="cap_style"/>
@@ -917,9 +917,9 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileMarkerSymbol>
       </elevation>
-      <renderer-v2 referencescale="-1" symbollevels="0" enableorderby="0" type="singleSymbol" forceraster="0">
+      <renderer-v2 enableorderby="0" referencescale="-1" forceraster="0" type="singleSymbol" symbollevels="0">
         <symbols>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="0">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="0">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -927,7 +927,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+            <layer pass="0" enabled="1" class="SimpleLine" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="align_dash_pattern"/>
                 <Option value="square" type="QString" name="capstyle"/>
@@ -976,19 +976,19 @@ control = dialog.findChild(QWidget, "MyLineEdit")
             <Option value="&quot;destinazione&quot;" type="QString"/>
           </Option>
           <Option value="0" type="int" name="embeddedWidgets/count"/>
-          <Option name="variableNames"/>
-          <Option name="variableValues"/>
+          <Option type="invalid" name="variableNames"/>
+          <Option type="invalid" name="variableValues"/>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
-      <SingleCategoryDiagramRenderer diagramType="Histogram" attributeLegend="1">
-        <DiagramCategory rotationOffset="270" spacing="5" diagramOrientation="Up" scaleBasedVisibility="0" barWidth="5" direction="0" backgroundAlpha="255" sizeScale="3x:0,0,0,0,0,0" spacingUnit="MM" sizeType="MM" backgroundColor="#ffffff" lineSizeType="MM" minimumSize="0" penWidth="0" height="15" labelPlacementMethod="XHeight" showAxis="1" minScaleDenominator="0" penAlpha="255" scaleDependency="Area" spacingUnitScale="3x:0,0,0,0,0,0" enabled="0" maxScaleDenominator="1e+08" width="15" lineSizeScale="3x:0,0,0,0,0,0" penColor="#000000" opacity="1">
-          <fontProperties bold="0" italic="0" strikethrough="0" description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" style="" underline="0"/>
-          <attribute color="#000000" label="" field="" colorOpacity="1"/>
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+        <DiagramCategory sizeScale="3x:0,0,0,0,0,0" barWidth="5" lineSizeScale="3x:0,0,0,0,0,0" spacing="5" showAxis="1" scaleBasedVisibility="0" sizeType="MM" diagramOrientation="Up" spacingUnitScale="3x:0,0,0,0,0,0" backgroundAlpha="255" minimumSize="0" scaleDependency="Area" penColor="#000000" penAlpha="255" maxScaleDenominator="1e+08" labelPlacementMethod="XHeight" width="15" spacingUnit="MM" penWidth="0" opacity="1" enabled="0" minScaleDenominator="0" direction="0" height="15" lineSizeType="MM" backgroundColor="#ffffff" rotationOffset="270">
+          <fontProperties description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0" bold="0"/>
+          <attribute color="#000000" colorOpacity="1" field="" label=""/>
           <axisSymbol>
-            <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="">
+            <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="">
               <data_defined_properties>
                 <Option type="Map">
                   <Option value="" type="QString" name="name"/>
@@ -996,7 +996,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                   <Option value="collection" type="QString" name="type"/>
                 </Option>
               </data_defined_properties>
-              <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+              <layer pass="0" enabled="1" class="SimpleLine" locked="0">
                 <Option type="Map">
                   <Option value="0" type="QString" name="align_dash_pattern"/>
                   <Option value="square" type="QString" name="capstyle"/>
@@ -1038,7 +1038,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </axisSymbol>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings dist="0" zIndex="0" placement="2" obstacle="0" linePlacementFlags="18" priority="0" showAll="1">
+      <DiagramLayerSettings placement="2" obstacle="0" dist="0" showAll="1" linePlacementFlags="18" priority="0" zIndex="0">
         <properties>
           <Option type="Map">
             <Option value="" type="QString" name="name"/>
@@ -1084,40 +1084,40 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="id" name=""/>
-        <alias index="1" field="school_id" name=""/>
-        <alias index="2" field="mezzo" name=""/>
-        <alias index="3" field="destinazione" name=""/>
+        <alias field="id" name="" index="0"/>
+        <alias field="school_id" name="" index="1"/>
+        <alias field="mezzo" name="" index="2"/>
+        <alias field="destinazione" name="" index="3"/>
       </aliases>
       <defaults>
-        <default expression="" applyOnUpdate="0" field="id"/>
-        <default expression="" applyOnUpdate="0" field="school_id"/>
-        <default expression="" applyOnUpdate="0" field="mezzo"/>
-        <default expression="" applyOnUpdate="0" field="destinazione"/>
+        <default field="id" applyOnUpdate="0" expression=""/>
+        <default field="school_id" applyOnUpdate="0" expression=""/>
+        <default field="mezzo" applyOnUpdate="0" expression=""/>
+        <default field="destinazione" applyOnUpdate="0" expression=""/>
       </defaults>
       <constraints>
-        <constraint unique_strength="1" notnull_strength="1" constraints="3" field="id" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="school_id" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="mezzo" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="destinazione" exp_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="1" constraints="3" field="id" unique_strength="1"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="school_id" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="mezzo" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="destinazione" unique_strength="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint desc="" field="id" exp=""/>
-        <constraint desc="" field="school_id" exp=""/>
-        <constraint desc="" field="mezzo" exp=""/>
-        <constraint desc="" field="destinazione" exp=""/>
+        <constraint field="id" desc="" exp=""/>
+        <constraint field="school_id" desc="" exp=""/>
+        <constraint field="mezzo" desc="" exp=""/>
+        <constraint field="destinazione" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns>
-          <column width="-1" type="field" hidden="0" name="id"/>
-          <column width="-1" type="field" hidden="0" name="destinazione"/>
-          <column width="-1" type="field" hidden="0" name="mezzo"/>
-          <column width="383" type="field" hidden="0" name="school_id"/>
-          <column width="-1" type="actions" hidden="1"/>
+          <column width="-1" hidden="0" type="field" name="id"/>
+          <column width="-1" hidden="0" type="field" name="destinazione"/>
+          <column width="-1" hidden="0" type="field" name="mezzo"/>
+          <column width="383" hidden="0" type="field" name="school_id"/>
+          <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -1148,11 +1148,11 @@ control = dialog.findChild(QWidget, "MyLineEdit")
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <editable>
-        <field editable="1" name="destinazione"/>
-        <field editable="1" name="id"/>
-        <field editable="1" name="mezzo"/>
-        <field editable="1" name="name"/>
-        <field editable="1" name="school_id"/>
+        <field name="destinazione" editable="1"/>
+        <field name="id" editable="1"/>
+        <field name="mezzo" editable="1"/>
+        <field name="name" editable="1"/>
+        <field name="school_id" editable="1"/>
       </editable>
       <labelOnTop>
         <field labelOnTop="0" name="destinazione"/>
@@ -1162,29 +1162,29 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         <field labelOnTop="0" name="school_id"/>
       </labelOnTop>
       <reuseLastValue>
-        <field reuseLastValue="0" name="destinazione"/>
-        <field reuseLastValue="0" name="id"/>
-        <field reuseLastValue="0" name="mezzo"/>
-        <field reuseLastValue="0" name="name"/>
-        <field reuseLastValue="0" name="school_id"/>
+        <field name="destinazione" reuseLastValue="0"/>
+        <field name="id" reuseLastValue="0"/>
+        <field name="mezzo" reuseLastValue="0"/>
+        <field name="name" reuseLastValue="0"/>
+        <field name="school_id" reuseLastValue="0"/>
       </reuseLastValue>
       <dataDefinedFieldProperties/>
       <widgets/>
       <previewExpression>"destinazione"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer minScale="100000000" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="0" simplifyDrawingTol="1" geometry="Line" readOnly="0" legendPlaceholderImage="" simplifyLocal="0" autoRefreshEnabled="0" wkbType="LineString" simplifyDrawingHints="1" refreshOnNotifyEnabled="0" type="vector" labelsEnabled="0" simplifyAlgorithm="0" autoRefreshTime="0" maxScale="0" simplifyMaxScale="1" refreshOnNotifyMessage="" symbologyReferenceScale="-1">
+    <maplayer legendPlaceholderImage="" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" minScale="100000000" simplifyMaxScale="1" refreshOnNotifyEnabled="0" symbologyReferenceScale="-1" geometry="Line" readOnly="0" simplifyLocal="0" simplifyAlgorithm="0" simplifyDrawingHints="1" maxScale="0" hasScaleBasedVisibilityFlag="0" type="vector" autoRefreshTime="0" wkbType="LineString" autoRefreshEnabled="0" labelsEnabled="0" simplifyDrawingTol="1">
       <extent>
-        <xmin>547050.14854720921721309</xmin>
-        <ymin>4967184.33010348863899708</ymin>
-        <xmax>557282.7402450192021206</xmax>
-        <ymax>4989711.81265815626829863</ymax>
+        <xmin>531915.62187841790728271</xmin>
+        <ymin>4963730.29237087350338697</ymin>
+        <xmax>571570.14575481286738068</xmax>
+        <ymax>4989818.3994002565741539</ymax>
       </extent>
       <wgs84extent>
-        <xmin>9.59548284006145735</xmin>
-        <ymin>44.85577206628282454</ymin>
-        <xmax>9.72753857751823503</xmax>
-        <ymax>45.05930197992916675</ymax>
+        <xmin>9.40372374691722968</xmin>
+        <ymin>44.82339113241287976</ymin>
+        <xmax>9.90899515117622798</xmax>
+        <ymax>45.06110546326881661</ymax>
       </wgs84extent>
       <id>Percorso_9048b3b0_2bf6_4b06_ad77_8c189a1eaf9e</id>
       <datasource>dbname='postgres' host=10.0.16.23 port=5432 user='postgres' password='MobMob2023**' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=LineString checkPrimaryKeyUnicity='0' table="public"."viaggi_lizmap" (geom) sql="mezzo" = 'BUS COMUNALE'</datasource>
@@ -1239,7 +1239,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </spatialrefsys>
         </crs>
         <extent>
-          <spatial dimensions="2" maxx="0" miny="0" maxz="0" minz="0" crs="EPSG:32632" maxy="0" minx="0"/>
+          <spatial minz="0" dimensions="2" crs="EPSG:32632" miny="0" maxz="0" minx="0" maxy="0" maxx="0"/>
           <temporal>
             <period>
               <start></start>
@@ -1264,13 +1264,13 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         <Searchable>1</Searchable>
         <Private>0</Private>
       </flags>
-      <temporal endExpression="" durationField="id" fixedDuration="0" endField="" durationUnit="min" accumulate="0" mode="0" limitMode="0" enabled="0" startField="" startExpression="">
+      <temporal durationField="id" endField="" durationUnit="min" enabled="0" fixedDuration="0" endExpression="" startExpression="" mode="0" startField="" limitMode="0" accumulate="0">
         <fixedRange>
           <start></start>
           <end></end>
         </fixedRange>
       </temporal>
-      <elevation extrusion="0" respectLayerSymbol="1" extrusionEnabled="0" binding="Centroid" symbology="Line" clamping="Terrain" showMarkerSymbolInSurfacePlots="0" type="IndividualFeatures" zscale="1" zoffset="0">
+      <elevation extrusion="0" clamping="Terrain" respectLayerSymbol="1" extrusionEnabled="0" showMarkerSymbolInSurfacePlots="0" zscale="1" zoffset="0" symbology="Line" type="IndividualFeatures" binding="Centroid">
         <data-defined-properties>
           <Option type="Map">
             <Option value="" type="QString" name="name"/>
@@ -1279,7 +1279,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </Option>
         </data-defined-properties>
         <profileLineSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -1287,7 +1287,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+            <layer pass="0" enabled="1" class="SimpleLine" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="align_dash_pattern"/>
                 <Option value="square" type="QString" name="capstyle"/>
@@ -1328,7 +1328,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileLineSymbol>
         <profileFillSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="fill" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="fill" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -1336,7 +1336,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleFill">
+            <layer pass="0" enabled="1" class="SimpleFill" locked="0">
               <Option type="Map">
                 <Option value="3x:0,0,0,0,0,0" type="QString" name="border_width_map_unit_scale"/>
                 <Option value="225,89,137,255" type="QString" name="color"/>
@@ -1361,7 +1361,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileFillSymbol>
         <profileMarkerSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="marker" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="marker" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -1369,7 +1369,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleMarker">
+            <layer pass="0" enabled="1" class="SimpleMarker" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="angle"/>
                 <Option value="square" type="QString" name="cap_style"/>
@@ -1402,9 +1402,9 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileMarkerSymbol>
       </elevation>
-      <renderer-v2 referencescale="-1" symbollevels="0" enableorderby="0" type="singleSymbol" forceraster="0">
+      <renderer-v2 enableorderby="0" referencescale="-1" forceraster="0" type="singleSymbol" symbollevels="0">
         <symbols>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="0">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="0">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -1412,7 +1412,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+            <layer pass="0" enabled="1" class="SimpleLine" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="align_dash_pattern"/>
                 <Option value="square" type="QString" name="capstyle"/>
@@ -1461,19 +1461,19 @@ control = dialog.findChild(QWidget, "MyLineEdit")
             <Option value="&quot;destinazione&quot;" type="QString"/>
           </Option>
           <Option value="0" type="int" name="embeddedWidgets/count"/>
-          <Option name="variableNames"/>
-          <Option name="variableValues"/>
+          <Option type="invalid" name="variableNames"/>
+          <Option type="invalid" name="variableValues"/>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
-      <SingleCategoryDiagramRenderer diagramType="Histogram" attributeLegend="1">
-        <DiagramCategory rotationOffset="270" spacing="5" diagramOrientation="Up" scaleBasedVisibility="0" barWidth="5" direction="0" backgroundAlpha="255" sizeScale="3x:0,0,0,0,0,0" spacingUnit="MM" sizeType="MM" backgroundColor="#ffffff" lineSizeType="MM" minimumSize="0" penWidth="0" height="15" labelPlacementMethod="XHeight" showAxis="1" minScaleDenominator="0" penAlpha="255" scaleDependency="Area" spacingUnitScale="3x:0,0,0,0,0,0" enabled="0" maxScaleDenominator="1e+08" width="15" lineSizeScale="3x:0,0,0,0,0,0" penColor="#000000" opacity="1">
-          <fontProperties bold="0" italic="0" strikethrough="0" description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" style="" underline="0"/>
-          <attribute color="#000000" label="" field="" colorOpacity="1"/>
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+        <DiagramCategory sizeScale="3x:0,0,0,0,0,0" barWidth="5" lineSizeScale="3x:0,0,0,0,0,0" spacing="5" showAxis="1" scaleBasedVisibility="0" sizeType="MM" diagramOrientation="Up" spacingUnitScale="3x:0,0,0,0,0,0" backgroundAlpha="255" minimumSize="0" scaleDependency="Area" penColor="#000000" penAlpha="255" maxScaleDenominator="1e+08" labelPlacementMethod="XHeight" width="15" spacingUnit="MM" penWidth="0" opacity="1" enabled="0" minScaleDenominator="0" direction="0" height="15" lineSizeType="MM" backgroundColor="#ffffff" rotationOffset="270">
+          <fontProperties description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0" bold="0"/>
+          <attribute color="#000000" colorOpacity="1" field="" label=""/>
           <axisSymbol>
-            <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="">
+            <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="">
               <data_defined_properties>
                 <Option type="Map">
                   <Option value="" type="QString" name="name"/>
@@ -1481,7 +1481,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                   <Option value="collection" type="QString" name="type"/>
                 </Option>
               </data_defined_properties>
-              <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+              <layer pass="0" enabled="1" class="SimpleLine" locked="0">
                 <Option type="Map">
                   <Option value="0" type="QString" name="align_dash_pattern"/>
                   <Option value="square" type="QString" name="capstyle"/>
@@ -1523,7 +1523,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </axisSymbol>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings dist="0" zIndex="0" placement="2" obstacle="0" linePlacementFlags="18" priority="0" showAll="1">
+      <DiagramLayerSettings placement="2" obstacle="0" dist="0" showAll="1" linePlacementFlags="18" priority="0" zIndex="0">
         <properties>
           <Option type="Map">
             <Option value="" type="QString" name="name"/>
@@ -1569,40 +1569,40 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="id" name=""/>
-        <alias index="1" field="school_id" name=""/>
-        <alias index="2" field="mezzo" name=""/>
-        <alias index="3" field="destinazione" name=""/>
+        <alias field="id" name="" index="0"/>
+        <alias field="school_id" name="" index="1"/>
+        <alias field="mezzo" name="" index="2"/>
+        <alias field="destinazione" name="" index="3"/>
       </aliases>
       <defaults>
-        <default expression="" applyOnUpdate="0" field="id"/>
-        <default expression="" applyOnUpdate="0" field="school_id"/>
-        <default expression="" applyOnUpdate="0" field="mezzo"/>
-        <default expression="" applyOnUpdate="0" field="destinazione"/>
+        <default field="id" applyOnUpdate="0" expression=""/>
+        <default field="school_id" applyOnUpdate="0" expression=""/>
+        <default field="mezzo" applyOnUpdate="0" expression=""/>
+        <default field="destinazione" applyOnUpdate="0" expression=""/>
       </defaults>
       <constraints>
-        <constraint unique_strength="1" notnull_strength="1" constraints="3" field="id" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="school_id" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="mezzo" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="destinazione" exp_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="1" constraints="3" field="id" unique_strength="1"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="school_id" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="mezzo" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="destinazione" unique_strength="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint desc="" field="id" exp=""/>
-        <constraint desc="" field="school_id" exp=""/>
-        <constraint desc="" field="mezzo" exp=""/>
-        <constraint desc="" field="destinazione" exp=""/>
+        <constraint field="id" desc="" exp=""/>
+        <constraint field="school_id" desc="" exp=""/>
+        <constraint field="mezzo" desc="" exp=""/>
+        <constraint field="destinazione" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns>
-          <column width="-1" type="field" hidden="0" name="id"/>
-          <column width="-1" type="field" hidden="0" name="destinazione"/>
-          <column width="-1" type="field" hidden="0" name="mezzo"/>
-          <column width="383" type="field" hidden="0" name="school_id"/>
-          <column width="-1" type="actions" hidden="1"/>
+          <column width="-1" hidden="0" type="field" name="id"/>
+          <column width="-1" hidden="0" type="field" name="destinazione"/>
+          <column width="-1" hidden="0" type="field" name="mezzo"/>
+          <column width="383" hidden="0" type="field" name="school_id"/>
+          <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -1633,11 +1633,11 @@ control = dialog.findChild(QWidget, "MyLineEdit")
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <editable>
-        <field editable="1" name="destinazione"/>
-        <field editable="1" name="id"/>
-        <field editable="1" name="mezzo"/>
-        <field editable="1" name="name"/>
-        <field editable="1" name="school_id"/>
+        <field name="destinazione" editable="1"/>
+        <field name="id" editable="1"/>
+        <field name="mezzo" editable="1"/>
+        <field name="name" editable="1"/>
+        <field name="school_id" editable="1"/>
       </editable>
       <labelOnTop>
         <field labelOnTop="0" name="destinazione"/>
@@ -1647,29 +1647,29 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         <field labelOnTop="0" name="school_id"/>
       </labelOnTop>
       <reuseLastValue>
-        <field reuseLastValue="0" name="destinazione"/>
-        <field reuseLastValue="0" name="id"/>
-        <field reuseLastValue="0" name="mezzo"/>
-        <field reuseLastValue="0" name="name"/>
-        <field reuseLastValue="0" name="school_id"/>
+        <field name="destinazione" reuseLastValue="0"/>
+        <field name="id" reuseLastValue="0"/>
+        <field name="mezzo" reuseLastValue="0"/>
+        <field name="name" reuseLastValue="0"/>
+        <field name="school_id" reuseLastValue="0"/>
       </reuseLastValue>
       <dataDefinedFieldProperties/>
       <widgets/>
       <previewExpression>"destinazione"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer minScale="100000000" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="0" simplifyDrawingTol="1" geometry="Point" readOnly="0" legendPlaceholderImage="" simplifyLocal="1" autoRefreshEnabled="0" wkbType="Point" simplifyDrawingHints="0" refreshOnNotifyEnabled="0" type="vector" labelsEnabled="0" simplifyAlgorithm="0" autoRefreshTime="0" maxScale="0" simplifyMaxScale="1" refreshOnNotifyMessage="" symbologyReferenceScale="-1">
+    <maplayer legendPlaceholderImage="" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" minScale="100000000" simplifyMaxScale="1" refreshOnNotifyEnabled="0" symbologyReferenceScale="-1" geometry="Point" readOnly="0" simplifyLocal="1" simplifyAlgorithm="0" simplifyDrawingHints="0" maxScale="0" hasScaleBasedVisibilityFlag="0" type="vector" autoRefreshTime="0" wkbType="Point" autoRefreshEnabled="0" labelsEnabled="0" simplifyDrawingTol="1">
       <extent>
-        <xmin>527110.26748067606240511</xmin>
+        <xmin>523245.66671439580386505</xmin>
         <ymin>4949262.64563995506614447</ymin>
-        <xmax>575363.28699410671833903</xmax>
-        <ymax>4993426.02529929392039776</ymax>
+        <xmax>578019.92685516865458339</xmax>
+        <ymax>4995217.29339839983731508</ymax>
       </extent>
       <wgs84extent>
-        <xmin>9.34216893515778857</xmin>
-        <ymin>44.6927765154662211</ymin>
-        <xmax>9.95770658766911687</xmax>
-        <ymax>45.09378034705167693</ymax>
+        <xmin>9.29339303883535095</xmin>
+        <ymin>44.69249238442286298</ymin>
+        <xmax>9.99174090234259182</xmax>
+        <ymax>45.11004230962332429</ymax>
       </wgs84extent>
       <id>anon_studenti_lizmap_c2509e73_50d3_4a92_81bc_122d5b635ee3</id>
       <datasource>dbname='postgres' host=10.0.16.23 port=5432 user='postgres' password='MobMob2023**' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=Point checkPrimaryKeyUnicity='1' table="public"."anon_studenti_lizmap" (geom)</datasource>
@@ -1725,7 +1725,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </spatialrefsys>
         </crs>
         <extent>
-          <spatial dimensions="2" maxx="0" miny="0" maxz="0" minz="0" crs="EPSG:32632" maxy="0" minx="0"/>
+          <spatial minz="0" dimensions="2" crs="EPSG:32632" miny="0" maxz="0" minx="0" maxy="0" maxx="0"/>
           <temporal>
             <period>
               <start></start>
@@ -1750,13 +1750,13 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         <Searchable>1</Searchable>
         <Private>0</Private>
       </flags>
-      <temporal endExpression="" durationField="id" fixedDuration="0" endField="" durationUnit="min" accumulate="0" mode="0" limitMode="0" enabled="0" startField="" startExpression="">
+      <temporal durationField="id" endField="" durationUnit="min" enabled="0" fixedDuration="0" endExpression="" startExpression="" mode="0" startField="" limitMode="0" accumulate="0">
         <fixedRange>
           <start></start>
           <end></end>
         </fixedRange>
       </temporal>
-      <elevation extrusion="0" respectLayerSymbol="1" extrusionEnabled="0" binding="Centroid" symbology="Line" clamping="Terrain" showMarkerSymbolInSurfacePlots="0" type="IndividualFeatures" zscale="1" zoffset="0">
+      <elevation extrusion="0" clamping="Terrain" respectLayerSymbol="1" extrusionEnabled="0" showMarkerSymbolInSurfacePlots="0" zscale="1" zoffset="0" symbology="Line" type="IndividualFeatures" binding="Centroid">
         <data-defined-properties>
           <Option type="Map">
             <Option value="" type="QString" name="name"/>
@@ -1765,7 +1765,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </Option>
         </data-defined-properties>
         <profileLineSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -1773,7 +1773,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+            <layer pass="0" enabled="1" class="SimpleLine" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="align_dash_pattern"/>
                 <Option value="square" type="QString" name="capstyle"/>
@@ -1814,7 +1814,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileLineSymbol>
         <profileFillSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="fill" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="fill" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -1822,7 +1822,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleFill">
+            <layer pass="0" enabled="1" class="SimpleFill" locked="0">
               <Option type="Map">
                 <Option value="3x:0,0,0,0,0,0" type="QString" name="border_width_map_unit_scale"/>
                 <Option value="152,125,183,255" type="QString" name="color"/>
@@ -1847,7 +1847,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileFillSymbol>
         <profileMarkerSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="marker" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="marker" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -1855,7 +1855,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleMarker">
+            <layer pass="0" enabled="1" class="SimpleMarker" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="angle"/>
                 <Option value="square" type="QString" name="cap_style"/>
@@ -1888,9 +1888,9 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileMarkerSymbol>
       </elevation>
-      <renderer-v2 referencescale="-1" symbollevels="0" enableorderby="0" type="singleSymbol" forceraster="0">
+      <renderer-v2 enableorderby="0" referencescale="-1" forceraster="0" type="singleSymbol" symbollevels="0">
         <symbols>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="marker" clip_to_extent="1" name="0">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="marker" clip_to_extent="1" name="0">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -1898,7 +1898,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleMarker">
+            <layer pass="0" enabled="1" class="SimpleMarker" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="angle"/>
                 <Option value="square" type="QString" name="cap_style"/>
@@ -1946,12 +1946,12 @@ control = dialog.findChild(QWidget, "MyLineEdit")
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
-      <SingleCategoryDiagramRenderer diagramType="Histogram" attributeLegend="1">
-        <DiagramCategory rotationOffset="270" spacing="5" diagramOrientation="Up" scaleBasedVisibility="0" barWidth="5" direction="0" backgroundAlpha="255" sizeScale="3x:0,0,0,0,0,0" spacingUnit="MM" sizeType="MM" backgroundColor="#ffffff" lineSizeType="MM" minimumSize="0" penWidth="0" height="15" labelPlacementMethod="XHeight" showAxis="1" minScaleDenominator="0" penAlpha="255" scaleDependency="Area" spacingUnitScale="3x:0,0,0,0,0,0" enabled="0" maxScaleDenominator="1e+08" width="15" lineSizeScale="3x:0,0,0,0,0,0" penColor="#000000" opacity="1">
-          <fontProperties bold="0" italic="0" strikethrough="0" description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" style="" underline="0"/>
-          <attribute color="#000000" label="" field="" colorOpacity="1"/>
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+        <DiagramCategory sizeScale="3x:0,0,0,0,0,0" barWidth="5" lineSizeScale="3x:0,0,0,0,0,0" spacing="5" showAxis="1" scaleBasedVisibility="0" sizeType="MM" diagramOrientation="Up" spacingUnitScale="3x:0,0,0,0,0,0" backgroundAlpha="255" minimumSize="0" scaleDependency="Area" penColor="#000000" penAlpha="255" maxScaleDenominator="1e+08" labelPlacementMethod="XHeight" width="15" spacingUnit="MM" penWidth="0" opacity="1" enabled="0" minScaleDenominator="0" direction="0" height="15" lineSizeType="MM" backgroundColor="#ffffff" rotationOffset="270">
+          <fontProperties description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0" bold="0"/>
+          <attribute color="#000000" colorOpacity="1" field="" label=""/>
           <axisSymbol>
-            <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="">
+            <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="">
               <data_defined_properties>
                 <Option type="Map">
                   <Option value="" type="QString" name="name"/>
@@ -1959,7 +1959,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                   <Option value="collection" type="QString" name="type"/>
                 </Option>
               </data_defined_properties>
-              <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+              <layer pass="0" enabled="1" class="SimpleLine" locked="0">
                 <Option type="Map">
                   <Option value="0" type="QString" name="align_dash_pattern"/>
                   <Option value="square" type="QString" name="capstyle"/>
@@ -2001,7 +2001,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </axisSymbol>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings dist="0" zIndex="0" placement="0" obstacle="0" linePlacementFlags="18" priority="0" showAll="1">
+      <DiagramLayerSettings placement="0" obstacle="0" dist="0" showAll="1" linePlacementFlags="18" priority="0" zIndex="0">
         <properties>
           <Option type="Map">
             <Option value="" type="QString" name="name"/>
@@ -2068,55 +2068,55 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="id" name=""/>
-        <alias index="1" field="school_id" name=""/>
-        <alias index="2" field="Indirizzo Studente" name=""/>
-        <alias index="3" field="Comune Studente" name=""/>
-        <alias index="4" field="Scuola" name=""/>
-        <alias index="5" field="Sezione" name=""/>
-        <alias index="6" field="Sede" name=""/>
+        <alias field="id" name="" index="0"/>
+        <alias field="school_id" name="" index="1"/>
+        <alias field="Indirizzo Studente" name="" index="2"/>
+        <alias field="Comune Studente" name="" index="3"/>
+        <alias field="Scuola" name="" index="4"/>
+        <alias field="Sezione" name="" index="5"/>
+        <alias field="Sede" name="" index="6"/>
       </aliases>
       <defaults>
-        <default expression="" applyOnUpdate="0" field="id"/>
-        <default expression="" applyOnUpdate="0" field="school_id"/>
-        <default expression="" applyOnUpdate="0" field="Indirizzo Studente"/>
-        <default expression="" applyOnUpdate="0" field="Comune Studente"/>
-        <default expression="" applyOnUpdate="0" field="Scuola"/>
-        <default expression="" applyOnUpdate="0" field="Sezione"/>
-        <default expression="" applyOnUpdate="0" field="Sede"/>
+        <default field="id" applyOnUpdate="0" expression=""/>
+        <default field="school_id" applyOnUpdate="0" expression=""/>
+        <default field="Indirizzo Studente" applyOnUpdate="0" expression=""/>
+        <default field="Comune Studente" applyOnUpdate="0" expression=""/>
+        <default field="Scuola" applyOnUpdate="0" expression=""/>
+        <default field="Sezione" applyOnUpdate="0" expression=""/>
+        <default field="Sede" applyOnUpdate="0" expression=""/>
       </defaults>
       <constraints>
-        <constraint unique_strength="1" notnull_strength="1" constraints="3" field="id" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="school_id" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="Indirizzo Studente" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="Comune Studente" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="Scuola" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="Sezione" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="Sede" exp_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="1" constraints="3" field="id" unique_strength="1"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="school_id" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="Indirizzo Studente" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="Comune Studente" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="Scuola" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="Sezione" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="Sede" unique_strength="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint desc="" field="id" exp=""/>
-        <constraint desc="" field="school_id" exp=""/>
-        <constraint desc="" field="Indirizzo Studente" exp=""/>
-        <constraint desc="" field="Comune Studente" exp=""/>
-        <constraint desc="" field="Scuola" exp=""/>
-        <constraint desc="" field="Sezione" exp=""/>
-        <constraint desc="" field="Sede" exp=""/>
+        <constraint field="id" desc="" exp=""/>
+        <constraint field="school_id" desc="" exp=""/>
+        <constraint field="Indirizzo Studente" desc="" exp=""/>
+        <constraint field="Comune Studente" desc="" exp=""/>
+        <constraint field="Scuola" desc="" exp=""/>
+        <constraint field="Sezione" desc="" exp=""/>
+        <constraint field="Sede" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns>
-          <column width="-1" type="field" hidden="0" name="id"/>
-          <column width="383" type="field" hidden="0" name="school_id"/>
-          <column width="-1" type="field" hidden="0" name="Indirizzo Studente"/>
-          <column width="-1" type="field" hidden="0" name="Scuola"/>
-          <column width="-1" type="field" hidden="0" name="Sezione"/>
-          <column width="-1" type="field" hidden="0" name="Sede"/>
-          <column width="-1" type="field" hidden="0" name="Comune Studente"/>
-          <column width="-1" type="actions" hidden="1"/>
+          <column width="-1" hidden="0" type="field" name="id"/>
+          <column width="383" hidden="0" type="field" name="school_id"/>
+          <column width="-1" hidden="0" type="field" name="Indirizzo Studente"/>
+          <column width="-1" hidden="0" type="field" name="Scuola"/>
+          <column width="-1" hidden="0" type="field" name="Sezione"/>
+          <column width="-1" hidden="0" type="field" name="Sede"/>
+          <column width="-1" hidden="0" type="field" name="Comune Studente"/>
+          <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -2147,15 +2147,15 @@ control = dialog.findChild(QWidget, "MyLineEdit")
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <editable>
-        <field editable="1" name="Comune Studente"/>
-        <field editable="1" name="Indirizzo Studente"/>
-        <field editable="1" name="Scuola"/>
-        <field editable="1" name="Sede"/>
-        <field editable="1" name="Sezione"/>
-        <field editable="1" name="id"/>
-        <field editable="1" name="school_id"/>
-        <field editable="1" name="studente_address"/>
-        <field editable="1" name="studente_nome"/>
+        <field name="Comune Studente" editable="1"/>
+        <field name="Indirizzo Studente" editable="1"/>
+        <field name="Scuola" editable="1"/>
+        <field name="Sede" editable="1"/>
+        <field name="Sezione" editable="1"/>
+        <field name="id" editable="1"/>
+        <field name="school_id" editable="1"/>
+        <field name="studente_address" editable="1"/>
+        <field name="studente_nome" editable="1"/>
       </editable>
       <labelOnTop>
         <field labelOnTop="0" name="Comune Studente"/>
@@ -2169,15 +2169,15 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         <field labelOnTop="0" name="studente_nome"/>
       </labelOnTop>
       <reuseLastValue>
-        <field reuseLastValue="0" name="Comune Studente"/>
-        <field reuseLastValue="0" name="Indirizzo Studente"/>
-        <field reuseLastValue="0" name="Scuola"/>
-        <field reuseLastValue="0" name="Sede"/>
-        <field reuseLastValue="0" name="Sezione"/>
-        <field reuseLastValue="0" name="id"/>
-        <field reuseLastValue="0" name="school_id"/>
-        <field reuseLastValue="0" name="studente_address"/>
-        <field reuseLastValue="0" name="studente_nome"/>
+        <field name="Comune Studente" reuseLastValue="0"/>
+        <field name="Indirizzo Studente" reuseLastValue="0"/>
+        <field name="Scuola" reuseLastValue="0"/>
+        <field name="Sede" reuseLastValue="0"/>
+        <field name="Sezione" reuseLastValue="0"/>
+        <field name="id" reuseLastValue="0"/>
+        <field name="school_id" reuseLastValue="0"/>
+        <field name="studente_address" reuseLastValue="0"/>
+        <field name="studente_nome" reuseLastValue="0"/>
       </reuseLastValue>
       <dataDefinedFieldProperties/>
       <widgets/>
@@ -2216,7 +2216,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           &lt;/tbody>
         &lt;/table></mapTip>
     </maplayer>
-    <maplayer minScale="100000000" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="0" simplifyDrawingTol="1" geometry="Polygon" readOnly="0" legendPlaceholderImage="" simplifyLocal="0" autoRefreshEnabled="0" wkbType="MultiPolygon" simplifyDrawingHints="1" refreshOnNotifyEnabled="0" type="vector" labelsEnabled="0" simplifyAlgorithm="0" autoRefreshTime="0" maxScale="0" simplifyMaxScale="1" refreshOnNotifyMessage="" symbologyReferenceScale="-1">
+    <maplayer legendPlaceholderImage="" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" minScale="100000000" simplifyMaxScale="1" refreshOnNotifyEnabled="0" symbologyReferenceScale="-1" geometry="Polygon" readOnly="0" simplifyLocal="0" simplifyAlgorithm="0" simplifyDrawingHints="1" maxScale="0" hasScaleBasedVisibilityFlag="0" type="vector" autoRefreshTime="0" wkbType="MultiPolygon" autoRefreshEnabled="0" labelsEnabled="0" simplifyDrawingTol="1">
       <extent>
         <xmin>9.19811617195125741</xmin>
         <ymin>44.5556652195458085</ymin>
@@ -2290,13 +2290,13 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         <Searchable>1</Searchable>
         <Private>0</Private>
       </flags>
-      <temporal endExpression="" durationField="" fixedDuration="0" endField="" durationUnit="min" accumulate="0" mode="0" limitMode="0" enabled="0" startField="" startExpression="">
+      <temporal durationField="" endField="" durationUnit="min" enabled="0" fixedDuration="0" endExpression="" startExpression="" mode="0" startField="" limitMode="0" accumulate="0">
         <fixedRange>
           <start></start>
           <end></end>
         </fixedRange>
       </temporal>
-      <elevation extrusion="0" respectLayerSymbol="1" extrusionEnabled="0" binding="Centroid" symbology="Line" clamping="Terrain" showMarkerSymbolInSurfacePlots="0" type="IndividualFeatures" zscale="1" zoffset="0">
+      <elevation extrusion="0" clamping="Terrain" respectLayerSymbol="1" extrusionEnabled="0" showMarkerSymbolInSurfacePlots="0" zscale="1" zoffset="0" symbology="Line" type="IndividualFeatures" binding="Centroid">
         <data-defined-properties>
           <Option type="Map">
             <Option value="" type="QString" name="name"/>
@@ -2305,7 +2305,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </Option>
         </data-defined-properties>
         <profileLineSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -2313,7 +2313,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+            <layer pass="0" enabled="1" class="SimpleLine" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="align_dash_pattern"/>
                 <Option value="square" type="QString" name="capstyle"/>
@@ -2354,7 +2354,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileLineSymbol>
         <profileFillSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="fill" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="fill" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -2362,7 +2362,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleFill">
+            <layer pass="0" enabled="1" class="SimpleFill" locked="0">
               <Option type="Map">
                 <Option value="3x:0,0,0,0,0,0" type="QString" name="border_width_map_unit_scale"/>
                 <Option value="133,182,111,255" type="QString" name="color"/>
@@ -2387,7 +2387,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileFillSymbol>
         <profileMarkerSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="marker" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="marker" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -2395,7 +2395,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleMarker">
+            <layer pass="0" enabled="1" class="SimpleMarker" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="angle"/>
                 <Option value="square" type="QString" name="cap_style"/>
@@ -2428,9 +2428,9 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileMarkerSymbol>
       </elevation>
-      <renderer-v2 referencescale="-1" symbollevels="0" enableorderby="0" type="singleSymbol" forceraster="0">
+      <renderer-v2 enableorderby="0" referencescale="-1" forceraster="0" type="singleSymbol" symbollevels="0">
         <symbols>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="fill" clip_to_extent="1" name="0">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="fill" clip_to_extent="1" name="0">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -2438,7 +2438,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleFill">
+            <layer pass="0" enabled="1" class="SimpleFill" locked="0">
               <Option type="Map">
                 <Option value="3x:0,0,0,0,0,0" type="QString" name="border_width_map_unit_scale"/>
                 <Option value="178,223,138,255" type="QString" name="color"/>
@@ -2475,12 +2475,12 @@ control = dialog.findChild(QWidget, "MyLineEdit")
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
-      <SingleCategoryDiagramRenderer diagramType="Histogram" attributeLegend="1">
-        <DiagramCategory rotationOffset="270" spacing="5" diagramOrientation="Up" scaleBasedVisibility="0" barWidth="5" direction="0" backgroundAlpha="255" sizeScale="3x:0,0,0,0,0,0" spacingUnit="MM" sizeType="MM" backgroundColor="#ffffff" lineSizeType="MM" minimumSize="0" penWidth="0" height="15" labelPlacementMethod="XHeight" showAxis="1" minScaleDenominator="0" penAlpha="255" scaleDependency="Area" spacingUnitScale="3x:0,0,0,0,0,0" enabled="0" maxScaleDenominator="1e+08" width="15" lineSizeScale="3x:0,0,0,0,0,0" penColor="#000000" opacity="1">
-          <fontProperties bold="0" italic="0" strikethrough="0" description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" style="" underline="0"/>
-          <attribute color="#000000" label="" field="" colorOpacity="1"/>
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+        <DiagramCategory sizeScale="3x:0,0,0,0,0,0" barWidth="5" lineSizeScale="3x:0,0,0,0,0,0" spacing="5" showAxis="1" scaleBasedVisibility="0" sizeType="MM" diagramOrientation="Up" spacingUnitScale="3x:0,0,0,0,0,0" backgroundAlpha="255" minimumSize="0" scaleDependency="Area" penColor="#000000" penAlpha="255" maxScaleDenominator="1e+08" labelPlacementMethod="XHeight" width="15" spacingUnit="MM" penWidth="0" opacity="1" enabled="0" minScaleDenominator="0" direction="0" height="15" lineSizeType="MM" backgroundColor="#ffffff" rotationOffset="270">
+          <fontProperties description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0" bold="0"/>
+          <attribute color="#000000" colorOpacity="1" field="" label=""/>
           <axisSymbol>
-            <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="">
+            <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="">
               <data_defined_properties>
                 <Option type="Map">
                   <Option value="" type="QString" name="name"/>
@@ -2488,7 +2488,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                   <Option value="collection" type="QString" name="type"/>
                 </Option>
               </data_defined_properties>
-              <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+              <layer pass="0" enabled="1" class="SimpleLine" locked="0">
                 <Option type="Map">
                   <Option value="0" type="QString" name="align_dash_pattern"/>
                   <Option value="square" type="QString" name="capstyle"/>
@@ -2530,7 +2530,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </axisSymbol>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings dist="0" zIndex="0" placement="1" obstacle="0" linePlacementFlags="18" priority="0" showAll="1">
+      <DiagramLayerSettings placement="1" obstacle="0" dist="0" showAll="1" linePlacementFlags="18" priority="0" zIndex="0">
         <properties>
           <Option type="Map">
             <Option value="" type="QString" name="name"/>
@@ -2631,75 +2631,75 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="id" name=""/>
-        <alias index="1" field="area" name=""/>
-        <alias index="2" field="perimeter" name=""/>
-        <alias index="3" field="comuni_" name=""/>
-        <alias index="4" field="comuni_id" name=""/>
-        <alias index="5" field="cod_istat" name=""/>
-        <alias index="6" field="label" name=""/>
-        <alias index="7" field="prov" name=""/>
-        <alias index="8" field="cod_sir" name=""/>
-        <alias index="9" field="supcom" name=""/>
-        <alias index="10" field="rsu" name=""/>
+        <alias field="id" name="" index="0"/>
+        <alias field="area" name="" index="1"/>
+        <alias field="perimeter" name="" index="2"/>
+        <alias field="comuni_" name="" index="3"/>
+        <alias field="comuni_id" name="" index="4"/>
+        <alias field="cod_istat" name="" index="5"/>
+        <alias field="label" name="" index="6"/>
+        <alias field="prov" name="" index="7"/>
+        <alias field="cod_sir" name="" index="8"/>
+        <alias field="supcom" name="" index="9"/>
+        <alias field="rsu" name="" index="10"/>
       </aliases>
       <defaults>
-        <default expression="" applyOnUpdate="0" field="id"/>
-        <default expression="" applyOnUpdate="0" field="area"/>
-        <default expression="" applyOnUpdate="0" field="perimeter"/>
-        <default expression="" applyOnUpdate="0" field="comuni_"/>
-        <default expression="" applyOnUpdate="0" field="comuni_id"/>
-        <default expression="" applyOnUpdate="0" field="cod_istat"/>
-        <default expression="" applyOnUpdate="0" field="label"/>
-        <default expression="" applyOnUpdate="0" field="prov"/>
-        <default expression="" applyOnUpdate="0" field="cod_sir"/>
-        <default expression="" applyOnUpdate="0" field="supcom"/>
-        <default expression="" applyOnUpdate="0" field="rsu"/>
+        <default field="id" applyOnUpdate="0" expression=""/>
+        <default field="area" applyOnUpdate="0" expression=""/>
+        <default field="perimeter" applyOnUpdate="0" expression=""/>
+        <default field="comuni_" applyOnUpdate="0" expression=""/>
+        <default field="comuni_id" applyOnUpdate="0" expression=""/>
+        <default field="cod_istat" applyOnUpdate="0" expression=""/>
+        <default field="label" applyOnUpdate="0" expression=""/>
+        <default field="prov" applyOnUpdate="0" expression=""/>
+        <default field="cod_sir" applyOnUpdate="0" expression=""/>
+        <default field="supcom" applyOnUpdate="0" expression=""/>
+        <default field="rsu" applyOnUpdate="0" expression=""/>
       </defaults>
       <constraints>
-        <constraint unique_strength="1" notnull_strength="1" constraints="3" field="id" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="area" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="perimeter" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="comuni_" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="comuni_id" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="cod_istat" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="label" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="prov" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="cod_sir" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="supcom" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="rsu" exp_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="1" constraints="3" field="id" unique_strength="1"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="area" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="perimeter" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="comuni_" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="comuni_id" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="cod_istat" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="label" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="prov" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="cod_sir" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="supcom" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="rsu" unique_strength="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint desc="" field="id" exp=""/>
-        <constraint desc="" field="area" exp=""/>
-        <constraint desc="" field="perimeter" exp=""/>
-        <constraint desc="" field="comuni_" exp=""/>
-        <constraint desc="" field="comuni_id" exp=""/>
-        <constraint desc="" field="cod_istat" exp=""/>
-        <constraint desc="" field="label" exp=""/>
-        <constraint desc="" field="prov" exp=""/>
-        <constraint desc="" field="cod_sir" exp=""/>
-        <constraint desc="" field="supcom" exp=""/>
-        <constraint desc="" field="rsu" exp=""/>
+        <constraint field="id" desc="" exp=""/>
+        <constraint field="area" desc="" exp=""/>
+        <constraint field="perimeter" desc="" exp=""/>
+        <constraint field="comuni_" desc="" exp=""/>
+        <constraint field="comuni_id" desc="" exp=""/>
+        <constraint field="cod_istat" desc="" exp=""/>
+        <constraint field="label" desc="" exp=""/>
+        <constraint field="prov" desc="" exp=""/>
+        <constraint field="cod_sir" desc="" exp=""/>
+        <constraint field="supcom" desc="" exp=""/>
+        <constraint field="rsu" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns>
-          <column width="-1" type="field" hidden="0" name="id"/>
-          <column width="-1" type="field" hidden="0" name="area"/>
-          <column width="-1" type="field" hidden="0" name="perimeter"/>
-          <column width="-1" type="field" hidden="0" name="comuni_"/>
-          <column width="-1" type="field" hidden="0" name="comuni_id"/>
-          <column width="-1" type="field" hidden="0" name="cod_istat"/>
-          <column width="-1" type="field" hidden="0" name="label"/>
-          <column width="-1" type="field" hidden="0" name="prov"/>
-          <column width="-1" type="field" hidden="0" name="cod_sir"/>
-          <column width="-1" type="field" hidden="0" name="supcom"/>
-          <column width="-1" type="field" hidden="0" name="rsu"/>
-          <column width="-1" type="actions" hidden="1"/>
+          <column width="-1" hidden="0" type="field" name="id"/>
+          <column width="-1" hidden="0" type="field" name="area"/>
+          <column width="-1" hidden="0" type="field" name="perimeter"/>
+          <column width="-1" hidden="0" type="field" name="comuni_"/>
+          <column width="-1" hidden="0" type="field" name="comuni_id"/>
+          <column width="-1" hidden="0" type="field" name="cod_istat"/>
+          <column width="-1" hidden="0" type="field" name="label"/>
+          <column width="-1" hidden="0" type="field" name="prov"/>
+          <column width="-1" hidden="0" type="field" name="cod_sir"/>
+          <column width="-1" hidden="0" type="field" name="supcom"/>
+          <column width="-1" hidden="0" type="field" name="rsu"/>
+          <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -2730,17 +2730,17 @@ control = dialog.findChild(QWidget, "MyLineEdit")
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <editable>
-        <field editable="1" name="area"/>
-        <field editable="1" name="cod_istat"/>
-        <field editable="1" name="cod_sir"/>
-        <field editable="1" name="comuni_"/>
-        <field editable="1" name="comuni_id"/>
-        <field editable="1" name="id"/>
-        <field editable="1" name="label"/>
-        <field editable="1" name="perimeter"/>
-        <field editable="1" name="prov"/>
-        <field editable="1" name="rsu"/>
-        <field editable="1" name="supcom"/>
+        <field name="area" editable="1"/>
+        <field name="cod_istat" editable="1"/>
+        <field name="cod_sir" editable="1"/>
+        <field name="comuni_" editable="1"/>
+        <field name="comuni_id" editable="1"/>
+        <field name="id" editable="1"/>
+        <field name="label" editable="1"/>
+        <field name="perimeter" editable="1"/>
+        <field name="prov" editable="1"/>
+        <field name="rsu" editable="1"/>
+        <field name="supcom" editable="1"/>
       </editable>
       <labelOnTop>
         <field labelOnTop="0" name="area"/>
@@ -2756,24 +2756,24 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         <field labelOnTop="0" name="supcom"/>
       </labelOnTop>
       <reuseLastValue>
-        <field reuseLastValue="0" name="area"/>
-        <field reuseLastValue="0" name="cod_istat"/>
-        <field reuseLastValue="0" name="cod_sir"/>
-        <field reuseLastValue="0" name="comuni_"/>
-        <field reuseLastValue="0" name="comuni_id"/>
-        <field reuseLastValue="0" name="id"/>
-        <field reuseLastValue="0" name="label"/>
-        <field reuseLastValue="0" name="perimeter"/>
-        <field reuseLastValue="0" name="prov"/>
-        <field reuseLastValue="0" name="rsu"/>
-        <field reuseLastValue="0" name="supcom"/>
+        <field name="area" reuseLastValue="0"/>
+        <field name="cod_istat" reuseLastValue="0"/>
+        <field name="cod_sir" reuseLastValue="0"/>
+        <field name="comuni_" reuseLastValue="0"/>
+        <field name="comuni_id" reuseLastValue="0"/>
+        <field name="id" reuseLastValue="0"/>
+        <field name="label" reuseLastValue="0"/>
+        <field name="perimeter" reuseLastValue="0"/>
+        <field name="prov" reuseLastValue="0"/>
+        <field name="rsu" reuseLastValue="0"/>
+        <field name="supcom" reuseLastValue="0"/>
       </reuseLastValue>
       <dataDefinedFieldProperties/>
       <widgets/>
       <previewExpression>"label"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer minScale="100000000" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="0" simplifyDrawingTol="1" geometry="Point" readOnly="0" legendPlaceholderImage="" simplifyLocal="1" autoRefreshEnabled="0" wkbType="Point" simplifyDrawingHints="0" refreshOnNotifyEnabled="0" type="vector" labelsEnabled="0" simplifyAlgorithm="0" autoRefreshTime="0" maxScale="0" simplifyMaxScale="1" refreshOnNotifyMessage="" symbologyReferenceScale="-1">
+    <maplayer legendPlaceholderImage="" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" minScale="100000000" simplifyMaxScale="1" refreshOnNotifyEnabled="0" symbologyReferenceScale="-1" geometry="Point" readOnly="0" simplifyLocal="1" simplifyAlgorithm="0" simplifyDrawingHints="0" maxScale="0" hasScaleBasedVisibilityFlag="0" type="vector" autoRefreshTime="0" wkbType="Point" autoRefreshEnabled="0" labelsEnabled="0" simplifyDrawingTol="1">
       <extent>
         <xmin>551379.92177974164951593</xmin>
         <ymin>4985860.24750359728932381</ymin>
@@ -2839,7 +2839,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </spatialrefsys>
         </crs>
         <extent>
-          <spatial dimensions="2" maxx="0" miny="0" maxz="0" minz="0" crs="EPSG:32632" maxy="0" minx="0"/>
+          <spatial minz="0" dimensions="2" crs="EPSG:32632" miny="0" maxz="0" minx="0" maxy="0" maxx="0"/>
           <temporal>
             <period>
               <start></start>
@@ -2864,13 +2864,13 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         <Searchable>1</Searchable>
         <Private>0</Private>
       </flags>
-      <temporal endExpression="" durationField="id" fixedDuration="0" endField="" durationUnit="min" accumulate="0" mode="0" limitMode="0" enabled="0" startField="" startExpression="">
+      <temporal durationField="id" endField="" durationUnit="min" enabled="0" fixedDuration="0" endExpression="" startExpression="" mode="0" startField="" limitMode="0" accumulate="0">
         <fixedRange>
           <start></start>
           <end></end>
         </fixedRange>
       </temporal>
-      <elevation extrusion="0" respectLayerSymbol="1" extrusionEnabled="0" binding="Centroid" symbology="Line" clamping="Terrain" showMarkerSymbolInSurfacePlots="0" type="IndividualFeatures" zscale="1" zoffset="0">
+      <elevation extrusion="0" clamping="Terrain" respectLayerSymbol="1" extrusionEnabled="0" showMarkerSymbolInSurfacePlots="0" zscale="1" zoffset="0" symbology="Line" type="IndividualFeatures" binding="Centroid">
         <data-defined-properties>
           <Option type="Map">
             <Option value="" type="QString" name="name"/>
@@ -2879,7 +2879,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </Option>
         </data-defined-properties>
         <profileLineSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -2887,7 +2887,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+            <layer pass="0" enabled="1" class="SimpleLine" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="align_dash_pattern"/>
                 <Option value="square" type="QString" name="capstyle"/>
@@ -2928,7 +2928,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileLineSymbol>
         <profileFillSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="fill" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="fill" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -2936,7 +2936,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleFill">
+            <layer pass="0" enabled="1" class="SimpleFill" locked="0">
               <Option type="Map">
                 <Option value="3x:0,0,0,0,0,0" type="QString" name="border_width_map_unit_scale"/>
                 <Option value="183,72,75,255" type="QString" name="color"/>
@@ -2961,7 +2961,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileFillSymbol>
         <profileMarkerSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="marker" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="marker" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -2969,7 +2969,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleMarker">
+            <layer pass="0" enabled="1" class="SimpleMarker" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="angle"/>
                 <Option value="square" type="QString" name="cap_style"/>
@@ -3002,9 +3002,9 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileMarkerSymbol>
       </elevation>
-      <renderer-v2 referencescale="-1" symbollevels="0" enableorderby="0" type="singleSymbol" forceraster="0">
+      <renderer-v2 enableorderby="0" referencescale="-1" forceraster="0" type="singleSymbol" symbollevels="0">
         <symbols>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="marker" clip_to_extent="1" name="0">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="marker" clip_to_extent="1" name="0">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -3012,7 +3012,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleMarker">
+            <layer pass="0" enabled="1" class="SimpleMarker" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="angle"/>
                 <Option value="square" type="QString" name="cap_style"/>
@@ -3042,7 +3042,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 </Option>
               </data_defined_properties>
             </layer>
-            <layer pass="0" locked="0" enabled="1" class="SimpleMarker">
+            <layer pass="0" enabled="1" class="SimpleMarker" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="angle"/>
                 <Option value="square" type="QString" name="cap_style"/>
@@ -3083,19 +3083,19 @@ control = dialog.findChild(QWidget, "MyLineEdit")
             <Option value="&quot;scuola_name&quot;" type="QString"/>
           </Option>
           <Option value="0" type="int" name="embeddedWidgets/count"/>
-          <Option name="variableNames"/>
-          <Option name="variableValues"/>
+          <Option type="invalid" name="variableNames"/>
+          <Option type="invalid" name="variableValues"/>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
-      <SingleCategoryDiagramRenderer diagramType="Histogram" attributeLegend="1">
-        <DiagramCategory rotationOffset="270" spacing="5" diagramOrientation="Up" scaleBasedVisibility="0" barWidth="5" direction="0" backgroundAlpha="255" sizeScale="3x:0,0,0,0,0,0" spacingUnit="MM" sizeType="MM" backgroundColor="#ffffff" lineSizeType="MM" minimumSize="0" penWidth="0" height="15" labelPlacementMethod="XHeight" showAxis="1" minScaleDenominator="0" penAlpha="255" scaleDependency="Area" spacingUnitScale="3x:0,0,0,0,0,0" enabled="0" maxScaleDenominator="1e+08" width="15" lineSizeScale="3x:0,0,0,0,0,0" penColor="#000000" opacity="1">
-          <fontProperties bold="0" italic="0" strikethrough="0" description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" style="" underline="0"/>
-          <attribute color="#000000" label="" field="" colorOpacity="1"/>
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+        <DiagramCategory sizeScale="3x:0,0,0,0,0,0" barWidth="5" lineSizeScale="3x:0,0,0,0,0,0" spacing="5" showAxis="1" scaleBasedVisibility="0" sizeType="MM" diagramOrientation="Up" spacingUnitScale="3x:0,0,0,0,0,0" backgroundAlpha="255" minimumSize="0" scaleDependency="Area" penColor="#000000" penAlpha="255" maxScaleDenominator="1e+08" labelPlacementMethod="XHeight" width="15" spacingUnit="MM" penWidth="0" opacity="1" enabled="0" minScaleDenominator="0" direction="0" height="15" lineSizeType="MM" backgroundColor="#ffffff" rotationOffset="270">
+          <fontProperties description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0" bold="0"/>
+          <attribute color="#000000" colorOpacity="1" field="" label=""/>
           <axisSymbol>
-            <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="">
+            <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="">
               <data_defined_properties>
                 <Option type="Map">
                   <Option value="" type="QString" name="name"/>
@@ -3103,7 +3103,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                   <Option value="collection" type="QString" name="type"/>
                 </Option>
               </data_defined_properties>
-              <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+              <layer pass="0" enabled="1" class="SimpleLine" locked="0">
                 <Option type="Map">
                   <Option value="0" type="QString" name="align_dash_pattern"/>
                   <Option value="square" type="QString" name="capstyle"/>
@@ -3145,7 +3145,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </axisSymbol>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings dist="0" zIndex="0" placement="0" obstacle="0" linePlacementFlags="18" priority="0" showAll="1">
+      <DiagramLayerSettings placement="0" obstacle="0" dist="0" showAll="1" linePlacementFlags="18" priority="0" zIndex="0">
         <properties>
           <Option type="Map">
             <Option value="" type="QString" name="name"/>
@@ -3191,40 +3191,40 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="id" name=""/>
-        <alias index="1" field="scuola_id" name=""/>
-        <alias index="2" field="Nome Scuola" name=""/>
-        <alias index="3" field="Indirizzo Scuola" name=""/>
+        <alias field="id" name="" index="0"/>
+        <alias field="scuola_id" name="" index="1"/>
+        <alias field="Nome Scuola" name="" index="2"/>
+        <alias field="Indirizzo Scuola" name="" index="3"/>
       </aliases>
       <defaults>
-        <default expression="" applyOnUpdate="0" field="id"/>
-        <default expression="" applyOnUpdate="0" field="scuola_id"/>
-        <default expression="" applyOnUpdate="0" field="Nome Scuola"/>
-        <default expression="" applyOnUpdate="0" field="Indirizzo Scuola"/>
+        <default field="id" applyOnUpdate="0" expression=""/>
+        <default field="scuola_id" applyOnUpdate="0" expression=""/>
+        <default field="Nome Scuola" applyOnUpdate="0" expression=""/>
+        <default field="Indirizzo Scuola" applyOnUpdate="0" expression=""/>
       </defaults>
       <constraints>
-        <constraint unique_strength="1" notnull_strength="1" constraints="3" field="id" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="scuola_id" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="Nome Scuola" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="Indirizzo Scuola" exp_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="1" constraints="3" field="id" unique_strength="1"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="scuola_id" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="Nome Scuola" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="Indirizzo Scuola" unique_strength="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint desc="" field="id" exp=""/>
-        <constraint desc="" field="scuola_id" exp=""/>
-        <constraint desc="" field="Nome Scuola" exp=""/>
-        <constraint desc="" field="Indirizzo Scuola" exp=""/>
+        <constraint field="id" desc="" exp=""/>
+        <constraint field="scuola_id" desc="" exp=""/>
+        <constraint field="Nome Scuola" desc="" exp=""/>
+        <constraint field="Indirizzo Scuola" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns>
-          <column width="-1" type="field" hidden="0" name="id"/>
-          <column width="393" type="field" hidden="0" name="scuola_id"/>
-          <column width="-1" type="field" hidden="0" name="Nome Scuola"/>
-          <column width="-1" type="field" hidden="0" name="Indirizzo Scuola"/>
-          <column width="-1" type="actions" hidden="1"/>
+          <column width="-1" hidden="0" type="field" name="id"/>
+          <column width="393" hidden="0" type="field" name="scuola_id"/>
+          <column width="-1" hidden="0" type="field" name="Nome Scuola"/>
+          <column width="-1" hidden="0" type="field" name="Indirizzo Scuola"/>
+          <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -3255,14 +3255,14 @@ control = dialog.findChild(QWidget, "MyLineEdit")
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <editable>
-        <field editable="1" name="Indirizzo Scuola"/>
-        <field editable="1" name="Nome Scuola"/>
-        <field editable="1" name="building_id"/>
-        <field editable="1" name="id"/>
-        <field editable="1" name="scuola_address"/>
-        <field editable="1" name="scuola_id"/>
-        <field editable="1" name="scuola_name"/>
-        <field editable="1" name="sections_nr"/>
+        <field name="Indirizzo Scuola" editable="1"/>
+        <field name="Nome Scuola" editable="1"/>
+        <field name="building_id" editable="1"/>
+        <field name="id" editable="1"/>
+        <field name="scuola_address" editable="1"/>
+        <field name="scuola_id" editable="1"/>
+        <field name="scuola_name" editable="1"/>
+        <field name="sections_nr" editable="1"/>
       </editable>
       <labelOnTop>
         <field labelOnTop="0" name="Indirizzo Scuola"/>
@@ -3275,21 +3275,21 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         <field labelOnTop="0" name="sections_nr"/>
       </labelOnTop>
       <reuseLastValue>
-        <field reuseLastValue="0" name="Indirizzo Scuola"/>
-        <field reuseLastValue="0" name="Nome Scuola"/>
-        <field reuseLastValue="0" name="building_id"/>
-        <field reuseLastValue="0" name="id"/>
-        <field reuseLastValue="0" name="scuola_address"/>
-        <field reuseLastValue="0" name="scuola_id"/>
-        <field reuseLastValue="0" name="scuola_name"/>
-        <field reuseLastValue="0" name="sections_nr"/>
+        <field name="Indirizzo Scuola" reuseLastValue="0"/>
+        <field name="Nome Scuola" reuseLastValue="0"/>
+        <field name="building_id" reuseLastValue="0"/>
+        <field name="id" reuseLastValue="0"/>
+        <field name="scuola_address" reuseLastValue="0"/>
+        <field name="scuola_id" reuseLastValue="0"/>
+        <field name="scuola_name" reuseLastValue="0"/>
+        <field name="sections_nr" reuseLastValue="0"/>
       </reuseLastValue>
       <dataDefinedFieldProperties/>
       <widgets/>
       <previewExpression>"scuola_name"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer minScale="100000000" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="0" simplifyDrawingTol="1" geometry="Line" readOnly="0" legendPlaceholderImage="" simplifyLocal="0" autoRefreshEnabled="0" wkbType="LineString" simplifyDrawingHints="1" refreshOnNotifyEnabled="0" type="vector" labelsEnabled="0" simplifyAlgorithm="0" autoRefreshTime="0" maxScale="0" simplifyMaxScale="1" refreshOnNotifyMessage="" symbologyReferenceScale="-1">
+    <maplayer legendPlaceholderImage="" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" minScale="100000000" simplifyMaxScale="1" refreshOnNotifyEnabled="0" symbologyReferenceScale="-1" geometry="Line" readOnly="0" simplifyLocal="0" simplifyAlgorithm="0" simplifyDrawingHints="1" maxScale="0" hasScaleBasedVisibilityFlag="0" type="vector" autoRefreshTime="0" wkbType="LineString" autoRefreshEnabled="0" labelsEnabled="0" simplifyDrawingTol="1">
       <extent>
         <xmin>546300.12729999981820583</xmin>
         <ymin>4982093.65514567121863365</ymin>
@@ -3355,7 +3355,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </spatialrefsys>
         </crs>
         <extent>
-          <spatial dimensions="2" maxx="0" miny="0" maxz="0" minz="0" crs="EPSG:32632" maxy="0" minx="0"/>
+          <spatial minz="0" dimensions="2" crs="EPSG:32632" miny="0" maxz="0" minx="0" maxy="0" maxx="0"/>
           <temporal>
             <period>
               <start></start>
@@ -3380,13 +3380,13 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         <Searchable>1</Searchable>
         <Private>0</Private>
       </flags>
-      <temporal endExpression="" durationField="id" fixedDuration="0" endField="" durationUnit="min" accumulate="0" mode="0" limitMode="0" enabled="0" startField="" startExpression="">
+      <temporal durationField="id" endField="" durationUnit="min" enabled="0" fixedDuration="0" endExpression="" startExpression="" mode="0" startField="" limitMode="0" accumulate="0">
         <fixedRange>
           <start></start>
           <end></end>
         </fixedRange>
       </temporal>
-      <elevation extrusion="0" respectLayerSymbol="1" extrusionEnabled="0" binding="Centroid" symbology="Line" clamping="Terrain" showMarkerSymbolInSurfacePlots="0" type="IndividualFeatures" zscale="1" zoffset="0">
+      <elevation extrusion="0" clamping="Terrain" respectLayerSymbol="1" extrusionEnabled="0" showMarkerSymbolInSurfacePlots="0" zscale="1" zoffset="0" symbology="Line" type="IndividualFeatures" binding="Centroid">
         <data-defined-properties>
           <Option type="Map">
             <Option value="" type="QString" name="name"/>
@@ -3395,7 +3395,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </Option>
         </data-defined-properties>
         <profileLineSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -3403,7 +3403,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+            <layer pass="0" enabled="1" class="SimpleLine" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="align_dash_pattern"/>
                 <Option value="square" type="QString" name="capstyle"/>
@@ -3444,7 +3444,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileLineSymbol>
         <profileFillSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="fill" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="fill" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -3452,7 +3452,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleFill">
+            <layer pass="0" enabled="1" class="SimpleFill" locked="0">
               <Option type="Map">
                 <Option value="3x:0,0,0,0,0,0" type="QString" name="border_width_map_unit_scale"/>
                 <Option value="225,89,137,255" type="QString" name="color"/>
@@ -3477,7 +3477,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileFillSymbol>
         <profileMarkerSymbol>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="marker" clip_to_extent="1" name="">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="marker" clip_to_extent="1" name="">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -3485,7 +3485,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleMarker">
+            <layer pass="0" enabled="1" class="SimpleMarker" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="angle"/>
                 <Option value="square" type="QString" name="cap_style"/>
@@ -3518,9 +3518,9 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </symbol>
         </profileMarkerSymbol>
       </elevation>
-      <renderer-v2 referencescale="-1" symbollevels="0" enableorderby="0" type="singleSymbol" forceraster="0">
+      <renderer-v2 enableorderby="0" referencescale="-1" forceraster="0" type="singleSymbol" symbollevels="0">
         <symbols>
-          <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="0">
+          <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="0">
             <data_defined_properties>
               <Option type="Map">
                 <Option value="" type="QString" name="name"/>
@@ -3528,7 +3528,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                 <Option value="collection" type="QString" name="type"/>
               </Option>
             </data_defined_properties>
-            <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+            <layer pass="0" enabled="1" class="SimpleLine" locked="0">
               <Option type="Map">
                 <Option value="0" type="QString" name="align_dash_pattern"/>
                 <Option value="square" type="QString" name="capstyle"/>
@@ -3577,19 +3577,19 @@ control = dialog.findChild(QWidget, "MyLineEdit")
             <Option value="&quot;destinazione&quot;" type="QString"/>
           </Option>
           <Option value="0" type="int" name="embeddedWidgets/count"/>
-          <Option name="variableNames"/>
-          <Option name="variableValues"/>
+          <Option type="invalid" name="variableNames"/>
+          <Option type="invalid" name="variableValues"/>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
-      <SingleCategoryDiagramRenderer diagramType="Histogram" attributeLegend="1">
-        <DiagramCategory rotationOffset="270" spacing="5" diagramOrientation="Up" scaleBasedVisibility="0" barWidth="5" direction="0" backgroundAlpha="255" sizeScale="3x:0,0,0,0,0,0" spacingUnit="MM" sizeType="MM" backgroundColor="#ffffff" lineSizeType="MM" minimumSize="0" penWidth="0" height="15" labelPlacementMethod="XHeight" showAxis="1" minScaleDenominator="0" penAlpha="255" scaleDependency="Area" spacingUnitScale="3x:0,0,0,0,0,0" enabled="0" maxScaleDenominator="1e+08" width="15" lineSizeScale="3x:0,0,0,0,0,0" penColor="#000000" opacity="1">
-          <fontProperties bold="0" italic="0" strikethrough="0" description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" style="" underline="0"/>
-          <attribute color="#000000" label="" field="" colorOpacity="1"/>
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+        <DiagramCategory sizeScale="3x:0,0,0,0,0,0" barWidth="5" lineSizeScale="3x:0,0,0,0,0,0" spacing="5" showAxis="1" scaleBasedVisibility="0" sizeType="MM" diagramOrientation="Up" spacingUnitScale="3x:0,0,0,0,0,0" backgroundAlpha="255" minimumSize="0" scaleDependency="Area" penColor="#000000" penAlpha="255" maxScaleDenominator="1e+08" labelPlacementMethod="XHeight" width="15" spacingUnit="MM" penWidth="0" opacity="1" enabled="0" minScaleDenominator="0" direction="0" height="15" lineSizeType="MM" backgroundColor="#ffffff" rotationOffset="270">
+          <fontProperties description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0" bold="0"/>
+          <attribute color="#000000" colorOpacity="1" field="" label=""/>
           <axisSymbol>
-            <symbol alpha="1" frame_rate="10" is_animated="0" force_rhr="0" type="line" clip_to_extent="1" name="">
+            <symbol frame_rate="10" is_animated="0" force_rhr="0" alpha="1" type="line" clip_to_extent="1" name="">
               <data_defined_properties>
                 <Option type="Map">
                   <Option value="" type="QString" name="name"/>
@@ -3597,7 +3597,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
                   <Option value="collection" type="QString" name="type"/>
                 </Option>
               </data_defined_properties>
-              <layer pass="0" locked="0" enabled="1" class="SimpleLine">
+              <layer pass="0" enabled="1" class="SimpleLine" locked="0">
                 <Option type="Map">
                   <Option value="0" type="QString" name="align_dash_pattern"/>
                   <Option value="square" type="QString" name="capstyle"/>
@@ -3639,7 +3639,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
           </axisSymbol>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings dist="0" zIndex="0" placement="2" obstacle="0" linePlacementFlags="18" priority="0" showAll="1">
+      <DiagramLayerSettings placement="2" obstacle="0" dist="0" showAll="1" linePlacementFlags="18" priority="0" zIndex="0">
         <properties>
           <Option type="Map">
             <Option value="" type="QString" name="name"/>
@@ -3685,40 +3685,40 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="id" name=""/>
-        <alias index="1" field="school_id" name=""/>
-        <alias index="2" field="mezzo" name=""/>
-        <alias index="3" field="destinazione" name=""/>
+        <alias field="id" name="" index="0"/>
+        <alias field="school_id" name="" index="1"/>
+        <alias field="mezzo" name="" index="2"/>
+        <alias field="destinazione" name="" index="3"/>
       </aliases>
       <defaults>
-        <default expression="" applyOnUpdate="0" field="id"/>
-        <default expression="" applyOnUpdate="0" field="school_id"/>
-        <default expression="" applyOnUpdate="0" field="mezzo"/>
-        <default expression="" applyOnUpdate="0" field="destinazione"/>
+        <default field="id" applyOnUpdate="0" expression=""/>
+        <default field="school_id" applyOnUpdate="0" expression=""/>
+        <default field="mezzo" applyOnUpdate="0" expression=""/>
+        <default field="destinazione" applyOnUpdate="0" expression=""/>
       </defaults>
       <constraints>
-        <constraint unique_strength="1" notnull_strength="1" constraints="3" field="id" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="school_id" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="mezzo" exp_strength="0"/>
-        <constraint unique_strength="0" notnull_strength="0" constraints="0" field="destinazione" exp_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="1" constraints="3" field="id" unique_strength="1"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="school_id" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="mezzo" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="destinazione" unique_strength="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint desc="" field="id" exp=""/>
-        <constraint desc="" field="school_id" exp=""/>
-        <constraint desc="" field="mezzo" exp=""/>
-        <constraint desc="" field="destinazione" exp=""/>
+        <constraint field="id" desc="" exp=""/>
+        <constraint field="school_id" desc="" exp=""/>
+        <constraint field="mezzo" desc="" exp=""/>
+        <constraint field="destinazione" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns>
-          <column width="-1" type="field" hidden="0" name="id"/>
-          <column width="-1" type="field" hidden="0" name="destinazione"/>
-          <column width="-1" type="field" hidden="0" name="mezzo"/>
-          <column width="383" type="field" hidden="0" name="school_id"/>
-          <column width="-1" type="actions" hidden="1"/>
+          <column width="-1" hidden="0" type="field" name="id"/>
+          <column width="-1" hidden="0" type="field" name="destinazione"/>
+          <column width="-1" hidden="0" type="field" name="mezzo"/>
+          <column width="383" hidden="0" type="field" name="school_id"/>
+          <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -3749,11 +3749,11 @@ control = dialog.findChild(QWidget, "MyLineEdit")
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <editable>
-        <field editable="1" name="destinazione"/>
-        <field editable="1" name="id"/>
-        <field editable="1" name="mezzo"/>
-        <field editable="1" name="name"/>
-        <field editable="1" name="school_id"/>
+        <field name="destinazione" editable="1"/>
+        <field name="id" editable="1"/>
+        <field name="mezzo" editable="1"/>
+        <field name="name" editable="1"/>
+        <field name="school_id" editable="1"/>
       </editable>
       <labelOnTop>
         <field labelOnTop="0" name="destinazione"/>
@@ -3763,11 +3763,11 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         <field labelOnTop="0" name="school_id"/>
       </labelOnTop>
       <reuseLastValue>
-        <field reuseLastValue="0" name="destinazione"/>
-        <field reuseLastValue="0" name="id"/>
-        <field reuseLastValue="0" name="mezzo"/>
-        <field reuseLastValue="0" name="name"/>
-        <field reuseLastValue="0" name="school_id"/>
+        <field name="destinazione" reuseLastValue="0"/>
+        <field name="id" reuseLastValue="0"/>
+        <field name="mezzo" reuseLastValue="0"/>
+        <field name="name" reuseLastValue="0"/>
+        <field name="school_id" reuseLastValue="0"/>
       </reuseLastValue>
       <dataDefinedFieldProperties/>
       <widgets/>
@@ -3843,7 +3843,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         <value>scuola_id</value>
       </variableNames>
       <variableValues type="QStringList">
-        <value>provinciale</value>
+        <value></value>
         <value></value>
         <value></value>
         <value>8deae8e1-13d0-41c0-84d6-8c66bf9414ac</value>
@@ -3966,9 +3966,9 @@ control = dialog.findChild(QWidget, "MyLineEdit")
   <Layouts/>
   <mapViewDocks3D/>
   <Bookmarks/>
-  <ProjectViewSettings UseProjectScales="0" rotation="0">
+  <ProjectViewSettings rotation="0" UseProjectScales="0">
     <Scales/>
-    <DefaultViewExtent ymin="4987792.32313097547739744" xmin="552931.13116558885667473" xmax="555538.97774609725456685" ymax="4989412.46865206491202116">
+    <DefaultViewExtent xmin="487331.90392037335550413" xmax="669111.00333910947665572" ymax="5018870.69660806935280561" ymin="4915181.38325834553688765">
       <spatialrefsys nativeFormat="Wkt">
         <wkt>PROJCRS["WGS 84 / UTM zone 32N",BASEGEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4326]],CONVERSION["UTM zone 32N",METHOD["Transverse Mercator",ID["EPSG",9807]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",9,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["Scale factor at natural origin",0.9996,SCALEUNIT["unity",1],ID["EPSG",8805]],PARAMETER["False easting",500000,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["(E)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["(N)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Engineering survey, topographic mapping."],AREA["Between 6°E and 12°E, northern hemisphere between equator and 84°N, onshore and offshore. Algeria. Austria. Cameroon. Denmark. Equatorial Guinea. France. Gabon. Germany. Italy. Libya. Liechtenstein. Monaco. Netherlands. Niger. Nigeria. Norway. Sao Tome and Principe. Svalbard. Sweden. Switzerland. Tunisia. Vatican City State."],BBOX[0,6,84,12]],ID["EPSG",32632]]</wkt>
         <proj4>+proj=utm +zone=32 +datum=WGS84 +units=m +no_defs</proj4>
@@ -3981,7 +3981,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
         <geographicflag>false</geographicflag>
       </spatialrefsys>
     </DefaultViewExtent>
-    <PresetFullExtent ymin="4924265.3705000001937151" xmin="473325.83639999997103587" xmax="630806.15060000005178154" ymax="5035677.22479999996721745">
+    <PresetFullExtent xmin="473325.83639999997103587" xmax="630806.15060000005178154" ymax="5035677.22479999996721745" ymin="4924265.3705000001937151">
       <spatialrefsys nativeFormat="Wkt">
         <wkt>PROJCRS["WGS 84 / UTM zone 32N",BASEGEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4326]],CONVERSION["UTM zone 32N",METHOD["Transverse Mercator",ID["EPSG",9807]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",9,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["Scale factor at natural origin",0.9996,SCALEUNIT["unity",1],ID["EPSG",8805]],PARAMETER["False easting",500000,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["(E)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["(N)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Engineering survey, topographic mapping."],AREA["Between 6°E and 12°E, northern hemisphere between equator and 84°N, onshore and offshore. Algeria. Austria. Cameroon. Denmark. Equatorial Guinea. France. Gabon. Germany. Italy. Libya. Liechtenstein. Monaco. Netherlands. Niger. Nigeria. Norway. Sao Tome and Principe. Svalbard. Sweden. Switzerland. Tunisia. Vatican City State."],BBOX[0,6,84,12]],ID["EPSG",32632]]</wkt>
         <proj4>+proj=utm +zone=32 +datum=WGS84 +units=m +no_defs</proj4>
@@ -3995,13 +3995,13 @@ control = dialog.findChild(QWidget, "MyLineEdit")
       </spatialrefsys>
     </PresetFullExtent>
   </ProjectViewSettings>
-  <ProjectStyleSettings RandomizeDefaultSymbolColor="1" DefaultSymbolOpacity="1" projectStyleId="attachment:///OmBcsZ_styles.db">
+  <ProjectStyleSettings projectStyleId="attachment:///OmBcsZ_styles.db" DefaultSymbolOpacity="1" RandomizeDefaultSymbolColor="1">
     <databases/>
   </ProjectStyleSettings>
-  <ProjectTimeSettings cumulativeTemporalRange="0" timeStepUnit="h" frameRate="1" timeStep="1"/>
+  <ProjectTimeSettings cumulativeTemporalRange="0" timeStepUnit="h" timeStep="1" frameRate="1"/>
   <ElevationProperties>
     <terrainProvider type="flat">
-      <TerrainProvider scale="1" offset="0"/>
+      <TerrainProvider offset="0" scale="1"/>
     </terrainProvider>
   </ElevationProperties>
   <ProjectDisplaySettings CoordinateType="MapCrs" CoordinateAxisOrder="Default">

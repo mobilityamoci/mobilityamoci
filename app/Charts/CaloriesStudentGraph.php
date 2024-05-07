@@ -12,7 +12,7 @@ class CaloriesStudentGraph
 {
     protected LarapexChart $chart;
     protected School|null $school;
-    protected Section $section;
+    protected Section|null $section;
 
     public function __construct(School|null $school, LarapexChart $chart, array $sections = null)
     {

@@ -6,6 +6,7 @@ use App\Http\Livewire\Students;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class School extends Model
@@ -49,5 +50,11 @@ class School extends Model
     public function surveys()
     {
         return $this->hasMany(Survey::class);
+    }
+
+
+    public function scopeActive(Builder $query)
+    {
+        $query->whereHas('sections');
     }
 }
