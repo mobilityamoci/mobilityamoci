@@ -78,14 +78,33 @@ function getUserSchools($onlyPopulated = false, $with = [], $withCount = []): Co
     $user = Auth::user();
     if ($user->can('all_schools')) {
         $q = School::with($with)->withCount($withCount);
-        if ($onlyPopulated)
-            $q->whereHas('sections');
     } else {
         $q = $user->schools()->with($with)->withCount($withCount);
-        if ($onlyPopulated)
-            $q->whereHas('sections');
     }
+    if ($onlyPopulated)
+        $q->whereHas('sections');
     return $q->get();
+}
+
+function getUserStudents($onlyPopulated = false)
+{
+    $schools = getUserSchools(true, ['students']);
+    $students = collect();
+    foreach ($schools as $school) {
+        $students->push($school->students);
+    }
+
+    return $students->flatten();
+}
+function getUserSections($onlyPopulated = false)
+{
+    $schools = getUserSchools(true, ['sections']);
+    $sections = collect();
+    foreach ($schools as $school) {
+        $sections->push($school->sections);
+    }
+
+    return $sections->flatten();
 }
 
 function sanitize($string, $service = false)

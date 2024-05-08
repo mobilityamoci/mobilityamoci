@@ -9,6 +9,7 @@ class Survey extends \MattDaneshvar\Survey\Models\Survey
 {
 
     use HasRelationships;
+
     protected $fillable = ['school_id', 'settings', 'name', 'uuid'];
 
     public static function boot()
@@ -21,7 +22,8 @@ class Survey extends \MattDaneshvar\Survey\Models\Survey
 
     public function entries()
     {
-        return $this->hasMany(Entry::class);
+        $students = getUserStudents();
+        return $this->hasMany(Entry::class)->whereIn('participant_id', $students->pluck('id')->toArray());
     }
 
     public function mySections()
@@ -31,6 +33,7 @@ class Survey extends \MattDaneshvar\Survey\Models\Survey
 
     public function students()
     {
-        return $this->hasManyDeepFromRelations($this->mySections(), (new Section)->students());
+        $students = getUserStudents();
+        return $this->hasManyDeepFromRelations($this->mySections(), (new Section)->students())->whereIn('students.id', $students->pluck('id')->toArray());
     }
 }

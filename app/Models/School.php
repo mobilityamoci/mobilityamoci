@@ -46,7 +46,7 @@ class School extends Model
 
     public function surveys()
     {
-        return $this->hasMany(Survey::class);
+        return $this->hasMany(Survey::class)->orWhere('is_default', true);
     }
 
 
