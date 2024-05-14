@@ -69,7 +69,7 @@
             </x-jet-label>
             <div class="grid my-6 sm:grid-cols-1 md:grid-cols-5 gap-4 border-b-2 pb-2 border-b-gray-400">
                 <div>
-                    <x-jet-label class="text-lg">Mezzo (Prima Opzione)</x-jet-label>
+                    <x-jet-label class="text-lg">Mezzo</x-jet-label>
                     <x-select
                         wire:change="saveTrip({{$index}})"
                         wire:model="student.trips.{{$index}}.transport_1"
@@ -140,7 +140,7 @@
         </x-jet-label>
         <div class="grid sm:grid-cols-1 md:grid-cols-5 gap-4 border-b-2 pb-2 border-b-gray-400">
             <div>
-                <x-jet-label class="text-lg">Mezzo (Prima Opzione)</x-jet-label>
+                <x-jet-label class="text-lg">Mezzo</x-jet-label>
                 <x-select
                     wire:model="newTripTrans1">
                     <option selected value="">--------------------</option>
