@@ -73,7 +73,7 @@ return [
 
     'middleware' => [
         'can:admin',
-        'web',
+//        'web',
 //        \Opcodes\LogViewer\Http\Middleware\AuthorizeLogViewer::class,
     ],
 
