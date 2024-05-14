@@ -48,8 +48,8 @@
             <x-jet-label class="text-xl">Comune di domicilio</x-jet-label>
             <x-select class="w-full" wire:model="newStudentIstat">
                 <option value="">----------------</option>
-                @foreach($this->comuni as $comune)
-                    <option value="{{$comune->cod_istat}}">{{$comune->label}}</option>
+                @foreach($this->comuni as $istat => $comune)
+                    <option value="{{$istat}}">{{$comune}}</option>
                 @endforeach
             </x-select>
             @if($errors->has('newStudentIstat'))

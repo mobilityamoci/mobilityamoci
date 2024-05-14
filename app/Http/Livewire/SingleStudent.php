@@ -3,10 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Student;
-use App\Models\Transport;
-use App\Models\Trip;
 use App\Models\User;
-use Illuminate\Support\Facades\Cache;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -18,17 +15,29 @@ class SingleStudent extends Component
     public User $user;
 
     public ?Student $student;
+    private $component = 'single-student-create';
+    protected $listeners = [
+        'switch'
+    ];
 
-    protected $listeners = ['mount'];
-
-    public function mount()
+    public function mount(string $component = 'single-student-create')
     {
         $this->user = auth()->user();
         $this->student = $this->user->student;
+
+        if ($this->student)
+            $this->component = 'single-student-edit';
+        else
+            $this->component = $component;
     }
 
     public function render()
     {
-        return view('livewire.single-student')->layout('layouts.student-layout');
+        return view('livewire.single-student', ['component' => $this->component])->layout('layouts.student-layout');
+    }
+
+    public function switch(string $component)
+    {
+        $this->component = $component;
     }
 }

@@ -113,9 +113,7 @@ class SingleStudentCreate extends Component
         ]);
 
         $this->alert('success', 'Dati salvati con successo.');
-        $this->emitUp('mount');
-
-
+        $this->emitUp('switch', 'single-student-edit');
     }
 
     public function askPossibleStudents()
