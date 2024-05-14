@@ -126,6 +126,11 @@ class SingleStudentEdit extends Component
         $order = Student::find($this->student['id'])->trips()->max('order');
         $order++;
 
+        if ($this->newTripIstat == 0) {
+            $this->newTripAddress = $this->student->section->building->address;
+            $this->newTripIstat = $this->student->section->building->town_istat;
+        }
+
         Trip::create([
             'student_id' => $this->student['id'],
             'transport_1' => $this->newTripTrans1,
@@ -160,13 +165,14 @@ class SingleStudentEdit extends Component
 
     public function getCanAddTripProperty()
     {
-        if ($this->studentTrips->isNotEmpty()) {
-            return !$this->studentTrips->search(function ($item) {
-                return $item->town_istat == 0;
-            });
-        } else {
-            return true;
-        }
+        return $this->studentTrips->isEmpty();
+//        if ($this->studentTrips->isNotEmpty()) {
+//            return !$this->studentTrips->search(function ($item) {
+//                return $item->town_istat == 0;
+//            });
+//        } else {
+//            return true;
+//        }
     }
 
 

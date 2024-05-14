@@ -156,7 +156,7 @@
                 @endif
             </div>
             <div class="md:col-span-2">
-                <x-jet-label class="text-lg">Comune di arrivo o intermedio</x-jet-label>
+                <x-jet-label class="text-lg">Comune di arrivo</x-jet-label>
                 <x-select class="w-full"
                           wire:model="newTripIstat">
                     <option value="">Scuola</option>
@@ -172,7 +172,7 @@
             </div>
             @if($newTripIstat != 0)
                 <div>
-                    <x-jet-label class="text-lg">Indirizzo Intermedio</x-jet-label>
+                    <x-jet-label class="text-lg">Indirizzo</x-jet-label>
                     <x-jet-input class="w-full"
                                  wire:model.lazy="newTripAddress"></x-jet-input>
                 </div>
