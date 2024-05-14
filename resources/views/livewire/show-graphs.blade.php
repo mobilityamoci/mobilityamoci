@@ -70,7 +70,7 @@
                                             <th class="my-th">Alberi necessari per neutralizzare la CO2 emessa
                                                 annualmente
                                             </th>
-                                            <th class="my-th">{{$this->pollutionArray['trees']}} alberi</th>
+                                            <th class="my-th">{{$this->pollutionArray['trees'] ?? ''}} alberi</th>
                                         </tr>
                                     @endif
                                     </tbody>
