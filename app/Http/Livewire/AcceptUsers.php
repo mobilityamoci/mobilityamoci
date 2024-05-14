@@ -47,7 +47,7 @@ class AcceptUsers extends Component
         ]);
 
         $this->emitTo('users-table','refreshDatatable');
-        $user->notify(new AcceptedUserNotification());
+//        $user->notify(new AcceptedUserNotification());
     }
 
     public function rejectUser($user_id)
