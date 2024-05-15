@@ -13,6 +13,10 @@ class ShowMappa extends Component
     public Collection $schools;
 
     public int|null $selectedSchoolId = null;
+
+    protected $queryString = [
+        'selectedSchoolId' => ['except' => 0, 'as' => 'scuola'],
+    ];
     public function render()
     {
         return view('livewire.show-mappa');
