@@ -20,6 +20,7 @@
         "matt-daneshvar/laravel-survey": "^0.4.0",
         "opcodesio/log-viewer": "^3.8",
         "phayes/geophp": "^1.2",
+        "proj4php/proj4php": "^2.0",
         "rappasoft/laravel-livewire-tables": "^2.13",
         "spatie/browsershot": "^3.58",
         "spatie/laravel-collection-macros": "^7.12",

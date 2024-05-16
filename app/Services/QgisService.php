@@ -14,6 +14,9 @@ use DB;
 use geoPHP;
 use Illuminate\Support\Facades\Http;
 use Log;
+use proj4php\Point as ProjPoint;
+use proj4php\Proj;
+use proj4php\Proj4php;
 
 class QgisService
 {
@@ -422,7 +425,6 @@ cross join lateral (
     }
 
 
-
     /**
      * @param mixed $trips
      * @return float[]
@@ -434,7 +436,7 @@ cross join lateral (
             list($resPol, $resPiedi, $resBici) = self::calculateDistanceForTransport($trips);
 
             if ($resPol && isset($resPol[0])) {
-                $distance = round($resPol[0]->round/1000,2);
+                $distance = round($resPol[0]->round / 1000, 2);
             } else {
                 $distance = 0;
             }
@@ -450,17 +452,17 @@ cross join lateral (
             } else {
                 $distanceBici = 0;
             }
-        $co2 = round($distance * 0.1630846 * 2 *200, 2);
+            $co2 = round($distance * 0.1630846 * 2 * 200, 2);
 
             return [
                 'carburante' => round($distance * 0.000869 * 2 * 200, 2),
                 'co2' => $co2,
-                'co' => round($distance * 0.0007853 * 2 *200, 2),
-                'nox' => round($distance * 0.0004256 * 2 *200, 2),
-                'pm10' => round($distance * 0.0000297 * 2 *200, 2),
-                'trees' => round($co2/30),
-                'kcal_piedi' => round($distancePiedi * 0.0225 * 2 *200, 2),
-                'kcal_bici' => round($distanceBici * 0.0075 * 2 *200, 2),
+                'co' => round($distance * 0.0007853 * 2 * 200, 2),
+                'nox' => round($distance * 0.0004256 * 2 * 200, 2),
+                'pm10' => round($distance * 0.0000297 * 2 * 200, 2),
+                'trees' => round($co2 / 30),
+                'kcal_piedi' => round($distancePiedi * 0.0225 * 2 * 200, 2),
+                'kcal_bici' => round($distanceBici * 0.0075 * 2 * 200, 2),
             ];
         }
         return [
@@ -554,6 +556,19 @@ cross join lateral (
                                         join geometry_lines gl on gl.lineable_type = 'App\Models\Trip' and gl.lineable_id = t.id
                                         where t.id in $placeholder and t.transport_1 = ?"), array_merge($tripsIds, [Transport::BUS_COMUNALE]));
         return array($resPol, $resPiedi, $resBici, $resBus);
+    }
+
+    public static function to4326(Point $point)
+    {
+        $proj4 = new Proj4php();
+
+        $myProj = new Proj('EPSG:32632', $proj4);
+        $projWGS84 = new Proj('EPSG:4326', $proj4);
+
+        $pointSrc = new ProjPoint($point->getX(), $point->getY(), $myProj);
+        $pointDest = $proj4->transform($projWGS84, $pointSrc);
+        $pointDestArr = $pointDest->toArray();
+        return Point::makeGeodetic($pointDestArr[1], $pointDestArr[0]);
     }
 
 

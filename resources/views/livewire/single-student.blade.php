@@ -2,6 +2,6 @@
 
 
     <div class="m-10 md:w-3/4 space-y-8">
-        @livewire($component)
+        @livewire($component, key(random_int(-999,999)) )
     </div>
 </div>

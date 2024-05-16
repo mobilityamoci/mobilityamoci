@@ -193,4 +193,8 @@
         </div>
     @endif
 
+{{--    {!! $this->studentPointLat !!}--}}
+<div class="mt-10">
+    <x-leaflet-map :center-point="$this->centerPoint" :zoomLevel="16" :markers="$this->markers"></x-leaflet-map>
+</div>
 </div>

@@ -6,6 +6,8 @@ use App\Models\Student;
 use App\Models\Transport;
 use App\Models\Trip;
 use App\Models\User;
+use Clickbar\Magellan\Data\Geometries\Point;
+use geoPHP;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -163,6 +165,8 @@ class SingleStudentEdit extends Component
     }
 
 
+
+
     public function getCanAddTripProperty()
     {
         return $this->studentTrips->isEmpty();
@@ -173,6 +177,33 @@ class SingleStudentEdit extends Component
 //        } else {
 //            return true;
 //        }
+    }
+
+
+    //______________________________________________ROBE MAPPA__________________________________________
+
+    public function getWGS84PointProperty()
+    {
+        return $this->student->geometryPoint->getWGS84Point();
+    }
+    public function getStudentPointLatProperty()
+    {
+        return $this->WGS84Point->getLatitude();
+    }
+
+    public function getStudentPointLonProperty()
+    {
+        return $this->WGS84Point->getLongitude();
+    }
+
+    public function getCenterPointProperty()
+    {
+        return ['lat' => $this->studentPointLat, 'lon' => $this->studentPointLon];
+    }
+
+    public function getMarkersProperty()
+    {
+        return [array_merge($this->centerPoint, ['title' => 'Casa Mia'])];
     }
 
 
