@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Student;
 use App\Models\User;
-use Illuminate\Support\Facades\Cache;
+use Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -103,17 +103,19 @@ class SingleStudentCreate extends Component
     {
         $this->validate();
 
-        $student = Student::create([
-            'name' => $this->newStudentName,
-            'surname' => $this->newStudentSurname,
-            'section_id' => $this->newStudentSection,
-            'town_istat' => $this->newStudentIstat,
-            'address' => $this->newStudentAddress,
-            'user_id' => $this->user->id
-        ]);
+        if (!Auth::user()->student) {
+            Student::create([
+                'name' => $this->newStudentName,
+                'surname' => $this->newStudentSurname,
+                'section_id' => $this->newStudentSection,
+                'town_istat' => $this->newStudentIstat,
+                'address' => $this->newStudentAddress,
+                'user_id' => $this->user->id
+            ]);
 
-        $this->alert('success', 'Dati salvati con successo.');
-        $this->emitTo('single-student','switch', 'single-student-edit');
+            $this->alert('success', 'Dati salvati con successo.');
+        }
+        $this->emitTo('single-student', 'switch', 'single-student-edit');
     }
 
     public function askPossibleStudents()
