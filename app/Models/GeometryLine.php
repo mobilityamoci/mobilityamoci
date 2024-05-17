@@ -18,4 +18,10 @@ class GeometryLine extends Model
             'srid' => 32632,
         ],
     ];
+
+    public function toArray()
+    {
+        $line = \geoPHP::load($this->line);
+        dd($line);
+    }
 }

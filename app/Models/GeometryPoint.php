@@ -23,6 +23,6 @@ class GeometryPoint extends Model
 
     public function getWGS84Point()
     {
-        return QgisService::to4326($this->point);
+        return QgisService::toWGS84($this->point);
     }
 }

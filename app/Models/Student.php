@@ -26,6 +26,11 @@ class Student extends Model
         return $this->morphOne(GeometryPoint::class, 'georefable');
     }
 
+    public function schoolGeometryPoint()
+    {
+        return $this->hasOneDeepFromRelations($this->section(), (new Section())->building(), (new Building())->geometryPoint());
+    }
+
     public function delete()
     {
         DB::transaction(function () {
@@ -39,7 +44,7 @@ class Student extends Model
 
     public function section()
     {
-        return $this->belongsTo(Section::class);
+        return $this->belongsTo(Section::class, 'section_id');
     }
 
     public function surveys()

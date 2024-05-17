@@ -558,7 +558,7 @@ cross join lateral (
         return array($resPol, $resPiedi, $resBici, $resBus);
     }
 
-    public static function to4326(Point $point)
+    public static function toWGS84(Point $point)
     {
         $proj4 = new Proj4php();
 
@@ -570,6 +570,11 @@ cross join lateral (
         $pointDestArr = $pointDest->toArray();
         return Point::makeGeodetic($pointDestArr[1], $pointDestArr[0]);
     }
+
+//    public static function lineToArrayOfPointsWGS84(array $points)
+//    {
+//        $multiLine =
+//    }
 
 
 }
