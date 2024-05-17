@@ -190,7 +190,7 @@ class SingleStudentEdit extends Component
 
     public function getStudentGeometryLineProperty()
     {
-        return $this->student->trip1->geometryLine->toArray();
+        return $this->student->trip1->geometryLine->toArrayWGS84();
     }
 
     public function getStudentPointLatProperty()
@@ -237,7 +237,7 @@ class SingleStudentEdit extends Component
 
     public function getPolylinesProperty()
     {
-//        $this->
+        return [['points' => $this->studentGeometryLine]];
     }
 
 

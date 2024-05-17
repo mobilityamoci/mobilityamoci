@@ -13,6 +13,7 @@ use Clickbar\Magellan\IO\Generator\WKB\WKBGenerator;
 use DB;
 use geoPHP;
 use Illuminate\Support\Facades\Http;
+use LineString;
 use Log;
 use proj4php\Point as ProjPoint;
 use proj4php\Proj;
@@ -571,10 +572,16 @@ cross join lateral (
         return Point::makeGeodetic($pointDestArr[1], $pointDestArr[0]);
     }
 
-//    public static function lineToArrayOfPointsWGS84(array $points)
-//    {
-//        $multiLine =
-//    }
+    public static function lineToArrayOfPointsWGS84(LineString $linestring)
+    {
+        $points = $linestring->getPoints();
+        $WGS84Points = array();
+        foreach ($points as $point) {
+            /* @var \Point $point */
+            $WGS84Points[] = self::toWGS84(Point::makeGeodetic($point->getY(), $point->getX()));
+        }
+        return $WGS84Points;
+    }
 
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use Clickbar\Magellan\Data\Geometries\Point;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -60,7 +61,10 @@ class LeafletMap extends Component
             $markerArray[] = [implode(",", $marker)];
         }
 
+        $polyLines = $this->polylinesToString();
+
         return view('components.leaflet-map', [
+            'polylines' => $polyLines,
             'centerPoint' => $this->centerPoint,
             'zoomLevel' => $this->zoomLevel,
             'maxZoomLevel' => $this->maxZoomLevel,
@@ -71,5 +75,23 @@ class LeafletMap extends Component
             'attribution' => $this->attribution,
             'leafletVersion' => $this->leafletVersion ?? "1.7.1"
         ]);
+    }
+
+    private function polylinesToString()
+    {
+        $arr = [];
+        foreach ($this->polyLines as $polyLine) {
+            $polyLineStr = '[';
+            foreach ($polyLine['points'] as $key => $point) {
+                /* @var Point $point */
+                $polyLineStr .= $point->getY() . ", " . $point->getX();
+                if ($key !== array_key_last($polyLine['points'])) {
+                    $polyLineStr .= "],[";
+                }
+            }
+            $polyLineStr .= ']';
+            $arr[] = $polyLineStr;
+        }
+        return $arr;
     }
 }

@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
+use App\Services\QgisService;
 use App\Traits\HasGeometryPoint;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use geoPHP;
 use Illuminate\Database\Eloquent\Model;
 
 class GeometryLine extends Model
 {
     use HasGeometryPoint;
 
-    protected $guarded = ['id','created_at','updated_at'];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
     protected array $postgisColumns = [
         'line' => [
@@ -19,9 +20,10 @@ class GeometryLine extends Model
         ],
     ];
 
-    public function toArray()
+    public function toArrayWGS84()
     {
-        $line = \geoPHP::load($this->line);
-        dd($line);
+        $line = geoPHP::load($this->line);
+        return QgisService::lineToArrayOfPointsWGS84($line);
     }
+
 }

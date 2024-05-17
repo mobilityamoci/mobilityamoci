@@ -192,9 +192,10 @@
             </x-jet-button>
         </div>
     @endif
+    <div class="grid justify-items-end">
+        <x-jet-button wire:click="$emit('openModal', 'modals.single-student-map-modal', {{json_encode(['studentId' => $this->student->id])}})">
+            Visualizza la Mia Mappa
+        </x-jet-button>
+    </div>
 
-{{--    {!! $this->studentPointLat !!}--}}
-<div class="mt-10">
-    <x-leaflet-map :center-point="$this->centerPoint" :zoomLevel="16" :markers="$this->markers"></x-leaflet-map>
-</div>
 </div>

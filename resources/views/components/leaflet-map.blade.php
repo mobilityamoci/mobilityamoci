@@ -1,11 +1,8 @@
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-      crossorigin=""/>
-
 <style>
     #{{$mapId}} {
     @if(! isset($attributes['style']))
-        height: 100vh;
+        height: 75vh;
+        width: 75vw;
     @else
         {{ $attributes['style'] }}
     @endif
@@ -17,9 +14,6 @@
     @endif
 ></div>
 
-<!-- Make sure you put this AFTER Leaflet's CSS -->
-<script src="{{'https://unpkg.com/leaflet@' . $leafletVersion . '/dist/leaflet.js'}}"
-        crossorigin=""></script>
 <script>
 
     var mymap = L.map('{{$mapId}}').setView([{{$centerPoint['lat'] ?? $centerPoint[0]}}, {{$centerPoint['lon'] ?? $centerPoint[1]}}], {{$zoomLevel}});
@@ -48,6 +42,19 @@
     @endif
     @endforeach
 
+    var points;
+    var latlngArr = [];
+    @foreach($polylines as $polyline)
+
+        points = [{{$polyline}}];
+    latlngArr = [];
+    points.forEach(function (coord) {
+        latlngArr.push(L.latLng(coord[0], coord[1]))
+    })
+    var polyline{{$loop->iteration}} = L.polyline(latlngArr, {smoothFactor: 5}).addTo(mymap)
+    @endforeach
+
+
     @if($tileHost === 'mapbox')
     let url{{$mapId}} = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={{config('maps.mapbox.access_token', null)}}';
     @elseif($tileHost === 'openstreetmap')
@@ -62,4 +69,8 @@
         tileSize: 512,
         zoomOffset: -1
     }).addTo(mymap);
+    console.log('ei')
+    setTimeout(function () {
+        window.dispatchEvent(new Event('resize'));
+    }, 500);
 </script>
