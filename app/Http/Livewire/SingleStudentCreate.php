@@ -113,9 +113,9 @@ class SingleStudentCreate extends Component
                 'user_id' => $this->user->id
             ]);
 
+            $this->emitTo('single-student', 'switch', 'single-student-edit');
             $this->alert('success', 'Dati salvati con successo.');
         }
-        $this->emitTo('single-student', 'switch', 'single-student-edit');
     }
 
     public function askPossibleStudents()

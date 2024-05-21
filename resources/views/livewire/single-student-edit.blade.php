@@ -192,7 +192,7 @@
             </x-jet-button>
         </div>
     @endif
-    <div class="grid justify-items-end">
+    <div class="mt-12 grid justify-items-end">
         <x-jet-button wire:click="$emit('openModal', 'modals.single-student-map-modal', {{json_encode(['studentId' => $this->student->id])}})">
             Visualizza la Mia Mappa
         </x-jet-button>
