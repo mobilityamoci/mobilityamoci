@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use App\Services\LizmapService;
-use App\Services\QgisService;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -25,7 +24,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use SoftDeletes;
 
-   protected $guarded = ['id','created_at','updated_at'];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -63,21 +62,30 @@ class User extends Authenticatable
         parent::__construct($attributes);
     }
 
+    public function delete()
+    {
+        DB::transaction(function () {
+            $this->schools()->detach();
+            $this->sections()->detach();
+            return parent::delete();
+        });
+    }
 
     public function schools(): MorphToMany
     {
-        return $this->morphedByMany(School::class, 'associable','associables');
+        return $this->morphedByMany(School::class, 'associable', 'associables');
     }
 
     public function sections(): MorphToMany
     {
-        return $this->morphedByMany(Section::class, 'associable','associables');
+        return $this->morphedByMany(Section::class, 'associable', 'associables');
     }
 
     public function student()
     {
         return $this->hasOne(Student::class);
     }
+
 
     public function firstRoleString()
     {
@@ -98,8 +106,7 @@ class User extends Authenticatable
 
     public function homeRoute()
     {
-        if ($this->hasAnyRole(['MMProvinciale','MMScolastico','Insegnante']))
-        {
+        if ($this->hasAnyRole(['MMProvinciale', 'MMScolastico', 'Insegnante'])) {
             return route('users');
         } else if ($this->hasAnyRole(['Utente Base'])) {
             return route('single-student');

@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class Section extends Model
 {
+    use SoftDeletes;
     use HasRelationships;
     protected $table = 'my_sections';
     protected $guarded = ['id', 'created_at','updated_at'];

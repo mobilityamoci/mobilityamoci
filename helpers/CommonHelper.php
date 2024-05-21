@@ -32,7 +32,7 @@ function getComune($town_istat)
 
 function getComuniArray()
 {
-    return Comune::all()->pluck(['label'], ['cod_istat']);
+    return Comune::all()->pluck(['label'], 'cod_istat');
 }
 
 function getComuneByName($name)

@@ -33,10 +33,10 @@ class SingleStudentEdit extends Component
         'student.surname' => 'required|string',
         'student.address' => 'required|string',
         'student.section_id' => 'required|integer',
-        'student.town_istat' => 'required|integer',
+        'student.town_istat' => 'required',
         'student.trips.*.transport_1' => 'required|integer|exists:transports,id',
         'student.trips.*.address' => 'nullable|string',
-        'student.trips.*.town_istat' => 'nullable|integer'
+        'student.trips.*.town_istat' => 'nullable'
     ];
 
     protected $validationAttributes = [

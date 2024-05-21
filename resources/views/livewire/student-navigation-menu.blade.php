@@ -16,15 +16,17 @@
                     <x-my-nav-link href="{{ route('single-student') }}" :active="request()->routeIs('single-student')">
                         {{ __('Il Mio Viaggio') }}
                     </x-my-nav-link>
-                    <x-my-nav-link href="{{ route('survey-users') }}" :active="request()->routeIs('survey-users')">
-                        {{ __('I Miei Sondaggi') }}
-                        @if ($this->surveysCount)
-                            <span
-                                class="inline-flex items-center justify-center w-4 h-4 ms-2 text-xs font-semibold text-green-800 bg-green-200 rounded-full ml-3">
+                    @if(Auth::user()->student)
+                        <x-my-nav-link href="{{ route('survey-users') }}" :active="request()->routeIs('survey-users')">
+                            {{ __('I Miei Sondaggi') }}
+                            @if ($this->surveysCount)
+                                <span
+                                    class="inline-flex items-center justify-center w-4 h-4 ms-2 text-xs font-semibold text-green-800 bg-green-200 rounded-full ml-3">
                                 {{$this->surveysCount}}
                             </span>
-                        @endif
-                    </x-my-nav-link>
+                            @endif
+                        </x-my-nav-link>
+                    @endif
                     <x-my-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                         {{ __('Le mie Info') }}
                     </x-my-nav-link>

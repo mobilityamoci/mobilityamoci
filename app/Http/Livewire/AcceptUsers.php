@@ -52,7 +52,7 @@ class AcceptUsers extends Component
 
     public function rejectUser($user_id)
     {
-        User::find($user_id)->delete();
+        User::find($user_id)->forceDelete();
         $this->emitTo('users-table','refreshDatatable');
     }
 }

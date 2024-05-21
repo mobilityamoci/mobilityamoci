@@ -33,6 +33,8 @@ class SingleStudent extends Component
 
     public function render()
     {
+        if ($this->component != 'single-student-edit' && $this->student)
+            $this->component = 'single-student-edit';
         return view('livewire.single-student', ['component' => $this->component])->layout('layouts.student-layout');
     }
 

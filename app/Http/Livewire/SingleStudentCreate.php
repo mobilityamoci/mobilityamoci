@@ -21,7 +21,7 @@ class SingleStudentCreate extends Component
     public string $newStudentName;
     public string $newStudentSurname;
     public string $newStudentAddress;
-    public int $newStudentIstat;
+    public $newStudentIstat;
     public int $newStudentSection;
 
     protected $rules = [
@@ -29,7 +29,7 @@ class SingleStudentCreate extends Component
         'newStudentSurname' => 'required|string',
         'newStudentAddress' => 'required|string',
         'newStudentSection' => 'required|integer|exists:my_sections,id',
-        'newStudentIstat' => 'required|integer',
+        'newStudentIstat' => 'required|string',
     ];
 
     protected $validationAttributes = [
