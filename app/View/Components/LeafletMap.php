@@ -60,8 +60,10 @@ class LeafletMap extends Component
         foreach ($this->markers as $marker) {
             $markerArray[] = [implode(",", $marker)];
         }
-
-        $polyLines = $this->polylinesToString();
+        if (!empty($this->polyLines))
+            $polyLines = $this->polylinesToString();
+        else
+            $polyLines = null;
 
         return view('components.leaflet-map', [
             'polylines' => $polyLines,
@@ -81,16 +83,18 @@ class LeafletMap extends Component
     {
         $arr = [];
         foreach ($this->polyLines as $polyLine) {
-            $polyLineStr = '[';
-            foreach ($polyLine['points'] as $key => $point) {
-                /* @var Point $point */
-                $polyLineStr .= $point->getY() . ", " . $point->getX();
-                if ($key !== array_key_last($polyLine['points'])) {
-                    $polyLineStr .= "],[";
+            if ($polyLine['points']) {
+                $polyLineStr = '[';
+                foreach ($polyLine['points'] as $key => $point) {
+                    /* @var Point $point */
+                    $polyLineStr .= $point->getY() . ", " . $point->getX();
+                    if ($key !== array_key_last($polyLine['points'])) {
+                        $polyLineStr .= "],[";
+                    }
                 }
+                $polyLineStr .= ']';
+                $arr[] = $polyLineStr;
             }
-            $polyLineStr .= ']';
-            $arr[] = $polyLineStr;
         }
         return $arr;
     }

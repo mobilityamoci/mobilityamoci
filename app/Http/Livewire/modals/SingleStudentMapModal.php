@@ -38,7 +38,7 @@ class SingleStudentMapModal extends ModalComponent
 
     public function getStudentGeometryLineProperty()
     {
-        return $this->student->trip1->geometryLine->toArrayWGS84();
+        return optional(optional($this->student->trip1)->geometryLine)->toArrayWGS84();
     }
 
     public function getStudentPointLatProperty()
