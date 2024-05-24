@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('trips', function (Blueprint $table) {
-            $table->integer('town_istat')->nullable()->after('order');
+            $table->string('town_istat')->nullable()->after('order');
         });
     }
 

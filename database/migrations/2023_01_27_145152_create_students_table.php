@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('surname')->nullable();
-            $table->integer('town_istat')->nullable();
+            $table->string('town_istat')->nullable();
             $table->string('address')->nullable();
             $table->timestamps();
         });

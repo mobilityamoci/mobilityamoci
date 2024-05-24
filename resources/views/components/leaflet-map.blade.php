@@ -69,7 +69,6 @@
         tileSize: 512,
         zoomOffset: -1
     }).addTo(mymap);
-    console.log('ei')
     setTimeout(function () {
         window.dispatchEvent(new Event('resize'));
     }, 500);
