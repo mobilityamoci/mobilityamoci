@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\School;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\Transport;
@@ -83,6 +84,21 @@ class Students extends Component
 
     public function render()
     {
+
+        return view('livewire.students');
+    }
+
+    public function mount()
+    {
+        $this->user = \Auth::user();
+        $this->schools = getUserSchools(true);
+        $this->selectedSchoolId = $this->selectedSchoolId ?? optional($this->schools->first())->id;
+        $this->selectedSectionId = $this->selectedSectionId ?? optional($this->sections->first())->id;
+        $this->transports = Transport::all()->keyBy('id')->toArray();
+    }
+
+    public function getStudentsProperty()
+    {
         if ($this->selectedSectionId) {
             $section = Section::with('students', 'students.user')->where('id', $this->selectedSectionId)->where('school_id', $this->selectedSchoolId)->firstOr(function () {
                 $this->selectedSectionId = $this->sections->first(function ($section) {
@@ -126,16 +142,6 @@ class Students extends Component
         } else {
             $this->students = null;
         }
-        return view('livewire.students');
-    }
-
-    public function mount()
-    {
-        $this->user = \Auth::user();
-        $this->schools = getUserSchools(true);
-        $this->selectedSchoolId = $this->selectedSchoolId ?? optional($this->schools->first())->id;
-        $this->selectedSectionId = $this->selectedSectionId ?? optional($this->sections->first())->id;
-        $this->transports = Transport::all()->keyBy('id')->toArray();
     }
 
 
@@ -288,7 +294,6 @@ class Students extends Component
 
             if ($this->newTripTownIstat == 0) {
                 $section = Section::with('building', 'building.geometryPoint')->find($this->selectedSectionId);
-
                 $address = $section->building->geometryPoint->address_request;
                 $istat = $section->building->town_istat;
             } else {
@@ -304,7 +309,6 @@ class Students extends Component
                 'transport_1' => $this->newTripTransport1,
                 'order' => $order,
                 'address' => $address,
-//                'transport_2' => $this->newTripTransport2,
                 'town_istat' => $istat,
             ]);
 
@@ -326,5 +330,10 @@ class Students extends Component
     public function getCanSeeNamesRolesProperty()
     {
         return getCanSeeNameRoles();
+    }
+
+    public function getSelectedSchoolProperty()
+    {
+        return School::find($this->selectedSchoolId);
     }
 }

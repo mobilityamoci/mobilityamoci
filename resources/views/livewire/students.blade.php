@@ -20,7 +20,9 @@
 
         @if($this->sections->isEmpty())
             <div class="container w-full text-center mt-10">
-                <p class="text-2xl">Nessuna sezione trovata. Aggiungere le <a class="text-blue-600 underline dark:text-blue-500 hover:no-underline" href="{{route('schools')}}">sezioni</a>
+                <p class="text-2xl">Nessuna sezione trovata. Aggiungere le <a
+                        class="text-blue-600 underline dark:text-blue-500 hover:no-underline"
+                        href="{{route('schools')}}">sezioni</a>
                     prima di poter inserire gli studenti!</p>
             </div>
         @else
@@ -57,6 +59,9 @@
                         <th class="my-th">Comune Domicilio</th>
                         <th class="my-th">Indirizzo</th>
                         <th class="my-th hidden xxl:block">Percorso</th>
+                        @if($this->selectedSchool->has_pedibus)
+                            <th class="my-th">Pedibus</th>
+                        @endif
                         <th class="my-th">Azioni</th>
 
                     </tr>
@@ -196,12 +201,6 @@
                                              class="my-th">{{$this->sections[$student['section_id']]['name']}}
                                         </div>
                                     @endif
-
-                                    {{--                                @if($errors->has('students.'.$index.'.section_id'))--}}
-                                    {{--                                    <div class="mt-2 text-sm text-red-600">--}}
-                                    {{--                                        {{$errors->first('students.'.$index.'.section_id')}}--}}
-                                    {{--                                    </div>--}}
-                                    {{--                                @endif--}}
                                 </td>
                                 <td class="my-th">
                                     @if($editStudentIndex === $index || $editStudentField === $index.'.town_istat')
@@ -248,6 +247,11 @@
                                         {!!  $student['trip_string']!!}
                                     </div>
                                 </td>
+                                @if($this->selectedSchool->has_pedibus)
+                                    <td>
+                                        <input type="checkbox" value="" class="sr-only peer">
+                                    </td>
+                                @endif
                                 <td class="my-th ">
                                     <div class="flex flex-wrap">
                                         <x-jet-button class="m-1" wire:click.prevent="openTransportsModal({{$index}})">
