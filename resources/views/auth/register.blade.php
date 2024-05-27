@@ -39,10 +39,10 @@
 
             <div class="mt-4">
                 <x-jet-label for="role" value="Con quale ruolo ti stai iscrivendo?"/>
-                <x-select id="role" class="block mt-1 w-full" :value="old('role')" name="role"
+                <x-select id="role" class="block mt-1 w-full" :value="old('role', \App\Enums\RolesEnum::STUDENTE->value)" name="role"
                           required>
-                    <option  @selected(old('role') == "Insegnante") value="Insegnante">Insegnante</option>
-                    <option @selected(old('role') == "Utente Base") value="Utente Base">Studente</option>
+                    <option @selected(old('role', "Utente Base") == \App\Enums\RolesEnum::INSEGNANTE->value) value="{{\App\Enums\RolesEnum::INSEGNANTE->value}}">Insegnante</option>
+                    <option @selected(old('role', "Utente Base") == \App\Enums\RolesEnum::STUDENTE->value) value="{{\App\Enums\RolesEnum::STUDENTE->value}}">Studente</option>
                 </x-select>
             </div>
 
