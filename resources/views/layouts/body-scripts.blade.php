@@ -9,4 +9,5 @@
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="{{'https://unpkg.com/leaflet@1.7.1/dist/leaflet.js'}}"
         crossorigin=""></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
 @stack('scripts')

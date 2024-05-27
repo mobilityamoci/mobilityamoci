@@ -17,6 +17,34 @@
 <script>
 
     var mymap = L.map('{{$mapId}}').setView([{{$centerPoint['lat'] ?? $centerPoint[0]}}, {{$centerPoint['lon'] ?? $centerPoint[1]}}], {{$zoomLevel}});
+    var drawnItems = new L.FeatureGroup();
+    mymap.addLayer(drawnItems);
+    var drawControl = new L.Control.Draw({
+        draw: {
+            polygon: false,
+            rectangle: false,
+            circle: false
+
+        },
+        edit: {
+            edit: true,
+            featureGroup: drawnItems
+        }
+    });
+    mymap.addControl(drawControl);
+
+    mymap.on('draw:created', function (e) {
+        var type = e.layerType,
+            layer = e.layer;
+
+        if (type === 'marker') {
+            console.log(layer.getLatLng())
+        } else {
+            console.log(layer.getLatLngs())
+        }
+        drawnItems.addLayer(layer);
+    });
+
     @foreach($markers as $marker)
     @if(isset($marker['icon']))
     var icon = L.icon({
@@ -36,6 +64,10 @@
             }
         @endif
                    );
+    @if(isset($marker['title']))
+    marker.bindPopup('{{$marker['title']}}');
+
+    @endif
     marker.addTo(mymap);
     @if(isset($marker['info']))
     marker.bindPopup(@json($marker['info']));
