@@ -2,7 +2,8 @@
 
 return [
 
-    'secret_password' => env('SECRET_PASSWORD'),
+    'secret_password_teacher' => env('SECRET_PASSWORD_TEACHER'),
+    'secret_password_student' => env('SECRET_PASSWORD_STUDENT'),
 
     /*
     |--------------------------------------------------------------------------
