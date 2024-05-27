@@ -32,17 +32,25 @@
                 <x-select id="school_id" class="block mt-1 w-full" :value="old('school_id')" name="school_id"
                           required>
                     @foreach($schools as $school)
-                        <option @selected(old('school_id') == $school->id) value="{{$school->id}}">{{$school->name}}</option>
+                        <option
+                            @selected(old('school_id') == $school->id) value="{{$school->id}}">{{$school->name}}</option>
                     @endforeach
                 </x-select>
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="role" value="Con quale ruolo ti stai iscrivendo?"/>
-                <x-select id="role" class="block mt-1 w-full" :value="old('role', \App\Enums\RolesEnum::STUDENTE->value)" name="role"
+                <x-select id="role" class="block mt-1 w-full"
+                          :value="old('role', \App\Enums\RolesEnum::STUDENTE->value)" name="role"
                           required>
-                    <option @selected(old('role', "Utente Base") == \App\Enums\RolesEnum::INSEGNANTE->value) value="{{\App\Enums\RolesEnum::INSEGNANTE->value}}">Insegnante</option>
-                    <option @selected(old('role', "Utente Base") == \App\Enums\RolesEnum::STUDENTE->value) value="{{\App\Enums\RolesEnum::STUDENTE->value}}">Studente</option>
+                    <option
+                        @selected(old('role', "Utente Base") == \App\Enums\RolesEnum::INSEGNANTE->value) value="{{\App\Enums\RolesEnum::INSEGNANTE->value}}">
+                        Insegnante
+                    </option>
+                    <option
+                        @selected(old('role', "Utente Base") == \App\Enums\RolesEnum::STUDENTE->value) value="{{\App\Enums\RolesEnum::STUDENTE->value}}">
+                        Studente
+                    </option>
                 </x-select>
             </div>
 
