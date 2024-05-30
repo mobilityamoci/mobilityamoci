@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\School;
+use App\Models\PedibusLine;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,10 +13,12 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('pedibus_lines', function (Blueprint $table) {
+        Schema::create('pedibus_stops', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignIdFor(School::class);
+            $table->string('address');
+            $table->foreignIdFor(PedibusLine::class)->onDelete('cascade');
+            $table->unsignedTinyInteger('order')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('pedibus_lines');
+        Schema::dropIfExists('pedibus_stops');
     }
 };

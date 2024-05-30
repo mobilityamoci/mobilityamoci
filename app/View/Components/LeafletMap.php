@@ -30,10 +30,17 @@ class LeafletMap extends Component
 
     public string $leafletVersion;
 
+    public bool $canDraw = false;
+    public bool $canDrawMarkers = false;
+    public bool $canDrawPolyLines = false;
+
     public function __construct(
         $centerPoint = [0, 0],
         $markers = [],
         $polyLines = [],
+        $canDraw = false,
+        $canDrawMarkers = false,
+        $canDrawPolyLines = false,
         $zoomLevel = 13,
         $maxZoomLevel = 18,
         $tileHost = 'openstreetmap',
@@ -42,11 +49,14 @@ class LeafletMap extends Component
         $leafletVersion = "latest",
     )
     {
-        $this->polyLines = $polyLines;
         $this->centerPoint = $centerPoint;
+        $this->markers = $markers;
+        $this->polyLines = $polyLines;
+        $this->canDraw = $canDraw;
+        $this->canDrawMarkers = $canDrawMarkers;
+        $this->canDrawPolyLines = $canDrawPolyLines;
         $this->zoomLevel = $zoomLevel;
         $this->maxZoomLevel = $maxZoomLevel;
-        $this->markers = $markers;
         $this->tileHost = $tileHost;
         $this->mapId = $id;
         $this->attribution = $attribution;
@@ -56,14 +66,13 @@ class LeafletMap extends Component
     public function render(): View
     {
         $markerArray = [];
-
         foreach ($this->markers as $marker) {
             $markerArray[] = [implode(",", $marker)];
         }
+
+        $polyLines = [];
         if (!empty($this->polyLines))
             $polyLines = $this->polylinesToString();
-        else
-            $polyLines = null;
 
         return view('components.leaflet-map', [
             'polylines' => $polyLines,

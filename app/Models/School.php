@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class School extends Model
@@ -11,11 +10,12 @@ class School extends Model
 
     use HasRelationships;
 
-    protected $guarded = ['id', 'created_at','updated_at'];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
 
     public function students()
     {
-        return $this->hasManyThrough(Student::class, Section::class,'school_id','section_id','id','id');
+        return $this->hasManyThrough(Student::class, Section::class, 'school_id', 'section_id', 'id', 'id');
     }
 
     public function sections()
@@ -30,12 +30,22 @@ class School extends Model
 
     public function users()
     {
-        return $this->morphToMany(User::class, 'associable','associables');
+        return $this->morphToMany(User::class, 'associable', 'associables');
+    }
+
+    public function pedibusLines()
+    {
+        return $this->hasMany(PedibusLine::class);
+    }
+
+    public function pedibusStops()
+    {
+        return $this->hasManyDeepFromRelations($this->pedibusLines(), (new PedibusLine())->pedibusStops());
     }
 
     public function usersToAccept()
     {
-        return $this->morphToMany(User::class, 'associable','associables')
+        return $this->morphToMany(User::class, 'associable', 'associables')
             ->whereNull('accepted_at');
     }
 
@@ -53,5 +63,15 @@ class School extends Model
     public function scopeActive($query)
     {
         $query->whereHas('sections');
+    }
+
+    public function centerPoints()
+    {
+        $buildings = $this->buildings;
+        $points = [];
+        foreach ($buildings as $building) {
+            $points[] = $building->centerPoint();
+        }
+        return $points;
     }
 }

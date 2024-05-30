@@ -49,8 +49,8 @@
     </div>
 </div>
 
-@include('layouts.body-scripts')
 
+@include('layouts.body-scripts')
 </body>
 
 </html>

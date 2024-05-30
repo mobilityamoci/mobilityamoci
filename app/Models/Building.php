@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Traits\HasGeometryPoint;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Building extends Model
 {
@@ -19,7 +18,7 @@ class Building extends Model
     protected $appends = ['geom_address'];
 
 
-    public function schools(): BelongsTo
+    public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);
     }
@@ -32,6 +31,17 @@ class Building extends Model
     public function geometryPoint()
     {
         return $this->morphOne(GeometryPoint::class, 'georefable');
+    }
+
+    public function fullName()
+    {
+        return $this->name . ' di ' . $this->school->name;
+    }
+
+    public function centerPoint()
+    {
+        $point = $this->geometryPoint->getWGS84Point();
+        return ['lat' => $point->getLatitude(), 'lon' => $point->getLongitude(), 'title' => $this->fullName()];
     }
 
 

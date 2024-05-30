@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SurveyController;
 use App\Http\Livewire\AcceptUsers;
+use App\Http\Livewire\PedibusLinesSchoolList;
 use App\Http\Livewire\Schools;
 use App\Http\Livewire\ShowGraphs;
 use App\Http\Livewire\ShowMappa;
@@ -73,6 +74,7 @@ Route::middleware([
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/statistiche', ShowGraphs::class)->name('graphs-show');
     Route::middleware(['role_or_permission:all_schools|school|section'])->get('/sondaggi/crea', Surveys::class)->name('surveys');
     Route::middleware(['can:base'])->get('/i-miei-sondaggi', SurveysStudent::class)->name('survey-users');
+    Route::middleware(['can:admin'])->get('/pedibus', PedibusLinesSchoolList::class)->name('pedibus');
 
     Route::middleware(['can:base'])->post('/sondaggio/{survey}/submit', [SurveyController::class, 'submitAnswer'])->name('sondaggio.submit');
 //    Route::get('/survey/edit/{survey}', [SurveyController::class, 'edit'])->name('survey.edit');

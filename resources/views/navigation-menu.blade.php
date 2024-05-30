@@ -1,250 +1,5 @@
-{{--<nav x-data="{ open: false }" class="bg-transparent border-none">--}}
-{{--    <!-- Primary Navigation Menu -->--}}
-{{--    <div class=" mx-auto px-4 sm:px-6 lg:px-8">--}}
-{{--        <div class="flex justify-between h-16">--}}
-{{--            <div class="flex">--}}
-{{--                <!-- Logo -->--}}
-{{--                <div class="shrink-0 w-fit h-fit items-center">--}}
-{{--                    <a href="{{ route('students') }}">--}}
-{{--                        <x-jet-application-mark class="block h-9 w-auto" />--}}
-{{--                    </a>--}}
-{{--                </div>--}}
-
-{{--                <!-- Navigation Links -->--}}
-{{--                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">--}}
-{{--                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">--}}
-{{--                        {{ __('Dashboard') }}--}}
-{{--                    </x-jet-nav-link>--}}
-{{--                    @canAny(['all_schools','school','section'])--}}
-{{--                        <x-jet-nav-link href="{{ route('students') }}" :active="request()->routeIs('students')">--}}
-{{--                            Studenti--}}
-{{--                        </x-jet-nav-link>--}}
-{{--                    @endcanAny--}}
-
-{{--                    @can('admin')--}}
-{{--                    <x-jet-nav-link href="{{ route('schools') }}" :active="request()->routeIs('schools')">--}}
-{{--                        Scuole--}}
-{{--                    </x-jet-nav-link>--}}
-{{--                    @endcan--}}
-
-{{--                    @can('admin')--}}
-{{--                        <x-jet-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">--}}
-{{--                            Utenti--}}
-{{--                        </x-jet-nav-link>--}}
-{{--                    @endcan--}}
-
-{{--                    @can('accept-users')--}}
-{{--                        <x-jet-nav-link href="{{ route('accept.users') }}" :active="request()->routeIs('accept.users')">--}}
-{{--                            Richieste Utenti--}}
-{{--                        </x-jet-nav-link>--}}
-{{--                    @endcan--}}
-
-{{--                    @can('base')--}}
-{{--                        <x-jet-nav-link href="{{ route('single-student') }}" :active="request()->routeIs('single-student')">--}}
-{{--                            Il Mio Percorso--}}
-{{--                        </x-jet-nav-link>--}}
-{{--                    @endcan--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-{{--            <div class="hidden sm:flex sm:items-center sm:ml-6">--}}
-{{--                <!-- Teams Dropdown -->--}}
-{{--                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())--}}
-{{--                    <div class="ml-3 relative">--}}
-{{--                        <x-jet-dropdown align="right" width="60">--}}
-{{--                            <x-slot name="trigger">--}}
-{{--                                <span class="inline-flex rounded-md">--}}
-{{--                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">--}}
-{{--                                        {{ Auth::user()->currentTeam->name }}--}}
-
-{{--                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">--}}
-{{--                                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />--}}
-{{--                                        </svg>--}}
-{{--                                    </button>--}}
-{{--                                </span>--}}
-{{--                            </x-slot>--}}
-
-{{--                            <x-slot name="content">--}}
-{{--                                <div class="w-60">--}}
-{{--                                    <!-- Team Management -->--}}
-{{--                                    <div class="block px-4 py-2 text-xs text-gray-400">--}}
-{{--                                        {{ __('Manage Team') }}--}}
-{{--                                    </div>--}}
-
-{{--                                    <!-- Team Settings -->--}}
-{{--                                    <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">--}}
-{{--                                        {{ __('Team Settings') }}--}}
-{{--                                    </x-jet-dropdown-link>--}}
-
-{{--                                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())--}}
-{{--                                        <x-jet-dropdown-link href="{{ route('teams.create') }}">--}}
-{{--                                            {{ __('Create New Team') }}--}}
-{{--                                        </x-jet-dropdown-link>--}}
-{{--                                    @endcan--}}
-
-{{--                                    <div class="border-t border-gray-100"></div>--}}
-
-{{--                                    <!-- Team Switcher -->--}}
-{{--                                    <div class="block px-4 py-2 text-xs text-gray-400">--}}
-{{--                                        {{ __('Switch Teams') }}--}}
-{{--                                    </div>--}}
-
-{{--                                    @foreach (Auth::user()->allTeams() as $team)--}}
-{{--                                        <x-jet-switchable-team :team="$team" />--}}
-{{--                                    @endforeach--}}
-{{--                                </div>--}}
-{{--                            </x-slot>--}}
-{{--                        </x-jet-dropdown>--}}
-{{--                    </div>--}}
-{{--                @endif--}}
-
-{{--                <!-- Settings Dropdown -->--}}
-{{--                <div class="ml-3 relative">--}}
-{{--                    <x-jet-dropdown align="right" width="48">--}}
-{{--                        <x-slot name="trigger">--}}
-{{--                            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())--}}
-{{--                                <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">--}}
-{{--                                    <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />--}}
-{{--                                </button>--}}
-{{--                            @else--}}
-{{--                                <span class="inline-flex rounded-md">--}}
-{{--                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">--}}
-{{--                                        {{ Auth::user()->name }}--}}
-
-{{--                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">--}}
-{{--                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />--}}
-{{--                                        </svg>--}}
-{{--                                    </button>--}}
-{{--                                </span>--}}
-{{--                            @endif--}}
-{{--                        </x-slot>--}}
-
-{{--                        <x-slot name="content">--}}
-{{--                            <!-- Account Management -->--}}
-{{--                            <div class="block px-4 py-2 text-xs text-gray-400">--}}
-{{--                                {{ __('Manage Account') }}--}}
-{{--                            </div>--}}
-
-{{--                            <x-jet-dropdown-link href="{{ route('profile.show') }}">--}}
-{{--                                {{ __('Profile') }}--}}
-{{--                            </x-jet-dropdown-link>--}}
-
-{{--                            @if (Laravel\Jetstream\Jetstream::hasApiFeatures())--}}
-{{--                                <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">--}}
-{{--                                    {{ __('API Tokens') }}--}}
-{{--                                </x-jet-dropdown-link>--}}
-{{--                            @endif--}}
-
-{{--                            <div class="border-t border-gray-100"></div>--}}
-
-{{--                            <!-- Authentication -->--}}
-{{--                            <form method="POST" action="{{ route('logout') }}" x-data>--}}
-{{--                                @csrf--}}
-
-{{--                                <x-jet-dropdown-link href="{{ route('logout') }}"--}}
-{{--                                         @click.prevent="$root.submit();">--}}
-{{--                                    {{ __('Log Out') }}--}}
-{{--                                </x-jet-dropdown-link>--}}
-{{--                            </form>--}}
-{{--                        </x-slot>--}}
-{{--                    </x-jet-dropdown>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-{{--            <!-- Hamburger -->--}}
-{{--            <div class="-mr-2 flex items-center sm:hidden">--}}
-{{--                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition">--}}
-{{--                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">--}}
-{{--                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />--}}
-{{--                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />--}}
-{{--                    </svg>--}}
-{{--                </button>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
-{{--    <!-- Responsive Navigation Menu -->--}}
-{{--    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">--}}
-{{--        <div class="pt-2 pb-3 space-y-1">--}}
-{{--            <x-jet-responsive-nav-link href="{{ route('students') }}" :active="request()->routeIs('dashboard')">--}}
-{{--                Studenti--}}
-{{--            </x-jet-responsive-nav-link>--}}
-{{--        </div>--}}
-
-{{--        <!-- Responsive Settings Options -->--}}
-{{--        <div class="pt-4 pb-1 border-t border-gray-200">--}}
-{{--            <div class="flex items-center px-4">--}}
-{{--                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())--}}
-{{--                    <div class="shrink-0 mr-3">--}}
-{{--                        <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />--}}
-{{--                    </div>--}}
-{{--                @endif--}}
-
-{{--                <div>--}}
-{{--                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>--}}
-{{--                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-{{--            <div class="mt-3 space-y-1">--}}
-{{--                <!-- Account Management -->--}}
-{{--                <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">--}}
-{{--                    {{ __('Profile') }}--}}
-{{--                </x-jet-responsive-nav-link>--}}
-
-{{--                @if (Laravel\Jetstream\Jetstream::hasApiFeatures())--}}
-{{--                    <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">--}}
-{{--                        {{ __('API Tokens') }}--}}
-{{--                    </x-jet-responsive-nav-link>--}}
-{{--                @endif--}}
-
-{{--                <!-- Authentication -->--}}
-{{--                <form method="POST" action="{{ route('logout') }}" x-data>--}}
-{{--                    @csrf--}}
-
-{{--                    <x-jet-responsive-nav-link href="{{ route('logout') }}"--}}
-{{--                                   @click.prevent="$root.submit();">--}}
-{{--                        {{ __('Log Out') }}--}}
-{{--                    </x-jet-responsive-nav-link>--}}
-{{--                </form>--}}
-
-{{--                <!-- Team Management -->--}}
-{{--                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())--}}
-{{--                    <div class="border-t border-gray-200"></div>--}}
-
-{{--                    <div class="block px-4 py-2 text-xs text-gray-400">--}}
-{{--                        {{ __('Manage Team') }}--}}
-{{--                    </div>--}}
-
-{{--                    <!-- Team Settings -->--}}
-{{--                    <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">--}}
-{{--                        {{ __('Team Settings') }}--}}
-{{--                    </x-jet-responsive-nav-link>--}}
-
-{{--                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())--}}
-{{--                        <x-jet-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">--}}
-{{--                            {{ __('Create New Team') }}--}}
-{{--                        </x-jet-responsive-nav-link>--}}
-{{--                    @endcan--}}
-
-{{--                    <div class="border-t border-gray-200"></div>--}}
-
-{{--                    <!-- Team Switcher -->--}}
-{{--                    <div class="block px-4 py-2 text-xs text-gray-400">--}}
-{{--                        {{ __('Switch Teams') }}--}}
-{{--                    </div>--}}
-
-{{--                    @foreach (Auth::user()->allTeams() as $team)--}}
-{{--                        <x-jet-switchable-team :team="$team" component="jet-responsive-nav-link" />--}}
-{{--                    @endforeach--}}
-{{--                @endif--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</nav>--}}
-
+<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
 @php($classes = "w-14 h-14 md:w-20 md:h-20  3xl:w-28 3xl:h-28")
-
 
 <nav class="flex flex-col m-auto justify-between h-3/4">
 
@@ -292,7 +47,6 @@
         {{--        SCUOLE--}}
         <x-jet-nav-link :active="request()->routeIs('surveys')" :href='route("surveys")'>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="{{$classes}}">
-                <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                 <path
                     d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM105.8 229.3c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L216 328.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V314.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H158.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM160 416a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/>
             </svg>
@@ -322,9 +76,18 @@
             </svg>
         </x-jet-nav-link>
     @endcanany
+    @can('admin')
+        {{--       PEDIBUS--}}
+        <x-jet-nav-link :active="request()->routeIs('pedibus')" :href='route("pedibus")'>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="{{$classes}}">
+                <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path
+                    d="M160 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM126.5 199.3c-1 .4-1.9 .8-2.9 1.2l-8 3.5c-16.4 7.3-29 21.2-34.7 38.2l-2.6 7.8c-5.6 16.8-23.7 25.8-40.5 20.2s-25.8-23.7-20.2-40.5l2.6-7.8c11.4-34.1 36.6-61.9 69.4-76.5l8-3.5c20.8-9.2 43.3-14 66.1-14c44.6 0 84.8 26.8 101.9 67.9L281 232.7l21.4 10.7c15.8 7.9 22.2 27.1 14.3 42.9s-27.1 22.2-42.9 14.3L247 287.3c-10.3-5.2-18.4-13.8-22.8-24.5l-9.6-23-19.3 65.5 49.5 54c5.4 5.9 9.2 13 11.2 20.8l23 92.1c4.3 17.1-6.1 34.5-23.3 38.8s-34.5-6.1-38.8-23.3l-22-88.1-70.7-77.1c-14.8-16.1-20.3-38.6-14.7-59.7l16.9-63.5zM68.7 398l25-62.4c2.1 3 4.5 5.8 7 8.6l40.7 44.4-14.5 36.2c-2.4 6-6 11.5-10.6 16.1L54.6 502.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L68.7 398z"/>
+            </svg>
+        </x-jet-nav-link>
+    @endcanany
     <x-jet-nav-link :active="request()->routeIs('graphs-show')" :href="route('graphs-show')">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" class="{{$classes}}">
-            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
             <path
                 d="M304 240V16.6c0-9 7-16.6 16-16.6C443.7 0 544 100.3 544 224c0 9-7.6 16-16.6 16H304zM32 272C32 150.7 122.1 50.3 239 34.3c9.2-1.3 17 6.1 17 15.4V288L412.5 444.5c6.7 6.7 6.2 17.7-1.5 23.1C371.8 495.6 323.8 512 272 512C139.5 512 32 404.6 32 272zm526.4 16c9.3 0 16.6 7.8 15.4 17c-7.7 55.9-34.6 105.6-73.9 142.3c-6 5.6-15.4 5.2-21.2-.7L320 288H558.4z"/>
         </svg>

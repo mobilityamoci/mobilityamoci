@@ -2,18 +2,17 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\School;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\Transport;
 use App\Models\Trip;
-use Illuminate\Support\Collection;
+use App\Traits\HasSelectedSchool;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class Students extends Component
 {
-    use LivewireAlert;
+    use LivewireAlert, HasSelectedSchool;
 
     public $user;
 
@@ -48,9 +47,6 @@ class Students extends Component
 //    public $test = true;
 
     public bool $editSections = false;
-
-    public Collection $schools;
-    public $selectedSchoolId;
 
     public $selectedSectionId;
 
@@ -328,8 +324,5 @@ class Students extends Component
         return getCanSeeNameRoles();
     }
 
-    public function getSelectedSchoolProperty()
-    {
-        return School::find($this->selectedSchoolId);
-    }
+
 }
