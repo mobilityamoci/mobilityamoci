@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\modals;
+namespace App\Http\Livewire\Modals;
 
 use App\Models\School;
 use App\Models\Section;

@@ -10,5 +10,14 @@
                 </x-jet-button>
             </div>
         </div>
+        <ul>
+            @foreach($this->pedibusLines as $pedibusLine)
+                <li class="my-10">
+                    <livewire:pedibus-line-edit :key="$pedibusLine->id"
+                                                :selected-line-id="$pedibusLine->id"></livewire:pedibus-line-edit>
+                </li>
+            @endforeach
+        </ul>
+
     </div>
 </div>

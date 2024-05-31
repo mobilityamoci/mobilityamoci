@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\modals;
+namespace App\Http\Livewire\Modals;
 
 use App\Imports\SchoolsBuildingsImport;
 use App\Imports\SectionsSchoolImport;

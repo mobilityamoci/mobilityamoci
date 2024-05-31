@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\modals;
+namespace App\Http\Livewire\Modals;
 
 use App\Models\Student;
 use LivewireUI\Modal\ModalComponent;
@@ -80,7 +80,7 @@ class SingleStudentMapModal extends ModalComponent
 
     public function getMarkersProperty()
     {
-        return [array_merge($this->centerPoint, ['title' => 'Casa Mia']), array_merge($this->schoolCenterPoint, ['title' => 'Scuola'])];
+        return [array_merge($this->centerPoint, ['title' => 'Casa Mia', 'icon' => 'house']), array_merge($this->schoolCenterPoint, ['title' => 'Scuola', 'icon' => 'school'])];
     }
 
     public function getPolylinesProperty()

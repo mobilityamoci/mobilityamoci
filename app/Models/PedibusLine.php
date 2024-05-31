@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PedibusLine extends Model
 {
 
-    protected $guarded = ['id','created_at','updated_at'];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function line()
     {
@@ -18,4 +18,21 @@ class PedibusLine extends Model
     {
         return $this->hasMany(PedibusStop::class);
     }
+
+
+    public function school()
+    {
+        return $this->belongsTo(School::class);
+    }
+
+    public function toArrayWGS84()
+    {
+        return $this->line->toArrayWGS84();
+    }
+
+    public function centerPoint()
+    {
+        return $this->school->centerPoints()[0];
+    }
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\modals;
+namespace App\Http\Livewire\Modals;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use LivewireUI\Modal\ModalComponent;

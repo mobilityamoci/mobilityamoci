@@ -41,7 +41,7 @@ class LeafletMap extends Component
         $canDraw = false,
         $canDrawMarkers = false,
         $canDrawPolyLines = false,
-        $zoomLevel = 13,
+        $zoomLevel = 15,
         $maxZoomLevel = 18,
         $tileHost = 'openstreetmap',
         $id = self::DEFAULTMAPID,
@@ -84,7 +84,10 @@ class LeafletMap extends Component
             'tileHost' => $this->tileHost,
             'mapId' => $this->mapId === self::DEFAULTMAPID ? Str::random() : $this->mapId,
             'attribution' => $this->attribution,
-            'leafletVersion' => $this->leafletVersion ?? "1.7.1"
+            'leafletVersion' => $this->leafletVersion ?? "1.7.1",
+            'canDraw' => $this->canDraw,
+            'canDrawMarkers' => $this->canDrawMarkers,
+            'canDrawPolyLines' => $this->canDrawPolyLines,
         ]);
     }
 

@@ -572,6 +572,19 @@ cross join lateral (
         return Point::makeGeodetic($pointDestArr[1], $pointDestArr[0]);
     }
 
+    public static function fromWGS84To(int $srid, Point $point)
+    {
+        $proj4 = new Proj4php();
+
+        $myProj = new Proj('EPSG:4326', $proj4);
+        $projDest = new Proj('EPSG:' . $srid, $proj4);
+
+        $pointSrc = new ProjPoint($point->getX(), $point->getY(), $myProj);
+        $pointDest = $proj4->transform($projDest, $pointSrc);
+        $pointDestArr = $pointDest->toArray();
+        return Point::make($pointDestArr[1], $pointDestArr[0], srid: $srid);
+    }
+
     public static function lineToArrayOfPointsWGS84(LineString $linestring)
     {
         $points = $linestring->getPoints();
@@ -581,6 +594,16 @@ cross join lateral (
             $WGS84Points[] = self::toWGS84(Point::makeGeodetic($point->getY(), $point->getX()));
         }
         return $WGS84Points;
+    }
+
+    public static function fromArrayToArrayOfPoints(array $array, string $latKey = 'lat', string $lonKey = 'lng')
+    {
+        $points = array();
+
+        foreach ($array as $item) {
+            $points[] = self::fromWGS84To(32632,Point::make($item[$latKey], $item[$lonKey], srid: 4326));
+        }
+        return $points;
     }
 
 

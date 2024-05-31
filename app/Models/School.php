@@ -65,7 +65,7 @@ class School extends Model
         $query->whereHas('sections');
     }
 
-    public function centerPoints()
+    public function centerPoints(): array
     {
         $buildings = $this->buildings;
         $points = [];

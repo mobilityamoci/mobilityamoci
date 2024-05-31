@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\modals;
+namespace App\Http\Livewire\Modals;
 
 use App\Models\Survey;
 use App\Traits\SelectedSchool;
