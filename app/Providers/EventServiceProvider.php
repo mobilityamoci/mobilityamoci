@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Models\Building;
+use App\Models\PedibusStop;
 use App\Models\School;
 use App\Models\Student;
 use App\Models\Trip;
 use App\Observers\BuildingsObserver;
+use App\Observers\PedibusStopObserver;
 use App\Observers\SchoolsObserver;
 use App\Observers\StudentsObserver;
 use App\Observers\TripsObserver;
@@ -22,7 +24,8 @@ class EventServiceProvider extends ServiceProvider
         Student::class => [StudentsObserver::class],
         Building::class => [BuildingsObserver::class],
         Trip::class => [TripsObserver::class],
-        School::class => [SchoolsObserver::class]
+        School::class => [SchoolsObserver::class],
+        PedibusStop::class => [PedibusStopObserver::class]
     ];
 
 

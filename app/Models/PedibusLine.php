@@ -16,7 +16,7 @@ class PedibusLine extends Model
 
     public function stops()
     {
-        return $this->hasMany(PedibusStop::class);
+        return $this->hasMany(PedibusStop::class)->orderBy('order');
     }
 
 
