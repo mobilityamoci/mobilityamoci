@@ -620,19 +620,15 @@ cross join lateral (
 //        return $points;
 //    }
 
-    public static function transformWKTToLineString(int $fromSrid, int $toSrid, string $WKT)
+    public static function transformWKT(int $fromSrid, int $toSrid, string $WKT)
     {
         $result = DB::select(DB::raw("select ST_asText(ST_Transform(ST_GeomFromText('$WKT',
 	                $fromSrid),
 	                $toSrid)) as geom;"));
 
-        $geoPHP = geoPHP::load($result[0]->geom);
-        $points = [];
-        foreach ($geoPHP->getComponents() as $point) {
-            $points[] = Point::make($point->getX(), $point->getY(), srid: $toSrid);
-        }
-        return LineString::make($points);
+        return $result[0]->geom;
     }
+
 
 
 }

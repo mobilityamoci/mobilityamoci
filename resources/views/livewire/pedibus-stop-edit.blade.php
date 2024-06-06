@@ -26,7 +26,8 @@
     </div>
     <div>
         <x-jet-button
-            wire:click="update"
+            wire:click="$emit('openModal', 'modals.pedibus-stop-map-draw-modal',{{json_encode(['pedibusLineId' => $this->pedibusLine->id, 'pedibusStopId' => $pedibusStop->id])}})"
+
         >
             <i class="fa-solid mr-2 fa-location-dot"></i>
             Disegna

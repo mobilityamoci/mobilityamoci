@@ -39,17 +39,7 @@
     });
     mymap.addControl(drawControl);
 
-    mymap.on('draw:created', function (e) {
-        var type = e.layerType,
-            layer = e.layer;
 
-        if (type === 'marker') {
-            console.log(layer.getLatLng())
-        } else {
-            window.Livewire.emit('lineCreated', toWKT(layer))
-        }
-        drawnItems.addLayer(layer);
-    });
     @endif
     @foreach($markers as $marker)
     @if(isset($marker['icon']))
@@ -111,10 +101,22 @@
     }, 500);
 
 
+    mymap.on('draw:created', function (e) {
+        var type = e.layerType,
+            layer = e.layer;
+
+        if (type === 'marker') {
+            window.Livewire.emit('pointCreated', toWKT(layer))
+        } else {
+            window.Livewire.emit('lineCreated', toWKT(layer))
+        }
+        drawnItems.addLayer(layer);
+    });
+
     function toWKT(layer) {
-        var lng, lat, coords = [];
+        let lng, lat, coords = [];
         if (layer instanceof L.Polygon || layer instanceof L.Polyline) {
-            var latlngs = layer.getLatLngs();
+            const latlngs = layer.getLatLngs();
             for (var i = 0; i < latlngs.length; i++) {
                 latlngs[i]
                 coords.push(latlngs[i].lng + " " + latlngs[i].lat);
@@ -122,7 +124,8 @@
                     lng = latlngs[i].lng;
                     lat = latlngs[i].lat;
                 }
-            };
+            }
+            ;
             if (layer instanceof L.Polygon) {
                 return "POLYGON((" + coords.join(",") + "," + lng + " " + lat + "))";
             } else if (layer instanceof L.Polyline) {
@@ -132,6 +135,7 @@
             return "POINT(" + layer.getLatLng().lng + " " + layer.getLatLng().lat + ")";
         }
     }
+
     // document.addEventListener(
     //     "rerender-map",
     //     (e) => {
