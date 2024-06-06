@@ -57,7 +57,8 @@ class Students extends Component
 //        'students.*.name' => 'string|required',
 //        'students.*.surname' => 'string|required',
         'students.*.town_istat' => 'integer|nullable|',
-        'students.*.section_id' => 'numeric|exists:my_sections,id'
+        'students.*.section_id' => 'numeric|exists:my_sections,id',
+        'students.*.pedibus_stop_id' => 'numeric|nullable'
     ];
 
     protected $rulesWithoutName = [
@@ -164,6 +165,7 @@ class Students extends Component
         }
         $this->editStudentField = null;
         $this->editStudentIndex = null;
+        $this->emit('$refresh');
         $this->alert('success', 'Utente salvato con successo');
     }
 

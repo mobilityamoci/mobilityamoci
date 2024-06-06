@@ -255,7 +255,7 @@
                                     </td>
                                     <td>
                                         @if($student['use_pedibus'])
-                                            <x-select wire:model="students.{{$index}}.pedibus_id">
+                                            <x-select wire:change="saveStudent({{$index}})" wire:model="students.{{$index}}.pedibus_stop_id">
                                                 <option value="">-------</option>
                                                 @foreach($this->pedibusStops as $pedibusStop)
                                                     <option
