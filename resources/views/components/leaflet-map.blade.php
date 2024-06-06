@@ -46,6 +46,7 @@
         if (type === 'marker') {
             console.log(layer.getLatLng())
         } else {
+            console.log(toWKT(layer))
             window.Livewire.emit('lineCreated', layer.getLatLngs())
         }
         drawnItems.addLayer(layer);

@@ -24,9 +24,16 @@ class PedibusStopObserver
      * @param PedibusStop $pedibusStop
      * @return void
      */
-    public function updated(PedibusStop $pedibusStop)
+    public function updating(PedibusStop $pedibusStop)
     {
-        $pedibusStop->pedibusLine->stops()->where('order', '>=', $pedibusStop->order)->whereNotIn('id', [$pedibusStop->id])->increment('order');
+        $originalOrder = $pedibusStop->getOriginal('order');
+        $newOrder = $pedibusStop->order;
+        if ($originalOrder > $newOrder) {
+            $pedibusStop->pedibusLine->stops()->where('order', '<=', $originalOrder)->whereNotIn('id', [$pedibusStop->id])->increment('order');
+        } else if ($originalOrder < $newOrder) {
+            $pedibusStop->pedibusLine->stops()->whereBetween('order', [$originalOrder, $newOrder])->whereNotIn('id', [$pedibusStop->id])->decrement('order');
+        }
+
     }
 
     /**
