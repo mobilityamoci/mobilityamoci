@@ -324,5 +324,10 @@ class Students extends Component
         return getCanSeeNameRoles();
     }
 
+    public function getPedibusStopsProperty()
+    {
+        return $this->selectedSchool->pedibusStops;
+    }
+
 
 }

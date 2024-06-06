@@ -54,6 +54,7 @@
                         <th class="my-th hidden xxl:block">Percorso</th>
                         @if($this->selectedSchool->has_pedibus)
                             <th class="my-th">Pedibus</th>
+                            <th class="my-th">Fermata</th>
                         @endif
                         <th class="my-th">Azioni</th>
 
@@ -143,7 +144,8 @@
                                     @if($editStudentIndex === $index || $editStudentField === $index.'.name')
                                         <input
                                             @click.away="$wire.editStudentField === '{{$index}}.name' ? $wire.saveStudent({{$index}}) : null"
-                                            for="students.{{$index}}.name" wire:model.defer="students.{{$index}}.name"
+                                            for="students.{{$index}}.name"
+                                            wire:model.defer="students.{{$index}}.name"
                                             class="bg-gray-50 text-sm border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5">
 
                                     @else
@@ -250,6 +252,17 @@
                                             <div
                                                 class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                         </label>
+                                    </td>
+                                    <td>
+                                        @if($student['use_pedibus'])
+                                            <x-select wire:model="students.{{$index}}.pedibus_id">
+                                                <option value="">-------</option>
+                                                @foreach($this->pedibusStops as $pedibusStop)
+                                                    <option
+                                                        value="{{$pedibusStop->id}}">{{$pedibusStop->fullName()}}</option>
+                                                @endforeach
+                                            </x-select>
+                                        @endif
                                     </td>
                                 @endif
                                 <td class="my-th ">

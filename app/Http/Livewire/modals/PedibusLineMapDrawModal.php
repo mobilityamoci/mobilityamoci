@@ -4,10 +4,12 @@ namespace App\Http\Livewire\Modals;
 
 use App\Models\PedibusLine;
 use App\Services\QgisService;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use LivewireUI\Modal\ModalComponent;
 
 class PedibusLineMapDrawModal extends ModalComponent
 {
+    use LivewireAlert;
     public int $pedibusLineId;
 
     protected $listeners = [
@@ -27,8 +29,9 @@ class PedibusLineMapDrawModal extends ModalComponent
     public function lineCreated($latLngWKT)
     {
         $this->pedibusLine->line()->delete();
-        $this->pedibusLine->line()->create(['line' => QgisService::transformWKTToLineString(4326, 32632, $latLngWKT)]);
+        $this->pedibusLine->line()->create(['line' => QgisService::transformWKT(4326, 32632, $latLngWKT)]);
         $this->emit('close-modal');
+        $this->alert('success', 'Linea disegnata con successo');
     }
 
     public function getPedibusLineProperty()

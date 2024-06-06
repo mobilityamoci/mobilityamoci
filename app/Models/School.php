@@ -40,7 +40,7 @@ class School extends Model
 
     public function pedibusStops()
     {
-        return $this->hasManyDeepFromRelations($this->pedibusLines(), (new PedibusLine())->pedibusStops());
+        return $this->hasManyDeepFromRelations($this->pedibusLines(), (new PedibusLine())->stops());
     }
 
     public function usersToAccept()

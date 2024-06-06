@@ -18,4 +18,9 @@ class PedibusStop extends Model
     {
         return $this->morphOne(GeometryPoint::class, 'georefable');
     }
+
+    public function fullName()
+    {
+        return $this->pedibusLine->name . ' - ' . $this->name . " ($this->address)";
+    }
 }
