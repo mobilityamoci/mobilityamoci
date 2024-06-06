@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Modals;
 
 use App\Models\PedibusLine;
 use App\Services\QgisService;
-use Clickbar\Magellan\Data\Geometries\LineString;
 use LivewireUI\Modal\ModalComponent;
 
 class PedibusLineMapDrawModal extends ModalComponent
@@ -28,7 +27,7 @@ class PedibusLineMapDrawModal extends ModalComponent
     public function lineCreated($latLngWKT)
     {
         $this->pedibusLine->line()->delete();
-        $this->pedibusLine->line()->create(['line' => LineString::make(QgisService::fromArrayToArrayOfPoints($latLngWKT), srid: 32632)]);
+        $this->pedibusLine->line()->create(['line' => QgisService::transformWKTToLineString(4326, 32632, $latLngWKT)]);
         $this->emit('close-modal');
     }
 

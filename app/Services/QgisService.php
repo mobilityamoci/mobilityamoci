@@ -8,12 +8,12 @@ use App\Models\Section;
 use App\Models\Student;
 use App\Models\Transport;
 use App\Models\Trip;
+use Clickbar\Magellan\Data\Geometries\LineString;
 use Clickbar\Magellan\Data\Geometries\Point;
 use Clickbar\Magellan\IO\Generator\WKB\WKBGenerator;
 use DB;
 use geoPHP;
 use Illuminate\Support\Facades\Http;
-use LineString;
 use Log;
 use proj4php\Point as ProjPoint;
 use proj4php\Proj;
@@ -572,20 +572,20 @@ cross join lateral (
         return Point::makeGeodetic($pointDestArr[1], $pointDestArr[0]);
     }
 
-    public static function fromWGS84To(int $srid, Point $point)
-    {
-        $proj4 = new Proj4php();
+//    public static function fromWGS84To(int $srid, Point $point)
+//    {
+//        $proj4 = new Proj4php();
+//
+//        $myProj = new Proj('EPSG:4326', $proj4);
+//        $projDest = new Proj('EPSG:' . $srid, $proj4);
+//
+//        $pointSrc = new ProjPoint($point->getX(), $point->getY(), projection: $myProj);
+//        $pointDest = $proj4->transform($projDest, $pointSrc);
+//        $pointDestArr = $pointDest->toArray();
+//        return Point::make($pointDestArr[1], $pointDestArr[0], srid: $srid);
+//    }
 
-        $myProj = new Proj('EPSG:4326', $proj4);
-        $projDest = new Proj('EPSG:' . $srid, $proj4);
-
-        $pointSrc = new ProjPoint($point->getX(), $point->getY(), $myProj);
-        $pointDest = $proj4->transform($projDest, $pointSrc);
-        $pointDestArr = $pointDest->toArray();
-        return Point::make($pointDestArr[1], $pointDestArr[0], srid: $srid);
-    }
-
-    public static function lineToArrayOfPointsWGS84(LineString $linestring)
+    public static function lineToArrayOfPointsWGS84(\LineString $linestring)
     {
         $points = $linestring->getPoints();
         $WGS84Points = array();
@@ -596,14 +596,42 @@ cross join lateral (
         return $WGS84Points;
     }
 
-    public static function fromArrayToArrayOfPoints(array $array, string $latKey = 'lat', string $lonKey = 'lng')
-    {
-        $points = array();
+//    public static function fromArrayToArrayOfPoints(array $array, string $latKey = 'lat', string $lonKey = 'lng')
+//    {
+//        $points = array();
+//
+//        foreach ($array as $item) {
+//            $points[] = self::fromWGS84To(32632,Point::make($item[$latKey], $item[$lonKey], srid: 4326));
+//        }
+//        return $points;
+//    }
 
-        foreach ($array as $item) {
-            $points[] = self::fromWGS84To(32632,Point::make($item[$latKey], $item[$lonKey], srid: 4326));
+//    public static function transformWKT(int $fromSrid, int $toSrid, string $WKT)
+//    {
+//        $result = DB::select(DB::raw("select ST_asText(ST_Transform(ST_GeomFromText('$WKT',
+//	                $fromSrid),
+//	                $toSrid)) as geom;"));
+//
+//        $geoPHP = geoPHP::load($result[0]->geom);
+//        $points = [];
+//        foreach ($geoPHP->getComponents() as $point) {
+//            $points[] = Point::make($point->getY(), $point->getX(), srid: $toSrid);
+//        }
+//        return $points;
+//    }
+
+    public static function transformWKTToLineString(int $fromSrid, int $toSrid, string $WKT)
+    {
+        $result = DB::select(DB::raw("select ST_asText(ST_Transform(ST_GeomFromText('$WKT',
+	                $fromSrid),
+	                $toSrid)) as geom;"));
+
+        $geoPHP = geoPHP::load($result[0]->geom);
+        $points = [];
+        foreach ($geoPHP->getComponents() as $point) {
+            $points[] = Point::make($point->getX(), $point->getY(), srid: $toSrid);
         }
-        return $points;
+        return LineString::make($points);
     }
 
 
