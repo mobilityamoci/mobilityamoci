@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Modals;
 
 use App\Models\PedibusLine;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
 class PedibusLineMapShowModal extends ModalComponent
@@ -33,6 +32,25 @@ class PedibusLineMapShowModal extends ModalComponent
     public function getPolyLineProperty()
     {
         return [['points' => $this->pedibusLine->toArrayWGS84()]];
+    }
+
+    public function getStudentMarkersProperty()
+    {
+        return $this->pedibusLine->students->map(function ($student) {
+            return $student->centerPoint();
+        })->toArray();
+    }
+
+    public function getSchoolMarkersProperty()
+    {
+        return $this->pedibusLine->school->buildings->map(function ($building) {
+            return $building->centerPoint();
+        })->toArray();
+    }
+
+    public function getMarkersProperty()
+    {
+        return array_merge($this->studentMarkers, $this->schoolMarkers);
     }
 
     public static function modalMaxWidth(): string

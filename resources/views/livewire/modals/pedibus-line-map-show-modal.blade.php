@@ -1,3 +1,3 @@
 <div>
-    <x-leaflet-map :center-point="$this->centerPoint" :poly-lines="$this->polyLine"/>
+    <x-leaflet-map :center-point="$this->centerPoint" :markers="$this->markers" :poly-lines="$this->polyLine"/>
 </div>

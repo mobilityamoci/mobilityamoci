@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class PedibusLine extends Model
 {
+    use HasRelationships;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
@@ -17,6 +19,11 @@ class PedibusLine extends Model
     public function stops()
     {
         return $this->hasMany(PedibusStop::class)->orderBy('order');
+    }
+
+    public function students()
+    {
+        return $this->hasManyDeepFromRelations($this->stops(), (new PedibusStop())->students());
     }
 
 
@@ -34,5 +41,13 @@ class PedibusLine extends Model
     {
         return $this->school->centerPoints()[0];
     }
+
+    public function studentMarkers()
+    {
+        return $this->students()->map(function ($student) {
+            return $student->marker;
+        });
+    }
+
 
 }

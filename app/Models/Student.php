@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Traits\HasGeometryPoint;
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
-use MattDaneshvar\Survey\Models\Entry;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class Student extends Model
@@ -88,6 +88,9 @@ class Student extends Model
 
     public function fullName(): string
     {
+        if (empty($this->name) && empty($this->surname) || !canSeeName(Auth::user())) {
+            return '';
+        }
         return ucwords($this->name . ' ' . $this->surname);
     }
 
@@ -126,6 +129,12 @@ class Student extends Model
     public function building()
     {
         return $this->hasOneThrough(Building::class, Section::class);
+    }
+
+    public function centerPoint()
+    {
+        $point = $this->geometryPoint->getWGS84Point();
+        return ['lat' => $point->getLatitude(), 'lon' => $point->getLongitude(), 'title' => empty($this->fullName()) ? 'Studente' : $this->fullName(), 'icon' => 'user'];
     }
 
 

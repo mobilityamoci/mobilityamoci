@@ -15,6 +15,11 @@ function getCanSeeNameRoles(): array
     return [RolesEnum::INSEGNANTE->value, RolesEnum::MM_SCOLASTICO->value];
 }
 
+function canSeeName(User $user): bool
+{
+    return $user->hasAnyRole(getCanSeeNameRoles());
+}
+
 function getSchoolsFromUser(User $user): Collection
 {
     if ($user->hasPermissionTo('all_schools')) {
@@ -96,6 +101,7 @@ function getUserStudents($onlyPopulated = false)
 
     return $students->flatten();
 }
+
 function getUserSections($onlyPopulated = false)
 {
     $schools = getUserSchools(true, ['sections']);

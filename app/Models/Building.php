@@ -41,7 +41,7 @@ class Building extends Model
     public function centerPoint()
     {
         $point = $this->geometryPoint->getWGS84Point();
-        return ['lat' => $point->getLatitude(), 'lon' => $point->getLongitude(), 'title' => $this->fullName()];
+        return ['lat' => $point->getLatitude(), 'lon' => $point->getLongitude(), 'title' => $this->fullName(), 'icon' => 'school'];
     }
 
 
