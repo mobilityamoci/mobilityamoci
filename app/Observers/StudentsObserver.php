@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Student;
 use App\Services\QgisService;
+use Str;
 
 class StudentsObserver
 {
@@ -12,6 +13,11 @@ class StudentsObserver
     public function __construct(QgisService $qgisService)
     {
         $this->qgisService = $qgisService;
+    }
+
+    public function creating(Student $student)
+    {
+        $student->uuid = (string)Str::uuid();
     }
 
     /**

@@ -3,9 +3,16 @@
 namespace App\Observers;
 
 use App\Models\PedibusStop;
+use Str;
 
 class PedibusStopObserver
 {
+
+    public function creating(PedibusStop $pedibusStop)
+    {
+        $pedibusStop->uuid = (string)Str::uuid();
+    }
+
     /**
      * Handle the PedibusStop "created" event.
      *
