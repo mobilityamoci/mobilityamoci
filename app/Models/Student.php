@@ -9,11 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use Laravel\Sanctum\HasApiTokens;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class Student extends Model
 {
-    use SoftDeletes, HasGeometryPoint, HasRelationships;
+    use SoftDeletes, HasGeometryPoint, HasRelationships, HasApiTokens;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
@@ -67,7 +68,7 @@ class Student extends Model
 
     public function school()
     {
-        return $this->section->school;
+        return $this->hasOneDeepFromRelations($this->section(), (new Section())->school());
     }
 
     public function trips(): HasMany
@@ -88,6 +89,7 @@ class Student extends Model
 
     public function fullName(): string
     {
+        $user = Auth::user();
         if (empty($this->name) && empty($this->surname) || !canSeeName(Auth::user())) {
             return '';
         }
@@ -129,6 +131,26 @@ class Student extends Model
     public function building()
     {
         return $this->hasOneThrough(Building::class, Section::class);
+    }
+
+    public function pedibusStop()
+    {
+        return $this->belongsTo(PedibusStop::class);
+    }
+
+    public function pedibusLine()
+    {
+        return $this->hasOneDeepFromRelations($this->pedibusStop(), (new PedibusStop())->pedibusLine());
+    }
+
+    public function absenceDays()
+    {
+        return $this->hasMany(AbsenceDays::class);
+    }
+
+    public function futureAbsenceDays()
+    {
+        return $this->absenceDays()->where('date', '>=', today());
     }
 
     public function centerPoint()

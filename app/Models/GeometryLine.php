@@ -26,4 +26,11 @@ class GeometryLine extends Model
         return QgisService::lineToArrayOfPointsWGS84($line);
     }
 
+    public function toArrayWGS84API()
+    {
+
+        $line = geoPHP::load($this->line);
+        return QgisService::lineToArrayOfPointsWGS84NotClass($line);
+    }
+
 }

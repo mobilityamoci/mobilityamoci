@@ -8,7 +8,6 @@ use App\Models\Section;
 use App\Models\Student;
 use App\Models\Transport;
 use App\Models\Trip;
-use Clickbar\Magellan\Data\Geometries\LineString;
 use Clickbar\Magellan\Data\Geometries\Point;
 use Clickbar\Magellan\IO\Generator\WKB\WKBGenerator;
 use DB;
@@ -559,7 +558,7 @@ cross join lateral (
         return array($resPol, $resPiedi, $resBici, $resBus);
     }
 
-    public static function toWGS84(Point $point)
+    public static function toWGS84(Point $point, bool $pointClass = true)
     {
         $proj4 = new Proj4php();
 
@@ -569,7 +568,11 @@ cross join lateral (
         $pointSrc = new ProjPoint($point->getX(), $point->getY(), $myProj);
         $pointDest = $proj4->transform($projWGS84, $pointSrc);
         $pointDestArr = $pointDest->toArray();
-        return Point::makeGeodetic($pointDestArr[1], $pointDestArr[0]);
+
+        if ($pointClass)
+            return Point::makeGeodetic($pointDestArr[1], $pointDestArr[0]);
+        else
+            return [$pointDestArr[1], $pointDestArr[0]];
     }
 
 //    public static function fromWGS84To(int $srid, Point $point)
@@ -592,6 +595,16 @@ cross join lateral (
         foreach ($points as $point) {
             /* @var \Point $point */
             $WGS84Points[] = self::toWGS84(Point::makeGeodetic($point->getY(), $point->getX()));
+        }
+        return $WGS84Points;
+    }
+    public static function lineToArrayOfPointsWGS84NotClass(\LineString $linestring)
+    {
+        $points = $linestring->getPoints();
+        $WGS84Points = array();
+        foreach ($points as $point) {
+            /* @var \Point $point */
+            $WGS84Points[] = self::toWGS84(Point::makeGeodetic($point->getY(), $point->getX()), false);
         }
         return $WGS84Points;
     }
@@ -628,7 +641,6 @@ cross join lateral (
 
         return $result[0]->geom;
     }
-
 
 
 }

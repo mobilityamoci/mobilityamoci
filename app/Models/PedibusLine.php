@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Laravel\Sanctum\HasApiTokens;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class PedibusLine extends Model
 {
-    use HasRelationships;
+    use HasRelationships, HasApiTokens;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
@@ -45,6 +46,10 @@ class PedibusLine extends Model
     public function toArrayWGS84()
     {
         return $this->line->toArrayWGS84();
+    }
+    public function toArrayWGS84API()
+    {
+        return $this->line->toArrayWGS84API();
     }
 
     public function centerPoint()

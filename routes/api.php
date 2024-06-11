@@ -16,14 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::post('authenticate', [ApiController::class, 'authenticate']);
+Route::middleware('api')->post('authenticate', [ApiController::class, 'authenticate']);
 
 
-Route::middleware('auth:sanctum')->group(function () {
-
-
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/parent', [ApiController::class, 'getParent']);
+    Route::post('/absence-days', [ApiController::class, 'postAbsenceDays']);
+    Route::get('/get-percorso/{pedibusLine:uuid}', [ApiController::class, 'getPedibusLine']);
 });
 
