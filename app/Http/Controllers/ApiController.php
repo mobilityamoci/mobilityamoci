@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PedibusLineResource;
+use App\Http\Resources\PedibusStopResource;
 use App\Http\Resources\StudentResource;
 use App\Models\PedibusLine;
 use App\Models\Student;
+use App\Services\QgisService;
+use Clickbar\Magellan\Data\Geometries\Point;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -80,6 +83,12 @@ class  ApiController extends Controller
     public function getPedibusLine(PedibusLine $pedibusLine)
     {
         return new PedibusLineResource($pedibusLine);
+    }
+
+    public function getPedibusStops(PedibusLine $pedibusLine)
+    {
+
+        return PedibusStopResource::collection($pedibusLine->stops);
     }
 
 }

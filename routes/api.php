@@ -23,5 +23,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/parent', [ApiController::class, 'getParent']);
     Route::post('/absence-days', [ApiController::class, 'postAbsenceDays']);
     Route::get('/get-percorso/{pedibusLine:uuid}', [ApiController::class, 'getPedibusLine']);
+    Route::get('/get-fermate/{pedibusLine:uuid}', [ApiController::class, 'getPedibusStops']);
 });
 
