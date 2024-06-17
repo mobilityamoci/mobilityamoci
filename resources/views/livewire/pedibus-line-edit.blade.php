@@ -36,6 +36,9 @@
                     <x-jet-label>Indirizzo</x-jet-label>
         </div>
         <div class="flex-1">
+                    <x-jet-label>Orario</x-jet-label>
+        </div>
+        <div class="flex-1">
                     <x-jet-label>Ordine</x-jet-label>
         </div>
         <div >
