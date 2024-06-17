@@ -24,6 +24,13 @@ class PedibusStop extends Model
         return $this->hasMany(Student::class);
     }
 
+    public function studentsPresenti()
+    {
+        return $this->hasMany(Student::class)->whereDoesntHave('absenceDays',function ($b) {
+            $b->where('date',date('Y-m-d'));
+        });
+    }
+
     public function fullName()
     {
         return $this->pedibusLine->name . ' - ' . $this->name . " ($this->address)";
