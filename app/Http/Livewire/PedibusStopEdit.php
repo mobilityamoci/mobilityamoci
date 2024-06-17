@@ -18,6 +18,7 @@ class PedibusStopEdit extends Component
         'pedibusStop.name' => 'required|string',
         'pedibusStop.address' => 'required|string',
         'pedibusStop.order' => 'required|numeric',
+        'pedibusStop.time' => 'required|string'
     ];
 
     public function render()

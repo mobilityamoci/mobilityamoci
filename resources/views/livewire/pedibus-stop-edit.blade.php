@@ -10,6 +10,11 @@
         <x-jet-input wire:model.lazy="pedibusStop.address" class="w-full"/>
     </div>
     <div class="flex-1">
+{{--        <x-jet-label>Indirizzo</x-jet-label>--}}
+
+        <x-jet-input type="time" wire:model.lazy="pedibusStop.time" class="w-full"/>
+    </div>
+    <div class="flex-1">
 {{--        <x-jet-label>Ordine</x-jet-label>--}}
         <x-select wire:model.lazy="pedibusStop.order" class="w-full">
             @for($count = 1; $count <= $this->pedibusStopsCount; $count++)

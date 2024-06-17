@@ -9,10 +9,13 @@ use LivewireUI\Modal\ModalComponent;
 class PedibusStopCreateModal extends ModalComponent
 {
     use LivewireAlert;
+
     public int $pedibusLineId;
     public string $newName = 'cocane';
     public string $newAddress = 'via poipo';
     public int $newOrder = 1;
+
+    public $newTime;
 
 
     public function render()
@@ -34,7 +37,8 @@ class PedibusStopCreateModal extends ModalComponent
         $this->pedibusLine->stops()->create([
             'name' => $this->newName,
             'address' => $this->newAddress,
-            'order' => $this->newOrder
+            'order' => $this->newOrder,
+            'time' => $this->newTime
         ]);
 
         $this->alert('success', 'Fermata creata');

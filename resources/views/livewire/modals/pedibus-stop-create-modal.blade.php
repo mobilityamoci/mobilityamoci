@@ -18,6 +18,13 @@
             @endfor
         </x-select>
     </div>
+    <div class="my-5">
+        <label for="time"
+               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Orario di arrivo</label>
+        <input type="time" id="time" name="time"
+               class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               min="09:00" max="18:00" value="00:00" required/>
+    </div>
     <hr class=" h-1 my-8 bg-gray-200 border-0 dark:bg-gray-700">
 
     <div class="flex flex-row-reverse my-3 gap-4">
