@@ -11,7 +11,7 @@ class PedibusStopResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
@@ -20,10 +20,12 @@ class PedibusStopResource extends JsonResource
 
         return [
             'id' => $this->uuid,
-            'name' => $this->name,
-            'address' => $this->address,
+            'nome' => $this->name,
+            'indirizzo' => $this->address,
+            'orario' => '7:30',
             'order' => $this->order,
-            'coordinates' => $point ? QgisService::toWGS84(Point::makeGeodetic($point->getY(), $point->getX()), false) : null
+            'coordinates' => $point ? QgisService::toWGS84(Point::makeGeodetic($point->getY(), $point->getX()), false) : null,
+            'nr_children' => 3
         ];
     }
 }

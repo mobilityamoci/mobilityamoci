@@ -63,13 +63,15 @@ class  ApiController extends Controller
 
     public function postAbsenceDays(Request $request)
     {
-        if (!$request->get('days')) {
-            return response()->json(['message' => 'Giorni non validi'], 400);
-        }
+
         $student = \Auth::user();
 
         if (!($student instanceof Student)) {
             return response()->isNotFound();
+        }
+
+        if (!$request->get('days')) {
+            return response()->json(['message' => 'Giorni non validi'], 400);
         }
 
         $student->absenceDays()->delete();
