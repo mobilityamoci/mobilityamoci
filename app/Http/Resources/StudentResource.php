@@ -20,7 +20,7 @@ class StudentResource extends JsonResource
             'scuola' => $this->school->name,
             'classe' => $this->section->name,
             'fermata' => $this->pedibusStop->fullName(),
-            'orario' => '7:30',
+            'orario' => $this->pedibusStop->time,
             'percorso_id' => $this->pedibusLine->uuid,
             'absenceDays' => $this->futureAbsenceDays->map(function ($day) {
                 return $day->date->format('Y-m-d');

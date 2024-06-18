@@ -22,7 +22,7 @@ class PedibusStopResource extends JsonResource
             'id' => $this->uuid,
             'nome' => $this->name,
             'indirizzo' => $this->address,
-            'orario' => '7:30',
+            'orario' => $this->time,
             'order' => $this->order,
             'coordinates' => $point ? QgisService::toWGS84(Point::makeGeodetic($point->getY(), $point->getX()), false) : null,
             'nr_children' => $this->studentsPresenti->count()
