@@ -7,8 +7,6 @@ use App\Http\Resources\PedibusStopResource;
 use App\Http\Resources\StudentResource;
 use App\Models\PedibusLine;
 use App\Models\Student;
-use App\Services\QgisService;
-use Clickbar\Magellan\Data\Geometries\Point;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -35,13 +33,13 @@ class  ApiController extends Controller
         $type = $request->type;
         if ($type == 'parent') {
             $student = Student::where('uuid', $request->uuid)->firstOr(function () {
-                return response()->isNotFound();
+                abort(404);
             });
 
             $token = $student->createToken($student->uuid, [self::PARENT]);
         } else if ($type == 'guardian') {
             $pedibusLine = PedibusLine::where('uuid', $request->uuid)->firstOr(function () {
-                return response()->isNotFound();
+                abort(404);
             });
 
             $token = $pedibusLine->createToken($pedibusLine->uuid, [self::GUARDIAN]);
@@ -55,7 +53,7 @@ class  ApiController extends Controller
         $student = \Auth::user();
 
         if (!($student instanceof Student)) {
-            return response()->isNotFound();
+            abort(401, "Non autorizzato");
         }
 
         return new StudentResource($student);
@@ -67,7 +65,7 @@ class  ApiController extends Controller
         $student = \Auth::user();
 
         if (!($student instanceof Student)) {
-            return response()->isNotFound();
+            abort(401, "Non autorizzato");
         }
 
         if (!$request->get('days')) {
