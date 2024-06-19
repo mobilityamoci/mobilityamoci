@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="Percorsi casa-scuola Comune di Piacenza" saveUserFull="le barto" saveDateTime="2024-06-19T12:00:11" version="3.28.1-Firenze" saveUser="edoba">
+<qgis projectname="Percorsi casa-scuola Comune di Piacenza" saveUserFull="le barto" saveDateTime="2024-06-19T12:29:24" version="3.28.1-Firenze" saveUser="edoba">
   <homePath path=""/>
   <title>Percorsi casa-scuola Comune di Piacenza</title>
   <transaction mode="Disabled"/>
@@ -46,7 +46,7 @@
         <Option/>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer patch_size="-1,-1" id="Percorso_9048b3b0_2bf6_4b06_ad77_8c189a1eaf9e" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=LineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;viaggi_lizmap&quot; (geom) sql=&quot;mezzo&quot;  ILIKE  'Bus comunale'" name="Bus Comunale" providerKey="postgres" legend_exp="" legend_split_behavior="0" checked="Qt::Checked" expanded="1">
+    <layer-tree-layer patch_size="-1,-1" id="Percorso_9048b3b0_2bf6_4b06_ad77_8c189a1eaf9e" source="dbname='postgres' host=10.0.16.23 port=5432 user='postgres' sslmode=disable key='id' estimatedmetadata=true srid=32632 type=LineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;viaggi_lizmap&quot; (geom) sql=&quot;mezzo&quot;  ILIKE  'Bus comunale'" name="Bus Comunale" providerKey="postgres" legend_exp="" legend_split_behavior="0" checked="Qt::Unchecked" expanded="1">
       <customproperties>
         <Option/>
       </customproperties>
@@ -89,10 +89,10 @@
   <mapcanvas name="theMapCanvas" annotationsVisible="1">
     <units>meters</units>
     <extent>
-      <xmin>549128.38013381254859269</xmin>
-      <ymin>4984809.32207782939076424</ymin>
-      <xmax>559559.76645583403296769</xmax>
-      <ymax>4991289.90416218712925911</ymax>
+      <xmin>543609.56031044712290168</xmin>
+      <ymin>4981108.14072402380406857</ymin>
+      <xmax>564472.33295449009165168</xmax>
+      <ymax>4994069.30489273928105831</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -138,9 +138,9 @@
         <legendlayerfile isInOverview="0" layerid="Percorso_79e26d45_1524_4d48_a1c5_3e32c1de52ac" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer name="Bus Comunale" showFeatureCount="0" open="true" drawingOrder="-1" checked="Qt::Checked">
+    <legendlayer name="Bus Comunale" showFeatureCount="0" open="true" drawingOrder="-1" checked="Qt::Unchecked">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="Percorso_9048b3b0_2bf6_4b06_ad77_8c189a1eaf9e" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="Percorso_9048b3b0_2bf6_4b06_ad77_8c189a1eaf9e" visible="0"/>
       </filegroup>
     </legendlayer>
     <legendgroup name="Overview" open="true" checked="Qt::Checked">
@@ -3906,7 +3906,7 @@ control = dialog.findChild(QWidget, "MyLineEdit")
   <Bookmarks/>
   <ProjectViewSettings UseProjectScales="0" rotation="0">
     <Scales/>
-    <DefaultViewExtent xmin="548663.47643798775970936" xmax="560024.67015165882185102" ymax="4991289.90416218712925911" ymin="4984809.32207782939076424">
+    <DefaultViewExtent xmin="543609.56031044712290168" xmax="564472.33295449009165168" ymax="5002148.20721826516091824" ymin="4973029.23839849792420864">
       <spatialrefsys nativeFormat="Wkt">
         <wkt>PROJCRS["WGS 84 / UTM zone 32N",BASEGEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4326]],CONVERSION["UTM zone 32N",METHOD["Transverse Mercator",ID["EPSG",9807]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",9,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["Scale factor at natural origin",0.9996,SCALEUNIT["unity",1],ID["EPSG",8805]],PARAMETER["False easting",500000,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["(E)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["(N)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Engineering survey, topographic mapping."],AREA["Between 6°E and 12°E, northern hemisphere between equator and 84°N, onshore and offshore. Algeria. Austria. Cameroon. Denmark. Equatorial Guinea. France. Gabon. Germany. Italy. Libya. Liechtenstein. Monaco. Netherlands. Niger. Nigeria. Norway. Sao Tome and Principe. Svalbard. Sweden. Switzerland. Tunisia. Vatican City State."],BBOX[0,6,84,12]],ID["EPSG",32632]]</wkt>
         <proj4>+proj=utm +zone=32 +datum=WGS84 +units=m +no_defs</proj4>
