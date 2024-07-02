@@ -91,7 +91,7 @@ class Student extends Model
     {
         $user = Auth::user();
         if (empty($this->name) && empty($this->surname) || !canSeeName(Auth::user())) {
-            return '';
+            return $this->id;
         }
         return ucwords($this->name . ' ' . $this->surname);
     }

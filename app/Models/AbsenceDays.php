@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AbsenceDays extends Model
 {
-    protected $dates = ['date'];
+    protected $casts = ['date' => 'date'];
 
     protected $guarded = ['id','created_at','updated_at'];
 }

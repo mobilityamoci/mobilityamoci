@@ -159,9 +159,10 @@ class Students extends Component
             $this->validate($this->rulesWithoutName);
 
         $student = $this->students[$index] ?? NULL;
+
+        dd($student);
         if (!is_null($student)) {
             optional(Student::find($student['id']))->update($student);
-
         }
         $this->editStudentField = null;
         $this->editStudentIndex = null;

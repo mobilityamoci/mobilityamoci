@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Building;
+use App\Models\Student;
+use App\Services\PedibusService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -19,5 +21,11 @@ class Controller extends BaseController
                 $student->delete();
             });
         });
+    }
+
+    public static function testQrCode()
+    {
+        $student = Student::find(3872);
+        return PedibusService::generateQrCodePdf($student)->stream();
     }
 }

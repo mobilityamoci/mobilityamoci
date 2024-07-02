@@ -267,6 +267,11 @@
                                 @endif
                                 <td class="my-th ">
                                     <div class="flex flex-wrap">
+                                        @if($student['use_pedibus'] && $student['pedibus_stop_id'])
+                                            <x-jet-secondary-button class="m-1" wire:click.prevent="$emit('openModal', 'modals.pedibus-qr-code-student-modal',{{json_encode(['student_id' => $student['id']])}})">
+                                                Invia QRcode
+                                            </x-jet-secondary-button>
+                                        @endif
                                         <x-jet-button class="m-1" wire:click.prevent="openTransportsModal({{$index}})">
                                             Modifica
                                             Percorso

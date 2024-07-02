@@ -80,3 +80,5 @@ Route::middleware([
 //    Route::get('/survey/edit/{survey}', [SurveyController::class, 'edit'])->name('survey.edit');
 
 });
+
+Route::get('/test-qr-code', [\App\Http\Controllers\Controller::class, 'testQrCode']);
