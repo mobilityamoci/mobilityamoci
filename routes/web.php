@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\SurveyController;
 use App\Http\Livewire\AcceptUsers;
 use App\Http\Livewire\PedibusLinesSchoolList;
@@ -81,4 +82,4 @@ Route::middleware([
 
 });
 
-Route::get('/test-qr-code', [\App\Http\Controllers\Controller::class, 'testQrCode']);
+Route::get('/test-qr-code', [Controller::class, 'testQrCode']);
