@@ -1,13 +1,13 @@
 <div class="p-7">
     <div class="justify-between">
 
-    <x-success-button class="my-2" wire:click.prevent="startCreatingSection()">Crea Sezione
+    <x-success-button class="my-2" wire:click.prevent="startCreatingSection()">Crea {{config('custom.lang.section')}}
     </x-success-button>
 
         <x-jet-button type="button" class="mt-9"
                       wire:click="$emit('openModal', 'modals.sections-school-import-modal', {{json_encode(['selectedSchoolId' => $selectedSchoolId])}})"
         >
-            <i class="fa-solid fa-fw fa-file-excel mr-2"></i> Carica Excel sezioni
+            <i class="fa-solid fa-fw fa-file-excel mr-2"></i> Carica Excel {{config('custom.lang.section')}}
         </x-jet-button>
 
     </div>

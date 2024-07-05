@@ -63,7 +63,7 @@
                                     <x-select
                                         wire:model.defer="students.{{$editStudentIndex}}.trips.{{$index}}.town_istat"
                                         for="students.{{$editStudentIndex}}.trip3.{{$index}}.town_istat">
-                                        <option selected value="{{null}}">Scuola</option>
+                                        <option selected value="{{null}}">{{config('custom.lang.school')}}</option>
                                         @foreach($this->comuni as $key => $comune)
                                             <option
                                                 value="{{$key}}">{{$comune}}</option>
@@ -151,7 +151,7 @@
                             <x-select
                                 wire:model="newTripTownIstat"
                                 for="newTripTownIstat">
-                                <option value="0">Scuola</option>
+                                <option value="0">{{config('custom.lang.school')}}</option>
                                 @foreach($this->comuni as $key => $comune)
                                     <option
                                         value="{{$key}}">{{$comune}}</option>

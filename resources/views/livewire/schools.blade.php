@@ -1,5 +1,5 @@
 <div x-data="{}">
-    <span class="font-semibold text-3xl m-3 text-gray-800 leading-tight">Scuole</span>
+    <span class="font-semibold text-3xl m-3 text-gray-800 leading-tight">{{config('custom.lang.school')}}</span>
     <div class="flex justify-between">
         <div></div>
         <div class="flex items-center">
@@ -7,7 +7,7 @@
                 <x-jet-button type="button" class="mt-9"
                               wire:click="$emit('openModal', 'modals.upload-schools-import-modal')"
                 >
-                    <i class="fa-solid fa-fw fa-file-excel mr-2"></i> Carica Excel scuole e sedi
+                    <i class="fa-solid fa-fw fa-file-excel mr-2"></i> Carica Excel {{config('custom.lang.school')}}
                 </x-jet-button>
             @endcan
         </div>
@@ -18,7 +18,7 @@
             <tr>
                 <th class="my-th">Nome</th>
                 <th class="my-th">Studenti</th>
-                <th class="my-th">Sezioni</th>
+                <th class="my-th">{{config('custom.lang.section')}}</th>
                 <th class="my-th">Azioni</th>
             </tr>
             </thead>
@@ -53,7 +53,7 @@
                                 <x-jet-button type="button"
                                               wire:click="$emit('openModal', 'sections', {{json_encode(['selectedSchoolId' => $school['id']])}})"
                                 >
-                                    <i class="fa-solid fa-users-line fa-fw mr-1"></i> Sezioni
+                                    <i class="fa-solid fa-users-line fa-fw mr-1"></i> {{config('custom.lang.section')}}
                                 </x-jet-button>
                                 <x-jet-button type="button"
                                               wire:click="$emit('openModal', 'buildings', {{json_encode(['selectedSchoolId' => $school['id']])}})"
