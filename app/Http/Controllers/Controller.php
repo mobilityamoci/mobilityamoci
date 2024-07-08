@@ -22,10 +22,4 @@ class Controller extends BaseController
             });
         });
     }
-
-    public static function testQrCode()
-    {
-        $student = Student::find(3872);
-        return PedibusService::generateQrCodePdf($student)->stream();
-    }
 }
