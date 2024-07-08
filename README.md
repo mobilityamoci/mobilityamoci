@@ -1,4 +1,4 @@
-# Mobilityamoci
+# MobilityAmoci
 ## _La piattaforma per i mobility manager scolastici e aziendali_
 
 ### Descrizione estesa
@@ -8,7 +8,7 @@ La finalità è quella di calcolare i percorsi casa-scuola o casa-lavoro di stud
 dati e grafici a valutarne l'impatto logistico e ambientale.
 Attualmente il progetto è in una versione stabile e testata.
 
-### Spiegazione struttra
+### Spiegazione struttura
 
 Il repository si sviluppa su due branch: master e dev.
 -  Il primo è utilizzato per tenere la versione stabile ed utilizzabile
@@ -18,15 +18,24 @@ L'alberatura segue le linee guida di un tipico progetto [Laravel](https://larave
 
 ### Dipendenze
 L'applicazione è attualmente sviluppata con PHP 8.1, attraverso il framework [Laravel](https://laravel.com/) 9.52, sfruttando ampiamente LiveWire.
-Utilizza un database PostgreSQL con le estensioni geografiche di PostGis e PgrRouting.
+Utilizza un database PostgreSQL con le estensioni geografiche di PostGis e PgRouting.
 Necessita di un endpoint esterno di georeferenziazione spaziale basato su OpenStreetMap (es. [Nominatim](https://nominatim.openstreetmap.org/ui/search.html)).
 Espone le mappe utilizzando un progetto QGis trasformato in interfaccia web da LizMap.
 Le dipendenze di PHP e Node sono esplicitate nei file composer.json e package.json.
 
 
 ### Istruzioni per l'installazione
-
-
+- Installare un'istanza di Nominatim seguendo la guida [qui](https://nominatim.org/release-docs/develop/admin/Installation/)
+- Installare [QgisServer](https://docs.qgis.org/3.22/it/docs/server_manual/index.html/) e un'istanza di [Lizmap](https://docs.lizmap.com/current/it/install/index.html)
+- Clonare il repository
+- Copiare il .env.example personalizzando le variabili d'ambiente con i valori sensati
+- Eseguire i seguenti comandi
+```console
+~$ php artisan optimize
+```
+```console
+~$ php artisan migrate
+```
 
 ### Conclusione
 
