@@ -270,7 +270,7 @@ cross join lateral (
         } else
             $polygon = false;
 
-        $baseUrl = 'http://10.0.16.23:8080/search.php?limit=1';
+        $baseUrl = config('custom.nominatim.url');
         $WKBgenerator = new WKBGenerator();
         $address = $original_address . ', ' . getComune($town_istat);
         [$geom, $address_res] = self::performGet($baseUrl, $address);

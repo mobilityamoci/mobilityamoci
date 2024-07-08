@@ -1,6 +1,6 @@
 <?php
 return [
-    'geo' =>[
+    'geo' => [
         'piacenza_istat' => 33032
     ],
     'lizmap' => [
@@ -12,5 +12,8 @@ return [
         'school' => env('SCHOOL_NAME'),
         'section' => env('SECTION_NAME'),
         'student' => env('STUDENT_NAME')
+    ],
+    'nominatim' => [
+        'url' => env('NOMINATIM_ENDPOINT'),
     ]
 ];

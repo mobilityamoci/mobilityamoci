@@ -26,7 +26,7 @@ class SectionsSchoolImportModal extends ModalComponent
 
     public function render()
     {
-        return view('livewire.generic-import-modal', ['title' => 'Carica Sezioni']);
+        return view('livewire.generic-import-modal', ['title' => 'Carica '.config('custom.lang.section')]);
     }
 
     public function downloadTemplate(): BinaryFileResponse
