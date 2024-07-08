@@ -31,10 +31,10 @@ Le dipendenze di PHP e Node sono esplicitate nei file composer.json e package.js
 - Copiare il .env.example personalizzando le variabili d'ambiente con i valori sensati
 - Eseguire i seguenti comandi
 ```console
-~$ php artisan optimize
+php artisan optimize
 ```
 ```console
-~$ php artisan migrate
+php artisan migrate
 ```
 
 ### Conclusione
