@@ -17,7 +17,7 @@ class PedibusService
 
     public static function generateQrCodePdf(Student $student)
     {
-        $qrCode = QrCode::format('png')->size(600)->generate($student->uuid);
+        $qrCode = QrCode::format('png')->size(200)->generate($student->uuid);
         $data['student'] = $student;
         $data['qrCode'] = $qrCode;
         return Pdf::loadView('pdf.qrcode', $data);
