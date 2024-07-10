@@ -32,7 +32,7 @@ class PedibusStopMapDrawModal extends ModalComponent
     {
         $this->pedibusStop->point()->delete();
         $this->pedibusStop->point()->create(['point' => QgisService::transformWKT(4326, 32632, $latLngWKT)]);
-        $this->emit('close-modal');
+        $this->dispatchBrowserEvent('close-modal');
         $this->alert('success', 'Punto disegnato con successo');
     }
 

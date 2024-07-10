@@ -30,7 +30,7 @@ class PedibusLineMapDrawModal extends ModalComponent
     {
         $this->pedibusLine->line()->delete();
         $this->pedibusLine->line()->create(['line' => QgisService::transformWKT(4326, 32632, $latLngWKT)]);
-        $this->emit('close-modal');
+        $this->dispatchBrowserEvent('close-modal');
         $this->alert('success', 'Linea disegnata con successo');
     }
 

@@ -160,7 +160,6 @@ class Students extends Component
 
         $student = $this->students[$index] ?? NULL;
 
-        dd($student);
         if (!is_null($student)) {
             optional(Student::find($student['id']))->update($student);
         }

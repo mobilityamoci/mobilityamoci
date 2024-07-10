@@ -31,7 +31,7 @@ class PedibusLineCreate extends ModalComponent
         ]);
 
         $this->alert('success', 'Linea creata');
-        $this->emit('close-modal');
+        $this->dispatchBrowserEvent('close-modal');
     }
 
 

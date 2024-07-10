@@ -34,7 +34,7 @@ class PedibusQrCodeStudentModal extends ModalComponent
             Notification::route('mail', $email)
                 ->notify(new SendQrCodeParentNotification($this->student));
         }
-        $this->emit('close-modal');
+        $this->dispatchBrowserEvent('close-modal');
     }
 
     public function getStudentProperty()

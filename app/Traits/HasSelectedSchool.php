@@ -11,9 +11,10 @@ trait HasSelectedSchool
 
     public function mount()
     {
-        if (!$this->selectedSchoolId) {
+        if (!$this->selectedSchoolId && $this->schools->first()) {
             $this->selectedSchoolId = $this->schools->first()->id;
         }
+        return null;
     }
 
     public function getSchoolsProperty()

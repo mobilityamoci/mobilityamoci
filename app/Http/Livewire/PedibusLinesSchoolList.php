@@ -42,7 +42,10 @@ class PedibusLinesSchoolList extends Component
 
     public function getPedibusLinesProperty()
     {
-        return $this->selectedSchool->pedibusLines;
+        if ($this->selectedSchool)
+            return $this->selectedSchool->pedibusLines;
+        else
+            return [];
     }
 
     public function schoolChanged()

@@ -11,10 +11,9 @@ class PedibusStopCreateModal extends ModalComponent
     use LivewireAlert;
 
     public int $pedibusLineId;
-    public string $newName = 'cocane';
-    public string $newAddress = 'via poipo';
+    public string $newName = '';
+    public string $newAddress = '';
     public int $newOrder = 1;
-
     public $newTime;
 
 
@@ -42,7 +41,7 @@ class PedibusStopCreateModal extends ModalComponent
         ]);
 
         $this->alert('success', 'Fermata creata');
-        $this->emit('close-modal');
+        $this->dispatchBrowserEvent('close-modal');
     }
 
     public function getPedibusLineProperty()
