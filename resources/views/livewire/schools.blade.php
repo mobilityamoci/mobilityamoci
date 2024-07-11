@@ -69,6 +69,10 @@
                             <x-jet-button type="button" wire:click.prevent="goToSchoolStudents({{$index}})">
                                 Vai A Studenti
                             </x-jet-button>
+                            <x-jet-danger-button type="button" wire:click.prevent="confirmArchiveSchool({{$index}})">
+                                <i class="fa-solid fa-triangle-exclamation fa-fw mr-1"></i>
+                                Archivia Scuola
+                            </x-jet-danger-button>
                     </td>
                 </tr>
             @endforeach

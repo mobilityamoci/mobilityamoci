@@ -1,6 +1,7 @@
 <div>
     <x-jet-label for="school">Seleziona la {{config('custom.lang.school')}}:</x-jet-label>
-    <x-select class="col-auto" wire:model="selectedSchoolId" wire:change="refresh" label="Seleziona {{config('custom.lang.school')}}"
+    <x-select class="col-auto" wire:model="selectedSchoolId" wire:change="refresh"
+              label="Seleziona {{config('custom.lang.school')}}"
               id="school">
         @canAny(['admin','all_schools'])
             <option @selected(!$selectedSchoolId) value="0">Tutte le {{config('custom.lang.school')}}</option>
@@ -10,8 +11,19 @@
         @endforeach
     </x-select>
 
+    @if($this->archives->isNotEmpty())
+        <x-jet-label class="mt-4" for="section">Seleziona la versione:</x-jet-label>
+        <x-select wire:change="refresh" wire:model="selectedArchiveId" class="col-auto" label="Selezione la versione" id="archive">
+            <option value="0">Attuale</option>
+            @foreach($this->archives as $archive)
+                <option value="{{$archive->id}}">{{$archive->title}}</option>
+            @endforeach
+        </x-select>
+    @endif
+
     <x-jet-label class="mt-4" for="section">Seleziona la sezione:</x-jet-label>
-    <x-select class="col-auto" wire:model="selectedSectionId" wire:change="refresh" label="Seleziona {{config('custom.lang.section')}}"
+    <x-select class="col-auto" wire:model="selectedSectionId" wire:change="refresh"
+              label="Seleziona {{config('custom.lang.section')}}"
               id="section">
         <option @selected($selectedSectionId == 0) value="0">Tutte le {{config('custom.lang.section')}}</option>
         @foreach($this->sections as $section)

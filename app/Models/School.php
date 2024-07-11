@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class School extends Model
@@ -12,6 +11,11 @@ class School extends Model
     use HasRelationships;
 
     protected $guarded = ['id', 'created_at','updated_at'];
+
+    public function archives()
+    {
+        return $this->hasMany(Archive::class);
+    }
 
     public function students()
     {
