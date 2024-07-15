@@ -21,7 +21,7 @@
             @endif
         </div>
         <div>
-            <x-jet-label class="text-xl">Sezione</x-jet-label>
+            <x-jet-label class="text-xl">{{config('custom.lang.section')}}</x-jet-label>
             <x-select class="w-full" wire:model.lazy="student.section_id">
                 @foreach($this->sections as $section)
                     <option value="{{$section->id}}" class="capitalize">{{$section->name}}</option>

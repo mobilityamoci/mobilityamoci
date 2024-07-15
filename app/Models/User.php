@@ -93,7 +93,7 @@ class User extends Authenticatable
             $role = optional($this->roles->first())->name;
 
             if ($role == 'Utente Base') {
-                $role = 'Studente';
+                $role = config('custom.lang.student');
             }
 
             $school = $this->schools->first()->name;

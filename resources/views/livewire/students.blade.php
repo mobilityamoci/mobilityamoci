@@ -3,8 +3,8 @@
     <div style="width: 100%; height: 90vh">
         <x-schools-select :school-changed-trigger="true"/>
 
-        <x-jet-label class="mt-4" for="section">Seleziona la sezione:</x-jet-label>
-        <x-select class="col-auto" wire:model="selectedSectionId" wire:change="sectionChanged" label="Seleziona Sezione"
+        <x-jet-label class="mt-4" for="section">Seleziona la {{config('custom.lang.section')}}:</x-jet-label>
+        <x-select class="col-auto" wire:model="selectedSectionId" wire:change="sectionChanged" label="Seleziona {{config('custom.lang.section')}}"
                   id="section">
             @foreach($this->sections as $section)
                 <option
@@ -12,12 +12,13 @@
             @endforeach
         </x-select>
 
+
         @if($this->sections->isEmpty())
             <div class="container w-full text-center mt-10">
-                <p class="text-2xl">Nessuna sezione trovata. Aggiungere le <a
+                <p class="text-2xl">Nessuna {{config('custom.lang.section')}} trovata. Aggiungere le <a
                         class="text-blue-600 underline dark:text-blue-500 hover:no-underline"
-                        href="{{route('schools')}}">sezioni</a>
-                    prima di poter inserire gli studenti!</p>
+                        href="{{route('schools')}}">{{config('custom.lang.section')}}</a>
+                    prima di poter inserire gli {{config('custom.lang.student')}}!</p>
             </div>
         @else
 
@@ -38,6 +39,7 @@
 
             </div>
 
+
             <div class="relative table-wrap block overflow-y-auto shadow-md sm:rounded-lg mt-9"
                  style="max-height: 70%; max-width: 100%;">
                 {{$errors->first()}}
@@ -48,7 +50,7 @@
                         <th class="my-th">Nome</th>
                         <th class="my-th">Cognome</th>
                         @endhasanyrole
-                        <th class="my-th">Sezione</th>
+                        <th class="my-th">{{config('custom.lang.section')}}</th>
                         <th class="my-th">Comune Domicilio</th>
                         <th class="my-th">Indirizzo</th>
                         <th class="my-th hidden xxl:block">Percorso</th>

@@ -269,7 +269,7 @@ cross join lateral (
         } else
             $polygon = false;
 
-        $baseUrl = 'http://10.0.16.23:8080/search.php?limit=1';
+        $baseUrl = config('custom.nominatim.url');
         $WKBgenerator = new WKBGenerator();
         $address = $original_address . ', ' . getComune($town_istat);
         [$geom, $address_res] = self::performGet($baseUrl, $address);
@@ -429,7 +429,7 @@ cross join lateral (
      * @param mixed $trips
      * @return float[]
      */
-    private static function calculatePollutionAndCaloriesForTripsSum(mixed $trips): array
+    public static function calculatePollutionAndCaloriesForTripsSum(mixed $trips): array
     {
         if (count($trips) > 0) {
 
@@ -488,7 +488,10 @@ cross join lateral (
 	                                        	round(ST_Length(gl.line)::numeric,
 	                                        	2) as distance,
 	                                        	t.transport_1 as transport_id,
-	                                        	trans.name as transport_name
+	                                        	trans.name as transport_name,
+	                                        	t.id as trip_id,
+	                                        	gl.id as line_id,
+                                                st.id as student_id
 	                                        from
 	                                        	trips t
 	                                        join geometry_lines gl on
@@ -496,8 +499,10 @@ cross join lateral (
 	                                        	and gl.lineable_id = t.id
 	                                        	join transports trans on
 	                                        	t.transport_1 = trans.id
+	                                        join students st on
+	                                        	t.student_id = st.id
 	                                        where
-	                                        	t.id in $placeholder"), array_merge($tripsIds)));
+	                                        	t.id in $placeholder and gl.deleted_at is null"), array_merge($tripsIds)));
 
             foreach ($res as $trip) {
                 if ($trip->transport_id == Transport::AUTO) {

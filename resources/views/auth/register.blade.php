@@ -10,7 +10,7 @@
             @csrf
 
             <div>
-                <x-jet-label for="secret_password" value="Password Segreta (fornita dalla scuola)"/>
+                <x-jet-label for="secret_password" value="Password Segreta (fornita dalla {{config('custom.lang.school')}})"/>
                 <x-jet-input id="secret_password" class="block mt-1 w-full" type="password"
                              :value="old('secret_password')" name="secret_password" required/>
             </div>

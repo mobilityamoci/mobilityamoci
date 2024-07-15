@@ -80,7 +80,7 @@ class Sections extends ModalComponent
         ]);
 
         if (!$created) {
-            session()->flash('error','Sezione non creata');
+            session()->flash('error',config('custom.lang.section').' non creata');
         }
 
         $this->creatingSection = false;

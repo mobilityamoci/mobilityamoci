@@ -5,11 +5,12 @@ namespace App\Models;
 use App\Traits\HasGeometryPoint;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
 class Trip extends Model
 {
-    use HasGeometryPoint;
+    use HasGeometryPoint, SoftDeletes;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 

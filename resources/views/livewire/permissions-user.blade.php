@@ -44,15 +44,15 @@
 
 
     @if($this->userIsInsegnante || $this->userIsMMScolastico)
-        <h3 class="text-lg mt-8">Scuola</h3>
+        <h3 class="text-lg mt-8">{{config('custom.lang.school')}}</h3>
         @if($this->allSchools->isNotEmpty())
-            <x-success-button class="mt-3" wire:click.prevent="$toggle('addingNewSchool')">Associa Nuova Scuola
+            <x-success-button class="mt-3" wire:click.prevent="$toggle('addingNewSchool')">Associa Nuova {{config('custom.lang.school')}}
             </x-success-button>
         @endif
         <table class="my-table table-auto mt-4">
             <thead class="my-header">
             <tr>
-                <th class="my-th">Scuola</th>
+                <th class="my-th">{{config('custom.lang.school')}}</th>
                 <th class="my-th">Azioni</th>
             </tr>
             </thead>
@@ -89,14 +89,14 @@
 
     @endif
     @if($this->userIsInsegnante && !$this->userIsMMScolastico)
-        <h3 class="text-lg mt-8">Sezioni</h3>
+        <h3 class="text-lg mt-8">{{config('custom.lang.section')}}</h3>
     @if($this->allSections->isNotEmpty())
-        <x-success-button class="mt-3" wire:click.prevent="$toggle('addingNewSection')">Associa Nuova Sezione</x-success-button>
+        <x-success-button class="mt-3" wire:click.prevent="$toggle('addingNewSection')">Associa Nuova {{config('custom.lang.section')}}</x-success-button>
     @endif
         <table class="my-table table-auto mt-4">
             <thead class="my-header">
             <tr>
-                <th class="my-th">Sezione</th>
+                <th class="my-th">{{config('custom.lang.section')}}</th>
                 <th class="my-th">Azioni</th>
             </tr>
             </thead>

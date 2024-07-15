@@ -6,10 +6,11 @@ use App\Services\QgisService;
 use App\Traits\HasGeometryPoint;
 use geoPHP;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class GeometryLine extends Model
 {
-    use HasGeometryPoint;
+    use HasGeometryPoint, SoftDeletes;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 

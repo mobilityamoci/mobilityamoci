@@ -6,11 +6,12 @@ use App\Services\QgisService;
 use Clickbar\Magellan\Database\Eloquent\HasPostgisColumns;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class GeometryPoint extends Model
 {
 
-    use HasPostgisColumns;
+    use HasPostgisColumns, SoftDeletes;
 
     protected $guarded = ['id','created_at','updated_at'];
 
